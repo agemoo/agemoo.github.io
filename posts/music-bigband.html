@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- 2026年，我在美国爵士大乐队 -->
+  <title>2026年，我在美国爵士大乐队</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:   #1c1a17;
+      --ink-2: #4a4640;
+      --ink-3: #9a9590;
+      --paper: #faf7f2;
+      --warm:  #b5621e;
+      --rule:  #e0d8cc;
+      --serif: 'Noto Serif SC', 'STSong', serif;
+      --sans:  'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.95;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      height: 52px;
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center;
+      padding: 0 2rem;
+    }
+    .back {
+      font-size: 0.85rem;
+      color: var(--ink-2);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .back:hover { color: var(--warm); }
+    .back::before { content: '←'; }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* 文章头部 */
+    .post-meta {
+      display: flex; gap: 1rem; align-items: center;
+      margin-bottom: 1.2rem;
+    }
+    .post-cat {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--warm);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .post-date {
+      font-size: 0.78rem;
+      color: var(--ink-3);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* 正文 */
+    .post-body p {
+      color: var(--ink-2);
+      margin-bottom: 1.4rem;
+      font-size: 1rem;
+    }
+    .post-body p:last-child { margin-bottom: 0; }
+
+    /* 可选：图片 */
+    .post-body img {
+      width: 100%;
+      margin: 1.5rem 0;
+      border: 1px solid var(--rule);
+    }
+    .post-body .caption {
+      font-size: 0.78rem;
+      color: var(--ink-3);
+      text-align: center;
+      margin-top: -1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 底部导航 */
+    .post-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+    .post-footer a {
+      font-size: 0.85rem;
+      color: var(--ink-2);
+      text-decoration: none;
+    }
+    .post-footer a:hover { color: var(--warm); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="back" href="../index.html">返回主页</a>
+</nav>
+
+<div class="container">
+
+  <div class="post-meta">
+    <!-- 音乐 -->
+    <span class="post-cat">音乐</span>
+    <!-- 2026年4月20日 -->
+    <span class="post-date">2025 年春季</span>
+  </div>
+
+  <!-- ✏️ 改文章标题 -->
+  <h1>2026年，我在美国爵士大乐队</h1>
+
+  <div class="post-body">
+
+    <!-- ✏️ 在这里写正文，每个自然段用一个 <p> 包裹 -->
+
+    <p>
+      大乐队和小组合是完全不同的两件事。小组合里你能听清楚每一个人，一个眼神就能决定下一个和弦。但大乐队是另一回事——十几个人同时在演奏，声音叠在一起，你必须先听整体，才能知道自己应该待在哪里。
+    </p>
+
+    <p>
+      低音提琴在大编制里几乎是隐形的。观众不会注意到你，你的声音被淹没在铜管和鼓里。但你一停，整个乐队会立刻失去重心。这让我开始想，有一种存在感是靠"不在了才被发现"来体现的。
+    </p>
+
+    <p>
+      这学期我们在学校的音乐厅演出了两场。穿着正装站在台上，灯光很亮，台下是我完全不认识的面孔。我盯着谱子，心跳比平时快，但一旦音乐开始，就什么都顾不上了。
+    </p>
+
+    <!-- ✏️ 可以插入图片，把路径换成你自己的图片文件 -->
+    <!--
+    <img src="../images/bigband-2025.jpg" alt="大乐队演出现场" />
+    <p class="caption">2025年春季音乐厅演出</p>
+    -->
+
+    <!-- ✏️ 继续写，想写多少段都可以 -->
+
+  </div>
+
+  <div class="post-footer">
+    <a href="../index.html">← 返回主页</a>
+  </div>
+
+</div>
+
+</body>
+</html>
