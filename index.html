@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mukun 的主页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:   #1c1a17;
+      --ink-2: #4a4640;
+      --ink-3: #9a9590;
+      --paper: #faf7f2;
+      --cream: #f2ede4;
+      --warm:  #b5621e;
+      --rule:  #e0d8cc;
+      --serif: 'Noto Serif SC', 'STSong', serif;
+      --sans:  'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      height: 52px;
+      display: flex; align-items: center;
+      padding: 0 2rem;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { font-size: 0.88rem; color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--warm); }
+
+    .container { max-width: 740px; margin: 0 auto; padding: 0 2rem; }
+
+    section { padding: 4.5rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-of-type { border-bottom: none; }
+
+    .label {
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      color: var(--warm); margin-bottom: 0.5rem;
+      font-weight: 500; text-transform: uppercase;
+    }
+
+    /* 关于我 */
+    #about h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400; line-height: 1.4;
+      margin-bottom: 1.8rem;
+    }
+    #about h1 em { font-style: italic; color: var(--warm); }
+
+    .about-body {
+      display: grid;
+      grid-template-columns: 1fr 210px;
+      gap: 3rem; align-items: start;
+    }
+    .about-text p { color: var(--ink-2); margin-bottom: 1rem; font-size: 0.97rem; }
+
+    .about-info { border: 1px solid var(--rule); }
+    .info-row {
+      display: flex; flex-direction: column;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--cream);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key { font-size: 0.7rem; color: var(--ink-3); letter-spacing: 0.06em; margin-bottom: 0.1rem; }
+    .info-val { font-size: 0.88rem; color: var(--ink); font-weight: 500; }
+
+    /* 经历 */
+    #experience h2 {
+      font-family: var(--serif);
+      font-size: 1.8rem; font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .cat-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2.5rem;
+    }
+    .cat-tab {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--ink-3);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+    .cat-tab:hover { color: var(--ink); }
+    .cat-tab.active { color: var(--warm); border-bottom-color: var(--warm); font-weight: 500; }
+
+    .cat-panel { display: none; }
+    .cat-panel.active { display: block; }
+
+    .entry-list { display: flex; flex-direction: column; }
+    .entry {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+    }
+    .entry:last-child { border-bottom: none; }
+    .entry:hover .entry-title { color: var(--warm); }
+    .entry-date { font-size: 0.75rem; color: var(--ink-3); line-height: 1.6; padding-top: 0.1rem; }
+    .entry-title {
+      font-family: var(--serif);
+      font-size: 1.05rem; font-weight: 400;
+      margin-bottom: 0.35rem;
+      transition: color 0.2s;
+    }
+    .entry-excerpt { font-size: 0.85rem; color: var(--ink-2); line-height: 1.75; }
+
+    footer {
+      padding: 2.5rem 0;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+    footer .copy { font-size: 0.78rem; color: var(--ink-3); }
+    footer a { font-size: 0.82rem; color: var(--ink-2); text-decoration: none; }
+    footer a:hover { color: var(--warm); }
+
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .about-body { grid-template-columns: 1fr; gap: 2rem; }
+      .entry { grid-template-columns: 60px 1fr; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#about" class="nav-logo">Mukun</a>
+  <ul>
+    <li><a href="#about">关于我</a></li>
+    <li><a href="#experience">经历</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- ══════════════════════════════
+       关于我
+       修改这一块：改 h1、段落文字、右侧信息卡片
+  ══════════════════════════════ -->
+  <section id="about">
+    <p class="label">关于我</p>
+
+    <!-- ✏️ 改标题 -->
+    <h1>我在两个世界之间<br />生活，<em>也在学习。</em></h1>
+
+    <div class="about-body">
+      <div class="about-text">
+
+        <!-- ✏️ 改段落，可以多加几个 <p> -->
+        <p>
+          我叫Mukun，来自河南，现在在美国犹他州南方大学（SUU）读战略传播专业，辅修商业分析。通过武汉工业大学的2+2项目来到这里，预计2027年春季毕业。
+        </p>
+        <p>
+          我弹爵士低音提琴，在SUU爵士大乐队和小组合演出。学琴是从大一开始自学的，没有老师，只有很多试错和一点运气。2025年获得了学校的国际学生艺术家奖。
+        </p>
+        <p>
+          这个主页是我的个人档案，用来记录走过的地方、学过的东西和一些想法。没有特别的主题，只是想把生活留住一些。
+        </p>
+
+      </div>
+
+      <!-- ✏️ 改右侧信息卡片 -->
+      <div class="about-info">
+        <div class="info-row">
+          <span class="info-key">现在在</span>
+          <span class="info-val">Cedar City, Utah</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">专业</span>
+          <span class="info-val">战略传播 / 商业分析</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">学校</span>
+          <span class="info-val">Southern Utah University</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">乐器</span>
+          <span class="info-val">低音提琴（爵士）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">毕业</span>
+          <span class="info-val">2027 年春</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       经历
+       在下面各分类里添加条目
+  ══════════════════════════════ -->
+  <section id="experience">
+    <p class="label">经历</p>
+    <h2>我做过的事</h2>
+
+    <div class="cat-tabs">
+      <div class="cat-tab active" data-cat="music">音乐</div>
+      <div class="cat-tab" data-cat="travel">旅行</div>
+      <div class="cat-tab" data-cat="study">学习</div>
+      <div class="cat-tab" data-cat="essay">随笔</div>
+    </div>
+
+
+    <!-- ── 音乐 ────────────────────
+         添加条目：复制整个 <a class="entry"> ... </a> 块
+         href 填文章路径，例如 posts/music-xxx.html
+    ─────────────────────────────── -->
+    <div class="cat-panel active" id="panel-music">
+      <div class="entry-list">
+
+        <a class="entry" href="posts/music-bigband-2025.html">
+          <div class="entry-date">2025<br />春季</div>
+          <div>
+            <div class="entry-title">在 SUU 爵士大乐队演出是什么感觉</div>
+            <div class="entry-excerpt">大编制的合奏和小组合完全不一样——你必须时刻听着别人，低音提琴更像是在搭台子而不是在表演。</div>
+          </div>
+        </a>
+
+        <a class="entry" href="posts/music-wuhan-cafe.html">
+          <div class="entry-date">2022<br />武汉</div>
+          <div>
+            <div class="entry-title">在武汉的咖啡馆办爵士演出</div>
+            <div class="entry-excerpt">第一次自己组织演出，找场地、排曲子、联系人。武汉不是爵士城市，但那天晚上还是来了很多人。</div>
+          </div>
+        </a>
+
+        <!-- ✏️ 在这里继续加音乐条目 -->
+
+      </div>
+    </div>
+
+
+    <!-- ── 旅行 ────────────────────  -->
+    <div class="cat-panel" id="panel-travel">
+      <div class="entry-list">
+
+        <a class="entry" href="posts/travel-hk-2025.html">
+          <div class="entry-date">2025<br />四月</div>
+          <div>
+            <div class="entry-title">第一次去香港</div>
+            <div class="entry-excerpt">从美国飞回来中转香港，停留两天。这是我第一次踏上这座城市。</div>
+          </div>
+        </a>
+
+        <!-- ✏️ 在这里继续加旅行条目 -->
+
+      </div>
+    </div>
+
+
+    <!-- ── 学习 ────────────────────  -->
+    <div class="cat-panel" id="panel-study">
+      <div class="entry-list">
+
+        <a class="entry" href="posts/study-ta-2025.html">
+          <div class="entry-date">2025<br />五月</div>
+          <div>
+            <div class="entry-title">作为 SUU 英语教学助理回国</div>
+            <div class="entry-excerpt">参与 SUU 英语教师项目，作为助教回国执教三周。这是我第一次正式站在讲台这一侧。</div>
+          </div>
+        </a>
+
+        <a class="entry" href="posts/study-stats.html">
+          <div class="entry-date">2025<br />春季</div>
+          <div>
+            <div class="entry-title">统计课让我明白了什么</div>
+            <div class="entry-excerpt">这门课比我预想的难。但学完之后对数据的感觉确实不一样了——不再只是看数字，而是开始想它背后的意思。</div>
+          </div>
+        </a>
+
+        <!-- ✏️ 在这里继续加学习条目 -->
+
+      </div>
+    </div>
+
+
+    <!-- ── 随笔 ────────────────────  -->
+    <div class="cat-panel" id="panel-essay">
+      <div class="entry-list">
+
+        <a class="entry" href="posts/essay-cedar-city.html">
+          <div class="entry-date">2024</div>
+          <div>
+            <div class="entry-title">在一个小城市当外国人</div>
+            <div class="entry-excerpt">Cedar City 很安静，红色的岩石，和我想象的美国完全不一样。我也和自己想象的不太一样。</div>
+          </div>
+        </a>
+
+        <!-- ✏️ 在这里继续加随笔条目 -->
+
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <span class="copy">© Mukun</span>
+    <div>
+      <!-- ✏️ 替换为你的真实邮箱 -->
+      <a href="mailto:your@email.com">联系我</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.cat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.cat).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
