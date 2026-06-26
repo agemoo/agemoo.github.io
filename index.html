@@ -1,379 +1,899 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>孙慕坤 | 个人主页</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<html lang="zh-CN" class="no-js"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>孙慕坤 · 综合营销作品集 — 海外社媒投放 / 内容运营 / 平面创意</title>
+<meta name="description" content="孙慕坤（Mukun Sun）综合营销作品集：海外社媒投放、内容运营与平面创意。Facebook / Google Ads 投放逻辑与 ROAS·CTR 指标，亲手把海报、推文与品牌活动做到成品。">
+<script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'GSerifSC';src:local('Noto Serif SC'),local('Source Han Serif SC'),url('C:/Windows/Fonts/NotoSerifSC-VF.ttf');font-weight:200 900;font-display:swap;}
+@font-face{font-family:'GSansSC';src:local('Noto Sans SC'),local('Source Han Sans SC'),url('C:/Windows/Fonts/NotoSansSC-VF.ttf');font-weight:100 900;font-display:swap;}
 
-    :root {
-      --ink:   #1c1a17;
-      --ink-2: #4a4640;
-      --ink-3: #9a9590;
-      --paper: #faf7f2;
-      --cream: #f2ede4;
-      --warm:  #b5621e;
-      --rule:  #e0d8cc;
-      --serif: 'Noto Serif SC', 'STSong', serif;
-      --sans:  'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    }
+:root{
+  --bg:oklch(0.152 0.006 60);
+  --bg-1:oklch(0.185 0.008 58);
+  --bg-2:oklch(0.205 0.009 56);
+  --surface:oklch(0.235 0.010 55);
+  --ink:oklch(0.94 0.013 78);
+  --ink-2:oklch(0.815 0.014 74);
+  --muted:oklch(0.64 0.013 66);
+  --faint:oklch(0.47 0.011 60);
+  --ember:oklch(0.66 0.155 47);
+  --ember-d:oklch(0.55 0.145 42);
+  --amber:oklch(0.815 0.115 72);
+  --line:rgba(238,224,198,0.10);
+  --line-2:rgba(238,224,198,0.17);
+  --line-3:rgba(238,224,198,0.30);
+  --serif:'GSerifSC','Noto Serif SC','Source Han Serif SC','Songti SC',serif;
+  --sans:'GSansSC','Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  --mono:'Fragment Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease2:cubic-bezier(.22,1,.36,1);
+  --maxw:1240px;
+  --gut:clamp(20px,5vw,80px);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  background:var(--bg);color:var(--ink-2);font-family:var(--sans);font-weight:300;
+  line-height:1.85;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:var(--ember);color:#120e0a;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px;}
 
-    html { scroll-behavior: smooth; }
+/* ---------- ambient texture: grain + vignette + spotlight ---------- */
+.grain,.vignette,.spot,.mat{position:fixed;inset:0;pointer-events:none;z-index:90;}
+.grain{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.05;mix-blend-mode:overlay;z-index:92;
+}
+html.js .grain{animation:grain .55s steps(3) infinite;}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-3%,2%)}66%{transform:translate(2%,-2%)}100%{transform:translate(0,0)}}
+.vignette{background:radial-gradient(120% 90% at 50% 28%,transparent 52%,rgba(0,0,0,.42) 100%);z-index:91;}
+.spot{z-index:89;opacity:0;transition:opacity .8s ease;background:radial-gradient(420px circle at var(--mx,50%) var(--my,30%),oklch(0.7 0.12 60 / .14),transparent 62%);mix-blend-mode:screen;}
+html.js.pointer-fine .spot.on{opacity:1;}
+/* gallery mat frame */
+.mat{z-index:88;border:1px solid var(--line);margin:14px;border-radius:3px;mix-blend-mode:overlay;}
+@media (max-width:680px){.mat{display:none;}}
 
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.9;
-      -webkit-font-smoothing: antialiased;
-    }
+/* ---------- scroll progress + nav ---------- */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:120;
+  background:linear-gradient(90deg,var(--ember-d),var(--amber));box-shadow:0 0 12px var(--ember);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:110;display:flex;align-items:center;justify-content:space-between;
+  padding:18px var(--gut);transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s;
+  border-bottom:1px solid transparent;}
+.nav.solid{background:color-mix(in oklab,var(--bg) 78%,transparent);backdrop-filter:blur(14px) saturate(1.1);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);padding-top:13px;padding-bottom:13px;border-color:var(--line);}
+.nav .brand{font-family:var(--serif);font-size:16px;letter-spacing:.16em;color:var(--ink);font-weight:600;display:flex;align-items:baseline;gap:9px;}
+.nav .brand .en{font-family:var(--mono);font-size:9.5px;letter-spacing:.34em;color:var(--muted);text-transform:uppercase;font-weight:400;}
+.nav .links{display:flex;gap:clamp(14px,2vw,30px);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.nav .links a{position:relative;padding:4px 0;transition:color .35s;}
+.nav .links a:hover{color:var(--ink);}
+.nav .links a::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--amber);transition:right .4s var(--ease);}
+.nav .links a:hover::after{right:0;}
+@media (max-width:680px){.nav .links{display:none;}}
 
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--paper);
-      border-bottom: 1px solid var(--rule);
-      height: 52px;
-      display: flex; align-items: center;
-      padding: 0 2rem;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      color: var(--ink);
-      text-decoration: none;
-    }
-    nav ul { list-style: none; display: flex; gap: 2rem; }
-    nav a { font-size: 0.88rem; color: var(--ink-2); text-decoration: none; transition: color 0.2s; }
-    nav a:hover { color: var(--warm); }
+/* ---------- layout primitives ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut);}
+section{position:relative;}
+.band{padding-block:clamp(86px,12vw,168px);}
+.divider{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto;}
 
-    .container { max-width: 740px; margin: 0 auto; padding: 0 2rem; }
+/* section header / placard system */
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:clamp(40px,6vw,76px);flex-wrap:wrap;}
+.placard{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.placard::before{content:"";width:26px;height:1px;background:var(--ember);display:inline-block;}
+.placard .cn{color:var(--muted);letter-spacing:.16em;}
+.stitle{font-family:var(--serif);color:var(--ink);font-weight:600;line-height:1.12;letter-spacing:-.01em;
+  font-size:clamp(30px,5.2vw,58px);text-wrap:balance;}
+.shead .aside{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  text-align:right;line-height:2;max-width:230px;}
+.amber{color:var(--amber);} .em{color:var(--ember);font-style:normal;}
+.lede{font-family:var(--serif);font-weight:400;color:var(--ink-2);font-size:clamp(16px,2vw,21px);line-height:1.78;
+  max-width:64ch;text-wrap:pretty;}
+.lede em{font-style:italic;color:var(--amber);}
 
-    section { padding: 4.5rem 0; border-bottom: 1px solid var(--rule); }
-    section:last-of-type { border-bottom: none; }
+/* ---------- HERO ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
+  padding-block:130px 56px;}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(80% 60% at 72% 8%,oklch(0.5 0.12 45 / .30),transparent 60%),
+    radial-gradient(90% 70% at 12% 96%,oklch(0.34 0.07 50 / .35),transparent 62%),
+    var(--bg);}
+.hero .ghost{position:absolute;right:-3vw;top:50%;transform:translateY(-50%);font-family:var(--serif);
+  font-size:min(58vh,520px);line-height:.8;color:rgba(238,224,198,.022);writing-mode:vertical-rl;
+  letter-spacing:-.06em;z-index:-1;font-weight:700;user-select:none;}
+.hero-kick{font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);letter-spacing:.42em;text-transform:uppercase;
+  color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:clamp(26px,4vw,46px);}
+.hero-kick b{color:var(--amber);font-weight:400;}
+.hero-kick .ln{flex:0 0 56px;height:1px;background:var(--line-2);}
+.hero .nameen{font-family:var(--mono);font-size:clamp(12px,1.5vw,15px);letter-spacing:.5em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:14px;padding-left:4px;}
+.hero h1{font-family:var(--serif);font-weight:700;color:var(--ink);line-height:.92;letter-spacing:.02em;
+  font-size:clamp(72px,17vw,200px);}
+.hero .role{margin-top:clamp(24px,3.4vw,40px);font-family:var(--serif);font-weight:400;color:var(--ink-2);
+  font-size:clamp(19px,2.7vw,32px);line-height:1.4;}
+.hero .role b{color:var(--amber);font-weight:400;}
+.hero .roleen{margin-top:12px;font-family:var(--mono);font-size:clamp(10px,1.2vw,12px);letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted);}
+.hero-foot{margin-top:auto;padding-top:clamp(34px,5vw,60px);display:flex;justify-content:space-between;align-items:flex-end;
+  gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);}
+.hero-foot .status{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  display:flex;align-items:center;gap:10px;}
+.hero-foot .status .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 var(--amber);
+  animation:pulse 2.6s var(--ease) infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 oklch(0.815 0.115 72 / .5)}70%{box-shadow:0 0 0 11px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.scrollcue{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:10px;}
+.scrollcue .bar{width:1px;height:34px;background:linear-gradient(var(--amber),transparent);position:relative;overflow:hidden;}
+.scrollcue .bar::after{content:"";position:absolute;top:0;left:0;width:100%;height:40%;background:var(--amber);animation:cue 2.2s var(--ease) infinite;}
+@keyframes cue{0%{transform:translateY(-100%)}100%{transform:translateY(280%)}}
 
-    .label {
-      font-size: 0.72rem; letter-spacing: 0.14em;
-      color: var(--warm); margin-bottom: 0.5rem;
-      font-weight: 500; text-transform: uppercase;
-    }
+/* hero load choreography */
+html.js .reveal-up{opacity:0;transform:translateY(40px);}
+html.js .hero.loaded .reveal-up{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1.1s var(--ease);}
+html.js .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*1ms);}
 
-    /* 关于我 */
-    #about h1 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 400; line-height: 1.4;
-      margin-bottom: 1.8rem;
-    }
-    #about h1 em { font-style: italic; color: var(--warm); }
+/* ---------- PROFILE ---------- */
+.about-top{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(30px,5vw,72px);align-items:center;}
+.about-text .lede{margin-top:clamp(20px,3vw,30px);}
+.portrait{position:relative;margin:0;justify-self:end;width:100%;max-width:380px;}
+.pframe{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:4px;background:var(--bg-1);
+  aspect-ratio:4/5;box-shadow:0 36px 80px -38px rgba(0,0,0,.9);}
+.pframe img{width:100%;height:100%;object-fit:cover;filter:brightness(.97) saturate(1.03) contrast(1.03);
+  transform:scale(1.012);transition:transform 1.2s var(--ease),filter .7s var(--ease);}
+.pframe::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(115% 80% at 50% 12%,transparent 54%,rgba(8,5,3,.46));}
+.pglow{position:absolute;inset:0;pointer-events:none;border-radius:4px;
+  box-shadow:inset 0 0 70px -34px var(--ember),inset 0 1px 0 rgba(238,224,198,.08);}
+@media (hover:hover){
+  .portrait:hover .pframe img{transform:scale(1.045);filter:brightness(1.02) saturate(1.06) contrast(1.03);}
+  .portrait:hover .pframe{border-color:var(--line-3);box-shadow:0 40px 90px -36px rgba(0,0,0,.92),0 0 50px -22px var(--ember);}
+}
+.pcap{margin-top:15px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);line-height:1.7;}
+.pcap span{display:block;color:var(--faint);margin-top:5px;letter-spacing:.1em;}
+@media (max-width:840px){
+  .about-top{grid-template-columns:1fr;gap:clamp(30px,6vw,44px);}
+  .portrait{justify-self:start;max-width:320px;}
+}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:clamp(48px,6vw,78px);}
+.pillar{position:relative;padding-top:26px;border-top:1px solid var(--line-2);}
+.pillar .pn{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--ember);margin-bottom:16px;}
+.pillar h3{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(19px,2.2vw,24px);margin-bottom:14px;letter-spacing:.01em;}
+.pillar p{font-size:14.5px;line-height:1.8;color:var(--ink-2);max-width:38ch;}
+.pillar .glow{position:absolute;top:-1px;left:0;width:46px;height:1px;background:var(--ember);box-shadow:0 0 10px var(--ember);
+  transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease);}
+.pillar.in .glow{transform:scaleX(1);}
+@media (max-width:760px){.pillars{grid-template-columns:1fr;gap:34px;}}
 
-    .about-body {
-      display: grid;
-      grid-template-columns: 1fr 210px;
-      gap: 3rem; align-items: start;
-    }
-    .about-text p { color: var(--ink-2); margin-bottom: 1rem; font-size: 0.97rem; }
+/* ---------- EDUCATION (by college) ---------- */
+.edu-list{margin-top:clamp(30px,4vw,52px);border-top:1px solid var(--line);}
+.edu{display:grid;grid-template-columns:0.8fr 1.4fr;gap:clamp(18px,4vw,56px);padding:clamp(28px,3.6vw,44px) 0;
+  border-bottom:1px solid var(--line);position:relative;align-items:start;}
+.edu .uni{font-family:var(--serif);}
+.edu .uni .name{font-size:clamp(19px,2.3vw,26px);color:var(--ink);font-weight:600;line-height:1.25;letter-spacing:.01em;}
+.edu .uni .nameen{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-top:9px;line-height:1.7;}
+.edu .uni .yr{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--amber);margin-top:14px;}
+.edu .col{font-family:var(--serif);font-size:clamp(15px,1.7vw,18px);color:var(--ember);margin-bottom:6px;font-weight:600;}
+.edu .prog{font-family:var(--serif);font-size:clamp(16px,1.9vw,20px);color:var(--ink);margin-bottom:14px;font-weight:500;}
+.edu .prog .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);
+  background:var(--amber);padding:3px 8px;border-radius:20px;margin-left:10px;vertical-align:middle;font-weight:400;}
+.edu .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.edu .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-2);border:1px solid var(--line-2);
+  padding:5px 11px;border-radius:20px;}
+.edu .chip b{color:var(--amber);font-weight:400;}
+.edu .courses{font-size:13.5px;line-height:1.75;color:var(--muted);max-width:54ch;}
+.edu .courses b{color:var(--ink-2);font-weight:400;}
+@media (max-width:680px){.edu{grid-template-columns:1fr;gap:16px;}}
 
-    .about-info { border: 1px solid var(--rule); }
-    .info-row {
-      display: flex; flex-direction: column;
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid var(--rule);
-      background: var(--cream);
-    }
-    .info-row:last-child { border-bottom: none; }
-    .info-key { font-size: 0.7rem; color: var(--ink-3); letter-spacing: 0.06em; margin-bottom: 0.1rem; }
-    .info-val { font-size: 0.88rem; color: var(--ink); font-weight: 500; }
+/* ---------- CAPABILITIES + METRICS ---------- */
+.caps{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(28px,3.4vw,56px);margin-top:clamp(38px,5vw,64px);}
+.cap{border-top:1px solid var(--line-2);padding-top:24px;}
+.cap .ct{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(17px,2vw,21px);margin-bottom:6px;}
+.cap .cen{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;}
+.cap ul{list-style:none;}
+.cap li{font-size:14px;line-height:1.6;color:var(--ink-2);padding:11px 0 11px 22px;position:relative;border-bottom:1px solid var(--line);}
+.cap li:last-child{border-bottom:none;}
+.cap li::before{content:"";position:absolute;left:0;top:18px;width:6px;height:6px;background:var(--ember);transform:rotate(45deg);transition:box-shadow .3s;}
+.cap li:hover::before{box-shadow:0 0 9px var(--ember);}
+@media (max-width:760px){.caps{grid-template-columns:1fr;gap:30px;}}
 
-    /* 经历 */
-    #experience h2 {
-      font-family: var(--serif);
-      font-size: 1.8rem; font-weight: 400;
-      margin-bottom: 2rem;
-    }
+.metrics{margin-top:clamp(56px,7vw,96px);}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px;}
+.metric{background:var(--bg);padding:clamp(26px,3vw,40px) clamp(20px,2.4vw,30px);position:relative;transition:background .5s;}
+.metric:hover{background:var(--bg-1);}
+.metric .mn{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.01em;}
+.metric .mn .u{color:var(--ember);font-size:.5em;margin-left:2px;}
+.metric .ml{font-size:12.5px;line-height:1.55;color:var(--muted);margin-top:16px;}
+.metric .ml .en{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);display:block;margin-top:5px;}
+@media (max-width:760px){.metrics-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:460px){.metrics-grid{grid-template-columns:1fr;}}
 
-    .cat-tabs {
-      display: flex;
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 2.5rem;
-    }
-    .cat-tab {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.88rem;
-      color: var(--ink-3);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.2s, border-color 0.2s;
-      user-select: none;
-    }
-    .cat-tab:hover { color: var(--ink); }
-    .cat-tab.active { color: var(--warm); border-bottom-color: var(--warm); font-weight: 500; }
+/* ---------- MARQUEE ---------- */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:26px;white-space:nowrap;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.marquee .track{display:inline-flex;gap:0;will-change:transform;}
+html.js .marquee .track{animation:scroll 34s linear infinite;}
+.marquee:hover .track{animation-play-state:paused;}
+.marquee span{font-family:var(--serif);font-size:clamp(22px,3vw,40px);color:var(--ink);font-weight:500;padding-inline:30px;display:inline-flex;align-items:center;gap:60px;}
+.marquee span i{font-family:var(--mono);font-style:normal;font-size:.42em;letter-spacing:.24em;text-transform:uppercase;color:var(--ember);}
+.marquee .mut{color:var(--faint);}
+@keyframes scroll{to{transform:translateX(-50%);}}
 
-    .cat-panel { display: none; }
-    .cat-panel.active { display: block; }
+/* ---------- CASES ---------- */
+.case{padding-block:clamp(70px,9vw,130px);position:relative;}
+.case-head{display:flex;align-items:baseline;gap:clamp(16px,3vw,40px);margin-bottom:30px;flex-wrap:wrap;}
+.case-no{font-family:var(--serif);font-size:clamp(56px,12vw,150px);line-height:.8;color:transparent;font-weight:700;
+  -webkit-text-stroke:1px var(--line-3);letter-spacing:-.02em;}
+.case-tagcn{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.case h2{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(26px,4.4vw,50px);line-height:1.16;letter-spacing:-.01em;text-wrap:balance;}
+.case .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--muted);margin-top:18px;}
+.case .meta b{color:var(--amber);font-weight:400;}
+.case-body{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,66px);margin-top:clamp(36px,4.5vw,60px);align-items:start;}
+@media (max-width:840px){.case-body{grid-template-columns:1fr;gap:36px;}}
+.block{margin-bottom:30px;}
+.block .bt{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ember);margin-bottom:13px;
+  display:flex;align-items:center;gap:10px;}
+.block .bt::before{content:"";width:14px;height:1px;background:var(--ember);}
+.block p{font-size:14.5px;line-height:1.82;color:var(--ink-2);}
+.quote{border-left:2px solid var(--ember);padding:6px 0 6px 22px;margin-top:34px;}
+.quote q{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,20px);line-height:1.6;color:var(--ink);quotes:none;}
+.quote .src{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:14px;display:block;}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line-2);}
+.results .r{background:var(--bg);padding:22px 20px;}
+.results .rn{font-family:var(--serif);font-weight:600;color:var(--amber);font-size:clamp(26px,3.4vw,40px);line-height:1;}
+.results .rl{font-size:12px;line-height:1.5;color:var(--muted);margin-top:11px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.tags .t{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
+  border:1px solid var(--line-2);padding:6px 12px;border-radius:20px;transition:border-color .3s,color .3s;}
+.tags .t:hover{border-color:var(--amber);color:var(--amber);}
+/* channel matrix */
+.chmatrix{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:36px;}
+.chmatrix .ch{background:var(--bg);padding:22px 18px;transition:background .5s;}
+.chmatrix .ch:hover{background:var(--bg-1);}
+.chmatrix .ch .h{font-family:var(--serif);font-size:18px;color:var(--ink);margin-bottom:10px;}
+.chmatrix .ch .d{font-size:11.5px;line-height:1.55;color:var(--muted);}
+@media (max-width:680px){.chmatrix{grid-template-columns:1fr 1fr;}}
+.case-figure{position:relative;}
+.case-figure .frame{overflow:hidden;border:1px solid var(--line-2);background:var(--bg-1);border-radius:2px;}
+.case-figure img{width:100%;height:auto;}
+.figcap{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--muted);margin-top:14px;line-height:1.6;}
+.figcap b{color:var(--ink-2);font-weight:400;}
 
-    .entry-list { display: flex; flex-direction: column; }
-    .entry {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--rule);
-      text-decoration: none;
-      color: inherit;
-    }
-    .entry:last-child { border-bottom: none; }
-    .entry:hover .entry-title { color: var(--warm); }
-    .entry-date { font-size: 0.75rem; color: var(--ink-3); line-height: 1.6; padding-top: 0.1rem; }
-    .entry-title {
-      font-family: var(--serif);
-      font-size: 1.05rem; font-weight: 400;
-      margin-bottom: 0.35rem;
-      transition: color 0.2s;
-    }
-    .entry-excerpt { font-size: 0.85rem; color: var(--ink-2); line-height: 1.75; }
+/* ---------- GALLERY ---------- */
+.gal-intro{max-width:62ch;margin-top:18px;}
+.galgroup{margin-top:clamp(54px,7vw,92px);}
+.galgroup-head{display:flex;align-items:baseline;gap:16px;margin-bottom:30px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;}
+.galgroup-head .gh{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(20px,2.6vw,30px);}
+.galgroup-head .ghen{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);}
+.galgroup-head .ghd{font-size:13px;color:var(--muted);margin-left:auto;max-width:46ch;line-height:1.6;}
+@media (max-width:680px){.galgroup-head .ghd{margin-left:0;flex-basis:100%;}}
 
-    footer {
-      padding: 2.5rem 0;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-      border-top: 1px solid var(--rule);
-    }
-    footer .copy { font-size: 0.78rem; color: var(--ink-3); }
-    footer a { font-size: 0.82rem; color: var(--ink-2); text-decoration: none; }
-    footer a:hover { color: var(--warm); }
+.art{position:relative;overflow:hidden;background:var(--bg-1);border:1px solid var(--line);border-radius:2px;display:block;}
+.art img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9) saturate(1) contrast(1.02);
+  transition:filter .7s var(--ease),transform 1.1s var(--ease);transform:scale(1.012);}
+.art::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 50% 0,transparent 58%,rgba(0,0,0,.28));
+  opacity:.5;transition:opacity .7s;pointer-events:none;}
+/* gallery "spotlight": dim-until-lit only where a cursor can hover */
+@media (hover:hover){
+  .art img{filter:brightness(.78) saturate(.94) contrast(1.02);}
+  .art::after{opacity:.7;}
+  .art:hover img{filter:brightness(1.06) saturate(1.07) contrast(1.03);transform:scale(1.045);}
+  .art:hover::after{opacity:.22;}
+}
+.art:hover{border-color:var(--line-3);box-shadow:0 26px 60px -28px rgba(0,0,0,.8),0 0 40px -18px var(--ember);}
+.art .label{position:absolute;left:0;right:0;bottom:0;padding:20px;z-index:2;
+  background:linear-gradient(transparent,rgba(10,8,6,.86));
+  transform:translateY(8px);opacity:0;transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.art:hover .label,.art:focus-visible .label{opacity:1;transform:none;}
+.art .label .lt{font-family:var(--serif);font-size:15px;color:var(--ink);font-weight:600;}
+.art .label .lm{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);margin-top:6px;line-height:1.6;}
 
-    @media (max-width: 600px) {
-      nav ul { display: none; }
-      .about-body { grid-template-columns: 1fr; gap: 2rem; }
-      .entry { grid-template-columns: 60px 1fr; gap: 1rem; }
-    }
-  </style>
+.gal-hotone{display:grid;grid-template-columns:1.18fr 1fr;grid-auto-rows:1fr;gap:clamp(12px,1.6vw,20px);}
+.gal-hotone .a-main{grid-row:span 2;}
+.gal-posters{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(12px,1.6vw,20px);}
+.gal-posters .art{aspect-ratio:71/100;}
+.gal-wide{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,20px);margin-top:clamp(12px,1.6vw,20px);}
+.gal-wide .art{aspect-ratio:1316/1000;}
+.gal-banner{margin-top:clamp(12px,1.6vw,20px);}
+.gal-banner .art{aspect-ratio:1084/437;}
+.gal-bass{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(12px,1.6vw,20px);}
+.gal-bass .art{aspect-ratio:3/4;}
+@media (max-width:680px){
+  .gal-hotone{grid-template-columns:1fr;}
+  .gal-hotone .a-main{grid-row:auto;aspect-ratio:71/100;}
+  .gal-hotone .art{aspect-ratio:71/100;}
+  .gal-wide{grid-template-columns:1fr;}
+}
+.gal-hotone .art{aspect-ratio:71/100;}
+
+/* ---------- WAY OF WORKING ---------- */
+.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);margin-top:clamp(38px,5vw,60px);}
+.way{padding-top:24px;border-top:1px solid var(--line-2);}
+.way .wn{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.way h4{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(18px,2vw,23px);margin-bottom:13px;}
+.way p{font-size:13.5px;line-height:1.78;color:var(--muted);}
+@media (max-width:760px){.ways{grid-template-columns:1fr;gap:28px;}}
+
+/* ---------- CLOSING ---------- */
+.closing{position:relative;overflow:hidden;padding-block:clamp(96px,14vw,200px);}
+.closing::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(70% 80% at 80% 100%,oklch(0.5 0.13 44 / .34),transparent 60%),
+            radial-gradient(60% 60% at 8% 0,oklch(0.34 0.06 50 / .4),transparent 60%),var(--bg);}
+.closing .ckick{font-family:var(--mono);font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--amber);margin-bottom:30px;}
+.closing h2{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:clamp(38px,8vw,96px);line-height:1.04;letter-spacing:-.02em;text-wrap:balance;}
+.closing p{font-size:clamp(15px,1.8vw,18px);line-height:1.85;color:var(--ink-2);max-width:58ch;margin-top:34px;}
+.contact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 50px;margin-top:clamp(46px,6vw,72px);
+  border-top:1px solid var(--line-2);padding-top:40px;max-width:760px;}
+.contact .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:9px;}
+.contact .v{font-family:var(--serif);font-size:clamp(17px,2.2vw,22px);color:var(--ink);}
+.contact a.v{transition:color .3s;position:relative;display:inline-block;}
+.contact a.v:hover{color:var(--amber);}
+.cta-row{margin-top:clamp(44px,5vw,60px);display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+.btn{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  padding:16px 30px;border-radius:40px;border:1px solid var(--line-2);color:var(--ink);overflow:hidden;
+  transition:border-color .4s,color .4s,transform .25s var(--ease2);will-change:transform;}
+.btn.primary{background:var(--ember);border-color:var(--ember);color:#150f0a;font-weight:400;box-shadow:0 0 0 transparent;}
+.btn.primary:hover{box-shadow:0 16px 40px -16px var(--ember);}
+.btn::after{content:"";position:absolute;inset:0;background:radial-gradient(90px circle at var(--bx,50%) var(--by,50%),rgba(255,255,255,.16),transparent 60%);opacity:0;transition:opacity .4s;}
+.btn:hover::after{opacity:1;}
+.btn.ghost:hover{border-color:var(--amber);color:var(--amber);}
+.sign{margin-top:clamp(46px,5vw,64px);font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.4vw,26px);color:var(--ink);}
+.footer{padding:30px var(--gut);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);}
+
+/* ---------- small screens ---------- */
+@media (max-width:560px){
+  .hero-kick{letter-spacing:.2em;gap:8px 12px;font-size:10.5px;}
+  .hero-kick .ln{flex-basis:28px;}
+  .hero .nameen{letter-spacing:.4em;}
+  .hero .roleen{letter-spacing:.18em;}
+  .shead{margin-bottom:38px;}
+  .shead .aside{text-align:left;}
+  .case-head{gap:6px;}
+  .results{grid-template-columns:1fr 1fr;}
+}
+
+/* ---------- reveal system ---------- */
+html.js [data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .95s var(--ease);
+  transition-delay:calc(var(--i,0)*70ms);will-change:opacity,transform;}
+html.js [data-reveal="img"]{transform:translateY(46px) scale(1.04);}
+html.js [data-reveal].in{opacity:1;transform:none;}
+html.js [data-reveal="line"]{opacity:1;transform:none;}
+html.js [data-reveal="line"]::after,html.js .linegrow{transform-origin:left;}
+
+@media print{html.js [data-reveal]{opacity:1!important;transform:none!important;}}
+
+@media (prefers-reduced-motion:reduce){
+  html.js [data-reveal],html.js .reveal-up,html.js .hero.loaded .reveal-up{opacity:1!important;transform:none!important;transition:none!important;}
+  html.js .grain{animation:none;}
+  .marquee .track{animation:none;}
+  .scrollcue .bar::after,.hero-foot .status .dot{animation:none;}
+  .art img{filter:brightness(.92) saturate(1);transform:none;}
+}
+</style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="spot" aria-hidden="true"></div>
+<div class="mat" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav>
-  <ul>
-    <li><a href="#about">关于我</a></li>
-    <li><a href="#experience">经历</a></li>
-  </ul>
+<nav class="nav" id="nav" aria-label="主导航">
+  <a class="brand" href="#top">孙慕坤<span class="en">Mukun&nbsp;Sun</span></a>
+  <div class="links">
+    <a href="#about" style="font-size: 14px !important;">关于</a>
+    <a href="#edu" style="font-size: 13px !important;">教育</a>
+    <a href="#skills" style="font-size: 13px !important;">能力</a>
+    <a href="#work" style="font-size: 13px !important;">案例</a>
+    <a href="#gallery" style="font-size: 13px !important;">创意</a>
+    <a href="#contact" style="font-size: 13px !important;">联系</a>
+  </div>
 </nav>
 
-<div class="container">
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="ghost" aria-hidden="true">营</div>
+  <div class="wrap">
+    <div class="hero-kick reveal-up" style="--d:120"></div>
+    <div class="nameen reveal-up" style="--d:220">Mukun Sun</div>
+    <h1 class="reveal-up" style="--d:300">孙慕坤</h1>
+    <div class="role reveal-up" style="--d: 520; font-size: 40px !important;">作品集  Portfolio  </div>
+    
+    <div class="hero-foot reveal-up" style="--d:820">
+      <div class="status"></div>
+      <div class="scrollcue">向下浏览<span class="bar"></span></div>
+    </div>
+  </div>
+</header>
 
-  <!-- ══════════════════════════════
-       关于我
-       修改这一块：改 h1、段落文字、右侧信息卡片
-  ══════════════════════════════ -->
-  <section id="about">
-
-    <!-- ✏️ 改标题 -->
-    <h1>关于孙慕坤的<br /><em>一切。</em></h1>
-
-    <div class="about-body">
+<!-- ============ PROFILE ============ -->
+<section class="band" id="about">
+  <div class="wrap">
+    <div class="about-top">
       <div class="about-text">
-
-        <!-- ✏️ 改段落，可以多加几个 <p> -->
-        <p>
-          孙慕坤，来自河南商丘。曾在武汉轻工大学人文与传媒学院就读本科，后转学至 Southern Utah University（美国）。
-        </p>
-        <p>
-          这个主页是一个记事本，记录了我走过的地方、学过的东西和一些想法。
-        </p>
-
+        <div class="placard" data-reveal=""><span class="cn"></span></div>
+        <h2 class="stitle" data-reveal="">关于我</h2>
+        <p class="lede" data-reveal="">我是美国 Southern Utah University（南犹他州立大学）战略传播专业在读本科生，辅修商业分析。具备 <em>Instagram / Youtube / Reddit </em> 等海外社区做账号运营、内容增长经验；掌握平面设计与视频剪辑工具；熟练使用 Excel 进行数据清洗、制作透视表；也是 AI Native，利用 Claude Code 优化工作流。</p>
       </div>
-
-      <!-- ✏️ 改右侧信息卡片 -->
-      <div class="about-info">
-        <div class="info-row">
-          <span class="info-key">现在在</span>
-          <span class="info-val">Cedar City, Utah, USA</span>
+      <figure class="portrait" data-reveal="img">
+        <div class="pframe">
+          <img src="build/assets/portrait.jpg" alt="孙慕坤 Mukun Sun 肖像照" loading="lazy" decoding="async">
+          <span class="pglow" aria-hidden="true"></span>
         </div>
-        <div class="info-row">
-          <span class="info-key">学校</span>
-          <span class="info-val">Southern Utah University</span>
+        <figcaption class="pcap"></figcaption>
+      </figure>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar" data-reveal="" style="--i:0"><span class="glow"></span><div class="pn">/ 01</div><h3>投放 &amp; 数据</h3><p>理解 Facebook / Google Ads 投放逻辑，熟悉 CPM、CPC、CTR、ROAS；以 Excel 做清洗、透视与结构化报表。</p></div>
+      <div class="pillar" data-reveal="" style="--i:1"><span class="glow"></span><div class="pn">/ 02</div><h3>内容 &amp; 运营</h3><p>从 0 运营海外社媒账号，懂平台算法与增长机制；以受众画像驱动分平台差异化内容。</p></div>
+      <div class="pillar" data-reveal="" style="--i:2"><span class="glow"></span><div class="pn">/ 03</div><h3>设计 &amp; 创意</h3><p>独立完成产品广告海报、演出物料与三折页——让传播从「策略」一路落到「成品」。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION (by college) ============ -->
+<section class="band" id="edu" style="background:var(--bg-1);">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <div class="placard" data-reveal=""></div>
+        <h2 class="stitle" data-reveal="">教育经历</h2>
+      </div>
+      
+    </div>
+
+    <div class="edu-list">
+      <div class="edu" data-reveal="" style="--i:0">
+        <div class="uni">
+          <div class="name">南犹他州立大学（美国）</div>
+          <div class="nameen">Southern Utah University</div>
+          <div class="yr">2025.08 — 2027.05（在读）</div>
         </div>
-        <div class="info-row">
-          <span class="info-key">专业</span>
-          <span class="info-val">Strategic Communication / Business Analytics</span>
+        <div class="body">
+          <div class="col">人文与社会科学学院 · College of Humanities &amp; Social Sciences</div>
+          <div class="prog">战略传播 Strategic Communication<span class="tag">主修</span></div>
+          <div class="meta">
+            <span class="chip">GPA <b>3.36 / 4.0</b></span>
+            <span class="chip">院长嘉许名单 <b>Dean's List</b></span>
+          </div>
+          <div class="courses"><b>课程：</b>社媒策略、内容创作、品牌策略。以本地用户语感运营海外社媒，把传播理论落到真实的内容与增长。</div>
+        </div>
+      </div>
+
+      <div class="edu" data-reveal="" style="--i:1">
+        <div class="uni">
+          <div class="name">南犹他州立大学（美国）</div>
+          <div class="nameen">Southern Utah University</div>
+          <div class="yr">辅修 · Minor</div>
+        </div>
+        <div class="body">
+          <div class="col">里维特商业学院 · Leavitt School of Business</div>
+          <div class="prog">商业分析 Business Analytics<span class="tag">辅修</span></div>
+          <div class="meta">
+            <span class="chip">Google 数据分析证书 <b>进行中</b></span>
+            <span class="chip">应用统计学 <b>Statistics</b></span><span class="chip">数据分析 <b>Data Analysis</b></span>
+          </div>
+          <div class="courses"><b>课程：</b>数据分析 、应用统计学 、微积分。</div>
+        </div>
+      </div>
+
+      <div class="edu" data-reveal="" style="--i:2">
+        <div class="uni">
+          <div class="name">武汉轻工大学</div>
+          <div class="nameen">Wuhan Polytechnic University</div>
+          <div class="yr">2023.09 — 2025.06</div>
+        </div>
+        <div class="body">
+          <div class="col">人文与传媒学院 · School of Humanities &amp; Media</div>
+          <div class="prog">广告学</div>
+          <div class="meta">
+            <span class="chip">GPA <b>3.65 / 5.0</b></span>
+            <span class="chip">后转学至 <b>SUU</b></span>
+          </div>
+          <div class="courses"><b>课程与实践：</b>品牌策划 、消费者行为分析、媒介投放评估、组织传播。</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-
-  <!-- ══════════════════════════════
-       经历
-       在下面各分类里添加条目
-  ══════════════════════════════ -->
-  <section id="experience">
-    <h2>一路走来</h2>
-
-    <div class="cat-tabs">
-      <div class="cat-tab active" data-cat="music">音乐</div>
-      <div class="cat-tab" data-cat="travel">旅行</div>
-      <div class="cat-tab" data-cat="study">学习</div>
-      <div class="cat-tab" data-cat="essay">随笔</div>
-    </div>
-
-
-    <!-- ── 音乐 ────────────────────
-         添加条目：复制整个 <a class="entry"> ... </a> 块
-         href 填文章路径，例如 posts/music-xxx.html
-    ─────────────────────────────── -->
-    <div class="cat-panel active" id="panel-music">
-      <div class="entry-list">
-
-        <a class="entry" href="posts/music-bigband.html">
-          <div class="entry-date">2026<br />春季</div>
-          <div>
-            <div class="entry-title">2026年，我在美国爵士大乐队</div>
-            <div class="entry-excerpt">我难以忘怀的美国爵士乐初经历。</div>
-          </div>
-        </a>
-
-        <a class="entry" href="posts/music-bigband.html">
-          <div class="entry-date">2025<br />夏季</div>
-          <div>
-            <div class="entry-title">武汉轻工大学器乐队与我</div>
-            <div class="entry-excerpt">大编制的合奏和小组合完全不一样——你必须时刻听着别人，低音提琴更像是在搭台子而不是在表演。</div>
-          </div>
-        </a>
+<!-- ============ CAPABILITIES + METRICS ============ -->
+<section class="band" id="skills">
+  <div class="wrap">
+    <div class="shead">
+      <div>
         
-        <a class="entry" href="posts/music-wuhan-cafe.html">
-          <div class="entry-date">2024<br />冬季</div>
-          <div>
-            <div class="entry-title">在武汉的咖啡馆办爵士演出</div>
-            <div class="entry-excerpt">第一次自己组织演出，找场地、排曲子、联系人。武汉不是爵士城市，但那天晚上还是来了很多人。</div>
-          </div>
-        </a>
+        <h2 class="stitle" data-reveal="">技能</h2>
+      </div>
+      <div class="aside" data-reveal=""><br></div>
+    </div>
 
-        <a class="entry" href="posts/music-wuhan-cafe.html">
-          <div class="entry-date">2024<br />冬季</div>
-          <div>
-            <div class="entry-title">故事的开始———青色气旋</div>
-            <div class="entry-excerpt">第一次自己组织演出，找场地、排曲子、联系人。武汉不是爵士城市，但那天晚上还是来了很多人。</div>
-          </div>
-        </a>
-        
-        <!-- ✏️ 在这里继续加音乐条目 -->
+    <div class="caps">
+      <div class="cap" data-reveal="" style="--i:0"><div class="ct">广告投放 / Paid Media</div><div class="cen">Facebook · Google · KOL</div>
+        <ul><li>了解 Facebook Ads / Google Ads 投放逻辑与账户搭建调整</li><li>了解 YouTube / Instagram KOL 投放流程</li><li>掌握 CPM、CPC、CTR、ROAS 等核心指标</li><li>适应海外流量时差，按早晚高峰优化账户</li></ul></div>
+      <div class="cap" data-reveal="" style="--i:1"><div class="ct">数据分析 / Analytics</div><div class="cen">Excel · Statistics</div>
+        <ul><li>Excel：VLOOKUP、数据透视表、数据清洗与结构化报表</li><li>应用统计学基础，Google 数据分析证书</li><li>用数据维护内容日历、识别高互动选题</li><li>曾以 Excel 管理 200+ 学生成绩数据表</li></ul></div>
+      <div class="cap" data-reveal="" style="--i:2"><div class="ct">内容与平台 / Social</div><div class="cen">IG · Reddit · 小红书 · 微信</div>
+        <ul><li>从 0 运营 Instagram / Reddit 等海外社区账号</li><li>熟悉内容推荐算法逻辑与用户增长机制</li><li>分平台差异化内容：小红书 / 微博 / 朋友圈 / QQ 空间</li><li>本地化英文语感，可做英文社媒文案</li></ul></div>
+      <div class="cap" data-reveal="" style="--i:3"><div class="ct">AI 提效与工具 / AI</div><div class="cen">Claude Code · Mini-Program</div>
+        <ul><li>熟练使用 Claude Code 辅助开发与内容生产</li><li>约 2 周独立完成微信小程序从开发到上线发布</li><li>具备产品思维与 AI 工具落地能力</li><li>平面：海报 / Banner / 三折页设计与排版</li></ul></div>
+    </div>
 
+    <div class="metrics">
+      <div class="placard" data-reveal="" style="font-size: 20px !important;">数据快照 · Selected Impact</div>
+      <div class="metrics-grid">
+        <div class="metric" data-reveal="" style="--i:0"><div class="mn"><span data-count="19000" data-format="comma">19,000</span></div><div class="ml">校园活动单篇推文阅读量<span class="en">Single-post reads</span></div></div>
+        <div class="metric" data-reveal="" style="--i:1"><div class="mn"><span data-count="8000" data-format="comma">8,000</span><span class="u">+</span></div><div class="ml">校园整合营销累计曝光<span class="en">Campaign reach</span></div></div>
+        <div class="metric" data-reveal="" style="--i:2"><div class="mn"><span data-count="5250" data-format="comma">5,250</span><span class="u">+</span></div><div class="ml">酒店公众号累计阅读<span class="en">WeChat reads</span></div></div>
+        <div class="metric" data-reveal="" style="--i:3"><div class="mn"><span class="u">+</span><span data-count="17">17</span><span class="u">%</span></div><div class="ml">Instagram 活动参与率提升<span class="en">IG engagement</span></div></div>
+        <div class="metric" data-reveal="" style="--i:4"><div class="mn"><span data-count="276">276</span><span class="u">↑</span></div><div class="ml">单条 Reddit 帖最高赞 · 8.7K 浏览<span class="en">Reddit upvotes</span></div></div>
+        <div class="metric" data-reveal="" style="--i:5"><div class="mn"><span data-count="22">22</span></div><div class="ml">人宣发团队负责人<span class="en">Team leAd</span></div></div>
       </div>
     </div>
+  </div>
+</section>
 
-
-    <!-- ── 旅行 ────────────────────  -->
-    <div class="cat-panel" id="panel-travel">
-      <div class="entry-list">
-
-        <a class="entry" href="posts/travel-hk-2025.html">
-          <div class="entry-date">2026<br />春季</div>
-          <div>
-            <div class="entry-title">南加州之春</div>
-            <div class="entry-excerpt">和同伴一起去洛杉矶、圣地亚哥。</div>
-          </div>
-        </a>
-
-        <a class="entry" href="posts/travel-hk-2025.html">
-          <div class="entry-date">2025<br />秋季</div>
-          <div>
-            <div class="entry-title">盐湖城三游</div>
-            <div class="entry-excerpt">和同伴一起去洛杉矶、圣地亚哥。</div>
-          </div>
-        </a>
-
-        <a class="entry" href="posts/travel-hk-2025.html">
-          <div class="entry-date">2024<br />秋季</div>
-          <div>
-            <div class="entry-title">自驾广州，身心极致放松</div>
-            <div class="entry-excerpt">和同伴一起去洛杉矶、圣地亚哥。</div>
-          </div>
-        </a>
-
-        <a class="entry" href="posts/travel-hk-2025.html">
-          <div class="entry-date">2023<br />秋季</div>
-          <div>
-            <div class="entry-title">大学之始，下江南</div>
-            <div class="entry-excerpt">第一次自己独自出游。</div>
-          </div>
-        </a>
-        
-        <!-- ✏️ 在这里继续加旅行条目 -->
-
-      </div>
-    </div>
-
-
-    <!-- ── 学习 ────────────────────  -->
-    <div class="cat-panel" id="panel-study">
-      <div class="entry-list">
-
-        <a class="entry" href="posts/study-ta-2025.html">
-          <div class="entry-date">2025<br />五月</div>
-          <div>
-            <div class="entry-title">作为 SUU 英语教学助理回国</div>
-            <div class="entry-excerpt">参与 SUU 英语教师项目，作为助教回国执教三周。这是我第一次正式站在讲台这一侧。</div>
-          </div>
-        </a>
-
-        <a class="entry" href="posts/study-stats.html">
-          <div class="entry-date">2025<br />春季</div>
-          <div>
-            <div class="entry-title">统计课让我明白了什么</div>
-            <div class="entry-excerpt">这门课比我预想的难。但学完之后对数据的感觉确实不一样了——不再只是看数字，而是开始想它背后的意思。</div>
-          </div>
-        </a>
-
-        <!-- ✏️ 在这里继续加学习条目 -->
-
-      </div>
-    </div>
-
-
-    <!-- ── 随笔 ────────────────────  -->
-    <div class="cat-panel" id="panel-essay">
-      <div class="entry-list">
-
-        <a class="entry" href="posts/essay-cedar-city.html">
-          <div class="entry-date">2024</div>
-          <div>
-            <div class="entry-title">在一个小城市当外国人</div>
-            <div class="entry-excerpt">Cedar City 很安静，红色的岩石，和我想象的美国完全不一样。我也和自己想象的不太一样。</div>
-          </div>
-        </a>
-
-        <!-- ✏️ 在这里继续加随笔条目 -->
-
-      </div>
-    </div>
-
-  </section>
-
-  <footer>
-    <span class="copy">© Mukun Sun</span>
-    <div>
-      <!-- aquakaze31@gmail.com -->
-      <span>aquakaze31@gmail.com</span>
-    </div>
-  </footer>
-
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>海外增长<i>Paid Social</i><span class="mut">·</span>内容运营<i>Content</i><span class="mut">·</span>平面创意<i>Creative</i><span class="mut">·</span>数据分析<i>Analytics</i><span class="mut">·</span></span>
+    <span>海外增长<i>Paid Social</i><span class="mut">·</span>内容运营<i>Content</i><span class="mut">·</span>平面创意<i>Creative</i><span class="mut">·</span>数据分析<i>Analytics</i><span class="mut">·</span></span>
+  </div>
 </div>
 
+<!-- ============ CASES ============ -->
+<section id="work" style="background:var(--bg-1);">
+  <div class="wrap" style="padding-top:clamp(86px,12vw,160px);">
+    
+    <h2 class="stitle" data-reveal="" style="max-width:14ch;">精选案例</h2>
+  </div>
+
+  <!-- CASE 01 -->
+  <div class="case wrap">
+    <div class="case-head">
+      <div class="case-no" data-reveal="">01</div>
+      <div>
+        <div class="case-tagcn" data-reveal="">案例一 · Overseas Social</div>
+        <h2 data-reveal="">把海外社区先「读懂」，<br>再「写进去」。</h2>
+        <div class="meta" data-reveal=""></div>
+      </div>
+    </div>
+    <p class="lede" data-reveal="">在美期间，我运营了 <span class="amber">SUU 爵士乐队 Instagram 账号</span>，向本地社群传播音乐学院演出信息，并在 <span class="amber">Reddit</span> 持续产出英文内容——选题贴着在地兴趣（犹他户外、汽车社区）。</p>
+    <div class="case-body">
+      <div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">策略 / Approach</div><p>以受众画像选题 → 标签矩阵 + Story 投票 + 发布时机优化 → 追踪点赞 / 评论 / 触达建立内容日历，识别高互动选题并迭代。把「发帖」做成可复用的增长流程。</p></div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">为什么有效 / Why</div><p>海外投放与运营的第一步是「本地化」。我真正生活在目标市场里，懂社区黑话、发布节奏与平台调性，内容更容易被算法与真人同时接住。</p></div>
+        
+        <div class="quote" data-reveal=""><q>Im gonna let you all know there is a wonderful place just 20min drive away from our campus... It's called Duck Creek. Come here for a trail and you won't be upset 'bout it.</q><span class="src" style="font-size: 14px !important;">原创英文种草文案</span></div>
+      </div>
+      <div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">成果 / Results</div></div>
+        <div class="results" data-reveal="">
+          <div class="r"><div class="rn">276<span style="color:var(--ember)">↑</span></div><div class="rl">r/Utah「Duck Creek Trail」<br>8.7K 浏览 · 进入社区前排</div></div>
+          <div class="r"><div class="rn">99<span style="color:var(--ember)">↑</span></div><div class="rl">r/vwgolf「2018 Golf Sportwagen」<br>17 条评论互动</div></div>
+          <div class="r"><div class="rn">~200</div><div class="rl">Instagram 帖均点赞<br>稳定的本地互动</div></div>
+          <div class="r"><div class="rn">+17%</div><div class="rl">线上内容带动<br>活动现场参与率</div></div>
+        </div>
+        <div class="tags" data-reveal="">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- CASE 02 -->
+  <div class="case wrap">
+    <div class="case-head">
+      <div class="case-no" data-reveal="">02</div>
+      <div>
+        <div class="case-tagcn" data-reveal="">案例二 · Integrated Campaign</div>
+        <h2 data-reveal="">带 22 人团队，<br>把一场晚会做成一次传播战役。</h2>
+        <div class="meta" data-reveal=""><b>2024.05 – 2025.06</b></div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">挑战 / Brief</div><p>统筹一支约 22 人的宣发团队，为迎新晚会、元旦晚会等校园活动做全流程线上线下宣发。预算有限，渠道分散，受众在不同平台上「说不同的语言」。</p></div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">策略 / Approach</div><p>① 按平台用户画像定制差异化内容；② 多账号矩阵投放；③ 现场与线上联动，把流量沉淀回活动本身。内容应是按平台用户的「说话方式」重写。</p></div>
+        <div class="quote" data-reveal=""><q>作为队长，我学会的不只是「怎么发一篇好内容」，而是怎么让一支团队按节奏、分渠道，把同一个主题打成组合拳。</q></div>
+      </div>
+      <div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">成果 / Results</div></div>
+        <div class="results" data-reveal="">
+          <div class="r"><div class="rn">8,000<span style="color:var(--ember)">+</span></div><div class="rl">全平台累计曝光</div></div>
+          <div class="r"><div class="rn">19,000</div><div class="rl">单篇推文阅读量</div></div>
+          <div class="r"><div class="rn">122</div><div class="rl">单篇点赞</div></div>
+          <div class="r"><div class="rn">90</div><div class="rl">单篇转发</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="block" data-reveal="" style="margin-top:46px;"><div class="bt" style="font-size: 15px !important;">分平台打法 / Channel Matrix</div></div>
+    <div class="chmatrix" data-reveal="">
+      <div class="ch"><div class="h">小红书</div><div class="d">图文种草 · 视觉优先 · 收藏沉淀</div></div>
+      <div class="ch"><div class="h">微博</div><div class="d">话题造势 · 实时扩散 · 蹭热点</div></div>
+      <div class="ch"><div class="h">朋友圈</div><div class="d">熟人裂变 · 信任背书 · 高转化</div></div>
+      <div class="ch"><div class="h">QQ 空间</div><div class="d">校园渗透 · 同辈传播 · 触达学生</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- CASE 03 -->
+  <div class="case wrap">
+    <div class="case-head">
+      <div class="case-no" data-reveal="">03</div>
+      <div>
+        <div class="case-tagcn" data-reveal="">案例三 · Brand &amp; Event</div>
+        <h2 data-reveal="">让一场爵士演出，<br>「长」成酒店的品牌资产。</h2>
+        <div class="meta" data-reveal=""><b>2024.02 – 2024.05</b></div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">从接洽到落地 / Approach</div><p>接洽 Ni Jazz Bar 委托，确认爵士乐手现场与「风貌安坻」酒店气质契合后落地为阳台演出；围绕「酒店 × 艺术」策划公众号内容，把单次活动转化为可持续的品牌叙事。</p></div>
+        <div class="block" data-reveal=""><div class="bt" style="font-size: 15px !important;">跨文化协调 / Cross-Cultural</div><p>另在「中外文化交流季」中担任唯一协调员，曾协调美国羽管键琴演奏家与国内机构合作，并对微信 / 微博 / 小红书做受众画像分析，支撑可落地的传播方案。</p></div>
+        <div class="tags" data-reveal="">
+          
+        </div>
+        <div class="results" data-reveal="" style="margin-top:30px;grid-template-columns:1fr 1fr;">
+          <div class="r"><div class="rn">5,250<span style="color:var(--ember)">+</span></div><div class="rl">公众号推广累计阅读</div></div>
+          <div class="r"><div class="rn">官方</div><div class="rl">活动获「武汉文旅集团」<br>官方账号报道</div></div>
+        </div>
+      </div>
+      <div class="case-figure" data-reveal="img">
+        <a class="art" href="build/assets/jazz_winter.jpg" target="_blank" rel="noopener" data-parallax="0.05" style="aspect-ratio:989/1400;">
+          <img src="build/assets/jazz_winter.jpg" alt="冬日爵士 Winter Jazz Concert 主视觉海报——为酒店爵士演出设计，统一活动调性。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">冬日爵士 · Winter Jazz Concert</span><span class="lm">演出主视觉海报 · 2024 · 海报设计</span></span>
+        </a>
+        <div class="figcap"><b>冬日爵士 Winter Jazz Concert</b> — 同期为爵士演出设计的主视觉海报，统一活动调性。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="band" id="gallery">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        
+        <h2 class="stitle" data-reveal="">创意作品<span class="em"></span></h2>
+      </div>
+      
+    </div>
+    <p class="lede gal-intro" data-reveal="">不止会想，也会做。下面是我独立完成的产品广告、演出物料、平面与影像——传播从「策略」落到看得见、摸得着的「成品」。</p>
+
+    <!-- Group A: HOTONE -->
+    <div class="galgroup">
+      <div class="galgroup-head" data-reveal="">
+        <div class="gh">产品广告创意</div>
+        
+      </div>
+      <div class="gal-hotone">
+        <a class="art a-main" data-reveal="img" data-parallax="0.04" href="build/assets/hotone_main.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/hotone_main.jpg" alt="HOTONE 十周年纪念版产品海报，红色主视觉，主张「触碰非凡」，幻音科技 Ampero II Stomp。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">HOTONE · 触碰非凡</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:1" href="build/assets/hotone_guitar.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/hotone_guitar.jpg" alt="HOTONE 产品海报，粉色背景搭配电吉他与效果器，标语「释放你的音乐激情」。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">释放你的音乐激情</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:2" href="build/assets/hotone_pedal.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/hotone_pedal.jpg" alt="HOTONE Ampero II Stomp 效果器产品特写海报，展示触屏与旋钮细节。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">Ampero II Stomp · 特写</span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Group B: Posters & Print -->
+    <div class="galgroup">
+      <div class="galgroup-head" data-reveal="">
+        <div class="gh">演出物料与平面</div><div class="ghen">Posters · Print</div>
+        
+      </div>
+      <div class="gal-posters">
+        <a class="art" data-reveal="img" style="--i:0" href="build/assets/jazz_coast_a.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/jazz_coast_a.jpg" alt="海岸线 JAZZ NIGHT 演出海报，洋红与深蓝撞色的剪纸风插画，双乐手吹奏。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">JAZZ NIGHT · 海岸线</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:1" href="build/assets/jazz_coast_b.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/jazz_coast_b.jpg" alt="海岸线 JAZZ NIGHT 演出海报变体，暖橙与暗红配色的剪纸风插画。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">JAZZ NIGHT · 变体</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:2" href="build/assets/piano_a.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/piano_a.jpg" alt="PIANO DUO 极简演出海报，黑色琴键纹理与浅绿底色。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">PIANO DUO</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:3" href="build/assets/piano_b.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/piano_b.jpg" alt="PIANO DUO 演出海报变体，同系列排版延展。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">PIANO DUO · 变体</span></span>
+        </a>
+      </div>
+      <div class="gal-wide">
+        <a class="art" data-reveal="img" style="--i:0" href="build/assets/trifold_out.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/trifold_out.jpg" alt="崂山民艺文化三折页外页，崂山茶艺与崂山古家具，封面与介绍册。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">崂山民艺 · 三折页（外）</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:1" href="build/assets/trifold_in.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/trifold_in.jpg" alt="崂山民艺文化三折页内页，华严寺、崂山面塑与崂山绿石介绍。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">崂山民艺 · 三折页（内）</span></span>
+        </a>
+      </div>
+      <div class="gal-banner">
+        <a class="art" data-reveal="img" href="build/assets/banner_museum.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/banner_museum.jpg" alt="国际博物馆日活动 Banner，深蓝鎏金配色与元青花梅瓶，武汉博物馆。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">国际博物馆日 · 武汉博物馆</span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Group C: Photography -->
+    <div class="galgroup">
+      <div class="galgroup-head" data-reveal="">
+        <div class="gh">影像</div><div class="ghen">Photography</div>
+        
+      </div>
+      <div class="gal-bass">
+        <a class="art" data-reveal="img" style="--i:0" href="build/assets/bass1.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/bass1.jpg" alt="白色贝斯倚靠树干的夜色氛围摄影，冷调光影。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">Bass · 夜色氛围</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:1" href="build/assets/bass2.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/bass2.jpg" alt="白色贝斯氛围摄影系列之二。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">Bass · 氛围 02</span></span>
+        </a>
+        <a class="art" data-reveal="img" style="--i:2" href="build/assets/bass3.jpg" target="_blank" rel="noopener">
+          <img src="build/assets/bass3.jpg" alt="白色贝斯氛围摄影系列之三。" loading="lazy" decoding="async">
+          <span class="label"><span class="lt">Bass · 氛围 03</span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Way of working -->
+    <div class="galgroup">
+      <div class="galgroup-head" data-reveal=""><div class="gh">工作方式</div><div class="ghen">Way of Working</div></div>
+      <div class="ways">
+        <div class="way" data-reveal="" style="--i:0"><div class="wn">/ Data-Driven</div><h4>数据驱动</h4><p>不凭感觉发内容。用点赞 / 评论 / 触达 / 转发维护内容日历，把 CPM、CPC、CTR、ROAS 作为投放优化的共同语言。</p></div>
+        <div class="way" data-reveal="" style="--i:1"><div class="wn">/ Hands-On</div><h4>亲手去做</h4><p>从策略到成品一气呵成——文案、海报、拍摄、活动落地都能自己上手，不必等待外部支援。</p></div>
+        <div class="way" data-reveal="" style="--i:2"><div class="wn">/ AI-Augmented</div><h4>AI 提效</h4><p>熟练使用 Claude Code 辅助内容与开发，约 2 周独立完成一款微信小程序从开发到上线发布。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing" id="contact">
+  <div class="wrap">
+    
+    <h2 data-reveal="">下一站，<br>把海外增长<br><span class="em">交给我试试。</span></h2>
+    
+    <div class="contact" data-reveal="">
+      <div><div class="lbl">Email</div><a class="v" href="mailto:aquakaze31@gmail.com">aquakaze31@gmail.com</a></div>
+      <div><div class="lbl">Phone / WeChat</div><a class="v" href="tel:+8613018052190">13018052190</a></div>
+      <div><div class="lbl">Education</div><div class="v">Strategic Comm. · Southern Utah Univ.</div></div>
+      <div><div class="lbl">Availability</div><div class="v">随时到岗</div></div>
+    </div>
+    <div class="cta-row" data-reveal="">
+      <a class="btn primary" href="mailto:aquakaze31@gmail.com" data-magnetic="">发邮件聊聊 →</a>
+      
+    </div>
+    <div class="sign" data-reveal="">— 孙慕坤 / Mukun Sun</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span>© 2026 孙慕坤 · 综合营销作品集</span>
+  <span>Mukun Sun · Integrated Marketing Portfolio</span>
+</footer>
+
 <script>
-  document.querySelectorAll('.cat-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.cat).classList.add('active');
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia&&window.matchMedia('(pointer: fine)').matches;
+  if(fine) root.classList.add('pointer-fine');
+
+  // hero entrance
+  var hero=document.getElementById('top');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){hero.classList.add('loaded');});});
+
+  // reveal observer
+  var revealEls=[].slice.call(document.querySelectorAll('[data-reveal]'));
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+          if(e.target.querySelector('[data-count]')||e.target.hasAttribute('data-count')) startCount(e.target);
+        }
+      });
+    },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
+    revealEls.forEach(function(el){io.observe(el);});
+  }else{
+    revealEls.forEach(function(el){el.classList.add('in');});
+    document.querySelectorAll('[data-count]').forEach(function(el){el.textContent=fmt(el,+el.getAttribute('data-count'));});
+  }
+  // safety net: ensure everything visible after load
+  window.addEventListener('load',function(){setTimeout(function(){revealEls.forEach(function(el){el.classList.add('in');});},2400);});
+
+  // counters
+  function fmt(el,v){return el.getAttribute('data-format')==='comma'?Math.round(v).toLocaleString('en-US'):Math.round(v).toString();}
+  function startCount(scope){
+    (scope.querySelectorAll?scope.querySelectorAll('[data-count]'):[]).forEach(run);
+    if(scope.hasAttribute&&scope.hasAttribute('data-count')) run(scope);
+    function run(el){
+      if(el.dataset.done)return; el.dataset.done='1';
+      if(reduce){el.textContent=fmt(el,+el.getAttribute('data-count'));return;}
+      var target=+el.getAttribute('data-count'),dur=1500,t0=null;
+      function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1); var e=1-Math.pow(1-p,4);
+        el.textContent=fmt(el,target*e); if(p<1)requestAnimationFrame(step);}
+      requestAnimationFrame(step);
+    }
+  }
+
+  // nav solidify + scroll progress
+  var nav=document.getElementById('nav'),prog=document.getElementById('progress');
+  function onScroll(){
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    nav.classList.toggle('solid',y>window.innerHeight*0.7);
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?(y/h*100):0)+'%';
+  }
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  // cursor spotlight (desktop, motion-ok)
+  var spot=document.querySelector('.spot');
+  if(fine && !reduce && spot){
+    var tx=innerWidth/2,ty=innerHeight*0.3,cx=tx,cy=ty,active=false;
+    window.addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;if(!active){active=true;spot.classList.add('on');}},{passive:true});
+    (function loop(){cx+=(tx-cx)*0.12;cy+=(ty-cy)*0.12;
+      spot.style.setProperty('--mx',cx+'px');spot.style.setProperty('--my',cy+'px');requestAnimationFrame(loop);})();
+  }
+
+  // parallax on artworks
+  var px=[].slice.call(document.querySelectorAll('[data-parallax]'));
+  if(px.length && !reduce){
+    var ticking=false;
+    function para(){
+      var vh=innerHeight;
+      px.forEach(function(el){
+        var r=el.getBoundingClientRect();
+        if(r.bottom<-200||r.top>vh+200)return;
+        var sp=parseFloat(el.getAttribute('data-parallax'))||0.05;
+        var off=((r.top+r.height/2)-vh/2)*-sp;
+        var img=el.querySelector('img'); if(img) img.style.transform='scale(1.07) translate3d(0,'+off.toFixed(1)+'px,0)';
+      });
+      ticking=false;
+    }
+    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(para);}},{passive:true});
+    window.addEventListener('resize',para,{passive:true}); para();
+  }
+
+  // magnetic buttons + glow
+  if(fine && !reduce){
+    document.querySelectorAll('[data-magnetic]').forEach(function(btn){
+      btn.addEventListener('pointermove',function(e){
+        var r=btn.getBoundingClientRect(),mx=e.clientX-r.left-r.width/2,my=e.clientY-r.top-r.height/2;
+        btn.style.transform='translate('+(mx*0.22).toFixed(1)+'px,'+(my*0.3).toFixed(1)+'px)';
+        btn.style.setProperty('--bx',(e.clientX-r.left)+'px');btn.style.setProperty('--by',(e.clientY-r.top)+'px');
+      });
+      btn.addEventListener('pointerleave',function(){btn.style.transform='';});
     });
-  });
+  }
+})();
 </script>
 
-</body>
-</html>
+
+</body></html>
