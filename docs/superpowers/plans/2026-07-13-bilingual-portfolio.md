@@ -111,7 +111,8 @@ Expected: all tests pass with zero failures.
 ### Task 4: Browser QA and Delivery
 
 **Files:**
-- Modify as needed: `index.html`, `i18n.js`, `tests/i18n.test.mjs`
+- Verify: `index.html`, `i18n.js`, `tests/i18n.test.mjs`
+- Modify only when browser QA reproduces a specific failed requirement from the Step 2 checklist.
 
 - [ ] **Step 1: Serve the worktree locally**
 
