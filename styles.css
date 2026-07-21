@@ -56,11 +56,11 @@ button { font: inherit; }
 .lang-switch button.active { color: var(--ink); text-decoration: underline; text-underline-offset: .3rem; }
 
 .portfolio-shell, footer { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
-.hero { min-height: 72vh; display: flex; flex-direction: column; justify-content: space-between; gap: 3rem; padding: clamp(5rem, 11vw, 9rem) 0 2rem; border-bottom: 1px solid var(--ink); }
+.hero { min-height: 72vh; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; padding: clamp(3.5rem, 7vw, 6rem) 0 2rem; border-bottom: 1px solid var(--ink); }
 .eyebrow, .project-role, .availability, .section-index { margin: 0; color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(17rem, .8fr); gap: clamp(2rem, 7vw, 7rem); align-items: end; }
 h1, h2, h3, h4 { margin: 0; font-family: "Newsreader", Georgia, serif; font-weight: 600; line-height: .98; text-wrap: balance; }
-h1 { max-width: 12ch; font-size: clamp(3.7rem, 8.7vw, 7.6rem); letter-spacing: -.045em; }
+.hero h1 { max-width: 15ch; font-size: clamp(3.7rem, 7vw, 6.25rem); letter-spacing: -.045em; }
 h2 { max-width: 16ch; font-size: clamp(2.8rem, 6vw, 5.4rem); letter-spacing: -.035em; }
 h3 { max-width: 17ch; font-size: clamp(2.4rem, 5vw, 4.75rem); letter-spacing: -.035em; }
 h4 { font-size: clamp(2rem, 3.5vw, 3.25rem); }
@@ -71,6 +71,7 @@ h4 { font-size: clamp(2rem, 3.5vw, 3.25rem); }
 .button-primary { background: var(--ink); color: var(--paper); }
 
 .section { padding: clamp(5rem, 11vw, 10rem) 0; border-bottom: 1px solid var(--ink); }
+.selected-work { padding-top: clamp(3.5rem, 6vw, 6rem); }
 .section-heading { display: grid; grid-template-columns: 9rem 1fr; margin-bottom: clamp(4rem, 9vw, 8rem); }
 .project { padding: clamp(4rem, 8vw, 7.5rem) 0; border-top: 1px solid var(--ink); }
 .project-heading { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(15rem, .5fr); gap: 3rem; align-items: end; }

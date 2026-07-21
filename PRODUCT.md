@@ -1,31 +1,43 @@
 # Product
 
-## Register
+## Purpose
 
-brand
+This is Mukun Sun's English-first bilingual portfolio for social media operations and marketing roles. It should let a reviewer understand three things quickly: what Mukun is doing now, what evidence supports the work, and how he makes decisions when the evidence has limits.
 
-## Users
-招聘方与用人经理 —— 多为国内公司（出海品牌、跨境电商、MCN / 代运营、品牌方）负责海外社媒投放与增长的招聘者。他们在手机或电脑上快速浏览作品集，几十秒内判断「这个人能不能同时做投放、内容和创意」。次要受众：行业同行、推荐人。
+## Audiences
 
-## Product Purpose
-孙慕坤（Mukun Sun）的个人作品集网站，承载完整简历内容：教育、能力、案例与创意作品。目标是把「数据 × 创意」的双重身份一次性立住——既懂 Facebook / Google Ads 投放逻辑与 ROAS/CTR 等指标，也能亲手把海报、推文、活动从策略做到成品。成功 = 招聘方看完后主动联系约面。
+1. U.S. campus and early-career recruiters evaluating community management, content, marketing coordination, and visual production.
+2. China-based recruiters hiring for overseas social media, international marketing, and cross-cultural communication.
 
-## Brand Personality
-温暖、笃定、亲手做（warm · confident · hands-on）。声音是第一人称、不端着、用作品说话；既有留学生的国际语感，也有「自己就是把东西做出来的那个人」的踏实。情绪目标：让人觉得专业可信、有质感、值得一聊。
+English is the default. `EN / 中文` stays visible and the chosen language persists locally.
 
-## Anti-references
-- 模板化 SaaS 作品集（千篇一律的卡片网格、hero 大数字 + 小标签模板）。
-- 浅色 cream/beige「编辑杂志」默认审美（衬线斜体大标题 + 三栏分隔线 + 通栏网格）。
-- 把彩色作品塞进灰白页面、让作品失去张力。
-- 每个 section 顶部都挂一个 tracked-uppercase 小眉标的 AI 套路。
-- 廉价的炫技动效（无意义的弹跳/缩放、与内容无关的视差）。
+## Narrative order
 
-## Design Principles
-- **作品即展品（show, don't tell）**：暗色画廊的墙，彩色作品被「打光」成主角；页面替作品让路。
-- **数据与创意同桌**：每个案例都同时给出「怎么想」与「跑出什么数」，理性与感性并置。
-- **亲手做的可信度**：从策略到成品的链路要看得见——文案、海报、拍摄、活动落地都是本人。
-- **质感来自克制 + 光**：高级感靠近黑暖调、细线、颗粒、余烬辉光，而非堆装饰。
-- **动效服务叙事**：每段揭示都贴合它揭示的内容，不是统一的淡入反射。
+1. Current internship at Vertex Marketing.
+2. Independent academic strategy work.
+3. Jazz and event communication.
+4. Supporting experiments and selected visual work.
+5. Background, capabilities, and contact.
 
-## Accessibility & Inclusion
-正文对比 ≥ 4.5:1（暖骨白字落在近黑暖墙上）；强调色仅用于大字/标签。完整 `prefers-reduced-motion` 替代：关闭视差、光标聚光、颗粒动画与计数动效，揭示降级为即时显示。键盘可达、焦点可见、图片 alt 即作品说明（中文为主）。中文为主、英文为辅。
+Vertex is the primary case because it best represents Mukun's current direction. Its quantitative evidence comes only from `vertex-internship-reddit-account-portfolio.md`.
+
+## Evidence rules
+
+- Distinguish representative historical account assets from post-hire or personally attributable growth.
+- Label academic work and work in progress; targets are never presented as results.
+- Describe the Community-Aware Comment Drafting & QA Workflow as self-initiated editorial support for Mukun's own work.
+- Do not claim team adoption, measured time savings, automatic posting, voting, or account management.
+- Name Vertex Marketing, but do not publish client identities, account identities, internal screenshots, internal procedures, coworkers, credentials, or internal links.
+- Prefer a qualified, traceable claim over a larger unsupported number.
+
+## Experience requirements
+
+- Recruiters should reach Vertex from the hero in one action.
+- Work must precede biography and education context.
+- All visual work keeps a visible caption and a link to its full source image.
+- The résumé remains a direct PDF download.
+- Core navigation and language controls remain keyboard- and mobile-accessible.
+
+## Voice
+
+Direct, specific, calm, and first-person. The portfolio should sound like a thoughtful operator explaining decisions, not an agency pitching universal expertise.
