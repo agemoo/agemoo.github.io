@@ -128,8 +128,10 @@ h4 { font-size: clamp(2rem, 3.5vw, 3.25rem); }
 footer { display: flex; justify-content: space-between; padding-block: 2rem; color: var(--muted); font-size: .8rem; }
 
 @media (max-width: 760px) {
-  .site-nav { grid-template-columns: auto 1fr auto; }
-  .nav-links { justify-self: center; gap: 1rem; }
+  .site-nav { display: flex; flex-wrap: wrap; gap: .25rem 1rem; padding-block: .6rem; }
+  .wordmark { margin-right: auto; }
+  .lang-switch { margin-left: auto; }
+  .nav-links { order: 3; width: 100%; gap: 1.25rem; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; }
   .hero { min-height: auto; }
   .hero-grid, .project-heading, .case-intro, .two-column, .workflow, .about-grid { grid-template-columns: 1fr; }
   .section-heading { grid-template-columns: 3rem 1fr; }
@@ -142,9 +144,6 @@ footer { display: flex; justify-content: space-between; padding-block: 2rem; col
 
 @media (max-width: 520px) {
   .site-nav { min-height: 3.75rem; }
-  .nav-links { display: none; }
-  .site-nav::after { content: "Work · About · Contact"; justify-self: center; color: var(--muted); font-size: .65rem; letter-spacing: .04em; }
-  html[lang="zh-CN"] .site-nav::after { content: "作品 · 关于 · 联系"; }
   h1 { font-size: clamp(3.3rem, 17vw, 5rem); }
   .metric-list { grid-template-columns: 1fr; }
   .metric-list div:nth-child(even) { padding-left: 0; border-left: 0; }
