@@ -66,3 +66,13 @@ test('protected client names are absent from public copy', async () => {
     assert.doesNotMatch(publicCopy, standaloneName, `public copy exposes ${name}`);
   }
 });
+
+test('the Vertex article renders evidence labels and workflow stages', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const vertex = html.match(/<article[^>]+id="vertex"[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(vertex, /data-evidence="historical"/);
+  assert.match(vertex, /data-evidence="my-role"/);
+  assert.match(vertex, /class="evidence-note"/);
+  assert.equal((vertex.match(/class="workflow-step"/g) ?? []).length, 8);
+  assert.match(vertex, /human-review/);
+});
