@@ -41,6 +41,27 @@ test('reduced motion exposes content and suppresses grain, spotlight, parallax, 
   assert.match(detail, /@media\s*\(prefers-reduced-motion:\s*reduce\)\{html\{scroll-behavior:auto;\}\.progress\{display:none!important;\}\}/);
 });
 
+test('reveals remain observer-driven below the fold with no-IO and no-JS fallbacks', async () => {
+  const [home] = await readContracts();
+  assert.match(home, /<html lang="en" class="no-js"/);
+  assert.match(home, /if\(!\('IntersectionObserver' in window\)\)\{revealAll\(\);return;\}/);
+  assert.match(home, /var observer=new IntersectionObserver/);
+  assert.doesNotMatch(home, /revealTimer|setTimeout\([\s\S]*?revealAll/);
+  assert.doesNotMatch(home, /(?<!html\.js\.motion-desktop )\[data-reveal\]\{opacity:0/);
+});
+
+test('compact navigation preserves 44px section access through 60rem and on coarse pointers', async () => {
+  const [home, detail] = await readContracts();
+  assert.match(home, /<details class="compact-nav">[\s\S]*?<summary[^>]*>Sections<\/summary>[\s\S]*?class="compact-links"[^>]*role="navigation"/);
+  assert.match(home, /class="compact-links"[^>]*[\s\S]*?href="#about"[\s\S]*?href="#contact"/);
+  assert.match(detail, /<details class="compact-nav">[\s\S]*?<summary[^>]*>Sections<\/summary>[\s\S]*?class="compact-links"[^>]*role="navigation"/);
+  assert.match(detail, /class="compact-links"[^>]*[\s\S]*?href="#vertex-scope"[\s\S]*?href="#vertex-attribution"/);
+  for (const html of [home, detail]) {
+    assert.match(html, /@media \(max-width:60rem\),\(pointer:coarse\)\{[^}]*\.nav \.brand,[^}]*\.lang-switch button,[^}]*\.compact-nav summary,[^}]*\.compact-links a\{min-height:44px;/);
+    assert.match(html, /@media \(max-width:60rem\)\{[^}]*\.compact-nav\{display:block;/);
+  }
+});
+
 test('homepage preserves the required desktop motion contracts without obsolete counters', async () => {
   const [home] = await readContracts();
   assert.match(home, /html\.js\.motion-desktop \.reveal-up\{opacity:0;transform:translateY\(40px\);\}/);

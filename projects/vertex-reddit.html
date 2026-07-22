@@ -38,6 +38,14 @@
     .lang-switch button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;line-height:1;padding:8px 12px;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap;}
     .lang-switch button:hover{color:var(--color-ink);}
     .lang-switch button.active{background:var(--color-accent-bright);color:var(--color-accent-ink);}
+    .compact-nav{display:none;position:relative;font-family:var(--font-body);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted);}
+    .compact-nav summary{display:flex;align-items:center;cursor:pointer;list-style:none;padding-inline:12px;white-space:nowrap;}
+    .compact-nav summary::-webkit-details-marker{display:none;}
+    .compact-nav summary::after{content:"+";margin-left:8px;color:var(--color-accent-bright);}
+    .compact-nav[open] summary::after{content:"\2212";}
+    .compact-links{position:absolute;top:calc(100% + 12px);right:0;min-width:min(76vw,260px);display:grid;padding:8px;border:1px solid var(--color-rule);background:var(--color-paper-raised);box-shadow:0 18px 50px var(--color-shadow);}
+    .compact-links a{display:flex;align-items:center;padding-inline:16px;border-bottom:1px solid var(--color-rule);white-space:nowrap;}
+    .compact-links a:last-child{border-bottom:0;}
     main{width:min(100%,var(--width-content));margin-inline:auto;padding-inline:var(--gutter-page);}
     #vertex-hero{padding-block:clamp(96px,10vw,128px) clamp(128px,14vw,176px);border-bottom:1px solid var(--color-rule);}
     .eyebrow{margin:0 0 24px;font-family:var(--font-body);font-size:var(--text-xs);letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-bright);}
@@ -64,12 +72,13 @@
     .boundary-grid p{margin-bottom:0;color:var(--color-muted);}
     .ownership-note{margin:28px 0 0;padding:20px;border:1px solid var(--color-rule);color:var(--color-ink);}
     .footer{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(100%,var(--width-content));margin-inline:auto;padding:32px var(--gutter-page);border-top:1px solid var(--color-rule);font-family:var(--font-body);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-faint);}
-    @media (max-width:840px){.nav .links{display:none;}}
+    @media (max-width:60rem){.compact-nav{display:block;}}
+    @media (max-width:60rem){.nav .links,.back-link{display:none;}}
+    @media (max-width:60rem),(pointer:coarse){.nav .brand,.lang-switch button,.compact-nav summary,.compact-links a{min-height:44px;display:flex;align-items:center;}}
     @media (max-width:720px){main>section{grid-template-columns:minmax(0,1fr);}.evidence-table th,.evidence-table td{display:block;width:100%;padding-inline:0}.evidence-table th{padding-bottom:4px;border-bottom:0}.evidence-table td{padding-top:0}.boundary-grid{grid-template-columns:minmax(0,1fr)}.footer{align-items:flex-start;flex-direction:column}.nav{gap:12px}.nav-actions{margin-left:auto}.nav .brand .en{display:none}}
     @media (max-width:40rem){
       a,button,summary{min-height:44px;}
       main>section>*{min-width:0;}
-      .back-link{display:none;}
       .lang-switch{display:inline-flex;flex:none;}
       .lang-switch button{min-width:44px;min-height:44px;}
     }
@@ -82,6 +91,10 @@
     <a class="brand" href="../index.html">Mukun Sun<span class="en">Vertex Evidence</span></a>
     <div class="nav-actions">
       <div class="links"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-attribution">Attribution</a></div>
+      <details class="compact-nav">
+        <summary aria-label="Open project navigation">Sections</summary>
+        <div class="compact-links" role="navigation" aria-label="Project sections"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a><a href="#vertex-attribution">Attribution</a><a href="../index.html#experience">Portfolio index</a></div>
+      </details>
       <a class="back-link" href="../index.html#experience">← Portfolio index</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>

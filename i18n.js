@@ -9,13 +9,23 @@ const en = {
     home: {
       title: 'Mukun Sun | Bilingual Social Media Marketer',
       description: 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
+      imageAlt: 'International Museum Day banner designed for Wuhan Museum',
     },
     vertex: {
       title: 'Vertex Reddit Internship Evidence | Mukun Sun',
       description: "A scoped, bilingual evidence record for Mukun Sun's Reddit community operations internship at Vertex Marketing.",
     },
   },
-  navLabel: 'Primary navigation',
+  navLabels: { home: 'Primary navigation', vertex: 'Project navigation' },
+  attributes: {
+    '#nav .lang-switch': { 'aria-label': 'Language' },
+    '#nav .compact-nav summary': { 'aria-label': 'Open section navigation' },
+    '#nav .compact-links': { 'aria-label': 'Section navigation' },
+    '#experience .experience-proof': { 'aria-label': 'Selected representative account evidence' },
+    '#vertex-nav .lang-switch': { 'aria-label': 'Language' },
+    '#vertex-nav .compact-nav summary': { 'aria-label': 'Open project navigation' },
+    '#vertex-nav .compact-links': { 'aria-label': 'Project sections' },
+  },
   alts: {
     'portrait.jpg': 'Portrait of Mukun Sun',
     'jazz_winter.jpg': 'Winter Jazz Concert key visual poster designed for a hotel jazz event',
@@ -34,8 +44,10 @@ const en = {
     'bass3.jpg': 'Bass guitar atmosphere photography, study three',
   },
   copy: {
-    '.nav .brand': 'Mukun Sun<span class="en">孙慕坤</span>',
-    '.nav .links': '<a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Campus + Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>',
+    '#nav .brand': 'Mukun Sun<span class="en">孙慕坤</span>',
+    '#nav .links': '<a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Campus + Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>',
+    '#nav .compact-nav summary': 'Sections',
+    '#nav .compact-links': '<a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Campus + Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>',
     '.hero h1': 'Mukun Sun',
     '.hero .role': 'I make social content feel native to the community it enters.',
     '.hero .roleen': 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
@@ -52,6 +64,8 @@ const en = {
     '#about .capability-row:nth-child(4) p': 'Excel cleaning, Excel reporting, performance review, and practical AI-assisted research and production workflows.',
     '#vertex-nav .brand': 'Mukun Sun<span class="en">Vertex Evidence</span>',
     '#vertex-nav .links': '<a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-attribution">Attribution</a>',
+    '#vertex-nav .compact-nav summary': 'Sections',
+    '#vertex-nav .compact-links': '<a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a><a href="#vertex-attribution">Attribution</a><a href="../index.html#experience">Portfolio index</a>',
     '#vertex-nav .back-link': '← Portfolio index',
     '#experience .placard': 'Experience',
     '#experience .experience-company': 'Vertex Marketing',
@@ -154,7 +168,8 @@ const en = {
     '#contact .contact-action:nth-child(1) .contact-label': 'Email',
     '#contact .contact-action:nth-child(2) .contact-label': 'LinkedIn',
     '#contact .sign': '— Mukun Sun / 孙慕坤',
-    '.footer span:first-child': '© 2026 Mukun Sun · Social Media &amp; Marketing Portfolio',
+    '#site-footer span:first-child': '© 2026 Mukun Sun · Social Media &amp; Marketing Portfolio',
+    '#site-footer span:last-child': 'Mukun Sun · Integrated Marketing Portfolio',
     '#vertex-footer span:first-child': 'Mukun Sun · Vertex internship evidence',
     '#vertex-footer span:last-child': 'Representative account scope · 2026',
   },
@@ -167,13 +182,23 @@ const zh = {
     home: {
       title: '孙慕坤｜社交媒体与营销作品集',
       description: '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。',
+      imageAlt: '为武汉博物馆设计的国际博物馆日活动横幅',
     },
     vertex: {
       title: 'Vertex Reddit 实习证据 | 孙慕坤',
       description: '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。',
     },
   },
-  navLabel: '主导航',
+  navLabels: { home: '主导航', vertex: '项目导航' },
+  attributes: {
+    '#nav .lang-switch': { 'aria-label': '语言' },
+    '#nav .compact-nav summary': { 'aria-label': '打开章节导航' },
+    '#nav .compact-links': { 'aria-label': '章节导航' },
+    '#experience .experience-proof': { 'aria-label': '代表账号证据摘要' },
+    '#vertex-nav .lang-switch': { 'aria-label': '语言' },
+    '#vertex-nav .compact-nav summary': { 'aria-label': '打开项目导航' },
+    '#vertex-nav .compact-links': { 'aria-label': '项目章节' },
+  },
   alts: {
     'portrait.jpg': '孙慕坤 Mukun Sun 肖像照',
     'jazz_winter.jpg': '为酒店爵士演出设计的冬日爵士主视觉海报',
@@ -192,8 +217,10 @@ const zh = {
     'bass3.jpg': '贝斯氛围摄影系列之三',
   },
   copy: {
-    '.nav .brand': '孙慕坤<span class="en">Mukun&nbsp;Sun</span>',
-    '.nav .links': '<a href="#about">关于</a><a href="#experience">工作经历</a><a href="#projects">项目</a><a href="#edu">教育</a><a href="#campus-music">校园与音乐</a><a href="#visual-work">视觉作品</a><a href="#contact">联系</a>',
+    '#nav .brand': '孙慕坤<span class="en">Mukun&nbsp;Sun</span>',
+    '#nav .links': '<a href="#about">关于</a><a href="#experience">工作经历</a><a href="#projects">项目</a><a href="#edu">教育</a><a href="#campus-music">校园与音乐</a><a href="#visual-work">视觉作品</a><a href="#contact">联系</a>',
+    '#nav .compact-nav summary': '章节',
+    '#nav .compact-links': '<a href="#about">关于</a><a href="#experience">工作经历</a><a href="#projects">项目</a><a href="#edu">教育</a><a href="#campus-music">校园与音乐</a><a href="#visual-work">视觉作品</a><a href="#contact">联系</a>',
     '.hero h1': '孙慕坤',
     '.hero .role': '让内容真正融入它所面对的社区。',
     '.hero .roleen': '具备美国受众内容、社区策略与视觉传播实践的双语社交媒体营销人。',
@@ -210,6 +237,8 @@ const zh = {
     '#about .capability-row:nth-child(4) p': 'Excel 数据清洗与报表、效果复盘，以及实用的 AI 辅助调研与生产工作流。',
     '#vertex-nav .brand': '孙慕坤<span class="en">Vertex 实习证据</span>',
     '#vertex-nav .links': '<a href="#vertex-scope">范围</a><a href="#vertex-evidence">证据</a><a href="#vertex-attribution">归因</a>',
+    '#vertex-nav .compact-nav summary': '章节',
+    '#vertex-nav .compact-links': '<a href="#vertex-scope">范围</a><a href="#vertex-evidence">证据</a><a href="#vertex-community">社区</a><a href="#vertex-attribution">归因</a><a href="../index.html#experience">返回作品集</a>',
     '#vertex-nav .back-link': '← 返回作品集',
     '#experience .placard': '工作经历',
     '#experience .experience-company': 'Vertex Marketing',
@@ -312,7 +341,8 @@ const zh = {
     '#contact .contact-action:nth-child(1) .contact-label': 'Email',
     '#contact .contact-action:nth-child(2) .contact-label': 'LinkedIn',
     '#contact .sign': '— 孙慕坤 / Mukun Sun',
-    '.footer span:first-child': '© 2026 孙慕坤 · 社交媒体与营销作品集',
+    '#site-footer span:first-child': '© 2026 孙慕坤 · 社交媒体与营销作品集',
+    '#site-footer span:last-child': '孙慕坤 · 整合营销作品集',
     '#vertex-footer span:first-child': '孙慕坤 · Vertex 实习证据',
     '#vertex-footer span:last-child': '代表账号范围 · 2026',
   },
@@ -338,14 +368,21 @@ export function getInitialLanguage() {
 export function applyLanguage(value, doc = globalThis.document, storage = globalThis.localStorage, persist = false) {
   const language = normalizeLanguage(value);
   const config = LANGUAGES[language];
-  const metadata = config.metadata[getPageKey(doc)] ?? config.metadata.home;
+  const pageKey = getPageKey(doc);
+  const metadata = config.metadata[pageKey] ?? config.metadata.home;
   doc.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
   doc.documentElement.dataset.language = language;
   doc.title = metadata.title;
   const meta = doc.querySelector('meta[name="description"]');
   if (meta) meta.content = metadata.description;
+  if (metadata.imageAlt) {
+    const openGraphImageAlt = doc.querySelector('meta[property="og:image:alt"]');
+    const twitterImageAlt = doc.querySelector('meta[name="twitter:image:alt"]');
+    if (openGraphImageAlt) openGraphImageAlt.content = metadata.imageAlt;
+    if (twitterImageAlt) twitterImageAlt.content = metadata.imageAlt;
+  }
   const nav = doc.querySelector('.nav');
-  if (nav) nav.setAttribute('aria-label', config.navLabel);
+  if (nav) nav.setAttribute('aria-label', config.navLabels[pageKey] ?? config.navLabels.home);
   for (const [selector, html] of Object.entries(config.copy)) {
     const element = doc.querySelector(selector);
     if (element) element.innerHTML = html;
@@ -353,6 +390,11 @@ export function applyLanguage(value, doc = globalThis.document, storage = global
   for (const [file, alt] of Object.entries(config.alts)) {
     const image = doc.querySelector(`img[src$="${file}"]`);
     if (image) image.setAttribute('alt', alt);
+  }
+  for (const [selector, attributes] of Object.entries(config.attributes)) {
+    const element = doc.querySelector(selector);
+    if (!element) continue;
+    for (const [name, text] of Object.entries(attributes)) element.setAttribute(name, text);
   }
   doc.querySelectorAll('[data-lang]').forEach((button) => {
     const active = button.dataset.lang === language;

@@ -17,6 +17,25 @@ test('Vertex evidence uses the approved representative-account scope', async () 
   assert.doesNotMatch(copy, /personally generated all|owned all results/i);
 });
 
+test('homepage keeps summary evidence while the detail route owns the full evidence table', async () => {
+  const [home, detail, i18n] = await Promise.all([
+    readFile(new URL('../index.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
+    readFile(new URL('../i18n.js', import.meta.url), 'utf8'),
+  ]);
+  const homeExperience = home.match(/<section[^>]+id="experience"[\s\S]*?<\/section>/)?.[0] ?? '';
+  const detailEvidence = detail.match(/<section id="vertex-evidence"[\s\S]*?<\/section>/)?.[0] ?? '';
+  for (const value of ['5', '793K', '91.7%']) assert.match(homeExperience, new RegExp(value.replace('.', '\\.')));
+  for (const value of ['15,433', '472', '3,548', '482', '406K', '891', '90']) {
+    const pattern = new RegExp(value);
+    assert.doesNotMatch(homeExperience, pattern);
+    assert.match(detailEvidence, pattern);
+  }
+  assert.equal((detailEvidence.match(/<tr>/g) ?? []).length, 8);
+  assert.match(i18n, /'#experience \.proof:nth-child\(3\)'/);
+  assert.match(i18n, /'#vertex-evidence': `<h2/);
+});
+
 test('Vertex appears as experience rather than a repeated project', async () => {
   const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(home, /id="experience"/);

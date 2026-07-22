@@ -19,6 +19,7 @@ test('English is the primary language even when Chinese was previously stored', 
 
 test('both languages cover the same selector set and corrected facts', () => {
   assert.deepEqual(Object.keys(LANGUAGES.en.copy), Object.keys(LANGUAGES.zh.copy));
+  assert.deepEqual(Object.keys(LANGUAGES.en.attributes), Object.keys(LANGUAGES.zh.attributes));
   assert.equal(LANGUAGES.en.copy['.hero .role'], 'I make social content feel native to the community it enters.');
   assert.match(LANGUAGES.en.copy['.hero .roleen'], /for U\.S\. audiences\./);
   assert.equal(LANGUAGES.zh.copy['.hero .role'], '让内容真正融入它所面对的社区。');
@@ -27,6 +28,37 @@ test('both languages cover the same selector set and corrected facts', () => {
   assert.match(allCopy, /19,000[\s\S]*impressions/);
   assert.match(allCopy, /525[\s\S]*\+/);
   assert.doesNotMatch(allCopy, /5,250|\+17%|~200|随时到岗|Single-post reads/);
+});
+
+test('each translation selector is rooted in its intended route', async () => {
+  const [home, detail] = await Promise.all([
+    readFile(new URL('../index.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
+  ]);
+  const selectors = new Set([
+    ...Object.keys(LANGUAGES.en.copy),
+    ...Object.keys(LANGUAGES.en.attributes),
+  ]);
+  for (const selector of selectors) {
+    const target = selector.startsWith('#vertex') ? detail : home;
+    const id = selector.match(/#([\w-]+)/)?.[1];
+    const classes = [...selector.matchAll(/\.([\w-]+)/g)].map((match) => match[1]);
+    if (id) assert.match(target, new RegExp(`id="${id}"`), selector);
+    for (const className of classes) {
+      assert.match(target, new RegExp(`class="[^"]*\\b${className}\\b`), selector);
+    }
+  }
+});
+
+test('footer, language, proof, and compact-navigation labels are bilingual', () => {
+  assert.equal(LANGUAGES.en.copy['#site-footer span:last-child'], 'Mukun Sun · Integrated Marketing Portfolio');
+  assert.equal(LANGUAGES.zh.copy['#site-footer span:last-child'], '孙慕坤 · 整合营销作品集');
+  assert.equal(LANGUAGES.en.attributes['#nav .lang-switch']['aria-label'], 'Language');
+  assert.equal(LANGUAGES.zh.attributes['#nav .lang-switch']['aria-label'], '语言');
+  assert.match(LANGUAGES.en.attributes['#experience .experience-proof']['aria-label'], /representative account evidence/i);
+  assert.match(LANGUAGES.zh.attributes['#experience .experience-proof']['aria-label'], /代表账号证据/);
+  assert.equal(LANGUAGES.en.copy['#nav .compact-nav summary'], 'Sections');
+  assert.equal(LANGUAGES.zh.copy['#nav .compact-nav summary'], '章节');
 });
 
 test('language module declares the shared cache key', async () => {
@@ -109,8 +141,8 @@ test('applyLanguage uses page-specific metadata in both languages', () => {
 test('homepage navigation links directly to Experience in both languages', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /href="#experience">Experience<\/a>/);
-  assert.match(LANGUAGES.en.copy['.nav .links'], /href="#experience">Experience<\/a>/);
-  assert.match(LANGUAGES.zh.copy['.nav .links'], /href="#experience">工作经历<\/a>/);
+  assert.match(LANGUAGES.en.copy['#nav .links'], /href="#experience">Experience<\/a>/);
+  assert.match(LANGUAGES.zh.copy['#nav .links'], /href="#experience">工作经历<\/a>/);
 });
 
 test('page exposes a bilingual control and curated visual archive', async () => {

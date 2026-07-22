@@ -2,60 +2,55 @@
 
 ## Locked Index-First Contract (2026-07-22)
 
-This is an **English-first** personal site: English owns the default page language, metadata, navigation, and primary reading path; Chinese remains a complete, user-selectable translation rather than a competing default.
+这是一个 **English-first**、以英文为默认阅读路径的个人网站。英文负责默认页面语言、元数据和导航；中文提供完整、可主动切换的对应版本，不与英文争夺默认入口。
 
-The homepage follows an **Index-First** architecture. It introduces the person and their practice, then acts as a legible index to the distinct sections of the site rather than collapsing every story into one generic landing-page pattern.
+首页采用 **Index-First** 结构：先建立人物与工作方法，再让工作经历、项目、教育、校园与音乐、视觉作品和联系各自承担清楚且不同的叙事任务。对应的站点区块是 Experience、Projects、Education、Campus/Music、Visual Work 与 Contact。
 
-- Homepage ownership is explicitly distinct: experience establishes perspective; projects explain strategy and outcomes; education provides chronology; campus/music records community and performance work; visual work presents finished creative output; and contact closes the conversation.
-- Artwork keeps its natural ratios. Crops may direct attention, but cards and galleries must not normalize disparate work into a uniform image grid.
-- Navigation is **N10 scroll-morph**: the fixed navigation becomes a compact, solid surface after the opening threshold while preserving direct section access.
-- The footer is **Ft5 statement**: a compact authorship and portfolio statement, not a duplicate navigation sitemap.
+- 工作经历负责给出角色、职责和经过克制归因的证据摘要；复杂证据进入独立详情页。
+- 项目首页只保留两条可内收展开的摘要，避免把案例平铺成长页面。
+- 教育经历直接在首页按时间顺序呈现；校园与音乐采用紧凑条目。
+- 视觉作品先展示四张精选作品，再由归档折叠项提供其余内容；所有作品保留自然比例。
+- 固定导航在滚动后成为实色表面。完整章节链接在窄屏收进可访问的 `details` 导航，仍然保留直接章节访问。
+- 页脚只承担作者与作品集身份说明，不重复站点地图。
 
-The canonical shared values live in `tokens.css`. Existing `index.html` custom properties remain legacy aliases so current selectors stay stable during the redesign.
+共享设计值以 `tokens.css` 为准；`index.html` 中的自定义属性是现有选择器使用的兼容别名。
 
 ## Theme
-Gallery in the Dark. A warm near-black gallery wall frames Mukun Sun's colourful work as illuminated exhibits. The English experience is canonical and primary; Chinese is a complete, user-selectable secondary translation. The texture comes from warm charcoal, fine rules, film grain, ember glow, cinematic reveals, and cursor spotlighting. Image-led work supplies the colour and avoids a monochrome editorial treatment.
+
+**Gallery in the Dark**：暖黑色展墙承托彩色作品。质感来自克制的胶片颗粒、细分隔线、余烬色强调、轻微光标聚光和有节奏的滚动揭示，而不是堆叠卡片、渐变文案或装饰性口号。
 
 ## Color
-OKLCH。策略：Committed —— 暖琥珀/余烬作为唯一强调色贯穿全站，其余为暖近黑层级。
 
-| Token | 值 | 用途 |
-|---|---|---|
-| `--bg` | oklch(0.155 0.006 60) ≈ #100D0A | 画布（展墙） |
-| `--bg-1` | oklch(0.185 0.008 58) | 次级背景 / 分区 |
-| `--surface` | oklch(0.225 0.010 55) | 抬升面板 / 展签 |
-| `--ink` | oklch(0.93 0.012 75) ≈ #F2EBDF | 主文字（暖骨白） |
-| `--ink-2` | oklch(0.80 0.013 72) | 正文 |
-| `--muted` | oklch(0.62 0.012 65) | 次要 / 标签（仅大字或标签） |
-| `--faint` | oklch(0.45 0.010 60) | 极次要 / 线注 |
-| `--ember` | oklch(0.64 0.15 47) ≈ #C9683A | 强调（大字 / 辉光 / 描边） |
-| `--amber` | oklch(0.80 0.12 70) ≈ #E6A85A | 高亮强调（小字安全） |
-| `--line` | rgba(236,222,196,0.10) | 细分隔线 / 边框 |
-
-对比：`--ink`/`--ink-2` 落在 `--bg` 上 ≥ 7:1。`--ember` 仅用于大字/图形；小号强调文字用 `--amber`（≥4.5:1）。强调色不在边缘用中性色稀释——Committed 即贯穿。
+色彩使用 `tokens.css` 中的 OKLCH token。暖黑层级承担背景与表面；骨白承担正文；余烬橙和琥珀色只用于焦点、关键数据与少量状态提示。小字号强调文字使用高对比的亮色 token，不能以低对比装饰色替代信息层级。
 
 ## Typography
-配对轴 = 中文衬线 × 英文等宽（gallery placard / 数据气质），非相似族堆叠。
 
-- **显示 / 标题（中文）**：`'Noto Serif SC'`（思源宋体），weight 500–700。本机已装；`@font-face` 用 `local()` + 本地字体文件兜底，栈回退 `'Source Han Serif SC','Songti SC',serif`。这是英雄字体（孙慕坤、案例标题）。
-- **正文（中文）**：`'Noto Sans SC'`，weight 300–500，回退 `'PingFang SC','Microsoft YaHei',sans-serif`。亮字在暗底上 line-height +0.05~0.1。
-- **限定的英文异体字**：`'Fragment Mono'`（Google Fonts，仅拉丁，体积小），回退 `ui-monospace,Menlo,monospace`。仅用于两个语义 register：导航 wordmark 的次级标识，以及关键证据数字。其余标签、日期、按钮和展签统一使用无衬线正文家族，避免第三字体扩散成另一套正文。
-- 标度：fluid `clamp()`，步进 ≥1.25；显示标题上限 ≤ 6rem；display 字距 ≥ -0.04em。h1–h3 `text-wrap:balance`，长段 `pretty`。
+- 中文显示字体：`GSerifSC`，只通过 `local('Noto Serif SC')` 与 `local('Source Han Serif SC')` 发现用户设备字体，再回退到系统中文衬线字体；站点不得引用开发者电脑的绝对路径。
+- 中文正文字体：`GSansSC`，同样只使用本地字体名称与系统回退；中文正文保留更舒展的行高。
+- 英文等宽字体：`Fragment Mono`，仅用于两个语义 register——导航 wordmark 的次级标识与关键证据数字。其他标签、日期、按钮和说明统一使用无衬线正文家族。
+- 标题使用流式 `clamp()`、受控字距与 `text-wrap: balance`；长段落使用 `text-wrap: pretty`，任何标题都不得溢出容器。
 
 ## Components
-- **展签（placard）**：作品 / 案例的说明牌——标题 + 媒介 + 年份 + 角色（有信息量的元数据，非空泛眉标）。这是刻意的品牌系统，替代「每节一个 uppercase 眉标」。
-- **案例展厅**：案例 01/02/03 是真实有序的展览序列，编号成立；含 approach / results / 引述 / 配图，逐厅换版式（art direction per room）。
-- **影响数据**：编辑式数字行 + 入场计数动效 + 上下文，避免 SaaS hero-metric 模板与等大卡片网格。
-- **教育（分学院）**：账本/时间轴式，按学院分条——武汉轻工大学·人文与传媒学院 / 南犹他州立大学·人文与社会科学学院 / 南犹他州立大学·里维特商学院（Leavitt School of Business）。
-- 禁用：侧边色条、渐变文字、默认玻璃拟态、等大图标卡网格、每节眉标、溢出容器的文字。
+
+- **Experience summary**：公司、角色、时间、职责、三项代表性证据与明确归因；详细历史指标只属于 Vertex 独立证据页。
+- **Project disclosure**：两条项目使用原生 `details/summary` 内收；折叠状态仍须展示足够的项目名称与类别信息。
+- **Education ledger**：首页内直接展开的时间条目，不再拆分为学院卡片。
+- **Campus + Music rows**：用紧凑行呈现组织、角色与时间，避免小字说明重复标题。
+- **Visual work**：四张精选预览和一组可展开归档；媒体使用显式宽高及自然比例，不强行裁成统一网格。
+- **Compact navigation**：在 `60rem` 及以下替代完整链接；触屏与窄屏的主要控制至少为 44px，并具备可翻译的可访问名称。
+- 禁用：侧边装饰色条、渐变文字、默认玻璃拟态、等大图标卡片网格、每节重复眉标、溢出容器的文字。
 
 ## Motion
-全部自包含 vanilla JS，无外部运行时依赖（离线可用）；`<html>.js` 同步置类，无 JS 时内容默认可见。曲线 ease-out-expo/quint，无弹跳。
-- **入场编排**：颗粒沉降 → 聚光扫过 → 名字/列上升 → kicker 淡入 → 联系行展开。
-- **滚动揭示**：IntersectionObserver 加 `.in`，按 `--i` 错峰；逐节不同性格（标题上升、图像 clip-path/缩放点亮、数字计数、细线绘制），非统一淡入。
-- **画廊**：作品默认微暗（未打光），hover 提亮上浮（被聚光）；桌面端柔光光标跟随（gallery spotlight 签名）。
-- **其它**：作品视差（rAF，轻）、关键词跑马灯、磁吸联系按钮、顶部滚动进度细线。
-- **Reduced motion**：关闭视差/聚光/颗粒动画/计数，揭示降级为即时；所有动效有 `@media (prefers-reduced-motion: reduce)` 替代。
+
+动效由原生 CSS 与 JavaScript 实现，无运行时框架依赖。`<html>` 默认带 `no-js`，脚本可用时才切换为 `js`；因此无 JavaScript 时内容始终可见。
+
+- Hero 在支持精细指针、足够宽度且用户未要求减少动效时完成一次进入编排。
+- 下方内容由 `IntersectionObserver` 独立揭示；不存在定时器把所有未进入视口的内容强制显示。浏览器不支持观察器时直接显示全部内容。
+- 肖像使用很轻的滚动视差；作品保持静态构图，不通过统一裁切制造运动。
+- 背景保留轻颗粒和桌面光标聚光；关键词跑马灯保持线性、低干扰移动。
+- 顶部进度线以 `scaleX()` 更新，避免触发布局。
+- `prefers-reduced-motion: reduce`、窄屏或粗指针环境关闭视差、聚光、颗粒动画与非必要过渡，并保证内容立即可见。
 
 ## Layout
-容器 max ~1240px，留白用 `clamp()` 呼吸、节奏有疏密；画廊与跑马灯可通栏。构图允许非对称、为强调破格。响应式：移动端单列、字阶收敛防溢出，聚光/视差等指针特性在触屏关闭。
+
+主内容最大宽度约 1240px，页面留白和分区使用 `clamp()` 保持呼吸感。桌面允许非对称构图；移动端收敛为单列，标题和表格防溢出，所有依赖精细指针的视觉行为在触屏上关闭。

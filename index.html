@@ -10,11 +10,15 @@
 <meta property="og:description" content="I make social content feel native to the community it enters.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://agemoo.github.io/">
-<meta property="og:image" content="https://agemoo.github.io/build/assets/portrait.jpg">
+<meta property="og:image" content="https://agemoo.github.io/build/assets/banner_museum.jpg">
+<meta property="og:image:width" content="1084">
+<meta property="og:image:height" content="437">
+<meta property="og:image:alt" content="International Museum Day banner designed for Wuhan Museum">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mukun Sun | Bilingual Social Media Marketer">
 <meta name="twitter:description" content="I make social content feel native to the community it enters.">
-<meta name="twitter:image" content="https://agemoo.github.io/build/assets/portrait.jpg">
+<meta name="twitter:image" content="https://agemoo.github.io/build/assets/banner_museum.jpg">
+<meta name="twitter:image:alt" content="International Museum Day banner designed for Wuhan Museum">
 <script>
 (function(root){
   root.className=root.className.replace('no-js','js');
@@ -28,8 +32,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
 <style>
-@font-face{font-family:'GSerifSC';src:local('Noto Serif SC'),local('Source Han Serif SC'),url('C:/Windows/Fonts/NotoSerifSC-VF.ttf');font-weight:200 900;font-display:swap;}
-@font-face{font-family:'GSansSC';src:local('Noto Sans SC'),local('Source Han Sans SC'),url('C:/Windows/Fonts/NotoSansSC-VF.ttf');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'GSerifSC';src:local('Noto Serif SC'),local('Source Han Serif SC');font-weight:200 900;font-display:swap;}
+@font-face{font-family:'GSansSC';src:local('Noto Sans SC'),local('Source Han Sans SC');font-weight:100 900;font-display:swap;}
 
 :root{
   --bg:var(--color-paper);
@@ -107,7 +111,17 @@ html[lang="zh"] .nav .brand .en{font-family:var(--mono);}
 .lang-switch button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;line-height:1;padding:8px 12px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s;white-space:nowrap;}
 .lang-switch button:hover{color:var(--ink);}
 .lang-switch button.active{background:var(--amber);color:var(--color-accent-ink);}
+.compact-nav{display:none;position:relative;font-family:var(--sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.compact-nav summary{display:flex;align-items:center;cursor:pointer;list-style:none;padding-inline:12px;white-space:nowrap;}
+.compact-nav summary::-webkit-details-marker{display:none;}
+.compact-nav summary::after{content:"+";margin-left:8px;color:var(--amber);}
+.compact-nav[open] summary::after{content:"\2212";}
+.compact-links{position:absolute;top:calc(100% + 12px);right:0;min-width:min(76vw,260px);display:grid;padding:8px;border:1px solid var(--line-2);background:var(--bg-1);box-shadow:0 18px 50px var(--color-shadow);}
+.compact-links a{display:flex;align-items:center;padding-inline:16px;border-bottom:1px solid var(--line);white-space:nowrap;}
+.compact-links a:last-child{border-bottom:0;}
+@media (max-width:60rem){.compact-nav{display:block;}}
 @media (max-width:60rem){.nav .links{display:none;}}
+@media (max-width:60rem),(pointer:coarse){.nav .brand,.lang-switch button,.compact-nav summary,.compact-links a{min-height:44px;display:flex;align-items:center;}}
 @media (max-width:40rem){.nav{gap:12px}.nav-actions{margin-left:auto}.lang-switch button{padding:8px;}}
 
 /* ---------- layout primitives ---------- */
@@ -357,6 +371,10 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
     <div class="links">
       <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Campus + Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>
     </div>
+    <details class="compact-nav">
+      <summary aria-label="Open section navigation">Sections</summary>
+      <div class="compact-links" role="navigation" aria-label="Section navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Campus + Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a></div>
+    </details>
     <div class="lang-switch" role="group" aria-label="Language">
       <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="zh" aria-pressed="false">中文</button>
@@ -631,7 +649,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   </div>
 </section>
 
-<footer class="footer">
+<footer class="footer" id="site-footer">
   <span>© 2026 Mukun Sun · Social Media &amp; Marketing Portfolio</span>
   <span>Mukun Sun · Integrated Marketing Portfolio</span>
 </footer>
@@ -646,7 +664,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   var hero=document.getElementById('top');
   var heroFrame=0,heroInnerFrame=0;
   var revealEls=[].slice.call(document.querySelectorAll('[data-reveal]'));
-  var revealObserver=null,revealTimer=0;
+  var revealObserver=null;
   var nav=document.getElementById('nav'),prog=document.getElementById('progress');
   var spot=document.querySelector('.spot');
   var spotlightFrame=0,spotlightListening=false;
@@ -687,16 +705,10 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
     },{rootMargin:'0px 0px -10% 0px',threshold:0.12});
     revealObserver=observer;
     pending.forEach(function(el){revealObserver.observe(el);});
-    revealTimer=setTimeout(function(){
-      revealTimer=0;
-      revealAll();
-      if(revealObserver){revealObserver.disconnect();revealObserver=null;}
-    },2400);
   }
 
   function stopReveal(){
     if(revealObserver){revealObserver.disconnect();revealObserver=null;}
-    if(revealTimer){clearTimeout(revealTimer);revealTimer=0;}
     revealEls.forEach(function(el){el.classList.add('in');});
   }
 

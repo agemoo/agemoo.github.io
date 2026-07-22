@@ -21,11 +21,26 @@ test('homepage exposes complete sharing metadata', async () => {
   assert.match(html, /property="og:description"/);
   assert.match(html, /property="og:type" content="website"/);
   assert.match(html, /property="og:url" content="https:\/\/agemoo\.github\.io\/"/);
-  assert.match(html, /property="og:image"/);
+  assert.match(html, /property="og:image" content="https:\/\/agemoo\.github\.io\/build\/assets\/banner_museum\.jpg"/);
+  assert.match(html, /property="og:image:width" content="1084"/);
+  assert.match(html, /property="og:image:height" content="437"/);
+  assert.match(html, /property="og:image:alt" content="International Museum Day banner designed for Wuhan Museum"/);
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
   assert.match(html, /name="twitter:title"/);
   assert.match(html, /name="twitter:description"/);
-  assert.match(html, /name="twitter:image"/);
+  assert.match(html, /name="twitter:image" content="https:\/\/agemoo\.github\.io\/build\/assets\/banner_museum\.jpg"/);
+  assert.match(html, /name="twitter:image:alt" content="International Museum Day banner designed for Wuhan Museum"/);
+  assert.doesNotMatch(html, /(?:og:image|twitter:image)" content="[^"]*portrait\.jpg"/);
+});
+
+test('production HTML does not reference workstation-local font files', async () => {
+  const [home, detail] = await Promise.all([
+    readFile(new URL('../index.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
+  ]);
+  for (const html of [home, detail]) {
+    assert.doesNotMatch(html, /url\(['"]?[A-Za-z]:[\\/]/);
+  }
 });
 
 test('favicon uses the roman initial instead of the removed Chinese glyph', async () => {
