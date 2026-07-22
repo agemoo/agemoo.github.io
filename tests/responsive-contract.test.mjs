@@ -49,7 +49,10 @@ test('homepage preserves the required desktop motion contracts without obsolete 
   assert.match(home, /\.project-row:hover::after,[^}]*transform:scaleX\(1\);/);
   assert.match(home, /html\.js\.motion-desktop \[data-reveal="img"\]\{transform:translateY\(46px\) scale\(1\.04\);\}/);
   assert.match(home, /@media\s*\(pointer:fine\) and \(min-width:40\.001rem\) and \(prefers-reduced-motion:no-preference\)\{\.progress\{display:block;\}\}/);
+  assert.match(home, /\.progress\{[^}]*width:100%;[^}]*transform:scaleX\(0\);[^}]*transform-origin:left;/);
   assert.match(home, /html\.js\.motion-desktop \.spot\.on\{opacity:1;\}/);
+  assert.match(home, /data-parallax="0\.03"/);
+  assert.match(home, /transform:translate3d\(0,var\(--parallax-y,0px\),0\) scale\(1\.08\)/);
   assert.doesNotMatch(home, /data-count|startCount/);
 });
 
@@ -61,7 +64,8 @@ test('both routes react to live motion capability changes and gate progress writ
     assert.match(html, /pointerQuery=window\.matchMedia\('\(pointer: fine\)'\)/);
     assert.match(html, /\[narrowQuery,reduceQuery,pointerQuery\]\.forEach\(function\(query\)\{query\.addEventListener\('change',syncMotionState\);\}\);/);
     assert.match(html, /root\.classList\.toggle\('motion-desktop',motionDesktop\)/);
-    assert.match(html, /if\(motionDesktop\)\{[\s\S]*?prog\.style\.width=\(h>0\?\(y\/h\*100\):0\)\+'%';[\s\S]*?\}else\{prog\.style\.width='0%';\}/);
+    assert.match(html, /var progress=h>0\?Math\.min\(1,Math\.max\(0,y\/h\)\):0;[\s\S]*?prog\.style\.transform='scaleX\('\+\(motionDesktop\?progress:0\)\+'\)'/);
+    assert.doesNotMatch(html, /prog\.style\.width/);
   }
   assert.match(home, /if\(revealObserver\)\{revealObserver\.disconnect\(\);revealObserver=null;\}/);
   assert.match(home, /var observer=new IntersectionObserver\([\s\S]*?observer\.unobserve\(e\.target\)[\s\S]*?revealObserver=observer;/);

@@ -20,6 +20,7 @@ test('Hallmark stamp records the final critique and gate groups', () => {
   assert.match(tokens, /nav: N10/);
   assert.match(tokens, /footer: Ft5/);
   assert.match(tokens, /mobile: pass \(34, 49, 50–57\)/);
+  assert.match(tokens, /typography: pass \(37–38a; Fragment Mono 2 registers\)/);
 });
 
 test('render CSS consumes locked color tokens instead of raw colors', () => {
@@ -33,8 +34,31 @@ test('render CSS consumes locked color tokens instead of raw colors', () => {
 test('motion avoids layout-property transitions and stacked hover effects', () => {
   for (const html of [home, detail]) {
     assert.doesNotMatch(html, /transition(?:-property)?\s*:[^;}]*\b(?:width|height|top|left|margin|padding|gap)\b/i);
+    assert.doesNotMatch(html, /prog\.style\.width/);
   }
   assert.doesNotMatch(home, /\.experience-link:hover\{[^}]*gap:/);
+});
+
+test('Fragment Mono is loaded but restricted to the wordmark and evidence-number registers', () => {
+  assert.match(tokens, /--font-mono:\s*'Fragment Mono',\s*ui-monospace/);
+  for (const html of [home, detail]) {
+    assert.match(html, /family=Fragment\+Mono:ital@0;1/);
+  }
+  const homeUses = inlineStyles(home).match(/font-family:var\(--mono\)/g) ?? [];
+  const detailUses = inlineStyles(detail).match(/font-family:var\(--font-mono\)/g) ?? [];
+  assert.equal(homeUses.length, 2);
+  assert.equal(detailUses.length, 2);
+  assert.match(home, /html\[lang="zh"\] \.nav \.brand \.en\{font-family:var\(--mono\)/);
+  assert.match(home, /\.experience-proof strong\{[^}]*font-family:var\(--mono\)/);
+  assert.match(detail, /html\[lang="zh"\] \.nav \.brand \.en\{font-family:var\(--font-mono\)/);
+  assert.match(detail, /\.evidence-table strong\{font-family:var\(--font-mono\)/);
+});
+
+test('portrait parallax is mounted and consumed by a composited transform', () => {
+  assert.match(home, /<figure class="portrait" data-reveal="img" data-parallax="0\.03">/);
+  assert.match(home, /\.pframe img\{[^}]*transform:translate3d\(0,var\(--parallax-y,0px\),0\) scale\(1\.08\)/);
+  assert.match(home, /img\.style\.setProperty\('--parallax-y',offset\.toFixed\(1\)\+'px'\)/);
+  assert.match(home, /img\.style\.removeProperty\('--parallax-y'\)/);
 });
 
 test('hero, responsive image track, and display wrapping satisfy layout gates', () => {

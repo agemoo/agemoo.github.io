@@ -4,6 +4,7 @@
  * contrast: pass (40–41) · slop: pass (42–45)
  * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49)
  * icons: pass (30) · mobile: pass (34, 49, 50–57)
+ * typography: pass (37–38a; Fragment Mono 2 registers)
  */
 :root {
   --color-paper: oklch(0.152 0.006 60);
@@ -28,7 +29,7 @@
   --color-bloom-closing-low: oklch(0.34 0.06 50 / 0.4);
   --font-display: 'GSerifSC', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
   --font-body: 'GSansSC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-mono: var(--font-body);
+  --font-mono: 'Fragment Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --space-3xs: 0.25rem;
   --space-2xs: 0.5rem;
   --space-xs: 0.75rem;

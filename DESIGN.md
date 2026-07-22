@@ -39,7 +39,7 @@ OKLCH。策略：Committed —— 暖琥珀/余烬作为唯一强调色贯穿全
 
 - **显示 / 标题（中文）**：`'Noto Serif SC'`（思源宋体），weight 500–700。本机已装；`@font-face` 用 `local()` + 本地字体文件兜底，栈回退 `'Source Han Serif SC','Songti SC',serif`。这是英雄字体（孙慕坤、案例标题）。
 - **正文（中文）**：`'Noto Sans SC'`，weight 300–500，回退 `'PingFang SC','Microsoft YaHei',sans-serif`。亮字在暗底上 line-height +0.05~0.1。
-- **英文标签 / kicker / 数据 / 署名**：`'Fragment Mono'`（Google Fonts，仅拉丁，体积小），回退 `ui-monospace,Menlo,monospace`。仅用于小号展签与数字——是「美术馆展签 + 数据终端」的质感，不是开发者 costume；不用于正文。
+- **限定的英文异体字**：`'Fragment Mono'`（Google Fonts，仅拉丁，体积小），回退 `ui-monospace,Menlo,monospace`。仅用于两个语义 register：导航 wordmark 的次级标识，以及关键证据数字。其余标签、日期、按钮和展签统一使用无衬线正文家族，避免第三字体扩散成另一套正文。
 - 标度：fluid `clamp()`，步进 ≥1.25；显示标题上限 ≤ 6rem；display 字距 ≥ -0.04em。h1–h3 `text-wrap:balance`，长段 `pretty`。
 
 ## Components
