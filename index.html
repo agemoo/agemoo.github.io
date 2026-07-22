@@ -23,7 +23,7 @@
   --muted:var(--color-muted);
   --faint:var(--color-faint);
   --ember:var(--color-accent);
-  --ember-d:var(--color-accent);
+  --ember-d:var(--color-accent-deep);
   --amber:var(--color-accent-bright);
   --line:var(--color-rule);
   --line-2:color-mix(in oklch,var(--color-ink) 17%,transparent);
@@ -32,7 +32,7 @@
   --sans:var(--font-body);
   --mono:var(--font-mono);
   --ease:var(--ease-out);
-  --ease2:var(--ease-in-out);
+  --ease2:var(--ease-legacy);
   --maxw:var(--width-content);
   --gut:var(--gutter-page);
 }
@@ -115,9 +115,6 @@ section{position:relative;}
     radial-gradient(80% 60% at 72% 8%,oklch(0.5 0.12 45 / .30),transparent 60%),
     radial-gradient(90% 70% at 12% 96%,oklch(0.34 0.07 50 / .35),transparent 62%),
     var(--bg);}
-.hero .ghost{position:absolute;right:-3vw;top:50%;transform:translateY(-50%);font-family:var(--serif);
-  font-size:min(58vh,520px);line-height:.8;color:rgba(238,224,198,.022);writing-mode:vertical-rl;
-  letter-spacing:-.06em;z-index:-1;font-weight:700;user-select:none;}
 .hero-kick{font-family:var(--mono);font-size:clamp(11px,1.3vw,13px);letter-spacing:.42em;text-transform:uppercase;
   color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:clamp(26px,4vw,46px);}
 .hero-kick b{color:var(--amber);font-weight:400;}
@@ -414,7 +411,6 @@ html.js [data-reveal="line"]::after,html.js .linegrow{transform-origin:left;}
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
-  <div class="ghost" aria-hidden="true">营</div>
   <div class="wrap">
     <div class="hero-kick reveal-up" style="--d:120"></div>
     <div class="nameen reveal-up" style="--d:220">Mukun Sun</div>
