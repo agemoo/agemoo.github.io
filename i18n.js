@@ -2,8 +2,8 @@ export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'portfolio-language';
 
 const en = {
-  title: 'Mukun Sun | Social Media & Marketing Portfolio',
-  description: 'Mukun Sun’s bilingual portfolio: social media, campaign strategy, analytics, graphic design, photography, and event marketing.',
+  title: 'Mukun Sun | Bilingual Social Media Marketer',
+  description: 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
   navLabel: 'Primary navigation',
   alts: {
     'portrait.jpg': 'Portrait of Mukun Sun',
@@ -25,12 +25,12 @@ const en = {
   copy: {
     '.nav .brand': 'Mukun Sun<span class="en">孙慕坤</span>',
     '.nav .links': '<a href="#about">About</a><a href="#edu">Education</a><a href="#skills">Skills</a><a href="#work">Cases</a><a href="#gallery">Creative</a><a href="#contact">Contact</a>',
-    '.hero .ghost': 'M',
     '.hero h1': 'Mukun Sun',
-    '.hero .role': 'Social Media &amp; Marketing Portfolio',
+    '.hero .role': 'I make social content feel native to the community it enters.',
+    '.hero .roleen': 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
     '.hero .scrollcue': 'Scroll to explore<span class="bar"></span>',
     '#about .stitle': 'About Me',
-    '#about .lede': 'I am a Strategic Communication student at <em>Southern Utah University</em>, minoring in Business Analytics. My work spans social media content, campaign coordination, graphic design, short-form video, photography, and Excel-based reporting. I also use AI tools to make research, content, and production workflows more efficient.',
+    '#about .lede': 'I work on social content where audience context matters: learning how a community speaks, choosing the right format, and carrying the idea through copy, design, video, or reporting. My recent work includes Reddit community operations at Vertex Marketing and campus-facing content at Southern Utah University. I study Strategic Communication at SUU with a minor in Business Analytics.',
     '#about .pillar:nth-child(1) h3': 'Paid Media &amp; Data',
     '#about .pillar:nth-child(1) p': 'Working knowledge of Facebook and Google Ads concepts, CPM, CPC, CTR, and ROAS, plus Excel cleaning, pivot tables, and structured reporting.',
     '#about .pillar:nth-child(2) h3': 'Content &amp; Community',
@@ -174,12 +174,12 @@ const zh = {
   copy: {
     '.nav .brand': '孙慕坤<span class="en">Mukun&nbsp;Sun</span>',
     '.nav .links': '<a href="#about">关于</a><a href="#edu">教育</a><a href="#skills">能力</a><a href="#work">案例</a><a href="#gallery">创意</a><a href="#contact">联系</a>',
-    '.hero .ghost': '营',
     '.hero h1': '孙慕坤',
-    '.hero .role': '社交媒体与营销作品集',
+    '.hero .role': '让内容真正融入它所面对的社区。',
+    '.hero .roleen': '具备美国受众内容、社区策略与视觉传播实践的双语社交媒体营销人。',
     '.hero .scrollcue': '向下浏览<span class="bar"></span>',
     '#about .stitle': '关于我',
-    '#about .lede': '我是美国 <em>Southern Utah University</em> 战略传播专业本科生，辅修商业分析。我的实践覆盖社媒内容、活动协同、平面设计、短视频、摄影与 Excel 报表；也会用 AI 工具提升调研、内容与制作流程的效率。',
+    '#about .lede': '我关注内容与社区语境之间的关系：理解社群如何交流，选择合适的形式，再把想法落实为文案、设计、视频或数据报告。近期实践包括 Vertex Marketing 的 Reddit 社区运营，以及 Southern Utah University 的校园内容工作；目前主修战略传播，辅修商业分析。',
     '#about .pillar:nth-child(1) h3': '投放与数据',
     '#about .pillar:nth-child(1) p': '理解 Facebook / Google Ads 基础逻辑与 CPM、CPC、CTR、ROAS，并能用 Excel 做数据清洗、透视表与结构化报表。',
     '#about .pillar:nth-child(2) h3': '内容与社群',

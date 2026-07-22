@@ -19,6 +19,10 @@ test('English is the primary language even when Chinese was previously stored', 
 
 test('both languages cover the same selector set and corrected facts', () => {
   assert.deepEqual(Object.keys(LANGUAGES.en.copy), Object.keys(LANGUAGES.zh.copy));
+  assert.equal(LANGUAGES.en.copy['.hero .role'], 'I make social content feel native to the community it enters.');
+  assert.match(LANGUAGES.en.copy['.hero .roleen'], /for U\.S\. audiences\./);
+  assert.equal(LANGUAGES.zh.copy['.hero .role'], '让内容真正融入它所面对的社区。');
+  assert.ok(!Object.hasOwn(LANGUAGES.en.copy, '.hero .ghost'));
   const allCopy = JSON.stringify(LANGUAGES);
   assert.match(allCopy, /19,000[\s\S]*impressions/);
   assert.match(allCopy, /525[\s\S]*\+/);
