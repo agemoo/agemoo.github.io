@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-language="en">
+<html lang="en" data-language="en" data-page="vertex">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,17 +19,24 @@
     body{margin:0;background:var(--color-paper);color:var(--color-ink-soft);font-family:var(--font-body);font-weight:300;line-height:1.8;-webkit-font-smoothing:antialiased;}
     a{color:inherit;text-decoration:none;}
     :focus-visible{outline:2px solid var(--color-focus);outline-offset:4px;border-radius:2px;}
-    .detail-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(100%,var(--width-content));margin-inline:auto;padding:22px var(--gutter-page);border-bottom:1px solid var(--color-rule);}
-    .back-link{font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-muted);transition:color var(--dur-short) ease;}
-    .back-link:hover{color:var(--color-accent-bright);}
+    .progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:120;background:linear-gradient(90deg,var(--color-accent-deep),var(--color-accent-bright));}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:110;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--gutter-page);border-bottom:1px solid transparent;transition:background var(--dur-medium) var(--ease-out),padding var(--dur-medium) var(--ease-out),border-color var(--dur-medium) var(--ease-out);}
+    .nav.solid{background:color-mix(in oklab,var(--color-paper) 88%,transparent);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);padding-top:13px;padding-bottom:13px;border-color:var(--color-rule);}
+    .nav .brand{display:flex;align-items:baseline;gap:9px;font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:.12em;color:var(--color-ink);}
+    .nav .brand .en{font-family:var(--font-mono);font-size:9px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--color-muted);}
+    .nav-actions{display:flex;align-items:center;gap:clamp(12px,2vw,26px);}
+    .nav .links{display:flex;gap:clamp(12px,1.8vw,24px);font-family:var(--font-mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--color-muted);}
+    .nav .links a,.back-link{position:relative;padding-block:4px;transition:color var(--dur-short) ease;}
+    .nav .links a:hover,.back-link:hover{color:var(--color-accent-bright);}
+    .back-link{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted);}
     .lang-switch{display:inline-flex;align-items:center;padding:3px;border:1px solid var(--color-rule);border-radius:var(--radius-pill);font-family:var(--font-mono);font-size:10px;color:var(--color-muted);}
     .lang-switch button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;line-height:1;padding:8px 10px;border-radius:var(--radius-pill);cursor:pointer;}
     .lang-switch button.active{background:var(--color-accent-bright);color:var(--color-paper);}
     main{width:min(100%,var(--width-content));margin-inline:auto;padding-inline:var(--gutter-page);}
-    #vertex-hero{padding-block:clamp(72px,12vw,150px);border-bottom:1px solid var(--color-rule);}
+    #vertex-hero{padding-block:clamp(112px,14vw,176px) clamp(72px,10vw,128px);border-bottom:1px solid var(--color-rule);}
     .eyebrow{margin:0 0 22px;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-bright);}
     h1,h2,h3,p{margin-top:0;}
-    h1{max-width:12ch;margin-bottom:30px;font-family:var(--font-display);font-size:clamp(48px,9vw,112px);font-weight:650;letter-spacing:-.035em;line-height:.96;color:var(--color-ink);text-wrap:balance;}
+    h1{max-width:12ch;margin-bottom:30px;font-family:var(--font-display);font-size:clamp(3rem,9vw,6rem);font-weight:650;letter-spacing:-.035em;line-height:.96;color:var(--color-ink);text-wrap:balance;}
     .hero-deck{max-width:66ch;margin-bottom:0;font-size:clamp(var(--text-md),2vw,var(--text-lg));line-height:1.65;color:var(--color-ink-soft);}
     .hero-meta{margin-top:34px;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted);}
     main>section{display:grid;grid-template-columns:minmax(180px,.55fr) minmax(0,1.45fr);gap:clamp(34px,8vw,110px);padding-block:clamp(58px,9vw,112px);border-bottom:1px solid var(--color-rule);}
@@ -41,7 +48,7 @@
     .evidence-table th,.evidence-table td{padding:20px 14px;border-bottom:1px solid var(--color-rule);text-align:left;vertical-align:top;}
     .evidence-table th{width:34%;font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--color-muted);}
     .evidence-table td{color:var(--color-ink-soft);}
-    .evidence-table strong{font-family:var(--font-display);font-size:clamp(22px,2.4vw,32px);font-weight:600;line-height:1;color:var(--color-accent-bright);}
+    .evidence-table strong{font-family:var(--font-display);font-size:clamp(22px,2.4vw,32px);font-weight:600;line-height:1;color:var(--color-accent-bright);font-variant-numeric:tabular-nums;}
     .community-list{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0 0;padding:0;list-style:none;}
     .community-list li{border:1px solid var(--color-rule);border-radius:var(--radius-pill);padding:7px 12px;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;color:var(--color-muted);}
     .boundary-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--color-rule);border:1px solid var(--color-rule);}
@@ -49,17 +56,23 @@
     .boundary-grid h3{font-family:var(--font-mono);font-size:11px;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:var(--color-accent-bright);}
     .boundary-grid p{margin-bottom:0;color:var(--color-muted);}
     .ownership-note{margin:28px 0 0;padding:20px;border:1px solid var(--color-rule);color:var(--color-ink);}
-    .detail-footer{display:flex;justify-content:space-between;gap:20px;width:min(100%,var(--width-content));margin-inline:auto;padding:30px var(--gutter-page);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-faint);}
-    @media (max-width:720px){main>section{grid-template-columns:1fr;}.evidence-table th,.evidence-table td{display:block;width:100%;padding-inline:0}.evidence-table th{padding-bottom:4px;border-bottom:0}.evidence-table td{padding-top:0}.boundary-grid{grid-template-columns:1fr}.detail-footer{flex-direction:column}}
+    .footer{display:flex;justify-content:space-between;gap:20px;width:min(100%,var(--width-content));margin-inline:auto;padding:30px var(--gutter-page);border-top:1px solid var(--color-rule);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-faint);}
+    @media (max-width:840px){.nav .links{display:none;}}
+    @media (max-width:720px){main>section{grid-template-columns:1fr;}.evidence-table th,.evidence-table td{display:block;width:100%;padding-inline:0}.evidence-table th{padding-bottom:4px;border-bottom:0}.evidence-table td{padding-top:0}.boundary-grid{grid-template-columns:1fr}.footer{flex-direction:column}.nav{gap:12px}.nav-actions{margin-left:auto}.nav .brand .en{display:none}}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
   </style>
 </head>
 <body>
-  <nav class="detail-nav" aria-label="Project navigation">
-    <a class="back-link" href="../index.html#experience">← Back to experience</a>
-    <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <nav class="nav" id="vertex-nav" aria-label="Project navigation">
+    <a class="brand" href="../index.html">Mukun Sun<span class="en">Vertex Evidence</span></a>
+    <div class="nav-actions">
+      <div class="links"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-attribution">Attribution</a></div>
+      <a class="back-link" href="../index.html#experience">← Portfolio index</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+      </div>
     </div>
   </nav>
 
@@ -115,7 +128,20 @@
     </section>
   </main>
 
-  <footer class="detail-footer"><span>© 2026 Mukun Sun</span><a href="#vertex-hero">Back to top ↑</a></footer>
+  <footer class="footer" id="vertex-footer"><span>Mukun Sun · Vertex internship evidence</span><span>Representative account scope · 2026</span></footer>
+  <script>
+    (function(){
+      var nav=document.getElementById('vertex-nav'),prog=document.getElementById('progress');
+      function onScroll(){
+        var y=window.pageYOffset||document.documentElement.scrollTop;
+        nav.classList.toggle('solid',y>window.innerHeight*0.7);
+        var h=document.documentElement.scrollHeight-window.innerHeight;
+        prog.style.width=(h>0?(y/h*100):0)+'%';
+      }
+      onScroll();
+      window.addEventListener('scroll',onScroll,{passive:true});
+    })();
+  </script>
   <script type="module" src="../i18n.js?v=20260722-index-redesign"></script>
 </body>
 </html>

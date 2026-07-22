@@ -52,6 +52,46 @@ test('applyLanguage updates content, metadata, state, and persistence', () => {
   assert.deepEqual(saved.at(-1), ['portfolio-language', 'zh']);
 });
 
+test('applyLanguage uses page-specific metadata in both languages', () => {
+  function createDocument(page) {
+    const meta = { content: '' };
+    return {
+      meta,
+      documentElement: { lang: '', dataset: { page } },
+      location: { pathname: page === 'vertex' ? '/projects/vertex-reddit.html' : '/' },
+      title: '',
+      querySelector(selector) { return selector === 'meta[name="description"]' ? meta : null; },
+      querySelectorAll() { return []; },
+    };
+  }
+
+  const homeEn = createDocument('home');
+  const vertexEn = createDocument('vertex');
+  const homeZh = createDocument('home');
+  const vertexZh = createDocument('vertex');
+
+  applyLanguage('en', homeEn);
+  applyLanguage('en', vertexEn);
+  applyLanguage('zh', homeZh);
+  applyLanguage('zh', vertexZh);
+
+  assert.equal(homeEn.title, 'Mukun Sun | Bilingual Social Media Marketer');
+  assert.equal(homeEn.meta.content, 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.');
+  assert.equal(vertexEn.title, 'Vertex Reddit Internship Evidence | Mukun Sun');
+  assert.equal(vertexEn.meta.content, "A scoped, bilingual evidence record for Mukun Sun's Reddit community operations internship at Vertex Marketing.");
+  assert.equal(homeZh.title, '孙慕坤｜社交媒体与营销作品集');
+  assert.equal(homeZh.meta.content, '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。');
+  assert.equal(vertexZh.title, 'Vertex Reddit 实习证据 | 孙慕坤');
+  assert.equal(vertexZh.meta.content, '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。');
+});
+
+test('homepage navigation links directly to Experience in both languages', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /href="#experience">Experience<\/a>/);
+  assert.match(LANGUAGES.en.copy['.nav .links'], /href="#experience">Experience<\/a>/);
+  assert.match(LANGUAGES.zh.copy['.nav .links'], /href="#experience">工作经历<\/a>/);
+});
+
 test('page exposes a bilingual control and named presentation crops', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /class="lang-switch"/);

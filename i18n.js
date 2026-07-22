@@ -4,6 +4,16 @@ export const STORAGE_KEY = 'portfolio-language';
 const en = {
   title: 'Mukun Sun | Bilingual Social Media Marketer',
   description: 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
+  metadata: {
+    home: {
+      title: 'Mukun Sun | Bilingual Social Media Marketer',
+      description: 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
+    },
+    vertex: {
+      title: 'Vertex Reddit Internship Evidence | Mukun Sun',
+      description: "A scoped, bilingual evidence record for Mukun Sun's Reddit community operations internship at Vertex Marketing.",
+    },
+  },
   navLabel: 'Primary navigation',
   alts: {
     'portrait.jpg': 'Portrait of Mukun Sun',
@@ -24,7 +34,7 @@ const en = {
   },
   copy: {
     '.nav .brand': 'Mukun Sun<span class="en">孙慕坤</span>',
-    '.nav .links': '<a href="#about">About</a><a href="#edu">Education</a><a href="#skills">Skills</a><a href="#work">Cases</a><a href="#gallery">Creative</a><a href="#contact">Contact</a>',
+    '.nav .links': '<a href="#about">About</a><a href="#experience">Experience</a><a href="#edu">Education</a><a href="#skills">Skills</a><a href="#work">Cases</a><a href="#gallery">Creative</a><a href="#contact">Contact</a>',
     '.hero h1': 'Mukun Sun',
     '.hero .role': 'I make social content feel native to the community it enters.',
     '.hero .roleen': 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
@@ -37,7 +47,9 @@ const en = {
     '#about .pillar:nth-child(2) p': 'Hands-on experience creating platform-aware content for Instagram, Reddit, WeChat, Xiaohongshu, and campus audiences.',
     '#about .pillar:nth-child(3) h3': 'Design &amp; Creative',
     '#about .pillar:nth-child(3) p': 'I turn strategy into finished work: product posters, event materials, photography, videos, and print design.',
-    '.detail-nav .back-link': '← Back to experience',
+    '#vertex-nav .brand': 'Mukun Sun<span class="en">Vertex Evidence</span>',
+    '#vertex-nav .links': '<a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-attribution">Attribution</a>',
+    '#vertex-nav .back-link': '← Portfolio index',
     '#experience .placard': 'Experience',
     '#experience .experience-company': 'Vertex Marketing',
     '#experience .experience-role': 'Reddit Community Operations Intern',
@@ -83,7 +95,6 @@ const en = {
         </div>
         <p class="ownership-note">I participated in operating and analyzing the representative accounts and content. This page does not claim sole ownership of the aggregate performance.</p>
       </div>`,
-    '.detail-footer a': 'Back to top ↑',
     '#edu .stitle': 'Education',
     '#edu .edu:nth-child(1) .name': 'Southern Utah University',
     '#edu .edu:nth-child(1) .yr': 'Aug 2025 — May 2027 (Expected)',
@@ -194,12 +205,24 @@ const en = {
     '#contact .btn': 'Start a conversation →',
     '#contact .sign': '— Mukun Sun / 孙慕坤',
     '.footer span:first-child': '© 2026 Mukun Sun · Social Media &amp; Marketing Portfolio',
+    '#vertex-footer span:first-child': 'Mukun Sun · Vertex internship evidence',
+    '#vertex-footer span:last-child': 'Representative account scope · 2026',
   },
 };
 
 const zh = {
   title: '孙慕坤｜社交媒体与营销作品集',
   description: '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。',
+  metadata: {
+    home: {
+      title: '孙慕坤｜社交媒体与营销作品集',
+      description: '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。',
+    },
+    vertex: {
+      title: 'Vertex Reddit 实习证据 | 孙慕坤',
+      description: '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。',
+    },
+  },
   navLabel: '主导航',
   alts: {
     'portrait.jpg': '孙慕坤 Mukun Sun 肖像照',
@@ -220,7 +243,7 @@ const zh = {
   },
   copy: {
     '.nav .brand': '孙慕坤<span class="en">Mukun&nbsp;Sun</span>',
-    '.nav .links': '<a href="#about">关于</a><a href="#edu">教育</a><a href="#skills">能力</a><a href="#work">案例</a><a href="#gallery">创意</a><a href="#contact">联系</a>',
+    '.nav .links': '<a href="#about">关于</a><a href="#experience">工作经历</a><a href="#edu">教育</a><a href="#skills">能力</a><a href="#work">案例</a><a href="#gallery">创意</a><a href="#contact">联系</a>',
     '.hero h1': '孙慕坤',
     '.hero .role': '让内容真正融入它所面对的社区。',
     '.hero .roleen': '具备美国受众内容、社区策略与视觉传播实践的双语社交媒体营销人。',
@@ -233,7 +256,9 @@ const zh = {
     '#about .pillar:nth-child(2) p': '有 Instagram、Reddit、微信、小红书与校园受众的分平台内容创作与运营经验。',
     '#about .pillar:nth-child(3) h3': '设计与创意',
     '#about .pillar:nth-child(3) p': '把策略落实成产品海报、活动物料、摄影、视频与印刷品。',
-    '.detail-nav .back-link': '← 返回实习经历',
+    '#vertex-nav .brand': '孙慕坤<span class="en">Vertex 实习证据</span>',
+    '#vertex-nav .links': '<a href="#vertex-scope">范围</a><a href="#vertex-evidence">证据</a><a href="#vertex-attribution">归因</a>',
+    '#vertex-nav .back-link': '← 返回作品集',
     '#experience .placard': '工作经历',
     '#experience .experience-company': 'Vertex Marketing',
     '#experience .experience-role': 'Reddit 社区运营实习生',
@@ -279,7 +304,6 @@ const zh = {
         </div>
         <p class="ownership-note">我参与运营和分析这些代表账号与代表内容；本页不主张由我一人承担这些汇总表现的全部归属。</p>
       </div>`,
-    '.detail-footer a': '返回顶部 ↑',
     '#edu .stitle': '教育经历',
     '#edu .edu:nth-child(1) .name': '南犹他州立大学（美国）',
     '#edu .edu:nth-child(1) .yr': '2025.08 — 2027.05（预计）',
@@ -390,10 +414,19 @@ const zh = {
     '#contact .btn': '发邮件聊聊 →',
     '#contact .sign': '— 孙慕坤 / Mukun Sun',
     '.footer span:first-child': '© 2026 孙慕坤 · 社交媒体与营销作品集',
+    '#vertex-footer span:first-child': '孙慕坤 · Vertex 实习证据',
+    '#vertex-footer span:last-child': '代表账号范围 · 2026',
   },
 };
 
 export const LANGUAGES = { en, zh };
+
+function getPageKey(doc) {
+  const explicitPage = doc?.documentElement?.dataset?.page;
+  if (explicitPage === 'vertex') return 'vertex';
+  const pathname = doc?.location?.pathname ?? '';
+  return /\/projects\/vertex-reddit(?:\.html)?\/?$/.test(pathname) ? 'vertex' : 'home';
+}
 
 export function normalizeLanguage(value) {
   return value === 'zh' ? 'zh' : DEFAULT_LANGUAGE;
@@ -406,11 +439,12 @@ export function getInitialLanguage() {
 export function applyLanguage(value, doc = globalThis.document, storage = globalThis.localStorage, persist = false) {
   const language = normalizeLanguage(value);
   const config = LANGUAGES[language];
+  const metadata = config.metadata[getPageKey(doc)] ?? config.metadata.home;
   doc.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
   doc.documentElement.dataset.language = language;
-  doc.title = config.title;
+  doc.title = metadata.title;
   const meta = doc.querySelector('meta[name="description"]');
-  if (meta) meta.content = config.description;
+  if (meta) meta.content = metadata.description;
   const nav = doc.querySelector('.nav');
   if (nav) nav.setAttribute('aria-label', config.navLabel);
   for (const [selector, html] of Object.entries(config.copy)) {
