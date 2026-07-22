@@ -8,6 +8,7 @@ import {
   getInitialLanguage,
   applyLanguage,
 } from '../i18n.js';
+import { createStaticSelectorDocument } from './helpers/static-selector.mjs';
 
 test('English is the primary language even when Chinese was previously stored', () => {
   assert.equal(DEFAULT_LANGUAGE, 'en');
@@ -39,15 +40,21 @@ test('each translation selector is rooted in its intended route', async () => {
     ...Object.keys(LANGUAGES.en.copy),
     ...Object.keys(LANGUAGES.en.attributes),
   ]);
+  const routes = {
+    home: createStaticSelectorDocument(home),
+    detail: createStaticSelectorDocument(detail),
+  };
   for (const selector of selectors) {
-    const target = selector.startsWith('#vertex') ? detail : home;
-    const id = selector.match(/#([\w-]+)/)?.[1];
-    const classes = [...selector.matchAll(/\.([\w-]+)/g)].map((match) => match[1]);
-    if (id) assert.match(target, new RegExp(`id="${id}"`), selector);
-    for (const className of classes) {
-      assert.match(target, new RegExp(`class="[^"]*\\b${className}\\b`), selector);
-    }
+    const target = selector.startsWith('#vertex') ? routes.detail : routes.home;
+    assert.equal(target.has(selector), true, selector);
   }
+});
+
+test('selector validation rejects broken ancestry and nth-child combinations', async () => {
+  const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const document = createStaticSelectorDocument(home);
+  assert.equal(document.has('#about .capability-row:nth-child(99) h3'), false);
+  assert.equal(document.has('#about .capability-row:nth-child(1) .contact-label'), false);
 });
 
 test('footer, language, proof, and compact-navigation labels are bilingual', () => {

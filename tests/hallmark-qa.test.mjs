@@ -66,7 +66,7 @@ test('hero, responsive image track, and display wrapping satisfy layout gates', 
   assert.match(home, /\.about-top\{[^}]*grid-template-columns:minmax\(0,1\.55fr\) minmax\(0,1fr\)/);
   assert.match(home, /h1,h2,h3,[^{}]*\{min-width:0;overflow-wrap:anywhere;\}/);
   assert.match(detail, /h1,h2,h3\{min-width:0;overflow-wrap:anywhere;\}/);
-  assert.match(home, /@media \(max-width:60rem\)\{\.nav \.links\{display:none;\}\}/);
+  assert.match(home, /@media \(max-width:60rem\),\(pointer:coarse\)\{\.nav \.links\{display:none;\}\}/);
 });
 
 test('clickable affordances have nowrap and explicit interaction states', () => {

@@ -58,8 +58,10 @@ test('compact navigation preserves 44px section access through 60rem and on coar
   assert.match(detail, /class="compact-links"[^>]*[\s\S]*?href="#vertex-scope"[\s\S]*?href="#vertex-attribution"/);
   for (const html of [home, detail]) {
     assert.match(html, /@media \(max-width:60rem\),\(pointer:coarse\)\{[^}]*\.nav \.brand,[^}]*\.lang-switch button,[^}]*\.compact-nav summary,[^}]*\.compact-links a\{min-height:44px;/);
-    assert.match(html, /@media \(max-width:60rem\)\{[^}]*\.compact-nav\{display:block;/);
+    assert.match(html, /@media \(max-width:60rem\),\(pointer:coarse\)\{\.compact-nav\{display:block;/);
   }
+  assert.match(home, /@media \(max-width:60rem\),\(pointer:coarse\)\{\.nav \.links\{display:none;\}\}/);
+  assert.match(detail, /@media \(max-width:60rem\),\(pointer:coarse\)\{\.nav \.links,\.back-link\{display:none;\}\}/);
 });
 
 test('homepage preserves the required desktop motion contracts without obsolete counters', async () => {

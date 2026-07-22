@@ -119,8 +119,8 @@ html[lang="zh"] .nav .brand .en{font-family:var(--mono);}
 .compact-links{position:absolute;top:calc(100% + 12px);right:0;min-width:min(76vw,260px);display:grid;padding:8px;border:1px solid var(--line-2);background:var(--bg-1);box-shadow:0 18px 50px var(--color-shadow);}
 .compact-links a{display:flex;align-items:center;padding-inline:16px;border-bottom:1px solid var(--line);white-space:nowrap;}
 .compact-links a:last-child{border-bottom:0;}
-@media (max-width:60rem){.compact-nav{display:block;}}
-@media (max-width:60rem){.nav .links{display:none;}}
+@media (max-width:60rem),(pointer:coarse){.compact-nav{display:block;}}
+@media (max-width:60rem),(pointer:coarse){.nav .links{display:none;}}
 @media (max-width:60rem),(pointer:coarse){.nav .brand,.lang-switch button,.compact-nav summary,.compact-links a{min-height:44px;display:flex;align-items:center;}}
 @media (max-width:40rem){.nav{gap:12px}.nav-actions{margin-left:auto}.lang-switch button{padding:8px;}}
 
