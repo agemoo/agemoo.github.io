@@ -92,13 +92,14 @@ test('homepage navigation links directly to Experience in both languages', async
   assert.match(LANGUAGES.zh.copy['.nav .links'], /href="#experience">工作经历<\/a>/);
 });
 
-test('page exposes a bilingual control and named presentation crops', async () => {
+test('page exposes a bilingual control and curated visual archive', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /class="lang-switch"/);
   assert.match(html, /data-lang="en"/);
   assert.match(html, /data-lang="zh"/);
-  assert.match(html, /class="art crop-hotone-guitar"[^>]+href="build\/assets\/hotone_guitar\.jpg"/);
-  assert.match(html, /class="art crop-hotone-pedal"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
+  assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_guitar\.jpg"/);
+  assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
+  assert.match(html, /<details class="visual-archive"/);
   assert.match(html, /href="build\/assets\/jazz_coast_a\.jpg"/);
   assert.match(html, /src="i18n\.js\?v=20260722-en-primary"/);
 });
