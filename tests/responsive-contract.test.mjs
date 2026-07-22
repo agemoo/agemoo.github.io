@@ -15,7 +15,8 @@ test('both routes enforce clipping, mobile controls, wrapping, exact cache impor
   for (const html of [home, detail]) {
     assert.match(html, /html\{[^}]*overflow-x:\s*clip;/);
     assert.match(html, /body\{[^}]*overflow-x:\s*clip;/);
-    assert.match(html, /@media\s*\(max-width:\s*40rem\)\{[\s\S]*?a,button,summary\{min-height:\s*44px;\}[\s\S]*?min-width:\s*0;overflow-wrap:\s*anywhere;/);
+    assert.match(html, /@media\s*\(max-width:\s*40rem\)\{[\s\S]*?a,button,summary\{min-height:\s*44px;\}/);
+    assert.match(html, /h1,h2,h3[^{}]*\{min-width:\s*0;overflow-wrap:\s*anywhere;\}/);
     assert.match(html, /<html\s+lang="en"[^>]*data-language="en"/);
     assert.equal((html.match(/i18n\.js\?v=/g) ?? []).length, 1);
   }

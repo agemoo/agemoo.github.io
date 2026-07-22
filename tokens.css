@@ -1,6 +1,9 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
 /* Hallmark · macrostructure: Index-First · genre: atmospheric · theme: dark gallery
- * nav: N10 scroll-morph · footer: Ft5 statement · enrichment: none
- * critique: P5 H5 E4 S5 R5 V4
+ * nav: N10 scroll-morph · footer: Ft5 statement · enrichment: typography-only
+ * contrast: pass (40–41) · slop: pass (42–45)
+ * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49)
+ * icons: pass (30) · mobile: pass (34, 49, 50–57)
  */
 :root {
   --color-paper: oklch(0.152 0.006 60);
@@ -9,15 +12,23 @@
   --color-ink: oklch(0.94 0.013 78);
   --color-ink-soft: oklch(0.815 0.014 74);
   --color-muted: oklch(0.64 0.013 66);
-  --color-faint: oklch(0.47 0.011 60);
+  --color-faint: oklch(0.6 0.011 60);
   --color-accent: oklch(0.66 0.155 47);
   --color-accent-deep: oklch(0.55 0.145 42);
   --color-accent-bright: oklch(0.815 0.115 72);
+  --color-accent-ink: oklch(0.152 0.006 60);
   --color-focus: oklch(0.815 0.115 72);
   --color-rule: oklch(0.94 0.013 78 / 0.12);
+  --color-shadow: oklch(0.08 0.006 60);
+  --color-mask-solid: oklch(0.1 0.005 60);
+  --color-spotlight: oklch(0.7 0.12 60 / 0.14);
+  --color-bloom-hot: oklch(0.5 0.12 45 / 0.3);
+  --color-bloom-low: oklch(0.34 0.07 50 / 0.35);
+  --color-bloom-closing: oklch(0.5 0.13 44 / 0.34);
+  --color-bloom-closing-low: oklch(0.34 0.06 50 / 0.4);
   --font-display: 'GSerifSC', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
   --font-body: 'GSansSC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  --font-mono: 'Fragment Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-mono: var(--font-body);
   --space-3xs: 0.25rem;
   --space-2xs: 0.5rem;
   --space-xs: 0.75rem;
