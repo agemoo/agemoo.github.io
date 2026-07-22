@@ -1,5 +1,6 @@
 export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'portfolio-language';
+export const I18N_CACHE_KEY = '20260722-index-redesign';
 
 const en = {
   title: 'Mukun Sun | Bilingual Social Media Marketer',

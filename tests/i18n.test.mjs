@@ -29,6 +29,11 @@ test('both languages cover the same selector set and corrected facts', () => {
   assert.doesNotMatch(allCopy, /5,250|\+17%|~200|随时到岗|Single-post reads/);
 });
 
+test('language module declares the shared cache key', async () => {
+  const module = await import('../i18n.js');
+  assert.equal(module.I18N_CACHE_KEY, '20260722-index-redesign');
+});
+
 test('capability ledger has matching delivered-work rows in both languages', () => {
   const rows = [
     'Community',
@@ -117,5 +122,5 @@ test('page exposes a bilingual control and curated visual archive', async () => 
   assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
   assert.match(html, /<details class="visual-archive"/);
   assert.match(html, /href="build\/assets\/jazz_coast_a\.jpg"/);
-  assert.match(html, /src="i18n\.js\?v=20260722-en-primary"/);
+  assert.match(html, /src="i18n\.js\?v=20260722-index-redesign"/);
 });
