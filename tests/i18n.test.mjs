@@ -29,6 +29,22 @@ test('both languages cover the same selector set and corrected facts', () => {
   assert.doesNotMatch(allCopy, /5,250|\+17%|~200|随时到岗|Single-post reads/);
 });
 
+test('capability ledger has matching delivered-work rows in both languages', () => {
+  const rows = [
+    'Community',
+    'Content',
+    'Visual',
+    'Reporting &amp; Workflow',
+  ];
+  for (const [index, label] of rows.entries()) {
+    const selector = `#about .capability-row:nth-child(${index + 1}) h3`;
+    assert.equal(LANGUAGES.en.copy[selector], label);
+    assert.ok(LANGUAGES.zh.copy[selector]);
+  }
+  assert.match(LANGUAGES.en.copy['#about .capability-row:nth-child(4) p'], /Excel cleaning, Excel reporting/);
+  assert.match(LANGUAGES.zh.copy['#about .capability-row:nth-child(4) p'], /Excel 数据清洗与报表/);
+});
+
 test('applyLanguage updates content, metadata, state, and persistence', () => {
   const node = { innerHTML: '', setAttribute(name, value) { this[name] = value; } };
   const buttons = [
