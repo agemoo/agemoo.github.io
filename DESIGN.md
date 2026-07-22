@@ -1,5 +1,18 @@
 # Design
 
+## Locked Index-First Contract (2026-07-22)
+
+This is an **English-first** personal site: English owns the default page language, metadata, navigation, and primary reading path; Chinese remains a complete, user-selectable translation rather than a competing default.
+
+The homepage follows an **Index-First** architecture. It introduces the person and their practice, then acts as a legible index to the distinct sections of the site rather than collapsing every story into one generic landing-page pattern.
+
+- Each section has distinct ownership and a specific job: profile establishes perspective, education provides chronology, case studies explain strategy and outcomes, the gallery presents finished work, and contact closes the conversation.
+- Artwork keeps its natural ratios. Crops may direct attention, but cards and galleries must not normalize disparate work into a uniform image grid.
+- Navigation is **N10 scroll-morph**: the fixed navigation becomes a compact, solid surface after the opening threshold while preserving direct section access.
+- The footer is **Ft5 statement**: a compact authorship and portfolio statement, not a duplicate navigation sitemap.
+
+The canonical shared values live in `tokens.css`. Existing `index.html` custom properties remain legacy aliases so current selectors stay stable during the redesign.
+
 ## Theme
 暗夜画廊（Gallery in the Dark）。近黑暖炭画布像美术馆的墙，孙慕坤的彩色作品被「聚光」成展品。质感来自暖调近黑、细线、胶片颗粒与余烬辉光；电影感的滚动揭示与光标聚光是签名交互。中文为主、英文为辅（英文作展签 / 数据 / 署名）。Image-led：彩色作品本身提供色彩，避免落入灰白「编辑杂志」单色反射。
 

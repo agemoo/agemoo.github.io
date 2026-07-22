@@ -1,0 +1,16 @@
+{
+  "date": "2026-07-22",
+  "stack": "vanilla HTML, CSS, and native JavaScript",
+  "framework": "static site",
+  "fonts": {
+    "display": "GSerifSC with Noto Serif SC, Source Han Serif SC, and Songti SC fallbacks",
+    "body": "GSansSC with Noto Sans SC, PingFang SC, and Microsoft YaHei fallbacks",
+    "mono": "Fragment Mono from Google Fonts"
+  },
+  "palette": "existing OKLCH dark-gallery custom properties",
+  "motion": "native JavaScript with CSS transitions, requestAnimationFrame, IntersectionObserver, and prefers-reduced-motion support",
+  "widths": {
+    "content": "1240px",
+    "gutter": "clamp(20px, 5vw, 80px)"
+  }
+}
