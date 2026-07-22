@@ -26,8 +26,8 @@ test('both languages cover the same selector set and corrected facts', () => {
   assert.equal(LANGUAGES.zh.copy['.hero .role'], '让内容真正融入它所面对的社区。');
   assert.ok(!Object.hasOwn(LANGUAGES.en.copy, '.hero .ghost'));
   const allCopy = JSON.stringify(LANGUAGES);
-  assert.match(allCopy, /19,000[\s\S]*impressions/);
-  assert.match(allCopy, /525[\s\S]*\+/);
+  assert.doesNotMatch(allCopy, /19,000[\s\S]*impressions/);
+  assert.doesNotMatch(allCopy, /525[\s\S]*\+/);
   assert.doesNotMatch(allCopy, /5,250|\+17%|~200|随时到岗|Single-post reads/);
 });
 
@@ -58,8 +58,8 @@ test('selector validation rejects broken ancestry and nth-child combinations', a
 });
 
 test('footer, language, proof, and compact-navigation labels are bilingual', () => {
-  assert.equal(LANGUAGES.en.copy['#site-footer span:last-child'], 'Mukun Sun · Integrated Marketing Portfolio');
-  assert.equal(LANGUAGES.zh.copy['#site-footer span:last-child'], '孙慕坤 · 整合营销作品集');
+  assert.equal(Object.hasOwn(LANGUAGES.en.copy, '#site-footer span:last-child'), false);
+  assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '#site-footer span:last-child'), false);
   assert.equal(LANGUAGES.en.attributes['#nav .lang-switch']['aria-label'], 'Language');
   assert.equal(LANGUAGES.zh.attributes['#nav .lang-switch']['aria-label'], '语言');
   assert.match(LANGUAGES.en.attributes['#experience .experience-proof']['aria-label'], /representative account evidence/i);
@@ -78,7 +78,7 @@ test('capability ledger has matching delivered-work rows in both languages', () 
     'Community',
     'Content',
     'Visual',
-    'Reporting &amp; Workflow',
+    'Workflow',
   ];
   for (const [index, label] of rows.entries()) {
     const selector = `#about .capability-row:nth-child(${index + 1}) h3`;
