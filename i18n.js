@@ -305,12 +305,8 @@ export function normalizeLanguage(value) {
   return value === 'zh' ? 'zh' : DEFAULT_LANGUAGE;
 }
 
-export function getInitialLanguage(storage = globalThis.localStorage) {
-  try {
-    return normalizeLanguage(storage?.getItem(STORAGE_KEY));
-  } catch {
-    return DEFAULT_LANGUAGE;
-  }
+export function getInitialLanguage() {
+  return DEFAULT_LANGUAGE;
 }
 
 export function applyLanguage(value, doc = globalThis.document, storage = globalThis.localStorage, persist = false) {

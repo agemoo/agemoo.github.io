@@ -9,12 +9,12 @@ import {
   applyLanguage,
 } from '../i18n.js';
 
-test('English is the default and stored Chinese is respected', () => {
+test('English is the primary language even when Chinese was previously stored', () => {
   assert.equal(DEFAULT_LANGUAGE, 'en');
   assert.equal(normalizeLanguage('zh'), 'zh');
   assert.equal(normalizeLanguage('fr'), 'en');
   assert.equal(getInitialLanguage({ getItem: () => null }), 'en');
-  assert.equal(getInitialLanguage({ getItem: () => 'zh' }), 'zh');
+  assert.equal(getInitialLanguage({ getItem: () => 'zh' }), 'en');
 });
 
 test('both languages cover the same selector set and corrected facts', () => {
