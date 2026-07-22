@@ -56,5 +56,5 @@ test('page exposes a bilingual control and named presentation crops', async () =
   assert.match(html, /class="art crop-hotone-guitar"[^>]+href="build\/assets\/hotone_guitar\.jpg"/);
   assert.match(html, /class="art crop-hotone-pedal"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
   assert.match(html, /href="build\/assets\/jazz_coast_a\.jpg"/);
-  assert.match(html, /src="i18n\.js"/);
+  assert.match(html, /src="i18n\.js\?v=20260722-en-primary"/);
 });
