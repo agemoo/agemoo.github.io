@@ -216,7 +216,9 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 
 /* ---------- EXPERIENCE ---------- */
 .experience-band{background:var(--bg-1);}
-.experience-row{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(36px,6vw,88px);border-block:1px solid var(--line-2);padding-block:clamp(36px,5vw,60px);}
+.experience-list{border-block:1px solid var(--line-2);}
+.experience-row{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(36px,6vw,88px);padding-block:clamp(36px,5vw,60px);}
+.experience-row+.experience-row{border-top:1px solid var(--line-2);}
 .experience-company{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
 .experience-role{font-family:var(--serif);font-size:clamp(24px,3.2vw,38px);line-height:1.2;color:var(--ink);font-weight:600;text-wrap:balance;}
 .experience-dates{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:20px;}
@@ -368,11 +370,11 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   <a class="brand" href="#top">Mukun Sun<span class="en">孙慕坤</span></a>
   <div class="nav-actions">
     <div class="links">
-      <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#experience">Internships</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>
     </div>
     <details class="compact-nav">
       <summary aria-label="Open section navigation">Sections</summary>
-      <div class="compact-links" role="navigation" aria-label="Section navigation"><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a></div>
+      <div class="compact-links" role="navigation" aria-label="Section navigation"><a href="#about">About</a><a href="#experience">Internships</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a></div>
     </details>
     <div class="lang-switch" role="group" aria-label="Language">
       <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
@@ -424,24 +426,36 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
 <!-- ============ EXPERIENCE ============ -->
 <section class="band experience-band" id="experience">
   <div class="wrap">
-    <div class="placard" data-reveal="">Experience</div>
-    <article class="experience-row" data-reveal="">
-      <header>
-        <p class="experience-company">Vertex Marketing</p>
-        <h2 class="experience-role">Reddit Community Operations Intern</h2>
-        <p class="experience-dates">2026 · Current</p>
-      </header>
-      <div>
-        <p class="experience-responsibility">I participate in Reddit community operations across consumer technology, smart-home, lifestyle, finance, and family-oriented communities, adapting content and interaction to subreddit rules, audience context, and visible performance.</p>
-        <div class="experience-proof" aria-label="Selected representative account evidence">
-          <div class="proof"><strong>5</strong><span>representative accounts</span></div>
-          <div class="proof"><strong>793K</strong><span>representative views</span></div>
-          <div class="proof"><strong>91.7%</strong><span>highest U.S. audience share</span></div>
+    <div class="placard" data-reveal="">Internship Experience</div>
+    <div class="experience-list">
+      <article class="experience-row experience-row--vertex" data-reveal="">
+        <header>
+          <p class="experience-company">Vertex Marketing</p>
+          <h2 class="experience-role">Reddit Community Operations Intern</h2>
+          <p class="experience-dates">2026 · Current</p>
+        </header>
+        <div>
+          <p class="experience-responsibility">I participate in Reddit community operations across consumer technology, smart-home, lifestyle, finance, and family-oriented communities, adapting content and interaction to subreddit rules, audience context, and visible performance.</p>
+          <div class="experience-proof" aria-label="Selected representative account evidence">
+            <div class="proof"><strong>5</strong><span>representative accounts</span></div>
+            <div class="proof"><strong>793K</strong><span>representative views</span></div>
+            <div class="proof"><strong>91.7%</strong><span>highest U.S. audience share</span></div>
+          </div>
+          <p class="experience-attribution"><strong>Attribution:</strong> These figures describe representative account assets and representative content I participated in operating; they are not all net-new results created during my internship.</p>
+          <a class="experience-link" href="projects/vertex-reddit.html">View internship evidence <span aria-hidden="true">→</span></a>
         </div>
-        <p class="experience-attribution"><strong>Attribution:</strong> These figures describe representative account assets and representative content I participated in operating; they are not all net-new results created during my internship.</p>
-        <a class="experience-link" href="projects/vertex-reddit.html">View internship evidence <span aria-hidden="true">→</span></a>
-      </div>
-    </article>
+      </article>
+      <article class="experience-row experience-row--teaching" data-reveal="">
+        <header>
+          <p class="experience-company">Southern Utah University × Wuhan Polytechnic University</p>
+          <h2 class="experience-role">English Writing Teaching Assistant</h2>
+          <p class="experience-dates">May 2026</p>
+        </header>
+        <div>
+          <p class="experience-responsibility">Supported an SUU instructor in English writing courses serving 200+ students in Wuhan. Provided bilingual classroom support, managed attendance and assignment grading, delivered written feedback, and organized final-grade data and course completion reporting in Excel.</p>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -813,7 +827,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   syncMotionState();
 })();
 </script>
-<script type="module" src="i18n.js?v=20260722-index-redesign"></script>
+<script type="module" src="i18n.js?v=20260729-internships"></script>
 
 
 </body></html>

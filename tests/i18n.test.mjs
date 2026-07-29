@@ -163,5 +163,5 @@ test('page exposes a bilingual control and curated visual archive', async () => 
   assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
   assert.match(html, /<details class="visual-archive"/);
   assert.match(html, /href="build\/assets\/jazz_coast_a\.jpg"/);
-  assert.match(html, /src="i18n\.js\?v=20260722-index-redesign"/);
+  assert.match(html, /src="i18n\.js\?v=20260729-internships"/);
 });
