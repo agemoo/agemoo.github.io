@@ -174,7 +174,11 @@ test('page exposes a bilingual control and the approved outside-work gateway med
   assert.match(html, /data-lang="zh"/);
   assert.match(html, /href="outside-work\.html"/);
   assert.match(html, /src="assets\/music\/performance\.jpg"/);
-  assert.match(html, /src="build\/assets\/bass1\.jpg"/);
+  assert.match(html, /src="assets\/bass1\.jpg"/);
+  assert.doesNotMatch(html, /src="build\/assets\/bass1\.jpg"/);
+  const photographyImage = '#outside-work .outside-card:nth-child(2) img';
+  assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Night photograph of a white bass guitar against a tree');
+  assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '白色贝斯倚靠树干的夜色摄影');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
   assert.match(html, /src="i18n\.js\?v=20260729-personal-site"/);
 });
