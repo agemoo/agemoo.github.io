@@ -2,15 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-test('hero leads with the U.S.-audience value proposition', async () => {
-  const [html, i18n] = await Promise.all([
-    readFile(new URL('../index.html', import.meta.url), 'utf8'),
-    readFile(new URL('../i18n.js', import.meta.url), 'utf8'),
-  ]);
-  assert.match(i18n, /I make social content feel native to the community it enters\./);
-  assert.match(i18n, /for U\.S\. audiences/);
+test('hero leads with the approved concise identity line', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /<div class="role[^>]*>Communication, community, and music\.<\/div>/);
   assert.doesNotMatch(html, /class="ghost"/);
-  assert.doesNotMatch(i18n, /\.hero \.ghost/);
 });
 
 test('homepage exposes complete sharing metadata', async () => {
