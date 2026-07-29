@@ -22,9 +22,10 @@ test('English is fresh default and an explicit valid choice persists', () => {
 test('both languages cover the same selector set and corrected facts', () => {
   assert.deepEqual(Object.keys(LANGUAGES.en.copy), Object.keys(LANGUAGES.zh.copy));
   assert.deepEqual(Object.keys(LANGUAGES.en.attributes), Object.keys(LANGUAGES.zh.attributes));
-  assert.equal(LANGUAGES.en.copy['.hero .role'], 'I make social content feel native to the community it enters.');
-  assert.match(LANGUAGES.en.copy['.hero .roleen'], /for U\.S\. audiences\./);
-  assert.equal(LANGUAGES.zh.copy['.hero .role'], '让内容真正融入它所面对的社区。');
+  assert.equal(LANGUAGES.en.copy['.hero .role'], 'Communication, community, and music.');
+  assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社区与音乐。');
+  assert.equal(Object.hasOwn(LANGUAGES.en.copy, '.hero .roleen'), false);
+  assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '.hero .roleen'), false);
   assert.ok(!Object.hasOwn(LANGUAGES.en.copy, '.hero .ghost'));
   const allCopy = JSON.stringify(LANGUAGES);
   assert.doesNotMatch(allCopy, /19,000[\s\S]*impressions/);
@@ -54,8 +55,8 @@ test('each translation selector is rooted in its intended route', async () => {
 test('selector validation rejects broken ancestry and nth-child combinations', async () => {
   const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const document = createStaticSelectorDocument(home);
-  assert.equal(document.has('#about .capability-row:nth-child(99) h3'), false);
-  assert.equal(document.has('#about .capability-row:nth-child(1) .contact-label'), false);
+  assert.equal(document.has('#outside-work .outside-card:nth-child(99) strong'), false);
+  assert.equal(document.has('#projects .project-row:nth-child(1) .contact-label'), false);
 });
 
 test('footer, language, proof, and compact-navigation labels are bilingual', () => {
@@ -63,8 +64,8 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
   assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '#site-footer span:last-child'), false);
   assert.equal(LANGUAGES.en.attributes['#nav .lang-switch']['aria-label'], 'Language');
   assert.equal(LANGUAGES.zh.attributes['#nav .lang-switch']['aria-label'], '语言');
-  assert.match(LANGUAGES.en.attributes['#experience .experience-proof']['aria-label'], /representative account evidence/i);
-  assert.match(LANGUAGES.zh.attributes['#experience .experience-proof']['aria-label'], /代表账号证据/);
+  assert.match(LANGUAGES.en.copy['#experience .experience-proofline'], /representative accounts/i);
+  assert.match(LANGUAGES.zh.copy['#experience .experience-proofline'], /代表账号/);
   assert.equal(LANGUAGES.en.copy['#nav .compact-nav summary'], 'Sections');
   assert.equal(LANGUAGES.zh.copy['#nav .compact-nav summary'], '章节');
 });
@@ -74,20 +75,27 @@ test('language module declares all public page keys and the shared cache key', (
   assert.equal(I18N_CACHE_KEY, '20260729-personal-site');
 });
 
-test('capability ledger has matching delivered-work rows in both languages', () => {
-  const rows = [
-    'Community',
-    'Content',
-    'Visual',
-    'Workflow',
+test('homepage dictionaries own the approved first-layer selectors', () => {
+  const selectors = [
+    '#about .about-copy p:nth-child(1)',
+    '#about .about-copy p:nth-child(2)',
+    '#experience .experience-proofline',
+    '#projects .project-row:nth-child(1) .project-copy strong',
+    '#projects .project-row:nth-child(2) .project-copy strong',
+    '#projects .project-row:nth-child(3) .project-copy strong',
+    '#outside-work .outside-card:nth-child(1) strong',
+    '#outside-work .outside-card:nth-child(2) strong',
+    '#outside-work .outside-card:nth-child(3) strong',
+    '#contact h2',
+    '#contact .contact-intro',
   ];
-  for (const [index, label] of rows.entries()) {
-    const selector = `#about .capability-row:nth-child(${index + 1}) h3`;
-    assert.equal(LANGUAGES.en.copy[selector], label);
-    assert.ok(LANGUAGES.zh.copy[selector]);
+  for (const selector of selectors) {
+    assert.ok(LANGUAGES.en.copy[selector], selector);
+    assert.ok(LANGUAGES.zh.copy[selector], selector);
   }
-  assert.match(LANGUAGES.en.copy['#about .capability-row:nth-child(4) p'], /Excel cleaning, Excel reporting/);
-  assert.match(LANGUAGES.zh.copy['#about .capability-row:nth-child(4) p'], /Excel 数据清洗与报表/);
+  assert.equal(LANGUAGES.en.copy['#projects .project-row:nth-child(3) .project-copy strong'], 'Selected Visual Work');
+  assert.equal(LANGUAGES.en.copy['#contact .contact-intro'], 'You can reach me by email or LinkedIn.');
+  assert.doesNotMatch(JSON.stringify(LANGUAGES.en.copy), /capability-row|visual-archive|project-context|project-contribution/);
 });
 
 test('applyLanguage updates content, metadata, state, and persistence', () => {
@@ -128,7 +136,7 @@ test('applyLanguage uses page-specific metadata in both languages', () => {
   for (const language of ['en', 'zh']) {
     for (const page of PAGE_KEYS) {
       const doc = createDocument(page);
-      applyLanguage(language, doc);
+      applyLanguage(language, doc, null);
       assert.equal(doc.title, LANGUAGES[language].metadata[page].title, `${language}:${page}`);
       assert.equal(doc.meta.content, LANGUAGES[language].metadata[page].description, `${language}:${page}`);
     }
@@ -148,23 +156,25 @@ test('applyLanguage uses page-specific metadata in both languages', () => {
   }
 });
 
-test('homepage navigation labels the internship section in both languages', async () => {
+test('homepage navigation presents the four approved first-layer destinations in both languages', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /href="#experience">Internships<\/a>/);
-  assert.match(LANGUAGES.en.copy['#nav .links'], /href="#experience">Internships<\/a>/);
-  assert.match(LANGUAGES.en.copy['#nav .compact-links'], /href="#experience">Internships<\/a>/);
-  assert.match(LANGUAGES.zh.copy['#nav .links'], /href="#experience">实习经历<\/a>/);
-  assert.match(LANGUAGES.zh.copy['#nav .compact-links'], /href="#experience">实习经历<\/a>/);
+  const english = '<a href="#about">About</a><a href="#experience">Work</a><a href="#outside-work">Outside Work</a><a href="#contact">Contact</a>';
+  const chinese = '<a href="#about">关于</a><a href="#experience">工作</a><a href="#outside-work">工作之外</a><a href="#contact">联系</a>';
+  assert.match(html, new RegExp(english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  assert.equal(LANGUAGES.en.copy['#nav .links'], english);
+  assert.equal(LANGUAGES.en.copy['#nav .compact-links'], english);
+  assert.equal(LANGUAGES.zh.copy['#nav .links'], chinese);
+  assert.equal(LANGUAGES.zh.copy['#nav .compact-links'], chinese);
 });
 
-test('page exposes a bilingual control and curated visual archive', async () => {
+test('page exposes a bilingual control and the approved outside-work gateway media', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /class="lang-switch"/);
   assert.match(html, /data-lang="en"/);
   assert.match(html, /data-lang="zh"/);
-  assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_guitar\.jpg"/);
-  assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
-  assert.match(html, /<details class="visual-archive"/);
-  assert.match(html, /href="build\/assets\/jazz_coast_a\.jpg"/);
+  assert.match(html, /href="outside-work\.html"/);
+  assert.match(html, /src="assets\/music\/performance\.jpg"/);
+  assert.match(html, /src="build\/assets\/bass1\.jpg"/);
+  assert.doesNotMatch(html, /<details class="visual-archive"/);
   assert.match(html, /src="i18n\.js\?v=20260729-personal-site"/);
 });

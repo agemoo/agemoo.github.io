@@ -32,7 +32,9 @@ test('homepage keeps summary evidence while the detail route owns the full evide
     assert.match(detailEvidence, pattern);
   }
   assert.equal((detailEvidence.match(/<tr>/g) ?? []).length, 8);
-  assert.match(i18n, /'#experience \.proof:nth-child\(3\)'/);
+  assert.match(homeExperience, /<p class="experience-proofline"><strong>5<\/strong> representative accounts · <strong>793K<\/strong> representative views · up to <strong>91\.7%<\/strong> U\.S\. audience share<\/p>/);
+  assert.match(i18n, /'#experience \.experience-proofline'/);
+  assert.doesNotMatch(homeExperience, /class="proof"/);
   assert.match(i18n, /'#vertex-evidence': `<h2/);
 });
 

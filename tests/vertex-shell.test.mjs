@@ -32,7 +32,7 @@ test('Vertex evidence uses tabular numbers and the display heading stays within 
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
   ]);
-  assert.match(home, /\.experience-proof strong\{[^}]*font-variant-numeric:tabular-nums/);
+  assert.match(home, /\.experience-proofline strong\{[^}]*font-variant-numeric:tabular-nums/);
   assert.match(detail, /\.evidence-table strong\{[^}]*font-variant-numeric:tabular-nums/);
   assert.match(detail, /h1\{[^}]*font-size:clamp\(3rem,9vw,6rem\)/);
   assert.doesNotMatch(detail, /font-size:clamp\(48px,9vw,112px\)/);

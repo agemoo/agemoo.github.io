@@ -12,7 +12,7 @@ test('homepage separates personal-site content into compact sections', async () 
     'projects/hotel-jazz.html',
     'projects/visual-work.html',
   ]) assert.match(html, new RegExp(`href="${href}"`));
-  assert.equal((html.match(/class="project-row"/g) ?? []).length, 3);
+  assert.equal((html.match(/class="project-row(?:\s|")/g) ?? []).length, 3);
   assert.doesNotMatch(html, /<section[^>]+id="visual-work"/);
   assert.doesNotMatch(html, /<details class="project-row/);
   assert.equal((html.match(/class="case"/g) ?? []).length, 0);
@@ -21,6 +21,8 @@ test('homepage separates personal-site content into compact sections', async () 
 
 test('artwork previews keep natural proportions', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /\.visual-preview img\s*\{[^}]*height:\s*auto/s);
-  assert.doesNotMatch(html, /\.visual-preview img\s*\{[^}]*object-fit:\s*cover/s);
+  for (const selector of ['project-preview', 'outside-media']) {
+    assert.match(html, new RegExp(`\\.${selector} img\\s*\\{[^}]*height:\\s*auto`, 's'));
+    assert.doesNotMatch(html, new RegExp(`\\.${selector} img\\s*\\{[^}]*object-fit:\\s*cover`, 's'));
+  }
 });

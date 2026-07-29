@@ -1,56 +1,46 @@
 # Design
 
-## Locked Index-First Contract (2026-07-22)
+## Locked Professional Personal Contract (2026-07-29)
 
-这是一个 **English-first**、以英文为默认阅读路径的个人网站。英文负责默认页面语言、元数据和导航；中文提供完整、可主动切换的对应版本，不与英文争夺默认入口。
+This is an **English-first** professional and personal website. English owns the default document language, metadata, and navigation; Chinese is a complete user-selected translation that never competes with the default entry path.
 
-首页采用 **Index-First** 结构：先建立人物与工作方法，再让工作经历、项目、教育、校园与音乐、视觉作品和联系各自承担清楚且不同的叙事任务。对应的站点区块是 Experience、Projects、Education、Campus/Music、Visual Work 与 Contact。
+The approved homepage order is **about → experience → projects → education → outside work → contact**. The first layer is designed for fast scanning, with a deliberate **60/40 positioning** between professional evidence and personal context. The homepage stays concise while the second layer carries depth.
 
-- 工作经历负责给出角色、职责和经过克制归因的证据摘要；复杂证据进入独立详情页。
-- 项目首页只保留两条可内收展开的摘要，避免把案例平铺成长页面。
-- 教育经历直接在首页按时间顺序呈现；校园与音乐采用紧凑条目。
-- 视觉作品先展示四张精选作品，再由归档折叠项提供其余内容；所有作品保留自然比例。
-- 固定导航在滚动后成为实色表面。完整章节链接在窄屏收进可访问的 `details` 导航，仍然保留直接章节访问。
-- 页脚只承担作者与作品集身份说明，不重复站点地图。
+### Information architecture
 
-共享设计值以 `tokens.css` 为准；`index.html` 中的自定义属性是现有选择器使用的兼容别名。
+- Experience gives role, responsibility, a compact evidence line, careful attribution, and a link to the complete Vertex record.
+- Projects are three editorial links, not disclosures. The **second-layer routes** are `projects/campus-campaign.html`, `projects/hotel-jazz.html`, and `projects/visual-work.html`.
+- Education remains a directly readable chronological ledger with verified facts.
+- The **asymmetric Outside Work** gateway uses one large Music track and a filled supporting column for Photography and Places, with one route to `outside-work.html`.
+- Contact is neutral and limited to email and LinkedIn.
 
-## Theme
+## Theme and tokens
 
-**Gallery in the Dark**：暖黑色展墙承托彩色作品。质感来自克制的胶片颗粒、细分隔线、余烬色强调、轻微光标聚光和有节奏的滚动揭示，而不是堆叠卡片、渐变文案或装饰性口号。
+The visual theme remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. Shared color, type, spacing, motion, and width values come from `tokens.css`; render CSS does not introduce raw color values.
 
-## Color
-
-色彩使用 `tokens.css` 中的 OKLCH token。暖黑层级承担背景与表面；骨白承担正文；余烬橙和琥珀色只用于焦点、关键数据与少量状态提示。小字号强调文字使用高对比的亮色 token，不能以低对比装饰色替代信息层级。
-
-## Typography
-
-- 中文显示字体：`GSerifSC`，只通过 `local('Noto Serif SC')` 与 `local('Source Han Serif SC')` 发现用户设备字体，再回退到系统中文衬线字体；站点不得引用开发者电脑的绝对路径。
-- 中文正文字体：`GSansSC`，同样只使用本地字体名称与系统回退；中文正文保留更舒展的行高。
-- 英文等宽字体：`Fragment Mono`，仅用于两个语义 register——导航 wordmark 的次级标识与关键证据数字。其他标签、日期、按钮和说明统一使用无衬线正文家族。
-- 标题使用流式 `clamp()`、受控字距与 `text-wrap: balance`；长段落使用 `text-wrap: pretty`，任何标题都不得溢出容器。
-
-## Components
-
-- **Experience summary**：公司、角色、时间、职责、三项代表性证据与明确归因；详细历史指标只属于 Vertex 独立证据页。
-- **Project disclosure**：两条项目使用原生 `details/summary` 内收；折叠状态仍须展示足够的项目名称与类别信息。
-- **Education ledger**：首页内直接展开的时间条目，不再拆分为学院卡片。
-- **Campus + Music rows**：用紧凑行呈现组织、角色与时间，避免小字说明重复标题。
-- **Visual work**：四张精选预览和一组可展开归档；媒体使用显式宽高及自然比例，不强行裁成统一网格。
-- **Compact navigation**：在 `60rem` 及以下替代完整链接；触屏与窄屏的主要控制至少为 44px，并具备可翻译的可访问名称。
-- 禁用：侧边装饰色条、渐变文字、默认玻璃拟态、等大图标卡片网格、每节重复眉标、溢出容器的文字。
-
-## Motion
-
-动效由原生 CSS 与 JavaScript 实现，无运行时框架依赖。`<html>` 默认带 `no-js`，脚本可用时才切换为 `js`；因此无 JavaScript 时内容始终可见。
-
-- Hero 在支持精细指针、足够宽度且用户未要求减少动效时完成一次进入编排。
-- 下方内容由 `IntersectionObserver` 独立揭示；不存在定时器把所有未进入视口的内容强制显示。浏览器不支持观察器时直接显示全部内容。
-- 肖像使用很轻的滚动视差；作品保持静态构图，不通过统一裁切制造运动。
-- 背景保留轻颗粒和桌面光标聚光；关键词跑马灯保持线性、低干扰移动。
-- 顶部进度线以 `scaleX()` 更新，避免触发布局。
-- `prefers-reduced-motion: reduce`、窄屏或粗指针环境关闭视差、聚光、颗粒动画与非必要过渡，并保证内容立即可见。
+The accent is reserved for focus, evidence numbers, and a small number of interaction cues. Contrast remains functional at small sizes. Fragment Mono is limited to the navigation wordmark register and the compact evidence-number register.
 
 ## Layout
 
-主内容最大宽度约 1240px，页面留白和分区使用 `clamp()` 保持呼吸感。桌面允许非对称构图；移动端收敛为单列，标题和表格防溢出，所有依赖精细指针的视觉行为在触屏上关闭。
+The main content width is approximately 1240px, with fluid gutters and section spacing. Wide screens use intentionally uneven tracks for About, Experience, teaching media, project links, and Outside Work. The **wide-screen balance rule** is that every track uses `minmax(0, …)` plus a bounded media/supporting column so no accidental right-side void appears at large widths.
+
+At `60rem` and below, all asymmetric homepage tracks collapse to one column. Compact navigation replaces the full navigation at the same breakpoint and remains available for coarse pointers. Primary touch targets are at least 44px, and headings and grid children are protected from horizontal overflow.
+
+All full-image previews are **natural-ratio media** with intrinsic width and height attributes and `height:auto`; project and outside-work images are not forced into equal-card crops. The portrait keeps its authored framing and subtle parallax treatment.
+
+## Motion
+
+The original **dark-gallery motion** is preserved: hero entrance choreography, observer-driven section reveals, linear marquee movement, portrait parallax, pointer spotlight, film grain, and transform-based progress. Project links use a restrained underline reveal; media remains legible without hover.
+
+The document starts with `no-js`, so content is visible without JavaScript. When IntersectionObserver is unavailable, all reveal content is exposed immediately. `prefers-reduced-motion: reduce`, narrow screens, and coarse pointers suppress spatial transforms, parallax, spotlight, grain animation, marquee motion, and nonessential transitions while keeping all content visible.
+
+## Component contracts
+
+- **Experience summary:** two rows, one outer rule, one separator, a single representative-evidence line, explicit Vertex attribution, and natural-ratio teaching media.
+- **Project index:** three linked editorial rows with copy, an approved preview, and a route action.
+- **Education ledger:** two verified entries shown in full on the homepage.
+- **Outside Work gateway:** three unequal entries in one link, with Music dominant, Photography supportive, and Places text-led.
+- **Compact navigation:** four first-layer destinations—About, Work, Outside Work, and Contact—with separate language controls.
+- **Contact:** “Get in touch.”, one neutral availability sentence, and direct email/LinkedIn actions.
+
+Avoid decorative side rails, gradient text, default glass panels, equal-size icon-card grids, repeated navigation labels inside every section, fabricated imagery, and text overflow.

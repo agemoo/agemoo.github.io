@@ -27,10 +27,10 @@ test('both routes enforce clipping, mobile controls, wrapping, exact cache impor
   assert.match(i18n, /storage\?\.getItem\(STORAGE_KEY\)/);
 });
 
-test('homepage collapses experience proof and project rows at 60rem', async () => {
+test('homepage collapses every asymmetric editorial track at 60rem', async () => {
   const [home] = await readContracts();
-  assert.match(home, /@media\s*\(max-width:\s*60rem\)\{\.experience-row\{grid-template-columns:minmax\(0,1fr\);\}\.experience-proof\{grid-template-columns:minmax\(0,1fr\);\}\}/);
-  assert.match(home, /@media\s*\(max-width:\s*60rem\)\{\s*\.project-row summary\{grid-template-columns:minmax\(0,1fr\);/);
+  assert.match(home, /@media\(max-width:60rem\)\{\.about-top,\.experience-row,\.experience-row--teaching>div:last-child,\.project-row,\.outside-grid\{grid-template-columns:minmax\(0,1fr\);\}\}/);
+  assert.doesNotMatch(home, /\.project-row summary\{/);
 });
 
 test('reduced motion exposes content and suppresses grain, spotlight, parallax, and spatial transforms', async () => {
@@ -70,7 +70,7 @@ test('homepage preserves the required desktop motion contracts without obsolete 
   assert.match(home, /html\.js\.motion-desktop \.reveal-up\{opacity:0;transform:translateY\(40px\);\}/);
   assert.match(home, /hero\.classList\.add\('loaded'\)/);
   assert.match(home, /\.project-row::after\{[^}]*transform:scaleX\(0\);/);
-  assert.match(home, /\.project-row:hover::after,[^}]*transform:scaleX\(1\);/);
+  assert.match(home, /\.project-row:hover::after,[^}]*\.project-row:focus-visible::after[^}]*transform:scaleX\(1\);/);
   assert.match(home, /html\.js\.motion-desktop \[data-reveal="img"\]\{transform:translateY\(46px\) scale\(1\.04\);\}/);
   assert.match(home, /@media\s*\(pointer:fine\) and \(min-width:40\.001rem\) and \(prefers-reduced-motion:no-preference\)\{\.progress\{display:block;\}\}/);
   assert.match(home, /\.progress\{[^}]*width:100%;[^}]*transform:scaleX\(0\);[^}]*transform-origin:left;/);

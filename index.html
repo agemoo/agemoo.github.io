@@ -144,7 +144,7 @@ section{position:relative;}
 .lede{font-family:var(--serif);font-weight:400;color:var(--ink-2);font-size:clamp(16px,2vw,21px);line-height:1.78;
   max-width:64ch;text-wrap:pretty;}
 .lede em{font-style:italic;color:var(--amber);}
-h1,h2,h3,.stitle,.project-title,.edu-school,.edu-degree,.experience-role,.closing h2{min-width:0;overflow-wrap:anywhere;}
+h1,h2,h3,.stitle,.project-copy strong,.edu-school,.edu-degree,.experience-role,.closing h2{min-width:0;overflow-wrap:anywhere;}
 
 /* ---------- HERO ---------- */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
@@ -159,8 +159,6 @@ h1,h2,h3,.stitle,.project-title,.edu-school,.edu-degree,.experience-role,.closin
 .hero .role{margin-top:clamp(24px,3.4vw,40px);font-family:var(--serif);font-weight:400;color:var(--ink-2);
   font-size:clamp(var(--text-xl),3.4vw,2.75rem);line-height:1.25;max-width:24ch;text-wrap:balance;}
 .hero .role b{color:var(--amber);font-weight:400;}
-.hero .roleen{margin-top:16px;font-family:var(--sans);font-size:clamp(14px,1.4vw,16px);letter-spacing:.02em;
-  line-height:1.7;color:var(--muted);max-width:64ch;text-wrap:pretty;}
 .hero-foot{margin-top:auto;padding-top:clamp(36px,5vw,60px);display:flex;justify-content:flex-end;align-items:center;
   gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);}
 .scrollcue{font-family:var(--sans);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
@@ -177,8 +175,9 @@ html.js.motion-desktop .hero.loaded .reveal-up{opacity:1;transform:none;transiti
 html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*1ms);}
 
 /* ---------- PROFILE ---------- */
-.about-top{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center;}
-.about-text .lede{margin-top:clamp(20px,3vw,32px);}
+.about-top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr);gap:clamp(32px,5vw,72px);align-items:center;}
+.about-copy{display:grid;gap:clamp(20px,3vw,32px);margin-top:clamp(20px,3vw,32px);}
+.about-copy p:not(.lede){font-size:15px;line-height:1.85;color:var(--ink-2);max-width:64ch;}
 .portrait{position:relative;margin:0;justify-self:end;width:100%;max-width:380px;}
 .pframe{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:4px;background:var(--bg-1);
   aspect-ratio:4/5;box-shadow:0 36px 80px -38px color-mix(in oklch,var(--color-shadow) 90%,transparent);}
@@ -193,15 +192,6 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 }
 .pcap{margin-top:16px;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);line-height:1.7;}
 .pcap span{display:block;color:var(--faint);margin-top:4px;letter-spacing:.1em;}
-@media (max-width:840px){
-  .about-top{grid-template-columns:minmax(0,1fr);gap:clamp(32px,6vw,44px);}
-  .portrait{justify-self:start;max-width:320px;}
-}
-.capability-ledger{margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--line-2);}
-.capability-row{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(0,1.35fr);gap:clamp(24px,5vw,72px);padding-block:clamp(28px,3.5vw,40px);border-bottom:1px solid var(--line-2);}
-.capability-row h3{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:clamp(20px,2.4vw,28px);line-height:1.3;}
-.capability-row p{font-size:14.5px;line-height:1.8;color:var(--ink-2);max-width:62ch;}
-@media (max-width:680px){.capability-row{grid-template-columns:minmax(0,1fr);gap:12px;}}
 
 /* ---------- EDUCATION ---------- */
 .edu-list{border-top:1px solid var(--line-2);}
@@ -223,15 +213,15 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 .experience-role{font-family:var(--serif);font-size:clamp(24px,3.2vw,38px);line-height:1.2;color:var(--ink);font-weight:600;text-wrap:balance;}
 .experience-dates{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:20px;}
 .experience-responsibility{font-size:15px;line-height:1.85;color:var(--ink-2);max-width:64ch;}
-.experience-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--rule-thin);background:var(--line);border:1px solid var(--line);margin-top:28px;}
-.experience-proof .proof{background:var(--bg);padding:24px 20px;}
-.experience-proof strong{display:block;font-family:var(--mono);font-size:clamp(27px,3vw,38px);line-height:1;color:var(--amber);font-weight:600;font-variant-numeric:tabular-nums;}
-.experience-proof span{display:block;font-size:11.5px;line-height:1.55;color:var(--muted);margin-top:12px;}
+.experience-proofline{margin-top:24px;font-size:12px;line-height:1.75;color:var(--muted);letter-spacing:.02em;}
+.experience-proofline strong{font-family:var(--mono);font-size:15px;line-height:1;color:var(--amber);font-weight:600;font-variant-numeric:tabular-nums;}
 .experience-attribution{border-left:2px solid var(--ember);padding-left:20px;margin-top:24px;font-size:12.5px;line-height:1.75;color:var(--muted);}
 .experience-attribution strong{color:var(--ink-2);font-weight:500;}
 .experience-link{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--amber);padding-bottom:4px;transition:color .3s;white-space:nowrap;}
 @media (hover:hover) and (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){.experience-link:hover{color:var(--amber);}}
-@media (max-width:60rem){.experience-row{grid-template-columns:minmax(0,1fr);}.experience-proof{grid-template-columns:minmax(0,1fr);}}
+.experience-row--teaching>div:last-child{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(240px,.95fr);gap:clamp(24px,4vw,56px);align-items:center;}
+.experience-media{margin:0;overflow:hidden;border:1px solid var(--line-2);background:var(--bg);}
+.experience-media img{width:100%;height:auto;filter:brightness(.94) saturate(.94);}
 
 /* ---------- MARQUEE ---------- */
 .marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:24px;white-space:nowrap;
@@ -240,66 +230,41 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 .marquee .track{display:inline-flex;gap:0;will-change:transform;}
 html.js.motion-desktop .marquee .track{animation:scroll 34s linear infinite;}
 .marquee:hover .track{animation-play-state:paused;}
-.marquee span{font-family:var(--serif);font-size:clamp(22px,3vw,40px);color:var(--ink);font-weight:500;padding-inline:32px;display:inline-flex;align-items:center;gap:60px;}
-.marquee span i{font-family:var(--sans);font-style:normal;font-size:.42em;letter-spacing:.24em;text-transform:uppercase;color:var(--ember);}
-.marquee .mut{color:var(--faint);}
+.marquee .track>span{font-family:var(--serif);font-size:clamp(22px,3vw,40px);color:var(--ink);font-weight:500;padding-inline:32px;display:inline-flex;align-items:center;gap:40px;}
+.marquee .mut{color:var(--faint);padding:0;display:inline;}
 @keyframes scroll{to{transform:translateX(-50%);}}
 
 /* ---------- PROJECT INDEX ---------- */
 .section-intro{max-width:62ch;margin-top:20px;}
 .project-list{border-top:1px solid var(--line-2);}
-.project-row{border-bottom:1px solid var(--line-2);}
-.project-row summary{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(180px,.72fr) auto;gap:clamp(20px,4vw,60px);
-  align-items:center;min-height:44px;padding-block:clamp(28px,4vw,44px);cursor:pointer;list-style:none;}
-.project-row summary::-webkit-details-marker{display:none;}
-.project-title{display:block;font-family:var(--serif);font-size:clamp(22px,3vw,34px);line-height:1.25;color:var(--ink);font-weight:600;overflow-wrap:anywhere;}
-.project-description{display:block;font-size:14.5px;line-height:1.7;color:var(--ink-2);max-width:58ch;margin-top:12px;}
-.project-meta{display:grid;gap:8px;align-self:center;}
-.project-role,.project-year{font-family:var(--sans);font-size:10.5px;line-height:1.55;letter-spacing:.11em;text-transform:uppercase;}
-.project-role{color:var(--amber);}.project-year{color:var(--faint);font-variant-numeric:tabular-nums;}
+.project-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(220px,.55fr) auto;gap:clamp(20px,4vw,60px);align-items:center;min-height:44px;padding-block:clamp(28px,4vw,44px);border-bottom:1px solid var(--line-2);}
+.project-copy{display:grid;gap:12px;min-width:0;}
+.project-copy strong{font-family:var(--serif);font-size:clamp(22px,3vw,34px);line-height:1.25;color:var(--ink);font-weight:600;}
+.project-copy>span{font-size:14.5px;line-height:1.7;color:var(--ink-2);max-width:58ch;}
+.project-preview{display:block;border:1px solid var(--line);background:var(--bg);}
+.project-preview img{width:100%;height:auto;filter:brightness(.9) saturate(.94);transition:filter .45s var(--ease);}
 .project-action{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
-.project-action::after{content:"+";display:inline-block;margin-left:12px;color:var(--amber);}
-.project-row[open] .project-action::after{content:"−";}
-.project-detail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,52px);padding:0 0 clamp(32px,4vw,48px);}
-.project-detail p{font-size:14.5px;line-height:1.78;color:var(--ink-2);}
-.project-detail strong{font-weight:500;color:var(--ink);}
 @media (hover:hover) and (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){
   .project-row{position:relative;}
   .project-row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);}
-  .project-row:hover::after,.project-row:focus-within::after,.project-row[open]::after{transform:scaleX(1);}
-}
-@media (max-width:60rem){
-  .project-row summary{grid-template-columns:minmax(0,1fr);gap:16px;}
-  .project-meta,.project-action{grid-column:1;grid-row:auto;}
-  .project-action{align-self:start;margin-top:4px;}
-  .project-detail{grid-template-columns:minmax(0,1fr);}
+  .project-row:hover::after,.project-row:focus-visible::after{transform:scaleX(1);}
+  .project-row:hover .project-preview img{filter:brightness(.98) saturate(1);}
 }
 
-/* ---------- CAMPUS & MUSIC ---------- */
-.life-list{border-top:1px solid var(--line-2);}
-.life-row{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(0,1.35fr);gap:clamp(24px,5vw,72px);padding-block:clamp(28px,4vw,44px);border-bottom:1px solid var(--line-2);}
-.life-row h3{font-family:var(--serif);font-size:clamp(21px,2.6vw,30px);line-height:1.3;color:var(--ink);font-weight:600;}
-.life-row p{font-size:15px;line-height:1.75;color:var(--ink-2);max-width:62ch;}
-.life-copy{display:grid;gap:12px;}
-@media (max-width:680px){.life-row{grid-template-columns:minmax(0,1fr);gap:12px;}}
+/* ---------- OUTSIDE WORK ---------- */
+.outside-gateway{display:block;}
+.outside-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr);align-items:stretch;grid-template-rows:minmax(0,1fr) minmax(0,.72fr);gap:clamp(20px,2.4vw,32px);}
+.outside-card{display:grid;align-content:start;gap:16px;min-width:0;padding:clamp(20px,3vw,32px);border:1px solid var(--line-2);background:var(--bg-1);}
+.outside-card--music{grid-row:1/3;}
+.outside-card strong{font-family:var(--serif);font-size:clamp(22px,3vw,34px);line-height:1.25;color:var(--ink);font-weight:600;}
+.outside-card p{font-size:14px;line-height:1.75;color:var(--ink-2);max-width:48ch;}
+.outside-media{display:block;overflow:hidden;border:1px solid var(--line);background:var(--bg);}
+.outside-media img{width:100%;height:auto;filter:brightness(.92) saturate(.92);transition:filter .45s var(--ease);}
+.outside-action{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(24px,4vw,40px);font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
+@media (hover:hover) and (pointer:fine){.outside-gateway:hover .outside-media img{filter:brightness(1) saturate(1);}.outside-gateway:hover .outside-action{color:var(--amber);}}
 
-/* ---------- VISUAL WORK ---------- */
-.visual-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.4vw,32px);align-items:start;margin-top:clamp(40px,6vw,72px);}
-.visual-preview img{width:100%;height:auto;}
-.visual-item{display:block;min-width:0;border-top:1px solid var(--line-2);padding-top:12px;color:var(--ink);}
-.visual-item img{width:100%;height:auto;display:block;background:var(--bg-1);border:1px solid var(--line);filter:brightness(.92) saturate(.98);}
-.visual-caption{display:block;font-family:var(--sans);font-size:10.5px;line-height:1.65;letter-spacing:.08em;color:var(--muted);margin-top:12px;}
-@media (hover:hover) and (pointer:fine){.visual-item:hover .visual-caption{color:var(--amber);}}
-.visual-item:active .visual-caption{color:var(--ember);}
-.visual-archive{border-block:1px solid var(--line-2);margin-top:clamp(44px,6vw,76px);}
-.visual-archive summary{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:44px;padding-block:24px;cursor:pointer;list-style:none;
-  font-family:var(--sans);font-size:11px;line-height:1.55;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
-.visual-archive summary::-webkit-details-marker{display:none;}
-.visual-archive summary::after{content:"+";color:var(--amber);font-size:18px;line-height:1;}
-.visual-archive[open] summary::after{content:"−";}
-.visual-archive-grid{columns:3 240px;column-gap:clamp(20px,2.4vw,32px);padding-block:12px clamp(32px,5vw,52px);}
-.visual-archive-grid .visual-item{break-inside:avoid;margin-bottom:clamp(24px,3vw,40px);}
-@media (max-width:680px){.visual-preview{grid-template-columns:minmax(0,1fr);}}
+@media(max-width:60rem){.about-top,.experience-row,.experience-row--teaching>div:last-child,.project-row,.outside-grid{grid-template-columns:minmax(0,1fr);}}
+@media(max-width:60rem){.portrait{justify-self:start;max-width:320px;}.outside-grid{grid-template-rows:auto;}.outside-card--music{grid-row:auto;}.project-action{justify-self:start;}}
 
 /* ---------- CLOSING ---------- */
 .closing{position:relative;overflow:hidden;padding-block:clamp(96px,14vw,200px);}
@@ -355,7 +320,6 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   html.js .marquee .track{animation:none!important;transform:none!important;}
   .scrollcue .bar::after{animation:none!important;transform:none!important;}
   .pframe img,.portrait:hover .pframe img,.contact-action:active,[data-parallax] img{transform:none!important;transition:none!important;}
-  .visual-item img{filter:brightness(.92) saturate(1);transition:none;}
 }
 </style>
 </head>
@@ -370,11 +334,11 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   <a class="brand" href="#top">Mukun Sun<span class="en">孙慕坤</span></a>
   <div class="nav-actions">
     <div class="links">
-      <a href="#about">About</a><a href="#experience">Internships</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#experience">Work</a><a href="#outside-work">Outside Work</a><a href="#contact">Contact</a>
     </div>
     <details class="compact-nav">
       <summary aria-label="Open section navigation">Sections</summary>
-      <div class="compact-links" role="navigation" aria-label="Section navigation"><a href="#about">About</a><a href="#experience">Internships</a><a href="#projects">Projects</a><a href="#edu">Education</a><a href="#campus-music">Music</a><a href="#visual-work">Visual Work</a><a href="#contact">Contact</a></div>
+      <div class="compact-links" role="navigation" aria-label="Section navigation"><a href="#about">About</a><a href="#experience">Work</a><a href="#outside-work">Outside Work</a><a href="#contact">Contact</a></div>
     </details>
     <div class="lang-switch" role="group" aria-label="Language">
       <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
@@ -387,10 +351,8 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
 <header class="hero" id="top">
   <div class="wrap">
     <h1 class="reveal-up" style="--d:300">Mukun Sun</h1>
-    <div class="role reveal-up" style="--d:520">I make social content feel native to the community it enters.</div>
-    <div class="roleen reveal-up" style="--d:620">Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.</div>
-
-    <div class="hero-foot reveal-up" style="--d:820">
+    <div class="role reveal-up" style="--d:520">Communication, community, and music.</div>
+    <div class="hero-foot reveal-up" style="--d:720">
       <div class="scrollcue">Scroll to explore<span class="bar" aria-hidden="true"></span></div>
     </div>
   </div>
@@ -403,7 +365,10 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
       <div class="about-text">
         <div class="placard" data-reveal=""><span class="cn"></span></div>
         <h2 class="stitle" data-reveal="">About Me</h2>
-        <p class="lede" data-reveal="">I work on social content where audience context matters: learning how a community speaks, choosing the right format, and carrying the idea through copy, design, video, or reporting. My recent work includes Reddit community operations and student-facing content at Southern Utah University. I study Strategic Communication at SUU with a minor in Business Analytics.</p>
+        <div class="about-copy">
+          <p class="lede" data-reveal>I study Strategic Communication at Southern Utah University, with a minor in Business Analytics. My work spans social media, community operations, visual communication, and event promotion. I like learning how an audience actually behaves before deciding what to make.</p>
+          <p data-reveal>Outside work, I play upright and electric bass in SUU ensembles. Music has also taken me into concert planning, photography, and the small details that make an event feel memorable.</p>
+        </div>
       </div>
       <figure class="portrait" data-reveal="img" data-parallax="0.03">
         <div class="pframe">
@@ -414,12 +379,6 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
       </figure>
     </div>
 
-    <div class="capability-ledger">
-      <article class="capability-row" data-reveal="" style="--i:0"><h3>Community</h3><p>Reddit community operations, subreddit-rule research, moderation support.</p></article>
-      <article class="capability-row" data-reveal="" style="--i:1"><h3>Content</h3><p>Localized English social copy, content calendars, platform-aware adaptation.</p></article>
-      <article class="capability-row" data-reveal="" style="--i:2"><h3>Visual</h3><p>Graphic design, event photography, short-form video.</p></article>
-      <article class="capability-row" data-reveal="" style="--i:3"><h3>Workflow</h3><p>Excel cleaning, Excel reporting, and performance review. Practical AI-assisted research and production workflows.</p></article>
-    </div>
   </div>
 </section>
 
@@ -436,11 +395,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
         </header>
         <div>
           <p class="experience-responsibility">I participate in Reddit community operations across consumer technology, smart-home, lifestyle, finance, and family-oriented communities, adapting content and interaction to subreddit rules, audience context, and visible performance.</p>
-          <div class="experience-proof" aria-label="Selected representative account evidence">
-            <div class="proof"><strong>5</strong><span>representative accounts</span></div>
-            <div class="proof"><strong>793K</strong><span>representative views</span></div>
-            <div class="proof"><strong>91.7%</strong><span>highest U.S. audience share</span></div>
-          </div>
+          <p class="experience-proofline"><strong>5</strong> representative accounts · <strong>793K</strong> representative views · up to <strong>91.7%</strong> U.S. audience share</p>
           <p class="experience-attribution"><strong>Attribution:</strong> These figures describe representative account assets and representative content I participated in operating; they are not all net-new results created during my internship.</p>
           <a class="experience-link" href="projects/vertex-reddit.html">View internship evidence <span aria-hidden="true">→</span></a>
         </div>
@@ -453,6 +408,9 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
         </header>
         <div>
           <p class="experience-responsibility">Supported an SUU instructor in English writing courses serving 200+ students in Wuhan. Provided bilingual classroom support, managed attendance and assignment grading, delivered written feedback, and organized final-grade data and course completion reporting in Excel.</p>
+          <figure class="experience-media" data-reveal="img">
+            <img src="assets/internship/SUU_TA/me_classroom.jpg" width="1435" height="1279" alt="Mukun Sun supporting an English writing class in Wuhan" loading="lazy" decoding="async">
+          </figure>
         </div>
       </article>
     </div>
@@ -462,8 +420,8 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
 <!-- ============ MARQUEE ============ -->
 <div class="marquee" aria-hidden="true">
   <div class="track">
-    <span>Social Media<i>Strategy</i><span class="mut">·</span>Content<i>Creative</i><span class="mut">·</span>Campaigns<i>Coordination</i><span class="mut">·</span>Data<i>Analytics</i><span class="mut">·</span></span>
-    <span>Social Media<i>Strategy</i><span class="mut">·</span>Content<i>Creative</i><span class="mut">·</span>Campaigns<i>Coordination</i><span class="mut">·</span>Data<i>Analytics</i><span class="mut">·</span></span>
+    <span>Community Operations<span class="mut">·</span>Teaching<span class="mut">·</span>Campaigns<span class="mut">·</span>Jazz Performance<span class="mut">·</span>Visual Communication<span class="mut">·</span></span>
+    <span>Community Operations<span class="mut">·</span>Teaching<span class="mut">·</span>Campaigns<span class="mut">·</span>Jazz Performance<span class="mut">·</span>Visual Communication<span class="mut">·</span></span>
   </div>
 </div>
 
@@ -473,40 +431,28 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
     <div class="shead">
       <div>
         <h2 class="stitle" data-reveal="">Projects</h2>
-        <p class="lede section-intro" data-reveal="">Two compact records of how I coordinate campaigns, partners, channels, and finished communication.</p>
+        <p class="lede section-intro" data-reveal="">Three selected routes into campaign coordination, event promotion, and visual communication.</p>
       </div>
     </div>
 
     <div class="project-list">
-      <details class="project-row" data-reveal="">
-        <summary>
-          <span>
-            <span class="project-title">Campus Integrated Campaign</span>
-            <span class="project-description">Promotion coordination for campus welcome and New Year events across online and offline channels.</span>
-          </span>
-          <span class="project-meta"><span class="project-role">Promotion Team Lead</span><span class="project-year">2024–2025</span></span>
-          <span class="project-action">View summary</span>
-        </summary>
-        <div class="project-detail">
-          <p class="project-context"><strong>Context:</strong> Campus welcome and New Year events needed coordinated promotion across online and offline channels.</p>
-          <p class="project-contribution"><strong>Contribution:</strong> I led a promotion team, adapted the campaign for each platform, and connected on-site activity with online publishing.</p>
-        </div>
-      </details>
+      <a class="project-row project-row--campus" href="projects/campus-campaign.html" data-reveal>
+        <span class="project-copy"><strong>Campus Integrated Campaign</strong><span>Promotion coordination for campus welcome and New Year events across online and offline channels.</span></span>
+        <span class="project-preview"><img src="assets/project/CampusGala/freshmen_welcome_gala.jpg" width="1600" height="1067" alt="A large campus gala audience facing a lit stage" loading="lazy" decoding="async"></span>
+        <span class="project-action">View project <span aria-hidden="true">→</span></span>
+      </a>
 
-      <details class="project-row" data-reveal="">
-        <summary>
-          <span>
-            <span class="project-title">Hotel × Jazz Brand Event</span>
-            <span class="project-description">Event concept, partner coordination, WeChat promotion, and visual identity for a hotel × jazz collaboration.</span>
-          </span>
-          <span class="project-meta"><span class="project-role">Campaign &amp; Visual Communication</span><span class="project-year">2024</span></span>
-          <span class="project-action">View summary</span>
-        </summary>
-        <div class="project-detail">
-          <p class="project-context"><strong>Context:</strong> A balcony performance connected Ni Jazz Bar with the Fengmao Andi hotel around a “hotel × art” brand story.</p>
-          <p class="project-contribution"><strong>Contribution:</strong> I developed the event concept, coordinated partners, planned WeChat promotion, and designed a consistent visual identity.</p>
-        </div>
-      </details>
+      <a class="project-row project-row--hotel" href="projects/hotel-jazz.html" data-reveal>
+        <span class="project-copy"><strong>Hotel × Jazz Brand Event</strong><span>Event concept, partner coordination, WeChat promotion, and visual identity for a hotel × jazz collaboration.</span></span>
+        <span class="project-preview"><img src="assets/project/Andi/andi_fest_2.png" width="1039" height="462" alt="Jazz musicians performing at a hotel beside an upright bass" loading="lazy" decoding="async"></span>
+        <span class="project-action">View project <span aria-hidden="true">→</span></span>
+      </a>
+
+      <a class="project-row project-row--visual" href="projects/visual-work.html" data-reveal>
+        <span class="project-copy"><strong>Selected Visual Work</strong><span>A selected archive of posters, print design, event visuals, and photography.</span></span>
+        <span class="project-preview"><img src="build/assets/hotone_main.jpg" width="1500" height="2120" alt="HOTONE tenth-anniversary product poster for the Ampero II Stomp" loading="lazy" decoding="async"></span>
+        <span class="project-action">View project <span aria-hidden="true">→</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -548,107 +494,34 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   </div>
 </section>
 
-<!-- ============ CAMPUS & MUSIC ============ -->
-<section class="band" id="campus-music" style="background:var(--bg-1);">
+<!-- ============ OUTSIDE WORK ============ -->
+<section class="band" id="outside-work">
   <div class="wrap">
     <div class="shead">
       <div>
-        <h2 class="stitle" data-reveal>Music</h2>
+        <h2 class="stitle" data-reveal>Outside Work</h2>
+        <p class="lede section-intro" data-reveal>Music, photography, and places shape how I pay attention to people and atmosphere.</p>
       </div>
     </div>
-    <div class="life-list">
-      <article class="life-row" data-reveal>
-        <h3>Jazz Performance</h3>
-        <p>Upright bassist in the Southern Utah University jazz big band and electric bassist in the T-Bird Marching Band. Finalist, 2025 SUU International Student Artist Award.</p>
-      </article>
-      <article class="life-row" data-reveal>
-        <h3>Music Event Coordination</h3>
-        <div class="life-copy">
-          <p>Independently planned and produced a campus jazz concert at Wuhan Polytechnic University, including the program, rehearsals, performer coordination, and on-site execution.</p>
-          <p>Developed a hotel × jazz event with Ni Jazz Bar and Fengmao Andi Hotel, coordinating the performance, partners, WeChat promotion, and visual identity.</p>
+    <a class="outside-gateway" href="outside-work.html" data-reveal>
+      <div class="outside-grid">
+        <div class="outside-card outside-card--music">
+          <span class="outside-media"><img src="assets/music/performance.jpg" width="896" height="1193" alt="Mukun Sun performing upright bass on stage" loading="lazy" decoding="async"></span>
+          <strong>Music</strong>
+          <p>Upright and electric bass performance, ensemble work, and the planning behind live events.</p>
         </div>
-      </article>
-      <article class="life-row" data-reveal>
-        <h3>Campus Communication</h3>
-        <p>Student-facing event promotion and performance content across campus settings.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ VISUAL WORK ============ -->
-<section class="band" id="visual-work">
-  <div class="wrap">
-    <div class="shead">
-      <div>
-        <h2 class="stitle" data-reveal="">Visual Work</h2>
+        <div class="outside-card outside-card--photography">
+          <span class="outside-media"><img src="build/assets/bass1.jpg" width="1100" height="1467" alt="Night photograph of a white bass guitar against a tree" loading="lazy" decoding="async"></span>
+          <strong>Photography</strong>
+          <p>Small studies in performance, objects, light, and atmosphere.</p>
+        </div>
+        <div class="outside-card outside-card--places">
+          <strong>Places</strong>
+          <p>Notes from cities and landscapes that sharpen how I notice culture, rhythm, and everyday detail.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="visual-preview">
-      <a class="visual-item" data-reveal="img" href="build/assets/hotone_main.jpg" target="_blank" rel="noopener">
-        <img src="build/assets/hotone_main.jpg" width="1500" height="2120" alt="HOTONE tenth-anniversary product poster for the Ampero II Stomp" loading="lazy" decoding="async">
-        <span class="visual-caption">HOTONE · Tenth-Anniversary Poster</span>
-      </a>
-      <a class="visual-item" data-reveal="img" href="build/assets/jazz_coast_a.jpg" target="_blank" rel="noopener">
-        <img src="build/assets/jazz_coast_a.jpg" width="1300" height="1828" alt="Coastline JAZZ NIGHT concert poster in magenta and deep blue" loading="lazy" decoding="async">
-        <span class="visual-caption">JAZZ NIGHT · Coastline</span>
-      </a>
-      <a class="visual-item" data-reveal="img" href="build/assets/trifold_out.jpg" target="_blank" rel="noopener">
-        <img src="build/assets/trifold_out.jpg" width="1800" height="1369" alt="Laoshan folk-arts trifold brochure exterior" loading="lazy" decoding="async">
-        <span class="visual-caption">Laoshan Folk Arts · Trifold Exterior</span>
-      </a>
-      <a class="visual-item" data-reveal="img" href="build/assets/bass1.jpg" target="_blank" rel="noopener">
-        <img src="build/assets/bass1.jpg" width="1100" height="1467" alt="Night photograph of a white bass guitar against a tree" loading="lazy" decoding="async">
-        <span class="visual-caption">Bass · Night Study</span>
-      </a>
-    </div>
-
-    <details class="visual-archive" data-reveal="">
-      <summary>View full archive</summary>
-      <div class="visual-archive-grid">
-        <a class="visual-item" href="build/assets/jazz_winter.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/jazz_winter.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event" loading="lazy" decoding="async">
-          <span class="visual-caption">Winter Jazz Concert · Hotel Event Visual</span>
-        </a>
-        <a class="visual-item" href="build/assets/hotone_guitar.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/hotone_guitar.jpg" width="1500" height="1656" alt="HOTONE product poster featuring an electric guitar and effects processor" loading="lazy" decoding="async">
-          <span class="visual-caption">HOTONE · Release Your Musical Passion</span>
-        </a>
-        <a class="visual-item" href="build/assets/hotone_pedal.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/hotone_pedal.jpg" width="1500" height="1928" alt="HOTONE Ampero II Stomp product-detail poster" loading="lazy" decoding="async">
-          <span class="visual-caption">HOTONE · Ampero II Stomp Detail</span>
-        </a>
-        <a class="visual-item" href="build/assets/jazz_coast_b.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/jazz_coast_b.jpg" width="1300" height="1828" alt="Coastline JAZZ NIGHT poster variation in orange and dark red" loading="lazy" decoding="async">
-          <span class="visual-caption">JAZZ NIGHT · Variation</span>
-        </a>
-        <a class="visual-item" href="build/assets/piano_a.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/piano_a.jpg" width="1300" height="1838" alt="Minimal PIANO DUO concert poster" loading="lazy" decoding="async">
-          <span class="visual-caption">PIANO DUO · Main Poster</span>
-        </a>
-        <a class="visual-item" href="build/assets/piano_b.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/piano_b.jpg" width="1300" height="1828" alt="PIANO DUO concert poster variation" loading="lazy" decoding="async">
-          <span class="visual-caption">PIANO DUO · Variation</span>
-        </a>
-        <a class="visual-item" href="build/assets/trifold_in.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/trifold_in.jpg" width="1800" height="1369" alt="Laoshan folk-arts trifold brochure interior" loading="lazy" decoding="async">
-          <span class="visual-caption">Laoshan Folk Arts · Trifold Interior</span>
-        </a>
-        <a class="visual-item" href="build/assets/banner_museum.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/banner_museum.jpg" width="1084" height="437" alt="International Museum Day banner for Wuhan Museum" loading="lazy" decoding="async">
-          <span class="visual-caption">International Museum Day · Wuhan Museum</span>
-        </a>
-        <a class="visual-item" href="build/assets/bass2.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/bass2.jpg" width="1100" height="1466" alt="Bass guitar atmosphere photography, study two" loading="lazy" decoding="async">
-          <span class="visual-caption">Bass · Study 02</span>
-        </a>
-        <a class="visual-item" href="build/assets/bass3.jpg" target="_blank" rel="noopener">
-          <img src="build/assets/bass3.jpg" width="1100" height="1467" alt="Bass guitar atmosphere photography, study three" loading="lazy" decoding="async">
-          <span class="visual-caption">Bass · Study 03</span>
-        </a>
-      </div>
-    </details>
+      <span class="outside-action">Explore outside work <span aria-hidden="true">→</span></span>
+    </a>
   </div>
 </section>
 
@@ -656,8 +529,8 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
 <section class="closing" id="contact">
   <div class="wrap">
     
-    <h2 data-reveal="">Let’s make the next campaign<br><span class="em">useful, clear, and memorable.</span></h2>
-    
+    <h2 data-reveal>Get in touch.</h2>
+    <p class="contact-intro" data-reveal>You can reach me by email or LinkedIn.</p>
     <div class="contact-actions" data-reveal="">
       <a class="contact-action" href="mailto:aquakaze31@gmail.com"><span class="contact-label">Email Me</span><span aria-hidden="true">↗</span></a>
       <a class="contact-action" href="https://www.linkedin.com/in/mukunsun" target="_blank" rel="noopener noreferrer"><span class="contact-label">LinkedIn</span><span aria-hidden="true">↗</span></a>

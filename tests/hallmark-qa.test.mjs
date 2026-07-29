@@ -39,7 +39,7 @@ test('motion avoids layout-property transitions and stacked hover effects', () =
   assert.doesNotMatch(home, /\.experience-link:hover\{[^}]*gap:/);
 });
 
-test('Fragment Mono is loaded but restricted to the wordmark and evidence-number registers', () => {
+test('Fragment Mono is loaded but restricted to the wordmark and compact evidence-number registers', () => {
   assert.match(tokens, /--font-mono:\s*'Fragment Mono',\s*ui-monospace/);
   for (const html of [home, detail]) {
     assert.match(html, /family=Fragment\+Mono:ital@0;1/);
@@ -49,7 +49,7 @@ test('Fragment Mono is loaded but restricted to the wordmark and evidence-number
   assert.equal(homeUses.length, 2);
   assert.equal(detailUses.length, 2);
   assert.match(home, /html\[lang="zh"\] \.nav \.brand \.en\{font-family:var\(--mono\)/);
-  assert.match(home, /\.experience-proof strong\{[^}]*font-family:var\(--mono\)/);
+  assert.match(home, /\.experience-proofline strong\{[^}]*font-family:var\(--mono\)/);
   assert.match(detail, /html\[lang="zh"\] \.nav \.brand \.en\{font-family:var\(--font-mono\)/);
   assert.match(detail, /\.evidence-table strong\{font-family:var\(--font-mono\)/);
 });
@@ -63,7 +63,10 @@ test('portrait parallax is mounted and consumed by a composited transform', () =
 
 test('hero, responsive image track, and display wrapping satisfy layout gates', () => {
   assert.match(home, /\.hero\{[^}]*padding-block:96px 128px;/);
-  assert.match(home, /\.about-top\{[^}]*grid-template-columns:minmax\(0,1\.55fr\) minmax\(0,1fr\)/);
+  assert.match(home, /\.about-top\{[^}]*grid-template-columns:minmax\(0,1\.35fr\) minmax\(240px,\.65fr\)/);
+  assert.match(home, /\.experience-row\{[^}]*grid-template-columns:minmax\(0,\.72fr\) minmax\(0,1\.28fr\)/);
+  assert.match(home, /\.project-row\{[^}]*grid-template-columns:minmax\(0,1\.2fr\) minmax\(220px,\.55fr\) auto/);
+  assert.match(home, /\.outside-grid\{[^}]*grid-template-columns:minmax\(0,1\.6fr\) minmax\(240px,1fr\)/);
   assert.match(home, /h1,h2,h3,[^{}]*\{min-width:0;overflow-wrap:anywhere;\}/);
   assert.match(detail, /h1,h2,h3\{min-width:0;overflow-wrap:anywhere;\}/);
   assert.match(home, /@media \(max-width:60rem\),\(pointer:coarse\)\{\.nav \.links\{display:none;\}\}/);

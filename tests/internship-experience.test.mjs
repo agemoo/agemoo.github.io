@@ -52,3 +52,12 @@ test('internship list uses one outer rule and one separator per following row', 
   assert.match(home, /\.experience-list\{[^}]*border-block:1px solid var\(--line-2\);/);
   assert.match(home, /\.experience-row\+\.experience-row\{[^}]*border-top:1px solid var\(--line-2\);/);
 });
+
+test('teaching experience pairs its copy with the approved natural-ratio classroom image', async () => {
+  const home = await readHomepage();
+  const section = home.match(/<article class="experience-row experience-row--teaching"[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(section, /<figure class="experience-media" data-reveal="img">/);
+  assert.match(section, /src="assets\/internship\/SUU_TA\/me_classroom\.jpg" width="1435" height="1279" alt="Mukun Sun supporting an English writing class in Wuhan"/);
+  assert.match(home, /\.experience-row--teaching>div:last-child\{display:grid;grid-template-columns:minmax\(0,1\.05fr\) minmax\(240px,\.95fr\);/);
+  assert.match(home, /\.experience-media img\{[^}]*height:auto/);
+});
