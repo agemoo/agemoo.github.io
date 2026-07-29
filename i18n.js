@@ -304,7 +304,7 @@ const zh = {
     },
     vertex: {
       title: 'Vertex Reddit 实习证据 | 孙慕坤',
-      description: '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。',
+      description: '孙慕坤在 Vertex Marketing 参与 Reddit 社群运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。',
     },
     campus: {
       title: '校园整合传播｜孙慕坤',
@@ -402,7 +402,7 @@ const zh = {
     '#nav .compact-nav summary': '章节',
     '#nav .compact-links': '<a href="#about">关于</a><a href="#experience">工作</a><a href="#outside-work">工作之外</a><a href="#contact">联系</a>',
     '.hero h1': '孙慕坤',
-    '.hero .role': '传播、社区与音乐。',
+    '.hero .role': '传播、社群与音乐。',
     '.hero .scrollcue': '向下浏览<span class="bar" aria-hidden="true"></span>',
     '#about .stitle': '关于我',
     '#about .about-copy p:nth-child(1)': '我在南犹他大学学习战略传播，辅修商业分析。我的实践涉及社交媒体、社群运营、视觉传播和活动推广。我习惯先理解受众实际如何参与，再决定要做什么内容。',
@@ -495,7 +495,7 @@ const zh = {
     '#outside-footer a': '返回作品集',
     '#experience .placard': '实习经历',
     '#experience .experience-row--vertex .experience-company': 'Vertex Marketing',
-    '#experience .experience-row--vertex .experience-role': 'Reddit 社区运营实习生',
+    '#experience .experience-row--vertex .experience-role': 'Reddit 社群运营实习生',
     '#experience .experience-row--vertex .experience-dates': '2026 · 至今',
     '#experience .experience-row--vertex .experience-responsibility': '我参与运营消费科技、智能家居、生活方式、金融与家庭等方向的 Reddit 社区内容，并根据 Subreddit 规则、受众语境与可见表现调整内容和互动方式。',
     '#experience .experience-row--teaching .experience-company': '南犹他大学 × 武汉轻工大学',
@@ -506,9 +506,9 @@ const zh = {
     '#experience .experience-attribution': '<strong>归因说明：</strong>这些数据来自我参与运营的代表账号资产与代表内容，并非全部都是实习期间新增的个人成果。',
     '#experience .experience-link': '查看实习证据 <span aria-hidden="true">→</span>',
     '#vertex-hero': `<p class="eyebrow">Vertex Marketing · 实习证据</p>
-      <h1>展示 Reddit 社区运营，也把证据边界说清楚。</h1>
-      <p class="hero-deck">这是一份范围明确的证据记录，展示我在 Reddit 社区运营实习期间参与运营的代表账号资产与代表内容。</p>
-      <p class="hero-meta">Reddit 社区运营实习生 · 2026 · 至今</p>`,
+      <h1>展示 Reddit 社群运营，也把证据边界说清楚。</h1>
+      <p class="hero-deck">这是一份范围明确的证据记录，展示我在 Reddit 社群运营实习期间参与运营的代表账号资产与代表内容。</p>
+      <p class="hero-meta">Reddit 社群运营实习生 · 2026 · 至今</p>`,
     '#vertex-scope': `<h2 id="vertex-scope-title">盘点范围</h2>
       <div class="section-copy">
         <p>本次盘点覆盖实习期间可接触的 5 个代表账号与 16 条代表内容。我参与运营和分析消费科技、智能家居、生活方式、金融、家庭等不同社区中的内容。</p>
@@ -553,7 +553,7 @@ const zh = {
     '#projects .project-row:nth-child(3) .project-copy span': '海报、印刷设计、活动视觉与摄影作品精选。',
     '#projects .project-row:nth-child(3) .project-action': '查看项目 <span aria-hidden="true">→</span>',
     '#edu .stitle': '教育经历',
-    '#edu .edu-entry:nth-child(1) .edu-school': '南犹他州立大学',
+    '#edu .edu-entry:nth-child(1) .edu-school': '南犹他大学',
     '#edu .edu-entry:nth-child(1) .edu-dates': '2025.08 — 2027.05',
     '#edu .edu-entry:nth-child(1) .edu-degree': '战略传播理学学士（在读）',
     '#edu .edu-entry:nth-child(1) .edu-secondary': '辅修 · 商业分析',
@@ -609,6 +609,16 @@ export function applyLanguage(value, doc = globalThis.document, storage = global
   doc.title = metadata.title;
   const meta = doc.querySelector('meta[name="description"]');
   if (meta) meta.content = metadata.description;
+  const socialMetadata = [
+    ['meta[property="og:title"]', metadata.title],
+    ['meta[property="og:description"]', metadata.description],
+    ['meta[name="twitter:title"]', metadata.title],
+    ['meta[name="twitter:description"]', metadata.description],
+  ];
+  for (const [selector, content] of socialMetadata) {
+    const socialMeta = doc.querySelector(selector);
+    if (socialMeta) socialMeta.content = content;
+  }
   if (metadata.imageAlt) {
     const openGraphImageAlt = doc.querySelector('meta[property="og:image:alt"]');
     const twitterImageAlt = doc.querySelector('meta[name="twitter:image:alt"]');

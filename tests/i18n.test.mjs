@@ -23,7 +23,7 @@ test('both languages cover the same selector set and corrected facts', () => {
   assert.deepEqual(Object.keys(LANGUAGES.en.copy), Object.keys(LANGUAGES.zh.copy));
   assert.deepEqual(Object.keys(LANGUAGES.en.attributes), Object.keys(LANGUAGES.zh.attributes));
   assert.equal(LANGUAGES.en.copy['.hero .role'], 'Communication, community, and music.');
-  assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社区与音乐。');
+  assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社群与音乐。');
   assert.equal(Object.hasOwn(LANGUAGES.en.copy, '.hero .roleen'), false);
   assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '.hero .roleen'), false);
   assert.ok(!Object.hasOwn(LANGUAGES.en.copy, '.hero .ghost'));
@@ -81,6 +81,17 @@ test('second-layer dictionaries use the approved bilingual claims', () => {
     assert.equal(LANGUAGES.zh.copy[selector], chinese, selector);
   }
   assert.doesNotMatch(JSON.stringify(matrix), /19,000|525|5,250|\+17%|~200/);
+});
+
+test('Chinese professional labels use 社群 while subreddit contexts retain 社区', () => {
+  assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社群与音乐。');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-row--vertex .experience-role'], 'Reddit 社群运营实习生');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-row--teaching .experience-company'], '南犹他大学 × 武汉轻工大学');
+  assert.equal(LANGUAGES.zh.copy['#edu .edu-entry:nth-child(1) .edu-school'], '南犹他大学');
+  assert.match(LANGUAGES.zh.copy['#vertex-hero'], /Reddit 社群运营/);
+  assert.doesNotMatch(LANGUAGES.zh.copy['#vertex-hero'], /Reddit 社区运营/);
+  assert.match(LANGUAGES.zh.metadata.vertex.description, /Reddit 社群运营实习/);
+  assert.match(LANGUAGES.zh.copy['#vertex-community'], /社区语境/);
 });
 
 test('second-layer route copy and attributes are selector-scoped and complete', () => {
@@ -283,6 +294,29 @@ test('homepage navigation presents the four approved first-layer destinations in
   assert.equal(LANGUAGES.en.copy['#nav .compact-links'], english);
   assert.equal(LANGUAGES.zh.copy['#nav .links'], chinese);
   assert.equal(LANGUAGES.zh.copy['#nav .compact-links'], chinese);
+});
+
+test('applyLanguage keeps available Open Graph and Twitter metadata in language parity', () => {
+  const metas = new Map([
+    ['meta[name="description"]', { content: '' }],
+    ['meta[property="og:title"]', { content: '' }],
+    ['meta[property="og:description"]', { content: '' }],
+    ['meta[name="twitter:title"]', { content: '' }],
+    ['meta[name="twitter:description"]', { content: '' }],
+  ]);
+  const doc = {
+    documentElement: { lang: '', dataset: { page: 'home' } },
+    title: '',
+    querySelector(selector) { return metas.get(selector) ?? null; },
+    querySelectorAll() { return []; },
+  };
+
+  applyLanguage('zh', doc, null);
+
+  assert.equal(metas.get('meta[property="og:title"]').content, LANGUAGES.zh.metadata.home.title);
+  assert.equal(metas.get('meta[name="twitter:title"]').content, LANGUAGES.zh.metadata.home.title);
+  assert.equal(metas.get('meta[property="og:description"]').content, LANGUAGES.zh.metadata.home.description);
+  assert.equal(metas.get('meta[name="twitter:description"]').content, LANGUAGES.zh.metadata.home.description);
 });
 
 test('page exposes a bilingual control and the approved outside-work gateway media', async () => {

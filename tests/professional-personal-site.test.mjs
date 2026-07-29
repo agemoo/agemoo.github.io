@@ -22,7 +22,7 @@ test('hero and About use the approved concise identity copy', () => {
   assert.match(home, /I study Strategic Communication at Southern Utah University/);
   assert.match(home, /Outside work, I play upright and electric bass/);
   assert.doesNotMatch(home, /capability-ledger|capability-row|<h3>Workflow<\/h3>/);
-  assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社区与音乐。');
+  assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社群与音乐。');
   const about = [
     LANGUAGES.zh.copy['#about .about-copy p:nth-child(1)'],
     LANGUAGES.zh.copy['#about .about-copy p:nth-child(2)'],

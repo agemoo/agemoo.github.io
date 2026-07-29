@@ -34,7 +34,7 @@ test('project pages use the approved facts, metadata, and section order', async 
   assert.match(campus, /<title>Campus Integrated Campaign \| Mukun Sun<\/title>/);
   assert.match(campus, /<meta name="description" content="Promotion coordination for campus welcome and New Year events across online and offline channels\.">/);
   assert.match(campus, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/projects\/campus-campaign\.html">/);
-  assert.match(campus, /<header class="detail-hero" id="campus-hero">[\s\S]*?<section class="detail-section" id="campus-context"[\s\S]*?<section class="detail-section" id="campus-contribution"[\s\S]*?<section class="detail-section" id="campus-media"/);
+  assert.match(campus, /<header class="detail-hero" id="campus-hero"[^>]*>[\s\S]*?<section class="detail-section" id="campus-context"[\s\S]*?<section class="detail-section" id="campus-contribution"[\s\S]*?<section class="detail-section" id="campus-media"/);
   assert.match(campus, /Campus Integrated Campaign/);
   assert.match(campus, /Promotion Team Lead · 2024–2025/);
   assert.match(campus, /Campus welcome and New Year events needed coordinated promotion across online and offline channels\./);
@@ -44,7 +44,7 @@ test('project pages use the approved facts, metadata, and section order', async 
   assert.match(hotel, /<title>Hotel × Jazz \| Mukun Sun<\/title>/);
   assert.match(hotel, /<meta name="description" content="Event concept, partner coordination, WeChat promotion, and visual identity for a hotel and jazz collaboration\.">/);
   assert.match(hotel, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/projects\/hotel-jazz\.html">/);
-  assert.match(hotel, /<header class="detail-hero" id="hotel-hero">[\s\S]*?<section class="detail-section" id="hotel-context"[\s\S]*?<section class="detail-section" id="hotel-contribution"[\s\S]*?<section class="detail-section" id="hotel-media"/);
+  assert.match(hotel, /<header class="detail-hero" id="hotel-hero"[^>]*>[\s\S]*?<section class="detail-section" id="hotel-context"[\s\S]*?<section class="detail-section" id="hotel-contribution"[\s\S]*?<section class="detail-section" id="hotel-media"/);
   assert.match(hotel, /<h1>Hotel × Jazz<\/h1>/);
   assert.match(hotel, /Campaign &amp; Visual Communication · 2024/);
   assert.match(hotel, /A balcony performance connected Ni Jazz Bar with Fengmao Andi Hotel around a hotel-and-art event concept\./);
@@ -57,8 +57,8 @@ test('project media uses only approved files at natural dimensions', async () =>
     readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
   ]);
   assert.match(campus, /<img src="\.\.\/assets\/project\/CampusGala\/freshmen_welcome_gala\.jpg" width="1600" height="1067"[^>]*>/);
-  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments">/);
-  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event">/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments" loading="lazy" decoding="async">/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" loading="lazy" decoding="async">/);
 });
 
 test('enhanced Campus, Hotel, and Outside images keep focusable real-file links', async () => {
@@ -104,7 +104,7 @@ test('selected visual work preserves the approved archive with real image links'
     ['bass3.jpg', 1100, 1467, 'Bass · Study 03'],
   ];
 
-  assert.match(html, /<header class="detail-hero" id="visual-hero">[\s\S]*?<section class="detail-section" id="visual-lead"[\s\S]*?<section class="detail-section" id="visual-archive"/);
+  assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-lead"[\s\S]*?<section class="detail-section" id="visual-archive"/);
   assert.match(html, /A selected archive of event, product, print, and photographic work\./);
   for (const [file, width, height, caption] of [...lead, ...archive]) {
     assert.match(html, new RegExp(`<a class="media-button" href="\\.\\.\\/assets\\/${file}" data-enlarge>`));
@@ -138,14 +138,40 @@ test('outside work keeps three restrained chapters in the approved order', async
   assert.doesNotMatch(html, /src="[^"]*(?:professor|classroom|group|grand_ball_with_friends|with_friends)/i);
 });
 
-test('detail-page enhancement keeps content and originals available without JavaScript', async () => {
+test('detail routes expose no-JS content and mount live reveal hooks', async () => {
   for (const [path, key] of routes) {
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
-    assert.doesNotMatch(html, /data-reveal/);
+    assert.match(html, new RegExp(`<html lang="en" class="no-js" data-language="en" data-page="${key}">`));
+    assert.match(html, new RegExp(`<header class="detail-hero" id="${key}-hero" data-reveal>`));
+    const sections = html.match(/<section class="detail-section"[^>]*>/g) ?? [];
+    const media = html.match(/<figure class="detail-media"[^>]*>/g) ?? [];
+    assert.ok(sections.length > 0, `${path}: sections`);
+    assert.ok(media.length > 0, `${path}: media`);
+    assert.equal(sections.every((tag) => tag.includes('data-reveal')), true, `${path}: section reveals`);
+    assert.equal(media.every((tag) => tag.includes('data-reveal="media"')), true, `${path}: media reveals`);
+    assert.match(html, /root\.className=root\.className\.replace\('no-js','js'\)/);
     assert.match(html, new RegExp(`<dialog class="image-dialog" id="${key}-dialog"`));
     assert.match(html, /data-dialog-close/);
     assert.match(html, new RegExp(`<footer class="footer" id="${key}-footer"`));
   }
+});
+
+test('detail reveals use restrained capability-gated motion with complete fallbacks', () => {
+  assert.match(css, /html\.js\.motion-detail \[data-reveal\]\{opacity:0;/);
+  assert.match(css, /html\.js\.motion-detail \[data-reveal="media"\][^}]*scale\(1\.015\)/);
+  assert.match(css, /@media\(max-width:40rem\),\(pointer:coarse\)\{\[data-reveal\][^}]*opacity:1!important;transform:none!important;transition:none!important;/);
+  assert.match(css, /@media\(prefers-reduced-motion:reduce\)\{html\{scroll-behavior:auto\}[^}]*\[data-reveal\][^}]*opacity:1!important;transform:none!important;transition:none!important;/);
+  assert.match(js, /const narrowQuery = window\.matchMedia\?\.\('\(max-width: 40rem\)'\)/);
+  assert.match(js, /const pointerQuery = window\.matchMedia\?\.\('\(pointer: fine\)'\)/);
+  assert.match(js, /root\.classList\.toggle\('motion-detail', motionEnabled\)/);
+  assert.match(js, /revealObserver\?\.disconnect\(\)/);
+  assert.match(js, /\[narrowQuery, reduceQuery, pointerQuery\]\.forEach/);
+});
+
+test('shared detail footer separates its children and stacks at narrow widths', () => {
+  assert.match(css, /\.footer\{[^}]*width:min\(100% - 2 \* clamp\(20px,5vw,80px\),1240px\);[^}]*display:flex;[^}]*gap:var\(--space-sm\);[^}]*border-top:1px solid var\(--color-rule\);/);
+  assert.match(css, /\.footer a\{[^}]*display:flex;[^}]*min-height:44px;/);
+  assert.match(css, /@media\(max-width:40rem\)\{[^}]*\.footer\{flex-direction:column;align-items:flex-start;/);
 });
 
 test('detail shell uses locked tokens and balanced safe grids', () => {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-language="en" data-page="outside">
+<html lang="en" class="no-js" data-language="en" data-page="outside">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,12 @@
   <meta name="description" content="Music, photography, and places that shape how Mukun Sun pays attention to people and atmosphere.">
   <link rel="canonical" href="https://agemoo.github.io/outside-work.html">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+  (function(root){
+    root.className=root.className.replace('no-js','js');
+    if(window.matchMedia&&window.matchMedia('(min-width: 40.001rem) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) root.classList.add('motion-detail');
+  })(document.documentElement);
+  </script>
   <link rel="stylesheet" href="detail.css">
 </head>
 <body>
@@ -28,7 +34,7 @@
   </nav>
 
   <main class="detail-wrap">
-    <header class="detail-hero" id="outside-hero">
+    <header class="detail-hero" id="outside-hero" data-reveal>
       <h1>Outside Work</h1>
       <div class="detail-hero-copy">
         <p class="detail-eyebrow">Music · Photography · Places</p>
@@ -36,30 +42,30 @@
       </div>
     </header>
 
-    <section class="detail-section" id="outside-music" aria-labelledby="outside-music-title">
+    <section class="detail-section" id="outside-music" aria-labelledby="outside-music-title" data-reveal>
       <h2 id="outside-music-title">Music</h2>
       <div class="detail-section-copy">
         <p>I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band. Music has also led me into concert planning and event coordination.</p>
-        <figure class="detail-media">
+        <figure class="detail-media" data-reveal="media">
           <a class="media-button" href="assets/music/performance.jpg" data-enlarge><img src="assets/music/performance.jpg" width="896" height="1193" alt="Mukun Sun performing upright bass on stage" loading="lazy" decoding="async"></a>
           <figcaption>Upright bass performance</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="detail-section" id="outside-photography" aria-labelledby="outside-photography-title">
+    <section class="detail-section" id="outside-photography" aria-labelledby="outside-photography-title" data-reveal>
       <h2 id="outside-photography-title">Photography</h2>
       <div class="detail-section-copy">
         <p>Photography is another way I study light, objects, and atmosphere.</p>
         <div class="detail-grid">
-          <figure class="detail-media"><a class="media-button" href="assets/bass1.jpg" data-enlarge><img src="assets/bass1.jpg" width="1100" height="1467" alt="Night photograph of a white bass guitar against a tree" loading="lazy" decoding="async"></a><figcaption>Bass · Night Study</figcaption></figure>
-          <figure class="detail-media"><a class="media-button" href="assets/bass2.jpg" data-enlarge><img src="assets/bass2.jpg" width="1100" height="1466" alt="Bass guitar atmosphere photography, study two" loading="lazy" decoding="async"></a><figcaption>Bass · Study 02</figcaption></figure>
-          <figure class="detail-media"><a class="media-button" href="assets/bass3.jpg" data-enlarge><img src="assets/bass3.jpg" width="1100" height="1467" alt="Bass guitar atmosphere photography, study three" loading="lazy" decoding="async"></a><figcaption>Bass · Study 03</figcaption></figure>
+          <figure class="detail-media" data-reveal="media"><a class="media-button" href="assets/bass1.jpg" data-enlarge><img src="assets/bass1.jpg" width="1100" height="1467" alt="Night photograph of a white bass guitar against a tree" loading="lazy" decoding="async"></a><figcaption>Bass · Night Study</figcaption></figure>
+          <figure class="detail-media" data-reveal="media"><a class="media-button" href="assets/bass2.jpg" data-enlarge><img src="assets/bass2.jpg" width="1100" height="1466" alt="Bass guitar atmosphere photography, study two" loading="lazy" decoding="async"></a><figcaption>Bass · Study 02</figcaption></figure>
+          <figure class="detail-media" data-reveal="media"><a class="media-button" href="assets/bass3.jpg" data-enlarge><img src="assets/bass3.jpg" width="1100" height="1467" alt="Bass guitar atmosphere photography, study three" loading="lazy" decoding="async"></a><figcaption>Bass · Study 03</figcaption></figure>
         </div>
       </div>
     </section>
 
-    <section class="detail-section" id="outside-places" aria-labelledby="outside-places-title">
+    <section class="detail-section" id="outside-places" aria-labelledby="outside-places-title" data-reveal>
       <h2 id="outside-places-title">Places</h2>
       <div class="detail-section-copy"><p>Travel and museums are another way I pay attention to place, design, and atmosphere. This section will grow through original photographs and short notes rather than travel-guide summaries.</p></div>
     </section>

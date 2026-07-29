@@ -26,46 +26,59 @@ export function mountImageDialog(dialog) {
 }
 
 function mountPageMotion() {
+  const root = document.documentElement;
   const progress = document.querySelector('.progress');
   const nav = document.querySelector('.detail-nav, .nav');
   const revealItems = [...document.querySelectorAll('[data-reveal]')];
-  const mediaQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-  let reducedMotion = Boolean(mediaQuery?.matches);
+  const narrowQuery = window.matchMedia?.('(max-width: 40rem)');
+  const reduceQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+  const pointerQuery = window.matchMedia?.('(pointer: fine)');
+  let motionEnabled = false;
   let frame = null;
+  let revealObserver = null;
 
   const revealAll = () => revealItems.forEach((item) => item.classList.add('is-visible'));
   const updateScroll = () => {
     frame = null;
     nav?.classList.toggle('solid', window.scrollY > 8);
-    if (!progress || reducedMotion) return;
+    if (!progress) return;
     const distance = document.documentElement.scrollHeight - window.innerHeight;
     const ratio = distance > 0 ? Math.min(1, Math.max(0, window.scrollY / distance)) : 0;
-    progress.style.transform = `scaleX(${ratio})`;
+    progress.style.transform = `scaleX(${motionEnabled ? ratio : 0})`;
   };
   const onScroll = () => {
     if (frame === null) frame = window.requestAnimationFrame(updateScroll);
   };
   const mountRevealObserver = () => {
-    if (reducedMotion || !revealItems.length) return revealAll();
+    if (!motionEnabled || !revealItems.length) return revealAll();
     if (!('IntersectionObserver' in window)) return revealAll();
-    const observer = new IntersectionObserver((entries) => {
+    const pending = revealItems.filter((item) => !item.classList.contains('is-visible'));
+    if (!pending.length) return;
+    revealObserver?.disconnect();
+    revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        revealObserver?.unobserve(entry.target);
       });
     }, { threshold: 0.14 });
-    revealItems.forEach((item) => observer.observe(item));
+    pending.forEach((item) => revealObserver?.observe(item));
+  };
+  const syncMotionState = () => {
+    motionEnabled = Boolean(pointerQuery?.matches) && !narrowQuery?.matches && !reduceQuery?.matches;
+    root.classList.toggle('motion-detail', motionEnabled);
+    if (motionEnabled) mountRevealObserver();
+    else {
+      revealObserver?.disconnect();
+      revealObserver = null;
+      revealAll();
+    }
+    updateScroll();
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  mediaQuery?.addEventListener('change', (event) => {
-    reducedMotion = event.matches;
-    if (reducedMotion) revealAll();
-    updateScroll();
-  });
-  updateScroll();
-  mountRevealObserver();
+  [narrowQuery, reduceQuery, pointerQuery].forEach((query) => query?.addEventListener('change', syncMotionState));
+  syncMotionState();
 }
 
 function boot() {

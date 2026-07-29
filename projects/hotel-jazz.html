@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-language="en" data-page="hotel">
+<html lang="en" class="no-js" data-language="en" data-page="hotel">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,12 @@
   <meta name="description" content="Event concept, partner coordination, WeChat promotion, and visual identity for a hotel and jazz collaboration.">
   <link rel="canonical" href="https://agemoo.github.io/projects/hotel-jazz.html">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <script>
+  (function(root){
+    root.className=root.className.replace('no-js','js');
+    if(window.matchMedia&&window.matchMedia('(min-width: 40.001rem) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) root.classList.add('motion-detail');
+  })(document.documentElement);
+  </script>
   <link rel="stylesheet" href="../detail.css">
 </head>
 <body>
@@ -28,7 +34,7 @@
   </nav>
 
   <main class="detail-wrap">
-    <header class="detail-hero" id="hotel-hero">
+    <header class="detail-hero" id="hotel-hero" data-reveal>
       <h1>Hotel × Jazz</h1>
       <div class="detail-hero-copy">
         <p class="detail-eyebrow">Hotel &amp; Art Event</p>
@@ -37,28 +43,28 @@
       </div>
     </header>
 
-    <section class="detail-section" id="hotel-context" aria-labelledby="hotel-context-title">
+    <section class="detail-section" id="hotel-context" aria-labelledby="hotel-context-title" data-reveal>
       <h2 id="hotel-context-title">Context</h2>
       <div class="detail-section-copy"><p>A balcony performance connected Ni Jazz Bar with Fengmao Andi Hotel around a hotel-and-art event concept.</p></div>
     </section>
 
-    <section class="detail-section" id="hotel-contribution" aria-labelledby="hotel-contribution-title">
+    <section class="detail-section" id="hotel-contribution" aria-labelledby="hotel-contribution-title" data-reveal>
       <h2 id="hotel-contribution-title">Contribution</h2>
       <div class="detail-section-copy"><p>I developed the event concept, coordinated the partners and performance, planned WeChat promotion, and designed a consistent visual identity.</p></div>
     </section>
 
-    <section class="detail-section" id="hotel-media" aria-labelledby="hotel-media-title">
+    <section class="detail-section" id="hotel-media" aria-labelledby="hotel-media-title" data-reveal>
       <h2 id="hotel-media-title">Event views</h2>
       <div class="detail-grid">
-        <figure class="detail-media">
+        <figure class="detail-media" data-reveal="media">
           <a class="media-button" href="../assets/project/Andi/andi_fest_2.png" data-enlarge>
-            <img src="../assets/project/Andi/andi_fest_2.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments">
+            <img src="../assets/project/Andi/andi_fest_2.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments" loading="lazy" decoding="async">
           </a>
           <figcaption>Hotel × Jazz · balcony performance</figcaption>
         </figure>
-        <figure class="detail-media">
+        <figure class="detail-media" data-reveal="media">
           <a class="media-button" href="../assets/project/Andi/andi_fest.jpg" data-enlarge>
-            <img src="../assets/project/Andi/andi_fest.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event">
+            <img src="../assets/project/Andi/andi_fest.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" loading="lazy" decoding="async">
           </a>
           <figcaption>Hotel × Jazz · audience and performance area</figcaption>
         </figure>

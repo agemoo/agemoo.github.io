@@ -10,10 +10,11 @@ test('hero leads with the approved concise identity line', async () => {
 
 test('homepage exposes complete sharing metadata', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const description = 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.';
   assert.match(html, /rel="canonical" href="https:\/\/agemoo\.github\.io\/"/);
   assert.match(html, /rel="icon" href="assets\/favicon\.svg"/);
   assert.match(html, /property="og:title"/);
-  assert.match(html, /property="og:description"/);
+  assert.ok(html.includes(`<meta property="og:description" content="${description}">`));
   assert.match(html, /property="og:type" content="website"/);
   assert.match(html, /property="og:url" content="https:\/\/agemoo\.github\.io\/"/);
   assert.match(html, /property="og:image" content="https:\/\/agemoo\.github\.io\/build\/assets\/banner_museum\.jpg"/);
@@ -22,7 +23,7 @@ test('homepage exposes complete sharing metadata', async () => {
   assert.match(html, /property="og:image:alt" content="International Museum Day banner designed for Wuhan Museum"/);
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
   assert.match(html, /name="twitter:title"/);
-  assert.match(html, /name="twitter:description"/);
+  assert.ok(html.includes(`<meta name="twitter:description" content="${description}">`));
   assert.match(html, /name="twitter:image" content="https:\/\/agemoo\.github\.io\/build\/assets\/banner_museum\.jpg"/);
   assert.match(html, /name="twitter:image:alt" content="International Museum Day banner designed for Wuhan Museum"/);
   assert.doesNotMatch(html, /(?:og:image|twitter:image)" content="[^"]*portrait\.jpg"/);
