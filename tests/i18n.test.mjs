@@ -3,19 +3,20 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
   DEFAULT_LANGUAGE,
+  I18N_CACHE_KEY,
   LANGUAGES,
+  PAGE_KEYS,
   normalizeLanguage,
   getInitialLanguage,
   applyLanguage,
 } from '../i18n.js';
 import { createStaticSelectorDocument } from './helpers/static-selector.mjs';
 
-test('English is the primary language even when Chinese was previously stored', () => {
+test('English is fresh default and an explicit valid choice persists', () => {
   assert.equal(DEFAULT_LANGUAGE, 'en');
-  assert.equal(normalizeLanguage('zh'), 'zh');
-  assert.equal(normalizeLanguage('fr'), 'en');
   assert.equal(getInitialLanguage({ getItem: () => null }), 'en');
-  assert.equal(getInitialLanguage({ getItem: () => 'zh' }), 'en');
+  assert.equal(getInitialLanguage({ getItem: () => 'zh' }), 'zh');
+  assert.equal(getInitialLanguage({ getItem: () => 'fr' }), 'en');
 });
 
 test('both languages cover the same selector set and corrected facts', () => {
@@ -68,9 +69,9 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
   assert.equal(LANGUAGES.zh.copy['#nav .compact-nav summary'], '章节');
 });
 
-test('language module declares the shared cache key', async () => {
-  const module = await import('../i18n.js');
-  assert.equal(module.I18N_CACHE_KEY, '20260729-internships');
+test('language module declares all public page keys and the shared cache key', () => {
+  assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside']);
+  assert.equal(I18N_CACHE_KEY, '20260729-personal-site');
 });
 
 test('capability ledger has matching delivered-work rows in both languages', () => {
@@ -118,31 +119,33 @@ test('applyLanguage uses page-specific metadata in both languages', () => {
     return {
       meta,
       documentElement: { lang: '', dataset: { page } },
-      location: { pathname: page === 'vertex' ? '/projects/vertex-reddit.html' : '/' },
       title: '',
       querySelector(selector) { return selector === 'meta[name="description"]' ? meta : null; },
       querySelectorAll() { return []; },
     };
   }
 
-  const homeEn = createDocument('home');
-  const vertexEn = createDocument('vertex');
-  const homeZh = createDocument('home');
-  const vertexZh = createDocument('vertex');
-
-  applyLanguage('en', homeEn);
-  applyLanguage('en', vertexEn);
-  applyLanguage('zh', homeZh);
-  applyLanguage('zh', vertexZh);
-
-  assert.equal(homeEn.title, 'Mukun Sun | Bilingual Social Media Marketer');
-  assert.equal(homeEn.meta.content, 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.');
-  assert.equal(vertexEn.title, 'Vertex Reddit Internship Evidence | Mukun Sun');
-  assert.equal(vertexEn.meta.content, "A scoped, bilingual evidence record for Mukun Sun's Reddit community operations internship at Vertex Marketing.");
-  assert.equal(homeZh.title, '孙慕坤｜社交媒体与营销作品集');
-  assert.equal(homeZh.meta.content, '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。');
-  assert.equal(vertexZh.title, 'Vertex Reddit 实习证据 | 孙慕坤');
-  assert.equal(vertexZh.meta.content, '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。');
+  for (const language of ['en', 'zh']) {
+    for (const page of PAGE_KEYS) {
+      const doc = createDocument(page);
+      applyLanguage(language, doc);
+      assert.equal(doc.title, LANGUAGES[language].metadata[page].title, `${language}:${page}`);
+      assert.equal(doc.meta.content, LANGUAGES[language].metadata[page].description, `${language}:${page}`);
+    }
+  }
+  assert.equal(LANGUAGES.en.metadata.home.title, 'Mukun Sun | Communication, Community, and Music');
+  assert.equal(LANGUAGES.en.metadata.home.description, 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.');
+  assert.equal(LANGUAGES.zh.metadata.home.title, '孙慕坤｜传播、社群与音乐');
+  assert.equal(LANGUAGES.zh.metadata.home.description, '孙慕坤的个人网站：社交媒体与社群运营、传播项目、视觉作品、教育经历，以及音乐与摄影。');
+  for (const language of ['en', 'zh']) {
+    for (const page of PAGE_KEYS) {
+      const metadata = LANGUAGES[language].metadata[page];
+      assert.equal(typeof metadata.title, 'string', `${language}:${page} title`);
+      assert.ok(metadata.title.length > 0, `${language}:${page} title`);
+      assert.equal(typeof metadata.description, 'string', `${language}:${page} description`);
+      assert.ok(metadata.description.length > 0, `${language}:${page} description`);
+    }
+  }
 });
 
 test('homepage navigation labels the internship section in both languages', async () => {
@@ -163,5 +166,5 @@ test('page exposes a bilingual control and curated visual archive', async () => 
   assert.match(html, /class="visual-item"[^>]+href="build\/assets\/hotone_pedal\.jpg"/);
   assert.match(html, /<details class="visual-archive"/);
   assert.match(html, /href="build\/assets\/jazz_coast_a\.jpg"/);
-  assert.match(html, /src="i18n\.js\?v=20260729-internships"/);
+  assert.match(html, /src="i18n\.js\?v=20260729-personal-site"/);
 });

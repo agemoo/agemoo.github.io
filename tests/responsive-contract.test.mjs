@@ -10,7 +10,7 @@ async function readContracts() {
   ]);
 }
 
-test('both routes enforce clipping, mobile controls, wrapping, exact cache imports, and English-first boot', async () => {
+test('both routes enforce clipping, mobile controls, wrapping, exact cache imports, and stored-language boot', async () => {
   const [home, detail, i18n] = await readContracts();
   for (const html of [home, detail]) {
     assert.match(html, /html\{[^}]*overflow-x:\s*clip;/);
@@ -20,10 +20,11 @@ test('both routes enforce clipping, mobile controls, wrapping, exact cache impor
     assert.match(html, /<html\s+lang="en"[^>]*data-language="en"/);
     assert.equal((html.match(/i18n\.js\?v=/g) ?? []).length, 1);
   }
-  assert.match(home, /<script type="module" src="i18n\.js\?v=20260729-internships"><\/script>/);
-  assert.match(detail, /<script type="module" src="\.\.\/i18n\.js\?v=20260729-internships"><\/script>/);
+  assert.match(home, /<script type="module" src="i18n\.js\?v=20260729-personal-site"><\/script>/);
+  assert.match(detail, /<script type="module" src="\.\.\/i18n\.js\?v=20260729-personal-site"><\/script>/);
   assert.match(i18n, /export const DEFAULT_LANGUAGE = 'en';/);
-  assert.match(i18n, /export function getInitialLanguage\(\)\s*\{\s*return DEFAULT_LANGUAGE;/);
+  assert.match(i18n, /export function getInitialLanguage\(storage = globalThis\.localStorage\)/);
+  assert.match(i18n, /storage\?\.getItem\(STORAGE_KEY\)/);
 });
 
 test('homepage collapses experience proof and project rows at 60rem', async () => {

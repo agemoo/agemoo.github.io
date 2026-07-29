@@ -1,19 +1,36 @@
 export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'portfolio-language';
-export const I18N_CACHE_KEY = '20260729-internships';
+export const I18N_CACHE_KEY = '20260729-personal-site';
+export const PAGE_KEYS = ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside'];
 
 const en = {
-  title: 'Mukun Sun | Bilingual Social Media Marketer',
-  description: 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
+  title: 'Mukun Sun | Communication, Community, and Music',
+  description: 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.',
   metadata: {
     home: {
-      title: 'Mukun Sun | Bilingual Social Media Marketer',
-      description: 'Bilingual social media marketer with hands-on experience in community strategy, content production, and visual communication for U.S. audiences.',
+      title: 'Mukun Sun | Communication, Community, and Music',
+      description: 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.',
       imageAlt: 'International Museum Day banner designed for Wuhan Museum',
     },
     vertex: {
       title: 'Vertex Reddit Internship Evidence | Mukun Sun',
       description: "A scoped, bilingual evidence record for Mukun Sun's Reddit community operations internship at Vertex Marketing.",
+    },
+    campus: {
+      title: 'Campus Integrated Campaign | Mukun Sun',
+      description: 'Promotion coordination for campus welcome and New Year events across online and offline channels.',
+    },
+    hotel: {
+      title: 'Hotel 脳 Jazz | Mukun Sun',
+      description: 'Event concept, partner coordination, WeChat promotion, and visual identity for a hotel and jazz collaboration.',
+    },
+    visual: {
+      title: 'Selected Visual Work | Mukun Sun',
+      description: 'A selected archive of posters, print design, event visuals, and photography by Mukun Sun.',
+    },
+    outside: {
+      title: 'Outside Work | Mukun Sun',
+      description: 'Music, photography, and places that shape how Mukun Sun pays attention to people and atmosphere.',
     },
   },
   navLabels: { home: 'Primary navigation', vertex: 'Project navigation' },
@@ -179,17 +196,33 @@ const en = {
 };
 
 const zh = {
-  title: '孙慕坤｜社交媒体与营销作品集',
-  description: '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。',
+  title: '孙慕坤｜传播、社群与音乐',
+  description: '孙慕坤的个人网站：社交媒体与社群运营、传播项目、视觉作品、教育经历，以及音乐与摄影。',
   metadata: {
     home: {
-      title: '孙慕坤｜社交媒体与营销作品集',
-      description: '孙慕坤中英双语作品集：社交媒体、活动策划、数据分析、平面设计、摄影与活动营销。',
+      title: '孙慕坤｜传播、社群与音乐',
+      description: '孙慕坤的个人网站：社交媒体与社群运营、传播项目、视觉作品、教育经历，以及音乐与摄影。',
       imageAlt: '为武汉博物馆设计的国际博物馆日活动横幅',
     },
     vertex: {
       title: 'Vertex Reddit 实习证据 | 孙慕坤',
       description: '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。',
+    },
+    campus: {
+      title: '校园整合传播｜孙慕坤',
+      description: '面向校园迎新与新年活动的线上线下宣传协调项目。',
+    },
+    hotel: {
+      title: '酒店 脳 爵士｜孙慕坤',
+      description: '一场酒店与爵士合作活动的概念策划、合作方协调、微信推广与视觉识别。',
+    },
+    visual: {
+      title: '视觉作品精选｜孙慕坤',
+      description: '孙慕坤的海报、印刷设计、活动视觉与摄影作品精选。',
+    },
+    outside: {
+      title: '工作之外｜孙慕坤',
+      description: '音乐、摄影与地方经验，以及它们如何影响孙慕坤对人和氛围的观察。',
     },
   },
   navLabels: { home: '主导航', vertex: '项目导航' },
@@ -357,18 +390,17 @@ const zh = {
 export const LANGUAGES = { en, zh };
 
 function getPageKey(doc) {
-  const explicitPage = doc?.documentElement?.dataset?.page;
-  if (explicitPage === 'vertex') return 'vertex';
-  const pathname = doc?.location?.pathname ?? '';
-  return /\/projects\/vertex-reddit(?:\.html)?\/?$/.test(pathname) ? 'vertex' : 'home';
+  const key = doc?.documentElement?.dataset?.page;
+  return PAGE_KEYS.includes(key) ? key : 'home';
 }
 
 export function normalizeLanguage(value) {
   return value === 'zh' ? 'zh' : DEFAULT_LANGUAGE;
 }
 
-export function getInitialLanguage() {
-  return DEFAULT_LANGUAGE;
+export function getInitialLanguage(storage = globalThis.localStorage) {
+  try { return normalizeLanguage(storage?.getItem(STORAGE_KEY)); }
+  catch { return DEFAULT_LANGUAGE; }
 }
 
 export function applyLanguage(value, doc = globalThis.document, storage = globalThis.localStorage, persist = false) {
@@ -414,7 +446,7 @@ export function applyLanguage(value, doc = globalThis.document, storage = global
 }
 
 function boot() {
-  const language = getInitialLanguage();
+  const language = getInitialLanguage(localStorage);
   applyLanguage(language);
   document.querySelectorAll('[data-lang]').forEach((button) => {
     button.addEventListener('click', () => applyLanguage(button.dataset.lang, document, localStorage, true));
