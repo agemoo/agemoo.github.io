@@ -57,8 +57,30 @@ test('project media uses only approved files at natural dimensions', async () =>
     readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
   ]);
   assert.match(campus, /<img src="\.\.\/assets\/project\/CampusGala\/freshmen_welcome_gala\.jpg" width="1600" height="1067"[^>]*>/);
-  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments" data-enlarge>/);
-  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" data-enlarge>/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments">/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event">/);
+});
+
+test('enhanced Campus, Hotel, and Outside images keep focusable real-file links', async () => {
+  const expectations = [
+    ['projects/campus-campaign.html', '../assets/project/CampusGala/freshmen_welcome_gala.jpg'],
+    ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.png'],
+    ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.jpg'],
+    ['outside-work.html', 'assets/music/performance.jpg'],
+    ['outside-work.html', 'assets/bass1.jpg'],
+    ['outside-work.html', 'assets/bass2.jpg'],
+    ['outside-work.html', 'assets/bass3.jpg'],
+  ];
+
+  for (const [path, source] of expectations) {
+    const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+    const escapedSource = source.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    assert.match(
+      html,
+      new RegExp(`<a class="media-button" href="${escapedSource}" data-enlarge>\\s*<img src="${escapedSource}"`),
+      `${path}: ${source}`,
+    );
+  }
 });
 
 test('selected visual work preserves the approved archive with real image links', async () => {
