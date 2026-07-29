@@ -5,6 +5,127 @@ import { readFile } from 'node:fs/promises';
 const css = await readFile(new URL('../detail.css', import.meta.url), 'utf8');
 const js = await readFile(new URL('../detail.js', import.meta.url), 'utf8');
 
+const routes = [
+  ['projects/campus-campaign.html', 'campus'],
+  ['projects/hotel-jazz.html', 'hotel'],
+  ['projects/visual-work.html', 'visual'],
+  ['outside-work.html', 'outside'],
+];
+
+test('every second-layer route has the shared bilingual shell', async () => {
+  for (const [path, key] of routes) {
+    const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+    assert.match(html, new RegExp(`<html[^>]+data-page="${key}"`));
+    assert.match(html, /href="(?:\.\.\/)?detail\.css"/);
+    assert.match(html, /src="(?:\.\.\/)?detail\.js"/);
+    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260729-personal-site"/);
+    assert.match(html, /data-lang="en"/);
+    assert.match(html, /data-lang="zh"/);
+    assert.match(html, /href="(?:\.\.\/)?index\.html"/);
+  }
+});
+
+test('project pages use the approved facts, metadata, and section order', async () => {
+  const [campus, hotel] = await Promise.all([
+    readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(campus, /<title>Campus Integrated Campaign \| Mukun Sun<\/title>/);
+  assert.match(campus, /<meta name="description" content="Promotion coordination for campus welcome and New Year events across online and offline channels\.">/);
+  assert.match(campus, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/projects\/campus-campaign\.html">/);
+  assert.match(campus, /<header class="detail-hero" id="campus-hero">[\s\S]*?<section class="detail-section" id="campus-context"[\s\S]*?<section class="detail-section" id="campus-contribution"[\s\S]*?<section class="detail-section" id="campus-media"/);
+  assert.match(campus, /Campus Integrated Campaign/);
+  assert.match(campus, /Promotion Team Lead · 2024–2025/);
+  assert.match(campus, /Campus welcome and New Year events needed coordinated promotion across online and offline channels\./);
+  assert.match(campus, /I led the promotion work, adapted content for each platform, and connected on-site activity with online publishing\./);
+  assert.doesNotMatch(campus, /reach|attendance|conversion|team size|team-size/i);
+
+  assert.match(hotel, /<title>Hotel × Jazz \| Mukun Sun<\/title>/);
+  assert.match(hotel, /<meta name="description" content="Event concept, partner coordination, WeChat promotion, and visual identity for a hotel and jazz collaboration\.">/);
+  assert.match(hotel, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/projects\/hotel-jazz\.html">/);
+  assert.match(hotel, /<header class="detail-hero" id="hotel-hero">[\s\S]*?<section class="detail-section" id="hotel-context"[\s\S]*?<section class="detail-section" id="hotel-contribution"[\s\S]*?<section class="detail-section" id="hotel-media"/);
+  assert.match(hotel, /<h1>Hotel × Jazz<\/h1>/);
+  assert.match(hotel, /Campaign &amp; Visual Communication · 2024/);
+  assert.match(hotel, /A balcony performance connected Ni Jazz Bar with Fengmao Andi Hotel around a hotel-and-art event concept\./);
+  assert.match(hotel, /I developed the event concept, coordinated the partners and performance, planned WeChat promotion, and designed a consistent visual identity\./);
+});
+
+test('project media uses only approved files at natural dimensions', async () => {
+  const [campus, hotel] = await Promise.all([
+    readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
+  ]);
+  assert.match(campus, /<img src="\.\.\/assets\/project\/CampusGala\/freshmen_welcome_gala\.jpg" width="1600" height="1067"[^>]*>/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments" data-enlarge>/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" data-enlarge>/);
+});
+
+test('selected visual work preserves the approved archive with real image links', async () => {
+  const html = await readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8');
+  const lead = [
+    ['hotone_main.jpg', 1500, 2120, 'HOTONE · Tenth-Anniversary Poster'],
+    ['jazz_coast_a.jpg', 1300, 1828, 'JAZZ NIGHT · Coastline'],
+    ['trifold_out.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Exterior'],
+  ];
+  const archive = [
+    ['jazz_winter.jpg', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
+    ['hotone_guitar.jpg', 1500, 1656, 'HOTONE · Release Your Musical Passion'],
+    ['hotone_pedal.jpg', 1500, 1928, 'HOTONE · Ampero II Stomp Detail'],
+    ['jazz_coast_b.jpg', 1300, 1828, 'JAZZ NIGHT · Variation'],
+    ['piano_a.jpg', 1300, 1838, 'PIANO DUO · Main Poster'],
+    ['piano_b.jpg', 1300, 1828, 'PIANO DUO · Variation'],
+    ['trifold_in.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Interior'],
+    ['banner_museum.jpg', 1084, 437, 'International Museum Day · Wuhan Museum'],
+    ['bass1.jpg', 1100, 1467, 'Bass · Night Study'],
+    ['bass2.jpg', 1100, 1466, 'Bass · Study 02'],
+    ['bass3.jpg', 1100, 1467, 'Bass · Study 03'],
+  ];
+
+  assert.match(html, /<header class="detail-hero" id="visual-hero">[\s\S]*?<section class="detail-section" id="visual-lead"[\s\S]*?<section class="detail-section" id="visual-archive"/);
+  assert.match(html, /A selected archive of event, product, print, and photographic work\./);
+  for (const [file, width, height, caption] of [...lead, ...archive]) {
+    assert.match(html, new RegExp(`<a class="media-button" href="\\.\\.\\/assets\\/${file}" data-enlarge>`));
+    assert.match(html, new RegExp(`<img src="\\.\\.\\/assets\\/${file}" width="${width}" height="${height}"`));
+    assert.ok(html.includes(`<figcaption>${caption}</figcaption>`), caption);
+  }
+  assert.ok(html.indexOf('hotone_main.jpg') < html.indexOf('jazz_coast_a.jpg'));
+  assert.ok(html.indexOf('jazz_coast_a.jpg') < html.indexOf('trifold_out.jpg'));
+  assert.ok(html.indexOf('trifold_out.jpg') < html.indexOf('jazz_winter.jpg'));
+  assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg/);
+});
+
+test('outside work keeps three restrained chapters in the approved order', async () => {
+  const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
+  assert.match(html, /<title>Outside Work \| Mukun Sun<\/title>/);
+  assert.match(html, /<meta name="description" content="Music, photography, and places that shape how Mukun Sun pays attention to people and atmosphere\.">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/outside-work\.html">/);
+  assert.match(html, /<section class="detail-section" id="outside-music"[\s\S]*?<section class="detail-section" id="outside-photography"[\s\S]*?<section class="detail-section" id="outside-places"/);
+  assert.match(html, /I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band\. Music has also led me into concert planning and event coordination\./);
+  assert.match(html, /Photography is another way I study light, objects, and atmosphere\./);
+  assert.match(html, /Travel and museums are another way I pay attention to place, design, and atmosphere\. This section will grow through original photographs and short notes rather than travel-guide summaries\./);
+  const approved = [
+    ['assets/music/performance.jpg', 896, 1193],
+    ['assets/bass1.jpg', 1100, 1467],
+    ['assets/bass2.jpg', 1100, 1466],
+    ['assets/bass3.jpg', 1100, 1467],
+  ];
+  for (const [file, width, height] of approved) {
+    assert.match(html, new RegExp(`<img src="${file.replaceAll('/', '\\/')}" width="${width}" height="${height}"`));
+  }
+  assert.doesNotMatch(html, /src="[^"]*(?:professor|classroom|group|grand_ball_with_friends|with_friends)/i);
+});
+
+test('detail-page enhancement keeps content and originals available without JavaScript', async () => {
+  for (const [path, key] of routes) {
+    const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+    assert.doesNotMatch(html, /data-reveal/);
+    assert.match(html, new RegExp(`<dialog class="image-dialog" id="${key}-dialog"`));
+    assert.match(html, /data-dialog-close/);
+    assert.match(html, new RegExp(`<footer class="footer" id="${key}-footer"`));
+  }
+});
+
 test('detail shell uses locked tokens and balanced safe grids', () => {
   assert.match(css, /@import url\(['"]tokens\.css['"]\)/);
   assert.doesNotMatch(css, /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(|oklch\(/i);

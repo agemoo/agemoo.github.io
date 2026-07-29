@@ -34,9 +34,13 @@ test('both languages cover the same selector set and corrected facts', () => {
 });
 
 test('each translation selector is rooted in its intended route', async () => {
-  const [home, detail] = await Promise.all([
+  const [home, vertex, campus, hotel, visual, outside] = await Promise.all([
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8'),
+    readFile(new URL('../outside-work.html', import.meta.url), 'utf8'),
   ]);
   const selectors = new Set([
     ...Object.keys(LANGUAGES.en.copy),
@@ -44,12 +48,125 @@ test('each translation selector is rooted in its intended route', async () => {
   ]);
   const routes = {
     home: createStaticSelectorDocument(home),
-    detail: createStaticSelectorDocument(detail),
+    vertex: createStaticSelectorDocument(vertex),
+    campus: createStaticSelectorDocument(campus),
+    hotel: createStaticSelectorDocument(hotel),
+    visual: createStaticSelectorDocument(visual),
+    outside: createStaticSelectorDocument(outside),
   };
   for (const selector of selectors) {
-    const target = selector.startsWith('#vertex') ? routes.detail : routes.home;
-    assert.equal(target.has(selector), true, selector);
+    const route = selector.startsWith('#vertex-') ? 'vertex'
+      : selector.startsWith('#campus-') ? 'campus'
+        : selector.startsWith('#hotel-') ? 'hotel'
+          : selector.startsWith('#visual-') ? 'visual'
+            : /^#outside-(?:nav|hero|music|photography|places|dialog|footer)\b/.test(selector) ? 'outside'
+              : 'home';
+    assert.equal(routes[route].has(selector), true, `${route}: ${selector}`);
   }
+});
+
+test('second-layer dictionaries use the approved bilingual claims', () => {
+  const matrix = [
+    ['#campus-context p', 'Campus welcome and New Year events needed coordinated promotion across online and offline channels.', '校园迎新与新年活动需要在线上线下渠道之间保持协调一致的宣传。'],
+    ['#campus-contribution p', 'I led the promotion work, adapted content for each platform, and connected on-site activity with online publishing.', '我负责宣传工作的组织协调，根据不同平台调整内容，并衔接现场活动与线上发布。'],
+    ['#hotel-context p', 'A balcony performance connected Ni Jazz Bar with Fengmao Andi Hotel around a hotel-and-art event concept.', '一场阳台演出以“酒店与艺术”为概念，连接了 Ni Jazz Bar 与风貌安坻酒店。'],
+    ['#hotel-contribution p', 'I developed the event concept, coordinated the partners and performance, planned WeChat promotion, and designed a consistent visual identity.', '我构思活动概念，协调合作方与演出，策划微信推广，并设计统一的视觉识别。'],
+    ['#visual-hero .detail-deck', 'A selected archive of event, product, print, and photographic work.', '一组活动、产品、印刷与摄影作品精选。'],
+    ['#outside-music p', 'I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band. Music has also led me into concert planning and event coordination.', '我在 SUU 爵士大乐队演奏低音提琴，并在 T-Bird Marching Band 演奏电贝斯。音乐也让我参与音乐会策划与活动协调。'],
+    ['#outside-photography p', 'Photography is another way I study light, objects, and atmosphere.', '摄影是我观察光线、物体与氛围的另一种方式。'],
+    ['#outside-places p', 'Travel and museums are another way I pay attention to place, design, and atmosphere. This section will grow through original photographs and short notes rather than travel-guide summaries.', '旅行与博物馆让我继续观察地方、设计与氛围。这里会逐步加入原创照片与短记，而不是旅行攻略式的汇总。'],
+  ];
+  for (const [selector, english, chinese] of matrix) {
+    assert.equal(LANGUAGES.en.copy[selector], english, selector);
+    assert.equal(LANGUAGES.zh.copy[selector], chinese, selector);
+  }
+  assert.doesNotMatch(JSON.stringify(matrix), /19,000|525|5,250|\+17%|~200/);
+});
+
+test('second-layer route copy and attributes are selector-scoped and complete', () => {
+  const copyRoots = {
+    campus: [
+      '#campus-nav .brand', '#campus-nav .links', '#campus-nav .compact-nav summary', '#campus-nav .compact-links', '#campus-nav .back-link',
+      '#campus-hero h1', '#campus-hero .detail-eyebrow', '#campus-hero .detail-deck', '#campus-hero .detail-meta',
+      '#campus-context h2', '#campus-context p', '#campus-contribution h2', '#campus-contribution p',
+      '#campus-media h2', '#campus-media figcaption', '#campus-footer span', '#campus-footer a',
+    ],
+    hotel: [
+      '#hotel-nav .brand', '#hotel-nav .links', '#hotel-nav .compact-nav summary', '#hotel-nav .compact-links', '#hotel-nav .back-link',
+      '#hotel-hero h1', '#hotel-hero .detail-eyebrow', '#hotel-hero .detail-deck', '#hotel-hero .detail-meta',
+      '#hotel-context h2', '#hotel-context p', '#hotel-contribution h2', '#hotel-contribution p', '#hotel-media h2',
+      '#hotel-media .detail-media:nth-child(1) figcaption', '#hotel-media .detail-media:nth-child(2) figcaption', '#hotel-footer span', '#hotel-footer a',
+    ],
+    visual: [
+      '#visual-nav .brand', '#visual-nav .links', '#visual-nav .compact-nav summary', '#visual-nav .compact-links', '#visual-nav .back-link',
+      '#visual-hero h1', '#visual-hero .detail-eyebrow', '#visual-hero .detail-deck', '#visual-lead h2',
+      ...Array.from({ length: 3 }, (_, index) => `#visual-lead .detail-media:nth-child(${index + 1}) figcaption`),
+      '#visual-archive h2',
+      ...Array.from({ length: 11 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) figcaption`),
+      '#visual-footer span', '#visual-footer a',
+    ],
+    outside: [
+      '#outside-nav .brand', '#outside-nav .links', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-nav .back-link',
+      '#outside-hero h1', '#outside-hero .detail-eyebrow', '#outside-hero .detail-deck',
+      '#outside-music h2', '#outside-music p', '#outside-music figcaption',
+      '#outside-photography h2', '#outside-photography p',
+      ...Array.from({ length: 3 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) figcaption`),
+      '#outside-places h2', '#outside-places p', '#outside-footer span', '#outside-footer a',
+    ],
+  };
+  for (const [route, selectors] of Object.entries(copyRoots)) {
+    for (const selector of selectors) {
+      assert.ok(LANGUAGES.en.copy[selector], `${route}:en:${selector}`);
+      assert.ok(LANGUAGES.zh.copy[selector], `${route}:zh:${selector}`);
+    }
+  }
+
+  const attributeSelectors = [
+    '#campus-nav .lang-switch', '#campus-nav .compact-nav summary', '#campus-nav .compact-links', '#campus-media img', '#campus-dialog', '#campus-dialog .dialog-close',
+    '#hotel-nav .lang-switch', '#hotel-nav .compact-nav summary', '#hotel-nav .compact-links', '#hotel-media .detail-media:nth-child(1) img', '#hotel-media .detail-media:nth-child(2) img', '#hotel-dialog', '#hotel-dialog .dialog-close',
+    '#visual-nav .lang-switch', '#visual-nav .compact-nav summary', '#visual-nav .compact-links',
+    ...Array.from({ length: 3 }, (_, index) => `#visual-lead .detail-media:nth-child(${index + 1}) img`),
+    ...Array.from({ length: 11 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) img`),
+    '#visual-dialog', '#visual-dialog .dialog-close',
+    '#outside-nav .lang-switch', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-music img',
+    ...Array.from({ length: 3 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) img`),
+    '#outside-dialog', '#outside-dialog .dialog-close',
+  ];
+  for (const selector of attributeSelectors) {
+    assert.ok(LANGUAGES.en.attributes[selector], `en:${selector}`);
+    assert.ok(LANGUAGES.zh.attributes[selector], `zh:${selector}`);
+  }
+  assert.equal(LANGUAGES.en.attributes['#hotel-media .detail-media:nth-child(1) img'].alt, 'Wide Hotel × Jazz event composition showing the performance and instruments');
+  assert.equal(LANGUAGES.zh.attributes['#hotel-media .detail-media:nth-child(1) img'].alt, '酒店 × 爵士活动全景，画面包含演出与乐器');
+  assert.equal(LANGUAGES.en.attributes['#visual-dialog .dialog-close']['aria-label'], 'Close image');
+  assert.equal(LANGUAGES.zh.attributes['#visual-dialog .dialog-close']['aria-label'], '关闭图片');
+});
+
+test('detail navigation labels are route-aware in both languages', () => {
+  const expected = {
+    en: { campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', outside: 'Outside work navigation' },
+    zh: { campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', outside: '工作之外导航' },
+  };
+  for (const [language, labels] of Object.entries(expected)) {
+    for (const [page, label] of Object.entries(labels)) {
+      assert.equal(LANGUAGES[language].navLabels[page], label, `${language}:${page}`);
+    }
+  }
+
+  const nav = { label: '', setAttribute(name, value) { if (name === 'aria-label') this.label = value; } };
+  const meta = { content: '' };
+  const doc = {
+    documentElement: { lang: '', dataset: { page: 'visual' } },
+    title: '',
+    querySelector(selector) {
+      if (selector === 'meta[name="description"]') return meta;
+      if (selector === '.nav, .detail-nav') return nav;
+      return null;
+    },
+    querySelectorAll() { return []; },
+  };
+  applyLanguage('zh', doc, null);
+  assert.equal(nav.label, '视觉作品导航');
 });
 
 test('selector validation rejects broken ancestry and nth-child combinations', async () => {
@@ -95,7 +212,8 @@ test('homepage dictionaries own the approved first-layer selectors', () => {
   }
   assert.equal(LANGUAGES.en.copy['#projects .project-row:nth-child(3) .project-copy strong'], 'Selected Visual Work');
   assert.equal(LANGUAGES.en.copy['#contact .contact-intro'], 'You can reach me by email or LinkedIn.');
-  assert.doesNotMatch(JSON.stringify(LANGUAGES.en.copy), /capability-row|visual-archive|project-context|project-contribution/);
+  const dictionarySelectors = Object.keys(LANGUAGES.en.copy);
+  assert.equal(dictionarySelectors.some((selector) => /capability-row|\.visual-archive|project-context|project-contribution/.test(selector)), false);
 });
 
 test('applyLanguage updates content, metadata, state, and persistence', () => {
