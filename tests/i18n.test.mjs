@@ -70,7 +70,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 
 test('language module declares the shared cache key', async () => {
   const module = await import('../i18n.js');
-  assert.equal(module.I18N_CACHE_KEY, '20260722-index-redesign');
+  assert.equal(module.I18N_CACHE_KEY, '20260729-internships');
 });
 
 test('capability ledger has matching delivered-work rows in both languages', () => {
@@ -145,11 +145,13 @@ test('applyLanguage uses page-specific metadata in both languages', () => {
   assert.equal(vertexZh.meta.content, '孙慕坤在 Vertex Marketing 参与 Reddit 社区运营实习的双语证据记录，明确区分代表账号历史资产与实习期间新增成果。');
 });
 
-test('homepage navigation links directly to Experience in both languages', async () => {
+test('homepage navigation labels the internship section in both languages', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /href="#experience">Experience<\/a>/);
-  assert.match(LANGUAGES.en.copy['#nav .links'], /href="#experience">Experience<\/a>/);
-  assert.match(LANGUAGES.zh.copy['#nav .links'], /href="#experience">工作经历<\/a>/);
+  assert.match(html, /href="#experience">Internships<\/a>/);
+  assert.match(LANGUAGES.en.copy['#nav .links'], /href="#experience">Internships<\/a>/);
+  assert.match(LANGUAGES.en.copy['#nav .compact-links'], /href="#experience">Internships<\/a>/);
+  assert.match(LANGUAGES.zh.copy['#nav .links'], /href="#experience">实习经历<\/a>/);
+  assert.match(LANGUAGES.zh.copy['#nav .compact-links'], /href="#experience">实习经历<\/a>/);
 });
 
 test('page exposes a bilingual control and curated visual archive', async () => {
