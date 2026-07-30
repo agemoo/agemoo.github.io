@@ -36,9 +36,11 @@ test('Music is a standalone bilingual route with a full-width timeline', async (
   assert.match(html, /<section[^>]+id="music-intro"/);
   assert.match(html, /<section[^>]+id="music-timeline"/);
   assert.match(html, /<section[^>]+id="music-study"/);
+  assert.match(html, /<section[^>]+class="[^"]*\bmusic-page-intro\b[^"]*"[^>]+id="music-intro"/);
   assert.equal((html.match(/class="music-event(?:\s|\")/g) ?? []).length, 9);
   assert.match(html, /https:\/\/www\.youtube\.com\/live\/OFijT_vkp8c\?si=OqEdKbXtynljWJtd/);
   assert.match(css, /\.music-page-content\{[^}]*grid-column:1\/-1/);
+  assert.match(css, /\.music-page-intro\{[^}]*grid-template-columns:minmax\(0,\.72fr\) minmax\(0,1\.28fr\)/);
   assert.match(css, /\.music-event--media\{[^}]*grid-template-columns:minmax\(132px,[^)]+\) minmax\(0,1fr\) minmax\(240px,[^)]+\)/);
   assert.match(css, /\.music-event:not\(\.music-event--media\) \.music-event-copy\{[^}]*grid-column:2\/-1/);
 });
