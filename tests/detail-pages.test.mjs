@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { mountInitialFragmentNavigation } from '../detail.js';
 
 const css = await readFile(new URL('../detail.css', import.meta.url), 'utf8');
 const js = await readFile(new URL('../detail.js', import.meta.url), 'utf8');
@@ -10,7 +9,7 @@ const routes = [
   ['projects/campus-campaign.html', 'campus'],
   ['projects/hotel-jazz.html', 'hotel'],
   ['projects/visual-work.html', 'visual'],
-  ['outside-work.html', 'outside'],
+  ['music.html', 'music'],
 ];
 
 test('every second-layer route has the shared bilingual shell', async () => {
@@ -62,21 +61,16 @@ test('project media uses only approved files at natural dimensions', async () =>
   assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" loading="lazy" decoding="async">/);
 });
 
-test('enhanced Campus, Hotel, and Outside images keep focusable real-file links', async () => {
+test('enhanced Campus, Hotel, and Music images keep focusable real-file links', async () => {
   const expectations = [
     ['projects/campus-campaign.html', '../assets/project/CampusGala/freshmen_welcome_gala.jpg'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.png'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.jpg'],
-    ['outside-work.html', 'assets/music/suu_jazz_fest/performance.jpg'],
-    ['outside-work.html', 'assets/music/grand_ball/grand_ball.jpg'],
-    ['outside-work.html', 'assets/music/nomination/with_friends.jpg'],
-    ['outside-work.html', 'assets/music/jazz_concert/jazz_concert.jpg'],
-    ['outside-work.html', 'assets/music/welcome-gala/freshmen_welcome_gala.jpg'],
-    ['outside-work.html', 'assets/photography/building.webp'],
-    ['outside-work.html', 'assets/photography/chongqing.webp'],
-    ['outside-work.html', 'assets/photography/santa_monica_beach.webp'],
-    ['outside-work.html', 'assets/photography/tongren.webp'],
-    ['outside-work.html', 'assets/photography/walter_disney.webp'],
+    ['music.html', 'assets/music/suu_jazz_fest/performance.jpg'],
+    ['music.html', 'assets/music/grand_ball/grand_ball.jpg'],
+    ['music.html', 'assets/music/nomination/with_friends.jpg'],
+    ['music.html', 'assets/music/jazz_concert/jazz_concert.jpg'],
+    ['music.html', 'assets/music/welcome-gala/freshmen_welcome_gala.jpg'],
   ];
 
   for (const [path, source] of expectations) {
@@ -125,36 +119,29 @@ test('project detail titles preserve whole words at a coordinated display scale'
   assert.match(css, /html\[data-page="campus"\][^,]*,html\[data-page="hotel"\][^,]*,html\[data-page="visual"\][^{]*\{[^}]*font-size:clamp\(3rem,5vw,5rem\);[^}]*overflow-wrap:anywhere;[^}]*word-break:normal;[^}]*hyphens:none;/);
 });
 
-test('outside work keeps Music, Photography, and Travel in the approved order', async () => {
-  const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
-  assert.match(html, /<title>Outside Work \| Mukun Sun<\/title>/);
-  assert.match(html, /<meta name="description" content="Music, photography, and travel that shape how Mukun Sun pays attention to people and atmosphere\.">/);
-  assert.match(html, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/outside-work\.html">/);
-  assert.match(html, /<section class="detail-section" id="outside-music"[\s\S]*?<section class="detail-section" id="outside-photography"[\s\S]*?<section class="detail-section" id="outside-travel"/);
+test('music route keeps the approved content and media', async () => {
+  const html = await readFile(new URL('../music.html', import.meta.url), 'utf8');
+  assert.match(html, /<title>Music \| Mukun Sun<\/title>/);
+  assert.match(html, /<meta name="description" content="Performances, music projects, and study in upright and electric bass by Mukun Sun\.">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/music\.html">/);
+  assert.match(html, /<header class="detail-hero" id="music-hero"[^>]*>[\s\S]*?<section[^>]+id="music-intro"[\s\S]*?<section[^>]+id="music-timeline"[\s\S]*?<section[^>]+id="music-study"/);
   assert.match(html, /I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band\./);
-  assert.match(html, /Photography is another way I study light, objects, and atmosphere\./);
-  assert.match(html, /Travel and museums are another way I pay attention to place, design, and atmosphere\. This section will grow through original photographs and short notes rather than travel-guide summaries\./);
   const approved = [
     ['assets/music/suu_jazz_fest/performance.jpg', 896, 1193],
     ['assets/music/grand_ball/grand_ball.jpg', 1279, 1706],
     ['assets/music/nomination/with_friends.jpg', 1279, 1706],
     ['assets/music/jazz_concert/jazz_concert.jpg', 1706, 1279],
     ['assets/music/welcome-gala/freshmen_welcome_gala.jpg', 1440, 960],
-    ['assets/photography/building.webp', 1448, 1086],
-    ['assets/photography/chongqing.webp', 1086, 1448],
-    ['assets/photography/santa_monica_beach.webp', 1350, 1800],
-    ['assets/photography/tongren.webp', 1086, 1448],
-    ['assets/photography/walter_disney.webp', 1086, 1448],
   ];
   for (const [file, width, height] of approved) {
     assert.match(html, new RegExp(`<img src="${file.replaceAll('/', '\\/')}" width="${width}" height="${height}"`));
   }
   assert.doesNotMatch(html, /assets\/music\/performance\.jpg|grand_ball_with_friends\.jpg/i);
-  assert.doesNotMatch(html, /已生成图像|outside-places|>Places</);
+  assert.doesNotMatch(html, /已生成图像|outside-photography|outside-travel|>Places</);
 });
 
 test('music history presents verified performances, production work, and study in reverse chronology', async () => {
-  const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
+  const html = await readFile(new URL('../music.html', import.meta.url), 'utf8');
   const orderedIds = [
     'music-artist-finalist', 'music-student-center', 'music-grand-ball', 'music-tbird',
     'music-jazz-fest', 'music-campus-concert', 'music-welcome-gala', 'music-ni-jazz-bar',
@@ -177,8 +164,8 @@ test('detail routes expose no-JS content and mount live reveal hooks', async () 
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
     assert.match(html, new RegExp(`<html lang="en" class="no-js" data-language="en" data-page="${key}">`));
     assert.match(html, new RegExp(`<header class="detail-hero" id="${key}-hero" data-reveal>`));
-    const sections = html.match(/<section class="detail-section"[^>]*>/g) ?? [];
-    const media = html.match(/<figure class="detail-media"[^>]*>/g) ?? [];
+    const sections = html.match(/<section class="[^"]*\bdetail-section\b[^"]*"[^>]*>/g) ?? [];
+    const media = html.match(/<figure class="[^"]*\bdetail-media\b[^"]*"[^>]*>/g) ?? [];
     assert.ok(sections.length > 0, `${path}: sections`);
     assert.ok(media.length > 0, `${path}: media`);
     assert.equal(sections.every((tag) => tag.includes('data-reveal')), true, `${path}: section reveals`);
@@ -222,61 +209,6 @@ test('image dialog supports keyboard close and focus restoration', () => {
   assert.match(js, /event\.key === 'Escape'/);
   assert.match(js, /previousFocus\?\.focus\(\)/);
   assert.match(js, /dialog\.close\(\)/);
-});
-
-test('Outside Work captures only approved initial fragments before body parsing', async () => {
-  const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
-  assert.match(html, /window\.__initialOutsideHash = window\.location\.hash/);
-  for (const hash of ['#outside-music', '#outside-photography', '#outside-travel']) assert.match(html, new RegExp(hash));
-  assert.match(html, /window\.history\.replaceState\(null, '', window\.location\.pathname \+ window\.location\.search\)/);
-  assert.doesNotMatch(html, /#outside-places/);
-});
-
-test('initial fragment enhancement scrolls smoothly only for motion-capable desktop', () => {
-  const calls = [];
-  const frames = [];
-  const target = {
-    classList: { add: (value) => calls.push(['class', value]) },
-    scrollIntoView: (value) => calls.push(['scroll', value]),
-  };
-  const view = {
-    __initialOutsideHash: '#outside-photography',
-    location: { pathname: '/outside-work.html', search: '?lang=en' },
-    history: { replaceState: (...args) => calls.push(['history', ...args]) },
-    matchMedia: () => ({ matches: true }),
-  };
-  const mounted = mountInitialFragmentNavigation({
-    window: view,
-    document: { querySelector: (selector) => selector === '#outside-photography' ? target : null },
-    requestAnimationFrame: (callback) => frames.push(callback),
-  });
-  assert.equal(mounted, true);
-  frames.shift()();
-  frames.shift()();
-  assert.deepEqual(calls.find(([type]) => type === 'scroll'), ['scroll', { behavior: 'smooth', block: 'start' }]);
-  assert.deepEqual(calls.find(([type]) => type === 'history'), ['history', null, '', '/outside-work.html?lang=en#outside-photography']);
-});
-
-test('initial fragment enhancement falls back to auto and ignores invalid targets', () => {
-  const calls = [];
-  const target = { classList: { add() {} }, scrollIntoView: (value) => calls.push(value) };
-  const immediate = (callback) => callback();
-  const base = {
-    location: { pathname: '/outside-work.html', search: '' },
-    history: { replaceState() {} },
-    matchMedia: () => ({ matches: false }),
-  };
-  assert.equal(mountInitialFragmentNavigation({
-    window: { ...base, __initialOutsideHash: '#outside-travel' },
-    document: { querySelector: () => target },
-    requestAnimationFrame: immediate,
-  }), true);
-  assert.deepEqual(calls.at(-1), { behavior: 'auto', block: 'start' });
-  assert.equal(mountInitialFragmentNavigation({
-    window: { ...base, __initialOutsideHash: '#outside-invalid' },
-    document: { querySelector: () => target },
-    requestAnimationFrame: immediate,
-  }), false);
 });
 
 test('detail navigation exposes a 44px compact section control at narrow widths', () => {

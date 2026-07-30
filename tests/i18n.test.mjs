@@ -37,13 +37,13 @@ test('both languages cover the same selector set and corrected facts', () => {
 });
 
 test('each translation selector is rooted in its intended route', async () => {
-  const [home, vertex, campus, hotel, visual, outside] = await Promise.all([
+  const [home, vertex, campus, hotel, visual, music] = await Promise.all([
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8'),
-    readFile(new URL('../outside-work.html', import.meta.url), 'utf8'),
+    readFile(new URL('../music.html', import.meta.url), 'utf8'),
   ]);
   const selectors = new Set([
     ...Object.keys(LANGUAGES.en.copy),
@@ -55,14 +55,14 @@ test('each translation selector is rooted in its intended route', async () => {
     campus: createStaticSelectorDocument(campus),
     hotel: createStaticSelectorDocument(hotel),
     visual: createStaticSelectorDocument(visual),
-    outside: createStaticSelectorDocument(outside),
+    music: createStaticSelectorDocument(music),
   };
   for (const selector of selectors) {
     const route = selector.startsWith('#vertex-') ? 'vertex'
       : selector.startsWith('#campus-') ? 'campus'
         : selector.startsWith('#hotel-') ? 'hotel'
           : selector.startsWith('#visual-') ? 'visual'
-            : /^(?:#outside-(?:nav|hero|music|photography|travel|dialog|footer)\b|#music-)/.test(selector) ? 'outside'
+            : selector.startsWith('#music-') ? 'music'
               : 'home';
     assert.equal(routes[route].has(selector), true, `${route}: ${selector}`);
   }
@@ -75,9 +75,7 @@ test('second-layer dictionaries use the approved bilingual claims', () => {
     ['#hotel-context p', 'A balcony performance connected Ni Jazz Bar with Fengmao Andi Hotel around a hotel-and-art event concept.', '一场阳台演出以“酒店与艺术”为概念，连接了 Ni Jazz Bar 与风貌安坻酒店。'],
     ['#hotel-contribution p', 'I developed the event concept, coordinated the partners and performance, planned WeChat promotion, and designed a consistent visual identity.', '我构思活动概念，协调合作方与演出，策划微信推广，并设计统一的视觉识别。'],
     ['#visual-hero .detail-deck', 'A selected archive of event, product, print, and photographic work.', '一组活动、产品、印刷与摄影作品精选。'],
-    ['#outside-music .music-intro-copy', 'I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band.', '我演奏低音提琴和电贝斯，但很多音乐工作发生在登台之前：编曲、组织排练、协调场地，以及围绕一支乐队完成整场活动。'],
-    ['#outside-photography p', 'Photography is another way I study light, objects, and atmosphere.', '摄影是我观察光线、物体与氛围的另一种方式。'],
-    ['#outside-travel p', 'Travel and museums are another way I pay attention to place, design, and atmosphere. This section will grow through original photographs and short notes rather than travel-guide summaries.', '旅行与博物馆让我继续观察地点、设计与氛围。这里会逐步加入原创照片与短记，而不是旅行攻略式的汇总。'],
+    ['#music-intro .music-intro-copy', 'I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band.', '我演奏低音提琴和电贝斯，但很多音乐工作发生在登台之前：编曲、组织排练、协调场地，以及围绕一支乐队完成整场活动。'],
   ];
   for (const [selector, english, chinese] of matrix) {
     assert.equal(LANGUAGES.en.copy[selector], english, selector);
@@ -119,24 +117,21 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       ...Array.from({ length: 8 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) figcaption`),
       '#visual-footer span', '#visual-footer a',
     ],
-    outside: [
-      '#outside-nav .brand', '#outside-nav .links', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-nav .back-link',
-      '#outside-hero h1', '#outside-hero .detail-eyebrow', '#outside-hero .detail-deck',
-      '#outside-music h2', '#outside-music .music-intro-copy', '#outside-music .music-lead figcaption',
-      '#outside-music .music-history-label--performances',
-      '#music-artist-finalist .music-entry-meta', '#music-artist-finalist h3', '#music-artist-finalist .music-entry-description', '#music-artist-finalist figcaption',
-      '#music-student-center .music-entry-meta', '#music-student-center h3', '#music-student-center p',
-      '#music-grand-ball .music-entry-meta', '#music-grand-ball h3', '#music-grand-ball .music-entry-description', '#music-grand-ball figcaption',
-      '#music-tbird .music-entry-meta', '#music-tbird h3', '#music-tbird p',
-      '#music-jazz-fest .music-entry-meta', '#music-jazz-fest h3', '#music-jazz-fest p', '#music-jazz-fest .music-watch',
-      '#music-campus-concert .music-entry-meta', '#music-campus-concert h3', '#music-campus-concert .music-entry-description', '#music-campus-concert figcaption',
-      '#music-welcome-gala .music-entry-meta', '#music-welcome-gala h3', '#music-welcome-gala .music-entry-description', '#music-welcome-gala figcaption',
-      '#music-ni-jazz-bar .music-entry-meta', '#music-ni-jazz-bar h3', '#music-ni-jazz-bar p',
-      '#music-fashion-show .music-entry-meta', '#music-fashion-show h3', '#music-fashion-show p',
-      '#outside-music .music-history-label--study', '#music-study-sun time', '#music-study-sun p', '#music-study-burns time', '#music-study-burns p',
-      '#outside-photography h2', '#outside-photography p',
-      ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) figcaption`),
-      '#outside-travel h2', '#outside-travel p', '#outside-footer span', '#outside-footer a',
+    music: [
+      '#music-nav .brand', '#music-nav .links', '#music-nav .compact-nav summary', '#music-nav .compact-links', '#music-nav .back-link',
+      '#music-hero h1', '#music-hero .detail-eyebrow', '#music-hero .detail-deck',
+      '#music-intro h2', '#music-intro .music-intro-copy', '#music-intro .music-lead figcaption', '#music-timeline-title',
+      '#music-artist-finalist .music-event-meta', '#music-artist-finalist h2', '#music-artist-finalist .music-event-copy p', '#music-artist-finalist figcaption',
+      '#music-student-center .music-event-meta', '#music-student-center h2', '#music-student-center p',
+      '#music-grand-ball .music-event-meta', '#music-grand-ball h2', '#music-grand-ball .music-event-copy p', '#music-grand-ball figcaption',
+      '#music-tbird .music-event-meta', '#music-tbird h2', '#music-tbird p',
+      '#music-jazz-fest .music-event-meta', '#music-jazz-fest h2', '#music-jazz-fest p', '#music-jazz-fest .music-watch',
+      '#music-campus-concert .music-event-meta', '#music-campus-concert h2', '#music-campus-concert .music-event-copy p', '#music-campus-concert figcaption',
+      '#music-welcome-gala .music-event-meta', '#music-welcome-gala h2', '#music-welcome-gala .music-event-copy p', '#music-welcome-gala figcaption',
+      '#music-ni-jazz-bar .music-event-meta', '#music-ni-jazz-bar h2', '#music-ni-jazz-bar p',
+      '#music-fashion-show .music-event-meta', '#music-fashion-show h2', '#music-fashion-show p',
+      '#music-study h2', '#music-study-sun time', '#music-study-sun p', '#music-study-burns time', '#music-study-burns p',
+      '#music-footer span', '#music-footer a',
     ],
   };
   for (const [route, selectors] of Object.entries(copyRoots)) {
@@ -153,10 +148,9 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     ...Array.from({ length: 3 }, (_, index) => `#visual-lead .detail-media:nth-child(${index + 1}) img`),
     ...Array.from({ length: 8 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) img`),
     '#visual-dialog', '#visual-dialog .dialog-close',
-    '#outside-nav .lang-switch', '#outside-nav .compact-nav summary', '#outside-nav .compact-links',
-    '#outside-music .music-lead img', '#music-artist-finalist img', '#music-grand-ball img', '#music-campus-concert img', '#music-welcome-gala img',
-    ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) img`),
-    '#outside-dialog', '#outside-dialog .dialog-close',
+    '#music-nav .lang-switch', '#music-nav .compact-nav summary', '#music-nav .compact-links',
+    '#music-intro .music-lead img', '#music-artist-finalist img', '#music-grand-ball img', '#music-campus-concert img', '#music-welcome-gala img',
+    '#music-dialog', '#music-dialog .dialog-close',
   ];
   for (const selector of attributeSelectors) {
     assert.ok(LANGUAGES.en.attributes[selector], `en:${selector}`);
@@ -170,8 +164,8 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
 
 test('detail navigation labels are route-aware in both languages', () => {
   const expected = {
-    en: { campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', outside: 'Outside work navigation' },
-    zh: { campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', outside: '工作之外导航' },
+    en: { campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', music: 'Music navigation' },
+    zh: { campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', music: '音乐导航' },
   };
   for (const [language, labels] of Object.entries(expected)) {
     for (const [page, label] of Object.entries(labels)) {
@@ -214,7 +208,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 });
 
 test('language module declares all public page keys and the shared cache key', () => {
-  assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside']);
+  assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel']);
   assert.equal(I18N_CACHE_KEY, '20260730-music-history');
 });
 
