@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { mountInitialFragmentNavigation } from '../detail.js';
 
 const css = await readFile(new URL('../detail.css', import.meta.url), 'utf8');
 const js = await readFile(new URL('../detail.js', import.meta.url), 'utf8');
@@ -193,6 +194,61 @@ test('image dialog supports keyboard close and focus restoration', () => {
   assert.match(js, /event\.key === 'Escape'/);
   assert.match(js, /previousFocus\?\.focus\(\)/);
   assert.match(js, /dialog\.close\(\)/);
+});
+
+test('Outside Work captures only approved initial fragments before body parsing', async () => {
+  const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
+  assert.match(html, /window\.__initialOutsideHash = window\.location\.hash/);
+  for (const hash of ['#outside-music', '#outside-photography', '#outside-travel']) assert.match(html, new RegExp(hash));
+  assert.match(html, /window\.history\.replaceState\(null, '', window\.location\.pathname \+ window\.location\.search\)/);
+  assert.doesNotMatch(html, /#outside-places/);
+});
+
+test('initial fragment enhancement scrolls smoothly only for motion-capable desktop', () => {
+  const calls = [];
+  const frames = [];
+  const target = {
+    classList: { add: (value) => calls.push(['class', value]) },
+    scrollIntoView: (value) => calls.push(['scroll', value]),
+  };
+  const view = {
+    __initialOutsideHash: '#outside-photography',
+    location: { pathname: '/outside-work.html', search: '?lang=en' },
+    history: { replaceState: (...args) => calls.push(['history', ...args]) },
+    matchMedia: () => ({ matches: true }),
+  };
+  const mounted = mountInitialFragmentNavigation({
+    window: view,
+    document: { querySelector: (selector) => selector === '#outside-photography' ? target : null },
+    requestAnimationFrame: (callback) => frames.push(callback),
+  });
+  assert.equal(mounted, true);
+  frames.shift()();
+  frames.shift()();
+  assert.deepEqual(calls.find(([type]) => type === 'scroll'), ['scroll', { behavior: 'smooth', block: 'start' }]);
+  assert.deepEqual(calls.find(([type]) => type === 'history'), ['history', null, '', '/outside-work.html?lang=en#outside-photography']);
+});
+
+test('initial fragment enhancement falls back to auto and ignores invalid targets', () => {
+  const calls = [];
+  const target = { classList: { add() {} }, scrollIntoView: (value) => calls.push(value) };
+  const immediate = (callback) => callback();
+  const base = {
+    location: { pathname: '/outside-work.html', search: '' },
+    history: { replaceState() {} },
+    matchMedia: () => ({ matches: false }),
+  };
+  assert.equal(mountInitialFragmentNavigation({
+    window: { ...base, __initialOutsideHash: '#outside-travel' },
+    document: { querySelector: () => target },
+    requestAnimationFrame: immediate,
+  }), true);
+  assert.deepEqual(calls.at(-1), { behavior: 'auto', block: 'start' });
+  assert.equal(mountInitialFragmentNavigation({
+    window: { ...base, __initialOutsideHash: '#outside-invalid' },
+    document: { querySelector: () => target },
+    requestAnimationFrame: immediate,
+  }), false);
 });
 
 test('detail navigation exposes a 44px compact section control at narrow widths', () => {

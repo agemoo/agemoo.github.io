@@ -13,6 +13,14 @@
     if(window.matchMedia&&window.matchMedia('(min-width: 40.001rem) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) root.classList.add('motion-detail');
   })(document.documentElement);
   </script>
+  <script>
+  (function(window){
+    var allowedFragments=['#outside-music','#outside-photography','#outside-travel'];
+    if(!allowedFragments.includes(window.location.hash))return;
+    window.__initialOutsideHash = window.location.hash;
+    window.history.replaceState(null, '', window.location.pathname + window.location.search);
+  })(window);
+  </script>
   <link rel="stylesheet" href="detail.css">
 </head>
 <body>

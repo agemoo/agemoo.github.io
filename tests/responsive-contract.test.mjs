@@ -56,7 +56,8 @@ test('compact navigation preserves 44px section access through 60rem and on coar
   assert.match(home, /<details class="compact-nav">[\s\S]*?<summary[^>]*>Sections<\/summary>[\s\S]*?class="compact-links"[^>]*role="navigation"/);
   assert.match(home, /class="compact-links"[^>]*[\s\S]*?href="#about"[\s\S]*?href="#contact"/);
   assert.match(detail, /<details class="compact-nav">[\s\S]*?<summary[^>]*>Sections<\/summary>[\s\S]*?class="compact-links"[^>]*role="navigation"/);
-  assert.match(detail, /class="compact-links"[^>]*[\s\S]*?href="#vertex-scope"[\s\S]*?href="#vertex-attribution"/);
+  assert.match(detail, /class="compact-links"[^>]*[\s\S]*?href="#vertex-scope"[\s\S]*?href="#vertex-community"/);
+  assert.doesNotMatch(detail, /href="#vertex-attribution"/);
   for (const html of [home, detail]) {
     assert.match(html, /@media \(max-width:60rem\),\(pointer:coarse\)\{[^}]*\.nav \.brand,[^}]*\.lang-switch button,[^}]*\.compact-nav summary,[^}]*\.compact-links a\{min-height:44px;/);
     assert.match(html, /@media \(max-width:60rem\),\(pointer:coarse\)\{\.compact-nav\{display:block;/);
@@ -101,4 +102,12 @@ test('both routes react to live motion capability changes and gate progress writ
   assert.match(home, /removeEventListener\('resize',queueParallax\)/);
   assert.match(home, /if\(spotlightListening\)return;/);
   assert.match(home, /if\(parallaxListening\|\|!parallaxItems\.length\)return;/);
+});
+
+test('Outside Work initial fragment navigation respects the shared motion capability query', async () => {
+  const detail = await readFile(new URL('../detail.js', import.meta.url), 'utf8');
+  assert.match(detail, /export function mountInitialFragmentNavigation/);
+  assert.match(detail, /\(min-width: 40\.001rem\) and \(pointer: fine\) and \(prefers-reduced-motion: no-preference\)/);
+  assert.match(detail, /behavior: motionAllowed \? 'smooth' : 'auto'/);
+  assert.match(detail, /mountInitialFragmentNavigation\(\)/);
 });
