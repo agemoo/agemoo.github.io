@@ -1,6 +1,6 @@
 export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'portfolio-language';
-export const I18N_CACHE_KEY = '20260729-personal-site';
+export const I18N_CACHE_KEY = '20260730-content-photography';
 export const PAGE_KEYS = ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside'];
 
 const en = {

@@ -19,7 +19,7 @@ test('every second-layer route has the shared bilingual shell', async () => {
     assert.match(html, new RegExp(`<html[^>]+data-page="${key}"`));
     assert.match(html, /href="(?:\.\.\/)?detail\.css"/);
     assert.match(html, /src="(?:\.\.\/)?detail\.js"/);
-    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260729-personal-site"/);
+    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-content-photography"/);
     assert.match(html, /data-lang="en"/);
     assert.match(html, /data-lang="zh"/);
     assert.match(html, /href="(?:\.\.\/)?index\.html"/);

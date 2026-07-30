@@ -203,7 +203,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 
 test('language module declares all public page keys and the shared cache key', () => {
   assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside']);
-  assert.equal(I18N_CACHE_KEY, '20260729-personal-site');
+  assert.equal(I18N_CACHE_KEY, '20260730-content-photography');
 });
 
 test('homepage dictionaries own the approved first-layer selectors', () => {
@@ -335,5 +335,5 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Curved metal architecture at Walt Disney Concert Hall');
   assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '华特·迪士尼音乐厅的金属曲面建筑');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
-  assert.match(html, /src="i18n\.js\?v=20260729-personal-site"/);
+  assert.match(html, /src="i18n\.js\?v=20260730-content-photography"/);
 });
