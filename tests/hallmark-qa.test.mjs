@@ -39,7 +39,7 @@ test('shared detail shell keeps its dark-gallery contract self-contained', () =>
   assert.doesNotMatch(detailShell, /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(|oklch\(/i);
   assert.match(detailShell, /\.image-dialog\{[^}]*max-width:min\(92vw,1200px\)/);
   assert.match(detailShell, /@media\(max-width:40rem\)\{\.detail-grid\{grid-template-columns:minmax\(0,1fr\)/);
-  assert.match(detailBehavior, /import '\.\/i18n\.js';/);
+  assert.doesNotMatch(detailBehavior, /(?:import|from)\s*['"]\.\/i18n\.js['"]/);
   assert.match(detailBehavior, /IntersectionObserver/);
 });
 

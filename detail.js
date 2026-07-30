@@ -1,5 +1,3 @@
-import './i18n.js';
-
 export function mountImageDialog(dialog) {
   if (!dialog) return;
   const image = dialog.querySelector('img');
@@ -23,34 +21,6 @@ export function mountImageDialog(dialog) {
   dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
   dialog.addEventListener('keydown', (event) => { if (event.key === 'Escape') dialog.close(); });
   dialog.addEventListener('close', () => previousFocus?.focus());
-}
-
-const INITIAL_OUTSIDE_FRAGMENTS = new Set([
-  '#outside-music',
-  '#outside-photography',
-  '#outside-travel',
-]);
-
-export function mountInitialFragmentNavigation(options = {}) {
-  const view = options.window ?? globalThis.window;
-  const doc = options.document ?? globalThis.document;
-  const schedule = options.requestAnimationFrame ?? view?.requestAnimationFrame?.bind(view);
-  const hash = view?.__initialOutsideHash;
-  if (!view || !doc || !INITIAL_OUTSIDE_FRAGMENTS.has(hash)) return false;
-
-  const target = doc.querySelector(hash);
-  if (!target) return false;
-
-  const motionAllowed = Boolean(view.matchMedia?.('(min-width: 40.001rem) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches);
-  const move = () => {
-    target.classList?.add('is-visible');
-    target.scrollIntoView({ behavior: motionAllowed ? 'smooth' : 'auto', block: 'start' });
-    view.history?.replaceState(null, '', `${view.location.pathname}${view.location.search}${hash}`);
-  };
-
-  if (schedule) schedule(() => schedule(move));
-  else move();
-  return true;
 }
 
 function mountPageMotion() {
@@ -112,7 +82,6 @@ function mountPageMotion() {
 function boot() {
   mountImageDialog(document.querySelector('.image-dialog'));
   mountPageMotion();
-  mountInitialFragmentNavigation();
 }
 
 if (typeof document !== 'undefined') {

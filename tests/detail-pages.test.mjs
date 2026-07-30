@@ -18,9 +18,10 @@ test('every second-layer route has the shared bilingual shell', async () => {
   for (const [path, key] of routes) {
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
     assert.match(html, new RegExp(`<html[^>]+data-page="${key}"`));
-    assert.match(html, /href="(?:\.\.\/)?detail\.css"/);
-    assert.match(html, /src="(?:\.\.\/)?detail\.js"/);
+    assert.match(html, /href="(?:\.\.\/)?detail\.css\?v=20260730-outside-routes"/);
+    assert.match(html, /src="(?:\.\.\/)?detail\.js\?v=20260730-outside-routes"/);
     assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-outside-routes"/);
+    assert.equal((html.match(/i18n\.js\?v=/g) ?? []).length, 1, `${path}: one i18n module instance`);
     assert.match(html, /data-lang="en"/);
     assert.match(html, /data-lang="zh"/);
     assert.match(html, /href="(?:\.\.\/)?index\.html"/);
@@ -242,8 +243,12 @@ test('image dialog supports keyboard close and focus restoration', () => {
   assert.match(js, /dialog\.close\(\)/);
 });
 
-test('detail navigation exposes a 44px compact section control at narrow widths', () => {
+test('detail shell does not create a second unversioned i18n module instance', () => {
+  assert.doesNotMatch(js, /(?:import|from)\s*['"]\.\/i18n\.js['"]/);
+});
+
+test('detail navigation exposes a 44px compact section control at narrow widths and on coarse pointers', () => {
   assert.match(css, /\.compact-nav\{display:none/);
   assert.match(css, /\.compact-nav summary\{[^}]*min-height:44px/);
-  assert.match(css, /@media\(max-width:60rem\)\{[^}]*\.compact-nav\{display:block/);
+  assert.match(css, /@media\(max-width:60rem\),\(pointer:coarse\)\{\.compact-nav\{display:block/);
 });

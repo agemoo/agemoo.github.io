@@ -36,6 +36,7 @@ test('homepage is the only visible Outside Work index', async () => {
   assert.match(html, /class="outside-card outside-card--photography" href="photography\.html"/);
   assert.match(html, /class="outside-card outside-card--travel" href="travel\.html"/);
   assert.doesNotMatch(html, /outside-work\.html#outside-|class="outside-action"/);
+  assert.doesNotMatch(html, /\.outside-action/);
 });
 
 test('Music is a standalone bilingual route with a full-width timeline', async () => {
@@ -63,7 +64,7 @@ test('Photography and Travel are independent bilingual routes', async () => {
   assert.match(photography, /id="photography-gallery"/);
   assert.match(travel, /data-page="travel"/);
   assert.match(travel, /id="travel-notes"/);
-  assert.doesNotMatch(`${photography}\n${travel}`, /coming soon|寰呮洿鏂皘鏁鏈熷緟/i);
+  assert.doesNotMatch(`${photography}\n${travel}`, /coming soon|待更新|敬请期待/i);
   assert.doesNotMatch(
     `${travel}\n${LANGUAGES.en.metadata.travel.description}\n${LANGUAGES.zh.metadata.travel.description}`,
     /museum visits|参观博物馆/i,

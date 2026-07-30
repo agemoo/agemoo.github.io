@@ -7,6 +7,11 @@ async function readContracts() {
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
     readFile(new URL('../i18n.js', import.meta.url), 'utf8'),
+    readFile(new URL('../music.html', import.meta.url), 'utf8'),
+    readFile(new URL('../photography.html', import.meta.url), 'utf8'),
+    readFile(new URL('../travel.html', import.meta.url), 'utf8'),
+    readFile(new URL('../detail.css', import.meta.url), 'utf8'),
+    readFile(new URL('../detail.js', import.meta.url), 'utf8'),
   ]);
 }
 
@@ -25,6 +30,28 @@ test('both routes enforce clipping, mobile controls, wrapping, exact cache impor
   assert.match(i18n, /export const DEFAULT_LANGUAGE = 'en';/);
   assert.match(i18n, /export function getInitialLanguage\(storage = globalThis\.localStorage\)/);
   assert.match(i18n, /storage\?\.getItem\(STORAGE_KEY\)/);
+});
+
+test('outside-work detail routes load one shared versioned module and cache-busted shell', async () => {
+  const [, , , music, photography, travel, , detailJs] = await readContracts();
+  for (const [name, html] of [['music', music], ['photography', photography], ['travel', travel]]) {
+    assert.match(html, /<html lang="en"[^>]*data-language="en"/);
+    assert.equal((html.match(/i18n\.js/g) ?? []).length, 1, `${name}: one i18n script URL`);
+    assert.match(html, /src="i18n\.js\?v=20260730-outside-routes"/);
+    assert.match(html, /href="detail\.css\?v=20260730-outside-routes"/);
+    assert.match(html, /src="detail\.js\?v=20260730-outside-routes"/);
+  }
+  assert.doesNotMatch(detailJs, /(?:import|from)\s*['"]\.\/i18n\.js['"]/);
+});
+
+test('detail routes collapse at 60rem and 40rem while coarse pointers change only navigation', async () => {
+  const [, , , , , , css] = await readContracts();
+  assert.match(css, /@media\(max-width:60rem\)\{[^}]*\.detail-hero,\.detail-section,\.music-page-intro\{grid-template-columns:minmax\(0,1fr\);\}/);
+  assert.match(css, /@media\(max-width:60rem\)\{[\s\S]*?\.music-event--media\{grid-template-columns:minmax\(132px,\.32fr\) minmax\(0,1fr\);\}/);
+  assert.match(css, /@media\(max-width:40rem\)\{[\s\S]*?\.music-event,\.music-event--media\{grid-template-columns:minmax\(0,1fr\)\}/);
+  assert.match(css, /@media\(max-width:40rem\)\{[\s\S]*?\.photography-sequence,\.travel-note\{grid-template-columns:minmax\(0,1fr\)\}/);
+  assert.match(css, /@media\(max-width:60rem\),\(pointer:coarse\)\{\.compact-nav\{display:block;\}\.detail-nav \.links,\.detail-nav \.back-link\{display:none;\}\}/);
+  assert.doesNotMatch(css, /@media\(max-width:60rem\),\(pointer:coarse\)\{[^}]*\.(?:detail-hero|detail-section|music-page-intro|music-event|photography-sequence|travel-note)/);
 });
 
 test('homepage collapses every asymmetric editorial track at 60rem', async () => {
@@ -102,12 +129,4 @@ test('both routes react to live motion capability changes and gate progress writ
   assert.match(home, /removeEventListener\('resize',queueParallax\)/);
   assert.match(home, /if\(spotlightListening\)return;/);
   assert.match(home, /if\(parallaxListening\|\|!parallaxItems\.length\)return;/);
-});
-
-test('Outside Work initial fragment navigation respects the shared motion capability query', async () => {
-  const detail = await readFile(new URL('../detail.js', import.meta.url), 'utf8');
-  assert.match(detail, /export function mountInitialFragmentNavigation/);
-  assert.match(detail, /\(min-width: 40\.001rem\) and \(pointer: fine\) and \(prefers-reduced-motion: no-preference\)/);
-  assert.match(detail, /behavior: motionAllowed \? 'smooth' : 'auto'/);
-  assert.match(detail, /mountInitialFragmentNavigation\(\)/);
 });
