@@ -40,16 +40,16 @@ test('homepage exposes three second-layer work routes', () => {
   assert.doesNotMatch(home, /<details class="project-row/);
 });
 
-test('Outside Work remains one asymmetric composition with three direct section links', () => {
+test('Outside Work remains one asymmetric composition with three direct route links', () => {
   assert.match(home, /<section[^>]+id="outside-work"/);
   for (const href of [
-    'outside-work.html#outside-music',
-    'outside-work.html#outside-photography',
-    'outside-work.html#outside-travel',
+    'music.html',
+    'photography.html',
+    'travel.html',
   ]) assert.match(home, new RegExp(`href="${href}"`));
   for (const label of ['Music', 'Photography', 'Travel']) assert.match(home, new RegExp(label));
   assert.doesNotMatch(home, /<a class="outside-gateway"[^>]*>[\s\S]*?<div class="outside-grid">/);
-  assert.doesNotMatch(home, /href="(?:music|photography|places)\.html"/);
+  assert.doesNotMatch(home, /outside-work\.html#outside-|class="outside-action"/);
 });
 
 test('contact is neutral rather than a campaign sales pitch', () => {

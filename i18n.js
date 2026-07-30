@@ -1,6 +1,6 @@
 export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'portfolio-language';
-export const I18N_CACHE_KEY = '20260730-music-history';
+export const I18N_CACHE_KEY = '20260730-outside-routes';
 export const PAGE_KEYS = ['home', 'vertex', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel'];
 
 const en = {
@@ -354,7 +354,6 @@ const en = {
     '#outside-work .outside-card:nth-child(2) p': 'Small studies in performance, objects, light, and atmosphere.',
     '#outside-work .outside-card:nth-child(3) strong': 'Travel',
     '#outside-work .outside-card:nth-child(3) p': 'Notes from cities and landscapes that sharpen how I notice culture, rhythm, and everyday detail.',
-    '#outside-work .outside-action': 'Explore outside work <span aria-hidden="true">→</span>',
     '#contact h2': 'Get in touch.',
     '#contact .contact-intro': 'You can reach me by email or LinkedIn.',
     '#contact .contact-action:nth-child(1) .contact-label': 'Email Me',
@@ -717,7 +716,6 @@ const zh = {
     '#outside-work .outside-card:nth-child(2) p': '对演出、物件、光线与氛围的小型观察。',
     '#outside-work .outside-card:nth-child(3) strong': '旅行',
     '#outside-work .outside-card:nth-child(3) p': '来自城市与风景的记录，让我更敏锐地观察文化、节奏与日常细节。',
-    '#outside-work .outside-action': '探索工作之外 <span aria-hidden="true">→</span>',
     '#contact h2': '联系我。',
     '#contact .contact-intro': '你可以通过电子邮件或 LinkedIn 联系我。',
     '#contact .contact-action:nth-child(1) .contact-label': '给我发邮件',

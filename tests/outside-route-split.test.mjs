@@ -30,6 +30,14 @@ test('outside-work is a compatibility document rather than a visible chooser', a
   assert.doesNotMatch(html, /<main|id="outside-music"|id="outside-photography"|id="outside-travel"/);
 });
 
+test('homepage is the only visible Outside Work index', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /class="outside-card outside-card--music" href="music\.html"/);
+  assert.match(html, /class="outside-card outside-card--photography" href="photography\.html"/);
+  assert.match(html, /class="outside-card outside-card--travel" href="travel\.html"/);
+  assert.doesNotMatch(html, /outside-work\.html#outside-|class="outside-action"/);
+});
+
 test('Music is a standalone bilingual route with a full-width timeline', async () => {
   const html = await readFile(new URL('../music.html', import.meta.url), 'utf8');
   const css = await readFile(new URL('../detail.css', import.meta.url), 'utf8');

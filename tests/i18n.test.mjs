@@ -235,7 +235,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 
 test('language module declares all public page keys and the shared cache key', () => {
   assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel']);
-  assert.equal(I18N_CACHE_KEY, '20260730-music-history');
+  assert.equal(I18N_CACHE_KEY, '20260730-outside-routes');
 });
 
 test('homepage dictionaries own the approved first-layer selectors', () => {
@@ -359,7 +359,9 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   assert.match(html, /class="lang-switch"/);
   assert.match(html, /data-lang="en"/);
   assert.match(html, /data-lang="zh"/);
-  assert.match(html, /href="outside-work\.html"/);
+  assert.match(html, /href="music\.html"/);
+  assert.match(html, /href="photography\.html"/);
+  assert.match(html, /href="travel\.html"/);
   assert.match(html, /src="assets\/music\/suu_jazz_fest\/performance\.jpg"/);
   assert.match(html, /src="assets\/photography\/walter_disney\.webp"/);
   assert.doesNotMatch(html, /已生成图像|src="assets\/bass1\.jpg"/);
@@ -367,5 +369,5 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Curved metal architecture at Walt Disney Concert Hall');
   assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '华特·迪士尼音乐厅的金属曲面建筑');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
-  assert.match(html, /src="i18n\.js\?v=20260730-music-history"/);
+  assert.match(html, /src="i18n\.js\?v=20260730-outside-routes"/);
 });

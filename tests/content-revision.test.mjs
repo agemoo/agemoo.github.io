@@ -16,11 +16,14 @@ test('education copy keeps coursework concise and emphasizes the Business Analyt
   assert.doesNotMatch(html, /style="width:\s*(?:550|578)px\s*!important/);
 });
 
-test('About copy is concise and sends outside work to its own route', async () => {
+test('About copy is concise and the homepage links directly to outside-work routes', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /I study Strategic Communication at Southern Utah University/);
   assert.match(html, /Outside work, I play upright and electric bass/);
-  assert.match(html, /href="outside-work\.html"/);
+  assert.match(html, /href="music\.html"/);
+  assert.match(html, /href="photography\.html"/);
+  assert.match(html, /href="travel\.html"/);
+  assert.doesNotMatch(html, /href="outside-work\.html(?:#outside-[^"]*)?"/);
 });
 
 test('English and Chinese dictionaries own the revised concise content', () => {
@@ -37,7 +40,7 @@ test('English and Chinese dictionaries own the revised concise content', () => {
 
 test('concise labels and footer match the edited direction', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /href="outside-work\.html"/);
+  assert.doesNotMatch(html, /class="outside-action"/);
   assert.match(html, /<span class="contact-label">Email Me<\/span>/);
   assert.match(html, /<footer[^>]*>\s*<span>© 2026 Mukun Sun<\/span>\s*<\/footer>/s);
   assert.doesNotMatch(html, /A concise selection of product, event, print, and photographic work/);
