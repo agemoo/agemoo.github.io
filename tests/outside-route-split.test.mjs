@@ -25,5 +25,6 @@ test('outside-work is a compatibility document rather than a visible chooser', a
   const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
   assert.match(html, /src="outside-redirect\.js"/);
   assert.match(html, /http-equiv="refresh" content="0; url=index\.html#outside-work"/);
+  assert.match(html, /Return to Outside Work \/ 返回工作之外/);
   assert.doesNotMatch(html, /<main|id="outside-music"|id="outside-photography"|id="outside-travel"/);
 });
