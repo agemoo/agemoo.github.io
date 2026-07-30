@@ -133,7 +133,7 @@ test('outside work keeps Music, Photography, and Travel in the approved order', 
     ['assets/music/performance.jpg', 896, 1193],
     ['assets/photography/building.webp', 1448, 1086],
     ['assets/photography/chongqing.webp', 1086, 1448],
-    ['assets/photography/santa_monica_beach.webp', 1800, 1350],
+    ['assets/photography/santa_monica_beach.webp', 1350, 1800],
     ['assets/photography/tongren.webp', 1086, 1448],
     ['assets/photography/walter_disney.webp', 1086, 1448],
   ];
