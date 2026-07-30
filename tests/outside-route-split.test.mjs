@@ -44,3 +44,31 @@ test('Music is a standalone bilingual route with a full-width timeline', async (
   assert.match(css, /\.music-event--media\{[^}]*grid-template-columns:minmax\(132px,[^)]+\) minmax\(0,1fr\) minmax\(240px,[^)]+\)/);
   assert.match(css, /\.music-event:not\(\.music-event--media\) \.music-event-copy\{[^}]*grid-column:2\/-1/);
 });
+
+test('Photography and Travel are independent bilingual routes', async () => {
+  const [photography, travel] = await Promise.all([
+    readFile(new URL('../photography.html', import.meta.url), 'utf8'),
+    readFile(new URL('../travel.html', import.meta.url), 'utf8'),
+  ]);
+  assert.match(photography, /data-page="photography"/);
+  assert.match(photography, /id="photography-gallery"/);
+  assert.match(travel, /data-page="travel"/);
+  assert.match(travel, /id="travel-notes"/);
+  assert.doesNotMatch(`${photography}\n${travel}`, /coming soon|寰呮洿鏂皘鏁鏈熷緟/i);
+});
+
+test('Photography and Travel images each have one primary route', async () => {
+  const [photography, travel] = await Promise.all([
+    readFile(new URL('../photography.html', import.meta.url), 'utf8'),
+    readFile(new URL('../travel.html', import.meta.url), 'utf8'),
+  ]);
+  const files = [
+    'building.webp', 'chongqing.webp', 'santa_monica_beach.webp',
+    'tongren.webp', 'walter_disney.webp',
+  ];
+  for (const file of files) {
+    const count = (photography.match(new RegExp(file, 'g')) ?? []).length
+      + (travel.match(new RegExp(file, 'g')) ?? []).length;
+    assert.equal(count, 2, `${file}: one href and one img on one route`);
+  }
+});

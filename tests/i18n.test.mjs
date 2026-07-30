@@ -37,13 +37,15 @@ test('both languages cover the same selector set and corrected facts', () => {
 });
 
 test('each translation selector is rooted in its intended route', async () => {
-  const [home, vertex, campus, hotel, visual, music] = await Promise.all([
+  const [home, vertex, campus, hotel, visual, music, photography, travel] = await Promise.all([
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8'),
     readFile(new URL('../music.html', import.meta.url), 'utf8'),
+    readFile(new URL('../photography.html', import.meta.url), 'utf8'),
+    readFile(new URL('../travel.html', import.meta.url), 'utf8'),
   ]);
   const selectors = new Set([
     ...Object.keys(LANGUAGES.en.copy),
@@ -56,6 +58,8 @@ test('each translation selector is rooted in its intended route', async () => {
     hotel: createStaticSelectorDocument(hotel),
     visual: createStaticSelectorDocument(visual),
     music: createStaticSelectorDocument(music),
+    photography: createStaticSelectorDocument(photography),
+    travel: createStaticSelectorDocument(travel),
   };
   for (const selector of selectors) {
     const route = selector.startsWith('#vertex-') ? 'vertex'
@@ -63,7 +67,9 @@ test('each translation selector is rooted in its intended route', async () => {
         : selector.startsWith('#hotel-') ? 'hotel'
           : selector.startsWith('#visual-') ? 'visual'
             : selector.startsWith('#music-') ? 'music'
-              : 'home';
+              : selector.startsWith('#photography-') ? 'photography'
+                : selector.startsWith('#travel-') ? 'travel'
+                  : 'home';
     assert.equal(routes[route].has(selector), true, `${route}: ${selector}`);
   }
 });
@@ -133,6 +139,21 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       '#music-study h2', '#music-study-sun time', '#music-study-sun p', '#music-study-burns time', '#music-study-burns p',
       '#music-footer span', '#music-footer a',
     ],
+    photography: [
+      '#photography-nav .brand', '#photography-nav .links', '#photography-nav .compact-nav summary', '#photography-nav .compact-links', '#photography-nav .back-link',
+      '#photography-hero h1', '#photography-hero .detail-eyebrow', '#photography-hero .detail-deck',
+      '#photography-gallery h2', '#photography-gallery .photography-intro',
+      ...Array.from({ length: 3 }, (_, index) => `#photography-gallery .detail-media:nth-child(${index + 1}) figcaption`),
+      '#photography-footer span', '#photography-footer a',
+    ],
+    travel: [
+      '#travel-nav .brand', '#travel-nav .links', '#travel-nav .compact-nav summary', '#travel-nav .compact-links', '#travel-nav .back-link',
+      '#travel-hero h1', '#travel-hero .detail-eyebrow', '#travel-hero .detail-deck',
+      '#travel-notes h2', '#travel-notes .travel-intro',
+      '#travel-santa-monica .detail-meta', '#travel-santa-monica h2', '#travel-santa-monica figcaption',
+      '#travel-tongren .detail-meta', '#travel-tongren h2', '#travel-tongren figcaption',
+      '#travel-footer span', '#travel-footer a',
+    ],
   };
   for (const [route, selectors] of Object.entries(copyRoots)) {
     for (const selector of selectors) {
@@ -151,6 +172,11 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     '#music-nav .lang-switch', '#music-nav .compact-nav summary', '#music-nav .compact-links',
     '#music-intro .music-lead img', '#music-artist-finalist img', '#music-grand-ball img', '#music-campus-concert img', '#music-welcome-gala img',
     '#music-dialog', '#music-dialog .dialog-close',
+    '#photography-nav .lang-switch', '#photography-nav .compact-nav summary', '#photography-nav .compact-links',
+    ...Array.from({ length: 3 }, (_, index) => `#photography-gallery .detail-media:nth-child(${index + 1}) img`),
+    '#photography-dialog', '#photography-dialog .dialog-close',
+    '#travel-nav .lang-switch', '#travel-nav .compact-nav summary', '#travel-nav .compact-links',
+    '#travel-santa-monica img', '#travel-tongren img', '#travel-dialog', '#travel-dialog .dialog-close',
   ];
   for (const selector of attributeSelectors) {
     assert.ok(LANGUAGES.en.attributes[selector], `en:${selector}`);
@@ -164,8 +190,8 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
 
 test('detail navigation labels are route-aware in both languages', () => {
   const expected = {
-    en: { campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', music: 'Music navigation' },
-    zh: { campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', music: '音乐导航' },
+    en: { campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', music: 'Music navigation', photography: 'Photography navigation', travel: 'Travel navigation' },
+    zh: { campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', music: '音乐导航', photography: '摄影导航', travel: '旅行导航' },
   };
   for (const [language, labels] of Object.entries(expected)) {
     for (const [page, label] of Object.entries(labels)) {

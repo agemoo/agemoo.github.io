@@ -10,6 +10,8 @@ const routes = [
   ['projects/hotel-jazz.html', 'hotel'],
   ['projects/visual-work.html', 'visual'],
   ['music.html', 'music'],
+  ['photography.html', 'photography'],
+  ['travel.html', 'travel'],
 ];
 
 test('every second-layer route has the shared bilingual shell', async () => {
@@ -157,6 +159,35 @@ test('music history presents verified performances, production work, and study i
   assert.match(html, /Studied jazz bass with American bassist Daren Burns in Beijing\./);
   assert.match(html, /Studied with SUU professor Sun Xun\./);
   assert.match(html, /href="https:\/\/www\.youtube\.com\/live\/OFijT_vkp8c\?si=OqEdKbXtynljWJtd"/);
+});
+
+test('photography and travel preserve their approved editorial allocation and natural dimensions', async () => {
+  const [photography, travel] = await Promise.all([
+    readFile(new URL('../photography.html', import.meta.url), 'utf8'),
+    readFile(new URL('../travel.html', import.meta.url), 'utf8'),
+  ]);
+  const photographyMedia = [
+    ['building.webp', 1448, 1086, 'Blue and concrete'],
+    ['chongqing.webp', 1086, 1448, 'Chongqing · Night structure'],
+    ['walter_disney.webp', 1086, 1448, 'Walt Disney Concert Hall · Curves'],
+  ];
+  const travelMedia = [
+    ['santa_monica_beach.webp', 1350, 1800, 'Santa Monica · Sunset'],
+    ['tongren.webp', 1086, 1448, 'Tongren · Water and paths'],
+  ];
+  for (const [file, width, height, caption] of photographyMedia) {
+    assert.match(photography, new RegExp(`<a class="media-button" href="assets/photography/${file}" data-enlarge>\\s*<img src="assets/photography/${file}" width="${width}" height="${height}"`));
+    assert.ok(photography.includes(`<figcaption>${caption}</figcaption>`), caption);
+    assert.doesNotMatch(travel, new RegExp(file.replace('.', '\\.')));
+  }
+  for (const [file, width, height, caption] of travelMedia) {
+    assert.match(travel, new RegExp(`<a class="media-button" href="assets/photography/${file}" data-enlarge>\\s*<img src="assets/photography/${file}" width="${width}" height="${height}"`));
+    assert.ok(travel.includes(`<figcaption>${caption}</figcaption>`), caption);
+    assert.doesNotMatch(photography, new RegExp(file.replace('.', '\\.')));
+  }
+  assert.match(travel, /Santa Monica, California[\s\S]*?<h2>Sunset by the Pacific<\/h2>/);
+  assert.match(travel, /Tongren, Guizhou[\s\S]*?<h2>Water and paths<\/h2>/);
+  assert.doesNotMatch(travel, /<time|itinerary|recommend/i);
 });
 
 test('detail routes expose no-JS content and mount live reveal hooks', async () => {

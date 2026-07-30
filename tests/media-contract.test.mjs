@@ -60,3 +60,15 @@ test('new media includes intrinsic dimensions and full images retain natural rat
   assert.doesNotMatch(home, /<img(?![^>]*height=)(?=[^>]*assets\/(?:internship|project|music)\/)/);
   assert.match(home, /\.experience-media img[^}]*height:auto/);
 });
+
+test('Photography and Travel use only approved photographs with intrinsic dimensions', async () => {
+  const [photography, travel] = await Promise.all([
+    readFile(new URL('photography.html', root), 'utf8'),
+    readFile(new URL('travel.html', root), 'utf8'),
+  ]);
+  const combined = `${photography}\n${travel}`;
+  assert.equal((combined.match(/assets\/photography\/(?:building|chongqing|santa_monica_beach|tongren|walter_disney)\.webp/g) ?? []).length, 10);
+  assert.doesNotMatch(combined, /<img(?![^>]*width=)(?=[^>]*assets\/photography\/)/);
+  assert.doesNotMatch(combined, /<img(?![^>]*height=)(?=[^>]*assets\/photography\/)/);
+  assert.doesNotMatch(combined, /assets\/photography\/(?!building|chongqing|santa_monica_beach|tongren|walter_disney)[^"']+/);
+});
