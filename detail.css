@@ -39,6 +39,7 @@ button:disabled,[aria-disabled="true"]{opacity:.55;cursor:not-allowed;pointer-ev
 .detail-hero{padding-top:clamp(128px,16vw,208px);}
 .detail-hero h1,.detail-section h2{margin:0;font-family:var(--font-display);font-weight:600;line-height:1.05;color:var(--color-ink);text-wrap:balance;}
 .detail-hero h1{font-size:clamp(3rem,8vw,7rem);letter-spacing:-.035em;}
+html[data-page="campus"] .detail-hero h1,html[data-page="hotel"] .detail-hero h1,html[data-page="visual"] .detail-hero h1{font-size:clamp(3rem,5vw,5rem);overflow-wrap:anywhere;word-break:normal;hyphens:none;text-wrap:wrap;}
 .detail-section h2{font-size:clamp(var(--text-xl),4vw,3rem);}
 .detail-hero-copy,.detail-section-copy{max-width:68ch;min-width:0;}
 .detail-hero-copy > :last-child,.detail-section-copy > :last-child{margin-bottom:0;}

@@ -116,7 +116,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       '#visual-hero h1', '#visual-hero .detail-eyebrow', '#visual-hero .detail-deck', '#visual-lead h2',
       ...Array.from({ length: 3 }, (_, index) => `#visual-lead .detail-media:nth-child(${index + 1}) figcaption`),
       '#visual-archive h2',
-      ...Array.from({ length: 11 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) figcaption`),
+      ...Array.from({ length: 8 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) figcaption`),
       '#visual-footer span', '#visual-footer a',
     ],
     outside: [
@@ -140,7 +140,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     '#hotel-nav .lang-switch', '#hotel-nav .compact-nav summary', '#hotel-nav .compact-links', '#hotel-media .detail-media:nth-child(1) img', '#hotel-media .detail-media:nth-child(2) img', '#hotel-dialog', '#hotel-dialog .dialog-close',
     '#visual-nav .lang-switch', '#visual-nav .compact-nav summary', '#visual-nav .compact-links',
     ...Array.from({ length: 3 }, (_, index) => `#visual-lead .detail-media:nth-child(${index + 1}) img`),
-    ...Array.from({ length: 11 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) img`),
+    ...Array.from({ length: 8 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) img`),
     '#visual-dialog', '#visual-dialog .dialog-close',
     '#outside-nav .lang-switch', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-music img',
     ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) img`),
@@ -203,7 +203,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 
 test('language module declares all public page keys and the shared cache key', () => {
   assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside']);
-  assert.equal(I18N_CACHE_KEY, '20260730-content-photography');
+  assert.equal(I18N_CACHE_KEY, '20260730-project-polish');
 });
 
 test('homepage dictionaries own the approved first-layer selectors', () => {
@@ -335,5 +335,5 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Curved metal architecture at Walt Disney Concert Hall');
   assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '华特·迪士尼音乐厅的金属曲面建筑');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
-  assert.match(html, /src="i18n\.js\?v=20260730-content-photography"/);
+  assert.match(html, /src="i18n\.js\?v=20260730-project-polish"/);
 });

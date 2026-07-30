@@ -19,7 +19,7 @@ test('every second-layer route has the shared bilingual shell', async () => {
     assert.match(html, new RegExp(`<html[^>]+data-page="${key}"`));
     assert.match(html, /href="(?:\.\.\/)?detail\.css"/);
     assert.match(html, /src="(?:\.\.\/)?detail\.js"/);
-    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-content-photography"/);
+    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-project-polish"/);
     assert.match(html, /data-lang="en"/);
     assert.match(html, /data-lang="zh"/);
     assert.match(html, /href="(?:\.\.\/)?index\.html"/);
@@ -102,9 +102,6 @@ test('selected visual work preserves the approved archive with real image links'
     ['piano_b.jpg', 1300, 1828, 'PIANO DUO · Variation'],
     ['trifold_in.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Interior'],
     ['banner_museum.jpg', 1084, 437, 'International Museum Day · Wuhan Museum'],
-    ['bass1.jpg', 1100, 1467, 'Bass · Night Study'],
-    ['bass2.jpg', 1100, 1466, 'Bass · Study 02'],
-    ['bass3.jpg', 1100, 1467, 'Bass · Study 03'],
   ];
 
   assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-lead"[\s\S]*?<section class="detail-section" id="visual-archive"/);
@@ -117,7 +114,11 @@ test('selected visual work preserves the approved archive with real image links'
   assert.ok(html.indexOf('hotone_main.jpg') < html.indexOf('jazz_coast_a.jpg'));
   assert.ok(html.indexOf('jazz_coast_a.jpg') < html.indexOf('trifold_out.jpg'));
   assert.ok(html.indexOf('trifold_out.jpg') < html.indexOf('jazz_winter.jpg'));
-  assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg/);
+  assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg|bass[123]\.jpg/);
+});
+
+test('project detail titles preserve whole words at a coordinated display scale', () => {
+  assert.match(css, /html\[data-page="campus"\][^,]*,html\[data-page="hotel"\][^,]*,html\[data-page="visual"\][^{]*\{[^}]*font-size:clamp\(3rem,5vw,5rem\);[^}]*overflow-wrap:anywhere;[^}]*word-break:normal;[^}]*hyphens:none;/);
 });
 
 test('outside work keeps Music, Photography, and Travel in the approved order', async () => {

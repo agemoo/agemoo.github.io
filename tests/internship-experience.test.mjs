@@ -12,7 +12,8 @@ test('homepage presents exactly two internships in reverse chronological order',
   const section = home.match(/<section[^>]+id="experience"[\s\S]*?<\/section>/)?.[0] ?? '';
   assert.equal((section.match(/class="experience-row(?:\s|\")/g) ?? []).length, 2);
   assert.ok(section.indexOf('experience-row--vertex') < section.indexOf('experience-row--teaching'));
-  assert.match(section, /Internship Experience/);
+  assert.match(section, /<div class="shead">[\s\S]*?<h2 class="stitle"[^>]*>Internship<\/h2>/);
+  assert.doesNotMatch(section, /Internship Experience|class="placard"/);
   assert.match(section, /<p class="experience-company">Southern Utah University<\/p>/);
   assert.doesNotMatch(section, /Southern Utah University × Wuhan Polytechnic University/);
   assert.match(section, /English Writing Teaching Assistant/);
@@ -46,8 +47,9 @@ test('each internship has stable scoped translation selectors', () => {
       assert.ok(Object.hasOwn(LANGUAGES.zh.copy, selector), selector);
     }
   }
-  assert.equal(LANGUAGES.en.copy['#experience .placard'], 'Internship Experience');
-  assert.equal(LANGUAGES.zh.copy['#experience .placard'], '实习经历');
+  assert.equal(LANGUAGES.en.copy['#experience .stitle'], 'Internship');
+  assert.equal(LANGUAGES.zh.copy['#experience .stitle'], '实习');
+  assert.equal(Object.hasOwn(LANGUAGES.en.copy, '#experience .placard'), false);
 });
 
 test('internship list uses one outer rule and one separator per following row', async () => {
