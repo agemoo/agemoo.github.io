@@ -38,7 +38,7 @@ const en = {
     },
     travel: {
       title: 'Travel | Mukun Sun',
-      description: 'Original photographs and short notes from Mukun Sun’s travel and museum visits.',
+      description: 'Original photographs and short place notes from Santa Monica and Tongren by Mukun Sun.',
     },
   },
   navLabels: { home: 'Primary navigation', vertex: 'Project navigation', campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', music: 'Music navigation', photography: 'Photography navigation', travel: 'Travel navigation' },
@@ -401,7 +401,7 @@ const zh = {
     },
     travel: {
       title: '旅行｜孙慕坤',
-      description: '孙慕坤在旅行与参观博物馆过程中记录的原创照片与短记。',
+      description: '孙慕坤记录的圣莫尼卡与铜仁原创照片和地点短记。',
     },
   },
   navLabels: { home: '主导航', vertex: '项目导航', campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', music: '音乐导航', photography: '摄影导航', travel: '旅行导航' },

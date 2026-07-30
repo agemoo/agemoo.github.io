@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { resolveOutsideRoute, mountOutsideRedirect } from '../outside-redirect.js';
+import { LANGUAGES } from '../i18n.js';
 
 test('legacy Outside Work fragments resolve to direct subject routes', () => {
   assert.equal(resolveOutsideRoute('#outside-music'), 'music.html');
@@ -55,6 +56,10 @@ test('Photography and Travel are independent bilingual routes', async () => {
   assert.match(travel, /data-page="travel"/);
   assert.match(travel, /id="travel-notes"/);
   assert.doesNotMatch(`${photography}\n${travel}`, /coming soon|寰呮洿鏂皘鏁鏈熷緟/i);
+  assert.doesNotMatch(
+    `${travel}\n${LANGUAGES.en.metadata.travel.description}\n${LANGUAGES.zh.metadata.travel.description}`,
+    /museum visits|参观博物馆/i,
+  );
 });
 
 test('Photography and Travel images each have one primary route', async () => {
