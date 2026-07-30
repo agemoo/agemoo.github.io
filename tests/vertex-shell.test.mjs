@@ -9,9 +9,10 @@ test('Vertex route uses the N10 scroll-morph shell and Ft5 statement footer', as
   assert.match(html, /<nav class="nav" id="vertex-nav"/);
   assert.match(html, /\.nav\.solid\s*\{/);
   assert.match(html, /nav\.classList\.toggle\('solid',y>window\.innerHeight\*0\.7\)/);
-  for (const anchor of ['vertex-scope', 'vertex-evidence', 'vertex-attribution']) {
+  for (const anchor of ['vertex-scope', 'vertex-evidence', 'vertex-community']) {
     assert.match(html, new RegExp(`href="#${anchor}"`));
   }
+  assert.doesNotMatch(html, /vertex-attribution|Attribution boundary/);
   assert.match(html, /<footer class="footer" id="vertex-footer">/);
   assert.doesNotMatch(html, /class="detail-nav"|class="detail-footer"/);
 });
@@ -21,7 +22,8 @@ test('Vertex shell copy stays page-specific in both languages', () => {
     const copy = LANGUAGES[language].copy;
     assert.match(copy['#vertex-nav .links'], /#vertex-scope/);
     assert.match(copy['#vertex-nav .links'], /#vertex-evidence/);
-    assert.match(copy['#vertex-nav .links'], /#vertex-attribution/);
+    assert.match(copy['#vertex-nav .links'], /#vertex-community/);
+    assert.doesNotMatch(copy['#vertex-nav .links'], /#vertex-attribution/);
     assert.ok(copy['#vertex-footer span:first-child']);
     assert.ok(copy['#vertex-footer span:last-child']);
   }

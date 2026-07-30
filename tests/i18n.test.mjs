@@ -31,6 +31,9 @@ test('both languages cover the same selector set and corrected facts', () => {
   assert.doesNotMatch(allCopy, /19,000[\s\S]*impressions/);
   assert.doesNotMatch(allCopy, /525[\s\S]*\+/);
   assert.doesNotMatch(allCopy, /5,250|\+17%|~200|随时到岗|Single-post reads/);
+  assert.doesNotMatch(allCopy, /representative|Attribution boundary|归因边界|归因说明/i);
+  assert.equal(Object.hasOwn(LANGUAGES.en.copy, '#experience .experience-attribution'), false);
+  assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '#experience .experience-attribution'), false);
 });
 
 test('each translation selector is rooted in its intended route', async () => {
@@ -86,7 +89,7 @@ test('second-layer dictionaries use the approved bilingual claims', () => {
 test('Chinese professional labels use 社群 while subreddit contexts retain 社区', () => {
   assert.equal(LANGUAGES.zh.copy['.hero .role'], '传播、社群与音乐。');
   assert.equal(LANGUAGES.zh.copy['#experience .experience-row--vertex .experience-role'], 'Reddit 社群运营实习生');
-  assert.equal(LANGUAGES.zh.copy['#experience .experience-row--teaching .experience-company'], '南犹他大学 × 武汉轻工大学');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-row--teaching .experience-company'], '南犹他大学');
   assert.equal(LANGUAGES.zh.copy['#edu .edu-entry:nth-child(1) .edu-school'], '南犹他大学');
   assert.match(LANGUAGES.zh.copy['#vertex-hero'], /Reddit 社群运营/);
   assert.doesNotMatch(LANGUAGES.zh.copy['#vertex-hero'], /Reddit 社区运营/);
@@ -192,8 +195,8 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
   assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '#site-footer span:last-child'), false);
   assert.equal(LANGUAGES.en.attributes['#nav .lang-switch']['aria-label'], 'Language');
   assert.equal(LANGUAGES.zh.attributes['#nav .lang-switch']['aria-label'], '语言');
-  assert.match(LANGUAGES.en.copy['#experience .experience-proofline'], /representative accounts/i);
-  assert.match(LANGUAGES.zh.copy['#experience .experience-proofline'], /代表账号/);
+  assert.equal(LANGUAGES.en.copy['#experience .experience-proofline'], '<strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-proofline'], '<strong>5</strong> 个账号 · <strong>793K</strong> 浏览量 · 美国受众占比最高 <strong>91.7%</strong>');
   assert.equal(LANGUAGES.en.copy['#nav .compact-nav summary'], 'Sections');
   assert.equal(LANGUAGES.zh.copy['#nav .compact-nav summary'], '章节');
 });

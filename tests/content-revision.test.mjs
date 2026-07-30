@@ -3,13 +3,15 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { LANGUAGES } from '../i18n.js';
 
-test('education copy records coursework and the linked Wuhan degree accurately', async () => {
+test('education copy keeps coursework concise and emphasizes the Business Analytics minor', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /Aug 2025 — May 2027<\/p>/);
   assert.doesNotMatch(html, /May 2027 \(Expected\)/);
   assert.match(html, /Coursework: Social Media Strategy, Social Media Branding, Strategic Campaigns, Content Creation, Statistical Inference, Data Analytics/);
   assert.match(html, /B\.A\. in Advertising/);
-  assert.match(html, /Degree awarded upon completion at SUU/);
+  assert.doesNotMatch(html, /Degree awarded upon completion at SUU/);
+  assert.match(html, /<p class="edu-secondary">Minor · Business Analytics<\/p>/);
+  assert.match(html, /\.edu-secondary\{[^}]*font-size:clamp\(12px,1\.2vw,14px\)[^}]*font-weight:600[^}]*color:var\(--amber\)/);
   assert.match(html, /Coursework: Writing for Communication, Digital Copy Layout &amp; Design, Advertising Investigation &amp; Analysis, Organizational Communication/);
   assert.doesNotMatch(html, /style="width:\s*(?:550|578)px\s*!important/);
 });
@@ -29,8 +31,8 @@ test('English and Chinese dictionaries own the revised concise content', () => {
     assert.equal(Object.hasOwn(copy, '#site-footer span:last-child'), false);
   }
   assert.equal(LANGUAGES.en.copy['#edu .edu-entry:nth-child(2) .edu-degree'], 'B.A. in Advertising');
-  assert.match(LANGUAGES.en.copy['#edu .edu-entry:nth-child(2) .edu-secondary'], /Degree awarded upon completion at SUU/);
-  assert.match(LANGUAGES.zh.copy['#edu .edu-entry:nth-child(2) .edu-secondary'], /完成 SUU 学位后同步授予/);
+  assert.equal(Object.hasOwn(LANGUAGES.en.copy, '#edu .edu-entry:nth-child(2) .edu-secondary'), false);
+  assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '#edu .edu-entry:nth-child(2) .edu-secondary'), false);
 });
 
 test('concise labels and footer match the edited direction', async () => {

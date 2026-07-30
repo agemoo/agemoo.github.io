@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-test('Vertex evidence uses the approved representative-account scope', async () => {
+test('Vertex evidence presents the approved internship scope without attribution language', async () => {
   const [home, detail, i18n] = await Promise.all([
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
@@ -12,7 +12,7 @@ test('Vertex evidence uses the approved representative-account scope', async () 
   for (const value of ['793K', '3,548', '482', '406K', '891', '90', '91.7%']) {
     assert.match(copy, new RegExp(value.replace('.', '\\.')));
   }
-  assert.match(copy, /representative/i);
+  assert.doesNotMatch(copy, /representative|attribution boundary|归因边界|归因说明/i);
   assert.match(copy, /participated in operating/i);
   assert.doesNotMatch(copy, /personally generated all|owned all results/i);
 });
@@ -32,7 +32,8 @@ test('homepage keeps summary evidence while the detail route owns the full evide
     assert.match(detailEvidence, pattern);
   }
   assert.equal((detailEvidence.match(/<tr>/g) ?? []).length, 8);
-  assert.match(homeExperience, /<p class="experience-proofline"><strong>5<\/strong> representative accounts · <strong>793K<\/strong> representative views · up to <strong>91\.7%<\/strong> U\.S\. audience share<\/p>/);
+  assert.match(homeExperience, /<p class="experience-proofline"><strong>5<\/strong> accounts · <strong>793K<\/strong> views · up to <strong>91\.7%<\/strong> U\.S\. audience share<\/p>/);
+  assert.doesNotMatch(homeExperience, /experience-attribution/);
   assert.match(i18n, /'#experience \.experience-proofline'/);
   assert.doesNotMatch(homeExperience, /class="proof"/);
   assert.match(i18n, /'#vertex-evidence': `<h2/);

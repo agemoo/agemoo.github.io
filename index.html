@@ -200,7 +200,7 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 .edu-school{font-family:var(--serif);font-size:clamp(21px,2.7vw,31px);line-height:1.25;color:var(--ink);font-weight:600;}
 .edu-dates{font-family:var(--sans);font-size:11px;line-height:1.6;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-top:16px;font-variant-numeric:tabular-nums;}
 .edu-degree{font-family:var(--serif);font-size:clamp(18px,2.2vw,24px);line-height:1.35;color:var(--ink);font-weight:500;}
-.edu-secondary{font-family:var(--sans);font-size:10.5px;line-height:1.6;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:12px;}
+.edu-secondary{font-family:var(--sans);font-size:clamp(12px,1.2vw,14px);line-height:1.6;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--amber);margin-top:12px;}
 .edu-focus{font-size:15px;line-height:1.75;color:var(--ink-2);max-width:58ch;margin-top:20px;}
 @media (max-width:680px){.edu-entry{grid-template-columns:minmax(0,1fr);gap:20px;}}
 
@@ -215,8 +215,6 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 .experience-responsibility{font-size:15px;line-height:1.85;color:var(--ink-2);max-width:64ch;}
 .experience-proofline{margin-top:24px;font-size:12px;line-height:1.75;color:var(--muted);letter-spacing:.02em;}
 .experience-proofline strong{font-family:var(--mono);font-size:15px;line-height:1;color:var(--amber);font-weight:600;font-variant-numeric:tabular-nums;}
-.experience-attribution{border-left:2px solid var(--ember);padding-left:20px;margin-top:24px;font-size:12.5px;line-height:1.75;color:var(--muted);}
-.experience-attribution strong{color:var(--ink-2);font-weight:500;}
 .experience-link{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--amber);padding-bottom:4px;transition:color .3s;white-space:nowrap;}
 @media (hover:hover) and (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){.experience-link:hover{color:var(--amber);}}
 .experience-row--teaching>div:last-child{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(240px,.95fr);gap:clamp(24px,4vw,56px);align-items:center;}
@@ -395,14 +393,13 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
         </header>
         <div>
           <p class="experience-responsibility">I participate in Reddit community operations across consumer technology, smart-home, lifestyle, finance, and family-oriented communities, adapting content and interaction to subreddit rules, audience context, and visible performance.</p>
-          <p class="experience-proofline"><strong>5</strong> representative accounts · <strong>793K</strong> representative views · up to <strong>91.7%</strong> U.S. audience share</p>
-          <p class="experience-attribution"><strong>Attribution:</strong> These figures describe representative account assets and representative content I participated in operating; they are not all net-new results created during my internship.</p>
+          <p class="experience-proofline"><strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share</p>
           <a class="experience-link" href="projects/vertex-reddit.html">View internship evidence <span aria-hidden="true">→</span></a>
         </div>
       </article>
       <article class="experience-row experience-row--teaching" data-reveal="">
         <header>
-          <p class="experience-company">Southern Utah University × Wuhan Polytechnic University</p>
+          <p class="experience-company">Southern Utah University</p>
           <h2 class="experience-role">English Writing Teaching Assistant</h2>
           <p class="experience-dates">May 2026</p>
         </header>
@@ -486,7 +483,6 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
         </header>
         <div>
           <p class="edu-degree">B.A. in Advertising</p>
-          <p class="edu-secondary">Degree awarded upon completion at SUU</p>
           <p class="edu-focus">Coursework: Writing for Communication, Digital Copy Layout &amp; Design, Advertising Investigation &amp; Analysis, Organizational Communication.</p>
         </div>
       </article>

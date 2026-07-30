@@ -13,7 +13,8 @@ test('homepage presents exactly two internships in reverse chronological order',
   assert.equal((section.match(/class="experience-row(?:\s|\")/g) ?? []).length, 2);
   assert.ok(section.indexOf('experience-row--vertex') < section.indexOf('experience-row--teaching'));
   assert.match(section, /Internship Experience/);
-  assert.match(section, /Southern Utah University × Wuhan Polytechnic University/);
+  assert.match(section, /<p class="experience-company">Southern Utah University<\/p>/);
+  assert.doesNotMatch(section, /Southern Utah University × Wuhan Polytechnic University/);
   assert.match(section, /English Writing Teaching Assistant/);
   assert.match(section, /May 2026/);
   assert.match(section, /200\+/);
@@ -32,6 +33,8 @@ test('teaching-assistant copy stays within the approved evidence boundary', asyn
   ]) assert.match(`${section}\n${bilingualCopy}`, phrase);
   assert.match(LANGUAGES.zh.copy['#experience .experience-row--teaching .experience-responsibility'], /200 多名学生/);
   assert.match(LANGUAGES.zh.copy['#experience .experience-row--teaching .experience-responsibility'], /Excel/);
+  assert.equal(LANGUAGES.en.copy['#experience .experience-row--teaching .experience-company'], 'Southern Utah University');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-row--teaching .experience-company'], '南犹他大学');
   assert.doesNotMatch(`${section}\n${bilingualCopy}`, /Sharon Lyman|\$450|airfare|82%|96%|30%/i);
 });
 

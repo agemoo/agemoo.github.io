@@ -66,16 +66,11 @@
     .evidence-table strong{font-family:var(--font-mono);font-size:clamp(22px,2.4vw,32px);font-weight:600;line-height:1;color:var(--color-accent-bright);font-variant-numeric:tabular-nums;}
     .community-list{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0;padding:0;list-style:none;}
     .community-list li{border:1px solid var(--color-rule);border-radius:var(--radius-pill);padding:8px 12px;font-family:var(--font-body);font-size:10px;letter-spacing:.06em;color:var(--color-muted);}
-    .boundary-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--rule-thin);background:var(--color-rule);border:1px solid var(--color-rule);}
-    .boundary-grid article{background:var(--color-paper-raised);padding:clamp(24px,3vw,36px);}
-    .boundary-grid h3{font-family:var(--font-body);font-size:11px;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:var(--color-accent-bright);}
-    .boundary-grid p{margin-bottom:0;color:var(--color-muted);}
-    .ownership-note{margin:28px 0 0;padding:20px;border:1px solid var(--color-rule);color:var(--color-ink);}
     .footer{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(100%,var(--width-content));margin-inline:auto;padding:32px var(--gutter-page);border-top:1px solid var(--color-rule);font-family:var(--font-body);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-faint);}
     @media (max-width:60rem),(pointer:coarse){.compact-nav{display:block;}}
     @media (max-width:60rem),(pointer:coarse){.nav .links,.back-link{display:none;}}
     @media (max-width:60rem),(pointer:coarse){.nav .brand,.lang-switch button,.compact-nav summary,.compact-links a{min-height:44px;display:flex;align-items:center;}}
-    @media (max-width:720px){main>section{grid-template-columns:minmax(0,1fr);}.evidence-table th,.evidence-table td{display:block;width:100%;padding-inline:0}.evidence-table th{padding-bottom:4px;border-bottom:0}.evidence-table td{padding-top:0}.boundary-grid{grid-template-columns:minmax(0,1fr)}.footer{align-items:flex-start;flex-direction:column}.nav{gap:12px}.nav-actions{margin-left:auto}.nav .brand .en{display:none}}
+    @media (max-width:720px){main>section{grid-template-columns:minmax(0,1fr);}.evidence-table th,.evidence-table td{display:block;width:100%;padding-inline:0}.evidence-table th{padding-bottom:4px;border-bottom:0}.evidence-table td{padding-top:0}.footer{align-items:flex-start;flex-direction:column}.nav{gap:12px}.nav-actions{margin-left:auto}.nav .brand .en{display:none}}
     @media (max-width:40rem){
       a,button,summary{min-height:44px;}
       main>section>*{min-width:0;}
@@ -90,10 +85,10 @@
   <nav class="nav" id="vertex-nav" aria-label="Project navigation">
     <a class="brand" href="../index.html">Mukun Sun<span class="en">Vertex Evidence</span></a>
     <div class="nav-actions">
-      <div class="links"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-attribution">Attribution</a></div>
+      <div class="links"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a></div>
       <details class="compact-nav">
         <summary aria-label="Open project navigation">Sections</summary>
-        <div class="compact-links" role="navigation" aria-label="Project sections"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a><a href="#vertex-attribution">Attribution</a><a href="../index.html#experience">Portfolio index</a></div>
+        <div class="compact-links" role="navigation" aria-label="Project sections"><a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a><a href="../index.html#experience">Portfolio index</a></div>
       </details>
       <a class="back-link" href="../index.html#experience">← Portfolio index</a>
       <div class="lang-switch" role="group" aria-label="Language">
@@ -106,15 +101,14 @@
   <main>
     <header id="vertex-hero">
       <p class="eyebrow">Vertex Marketing · Internship Evidence</p>
-      <h1>Reddit community operations, with the evidence boundary made visible.</h1>
-      <p class="hero-deck">A scoped record of representative account assets and content I participated in operating during my Reddit Community Operations internship.</p>
+      <h1>Reddit community operations across audiences and topics.</h1>
+      <p class="hero-deck">A record of the accounts, content, and communities I participated in operating during my Reddit Community Operations internship.</p>
       <p class="hero-meta">Reddit Community Operations Intern · 2026 · Current</p>
     </header>
     <section id="vertex-scope" aria-labelledby="vertex-scope-title">
       <h2 id="vertex-scope-title">Scope</h2>
       <div class="section-copy">
-        <p>This review covers five representative Reddit accounts and 16 representative posts available during the internship. I participated in operating and analyzing content across consumer technology, smart-home, lifestyle, finance, family, and other communities.</p>
-        <p class="evidence-note">The selection is an evidence sample, not a complete account census and not a claim that all visible performance was generated after I joined.</p>
+        <p>This review covers five Reddit accounts and 16 posts from my internship work. I participated in operating and analyzing content across consumer technology, smart-home, lifestyle, finance, family, and other communities.</p>
       </div>
     </section>
     <section id="vertex-evidence" aria-labelledby="vertex-evidence-title">
@@ -122,11 +116,11 @@
       <div class="section-copy">
         <table class="evidence-table">
           <tbody>
-            <tr><th scope="row">Accounts</th><td><strong>5</strong> representative accounts</td></tr>
+            <tr><th scope="row">Accounts</th><td><strong>5</strong> accounts</td></tr>
             <tr><th scope="row">Account history</th><td><strong>15,433</strong> cumulative Karma</td></tr>
             <tr><th scope="row">Contributions</th><td><strong>472</strong> cumulative contributions</td></tr>
-            <tr><th scope="row">Visible views</th><td><strong>793K</strong> views across 15 view-visible representative posts</td></tr>
-            <tr><th scope="row">Engagement</th><td><strong>3,548</strong> upvotes and <strong>482</strong> comments across 16 representative posts</td></tr>
+            <tr><th scope="row">Visible views</th><td><strong>793K</strong> views across 15 view-visible posts</td></tr>
+            <tr><th scope="row">Engagement</th><td><strong>3,548</strong> upvotes and <strong>482</strong> comments across 16 posts</td></tr>
             <tr><th scope="row">Single-post peak</th><td><strong>406K</strong> views / <strong>891</strong> upvotes / <strong>90</strong> comments / <strong>100%</strong> upvote ratio</td></tr>
             <tr><th scope="row">Audience</th><td><strong>91.7%</strong> highest observed U.S. audience share</td></tr>
             <tr><th scope="row">Community coverage</th><td>At least <strong>15</strong> communities</td></tr>
@@ -137,25 +131,15 @@
     <section id="vertex-community" aria-labelledby="vertex-community-title">
       <h2 id="vertex-community-title">Community context</h2>
       <div class="section-copy">
-        <p>The representative activity spans broad-interest and vertical communities. I adapted research, content, and interaction to each Subreddit's rules and audience language, and participated in early setup and moderation work for an official brand community.</p>
-        <ul class="community-list" aria-label="Representative community themes">
+        <p>The work spans broad-interest and vertical communities. I adapted research, content, and interaction to each Subreddit's rules and audience language, and participated in early setup and moderation work for an official brand community.</p>
+        <ul class="community-list" aria-label="Community themes">
           <li>Consumer technology</li><li>Smart home</li><li>Gaming</li><li>Programming</li><li>Finance</li><li>Food &amp; drink</li><li>Parenting</li><li>Mental health</li><li>Relationships</li><li>Careers</li>
         </ul>
       </div>
     </section>
-    <section id="vertex-attribution" aria-labelledby="vertex-attribution-title">
-      <h2 id="vertex-attribution-title">Attribution boundary</h2>
-      <div class="section-copy">
-        <div class="boundary-grid">
-          <article><h3>Historical account assets</h3><p>The aggregate figures include account history and representative content that existed before or outside my individual internship contributions.</p></article>
-          <article><h3>Net-new internship outcomes</h3><p>This page does not isolate or quantify net-new performance created during the internship. Those outcomes require separate, time-bounded tracking.</p></article>
-        </div>
-        <p class="ownership-note">I participated in operating and analyzing the representative accounts and content. This page does not claim sole ownership of the aggregate performance.</p>
-      </div>
-    </section>
   </main>
 
-  <footer class="footer" id="vertex-footer"><span>Mukun Sun · Vertex internship evidence</span><span>Representative account scope · 2026</span></footer>
+  <footer class="footer" id="vertex-footer"><span>Mukun Sun · Vertex internship evidence</span><span>Internship record · 2026</span></footer>
   <script>
     (function(){
       var root=document.documentElement;
