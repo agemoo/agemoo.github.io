@@ -62,7 +62,7 @@ test('each translation selector is rooted in its intended route', async () => {
       : selector.startsWith('#campus-') ? 'campus'
         : selector.startsWith('#hotel-') ? 'hotel'
           : selector.startsWith('#visual-') ? 'visual'
-            : /^#outside-(?:nav|hero|music|photography|travel|dialog|footer)\b/.test(selector) ? 'outside'
+            : /^(?:#outside-(?:nav|hero|music|photography|travel|dialog|footer)\b|#music-)/.test(selector) ? 'outside'
               : 'home';
     assert.equal(routes[route].has(selector), true, `${route}: ${selector}`);
   }
@@ -75,7 +75,7 @@ test('second-layer dictionaries use the approved bilingual claims', () => {
     ['#hotel-context p', 'A balcony performance connected Ni Jazz Bar with Fengmao Andi Hotel around a hotel-and-art event concept.', '一场阳台演出以“酒店与艺术”为概念，连接了 Ni Jazz Bar 与风貌安坻酒店。'],
     ['#hotel-contribution p', 'I developed the event concept, coordinated the partners and performance, planned WeChat promotion, and designed a consistent visual identity.', '我构思活动概念，协调合作方与演出，策划微信推广，并设计统一的视觉识别。'],
     ['#visual-hero .detail-deck', 'A selected archive of event, product, print, and photographic work.', '一组活动、产品、印刷与摄影作品精选。'],
-    ['#outside-music p', 'I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band. Music has also led me into concert planning and event coordination.', '我在 SUU 爵士大乐队演奏低音提琴，并在 T-Bird Marching Band 演奏电贝斯。音乐也让我参与音乐会策划与活动协调。'],
+    ['#outside-music .music-intro-copy', 'I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band.', '我演奏低音提琴和电贝斯，但很多音乐工作发生在登台之前：编曲、组织排练、协调场地，以及围绕一支乐队完成整场活动。'],
     ['#outside-photography p', 'Photography is another way I study light, objects, and atmosphere.', '摄影是我观察光线、物体与氛围的另一种方式。'],
     ['#outside-travel p', 'Travel and museums are another way I pay attention to place, design, and atmosphere. This section will grow through original photographs and short notes rather than travel-guide summaries.', '旅行与博物馆让我继续观察地点、设计与氛围。这里会逐步加入原创照片与短记，而不是旅行攻略式的汇总。'],
   ];
@@ -122,7 +122,18 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     outside: [
       '#outside-nav .brand', '#outside-nav .links', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-nav .back-link',
       '#outside-hero h1', '#outside-hero .detail-eyebrow', '#outside-hero .detail-deck',
-      '#outside-music h2', '#outside-music p', '#outside-music figcaption',
+      '#outside-music h2', '#outside-music .music-intro-copy', '#outside-music .music-lead figcaption',
+      '#outside-music .music-history-label--performances',
+      '#music-artist-finalist .music-entry-meta', '#music-artist-finalist h3', '#music-artist-finalist .music-entry-description', '#music-artist-finalist figcaption',
+      '#music-student-center .music-entry-meta', '#music-student-center h3', '#music-student-center p',
+      '#music-grand-ball .music-entry-meta', '#music-grand-ball h3', '#music-grand-ball .music-entry-description', '#music-grand-ball figcaption',
+      '#music-tbird .music-entry-meta', '#music-tbird h3', '#music-tbird p',
+      '#music-jazz-fest .music-entry-meta', '#music-jazz-fest h3', '#music-jazz-fest p', '#music-jazz-fest .music-watch',
+      '#music-campus-concert .music-entry-meta', '#music-campus-concert h3', '#music-campus-concert .music-entry-description', '#music-campus-concert figcaption',
+      '#music-welcome-gala .music-entry-meta', '#music-welcome-gala h3', '#music-welcome-gala .music-entry-description', '#music-welcome-gala figcaption',
+      '#music-ni-jazz-bar .music-entry-meta', '#music-ni-jazz-bar h3', '#music-ni-jazz-bar p',
+      '#music-fashion-show .music-entry-meta', '#music-fashion-show h3', '#music-fashion-show p',
+      '#outside-music .music-history-label--study', '#music-study-sun time', '#music-study-sun p', '#music-study-burns time', '#music-study-burns p',
       '#outside-photography h2', '#outside-photography p',
       ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) figcaption`),
       '#outside-travel h2', '#outside-travel p', '#outside-footer span', '#outside-footer a',
@@ -142,7 +153,8 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     ...Array.from({ length: 3 }, (_, index) => `#visual-lead .detail-media:nth-child(${index + 1}) img`),
     ...Array.from({ length: 8 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) img`),
     '#visual-dialog', '#visual-dialog .dialog-close',
-    '#outside-nav .lang-switch', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-music img',
+    '#outside-nav .lang-switch', '#outside-nav .compact-nav summary', '#outside-nav .compact-links',
+    '#outside-music .music-lead img', '#music-artist-finalist img', '#music-grand-ball img', '#music-campus-concert img', '#music-welcome-gala img',
     ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) img`),
     '#outside-dialog', '#outside-dialog .dialog-close',
   ];
@@ -203,7 +215,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 
 test('language module declares all public page keys and the shared cache key', () => {
   assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'outside']);
-  assert.equal(I18N_CACHE_KEY, '20260730-project-polish');
+  assert.equal(I18N_CACHE_KEY, '20260730-music-history');
 });
 
 test('homepage dictionaries own the approved first-layer selectors', () => {
@@ -328,12 +340,12 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   assert.match(html, /data-lang="en"/);
   assert.match(html, /data-lang="zh"/);
   assert.match(html, /href="outside-work\.html"/);
-  assert.match(html, /src="assets\/music\/performance\.jpg"/);
+  assert.match(html, /src="assets\/music\/suu_jazz_fest\/performance\.jpg"/);
   assert.match(html, /src="assets\/photography\/walter_disney\.webp"/);
   assert.doesNotMatch(html, /已生成图像|src="assets\/bass1\.jpg"/);
   const photographyImage = '#outside-work .outside-card:nth-child(2) img';
   assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Curved metal architecture at Walt Disney Concert Hall');
   assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '华特·迪士尼音乐厅的金属曲面建筑');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
-  assert.match(html, /src="i18n\.js\?v=20260730-project-polish"/);
+  assert.match(html, /src="i18n\.js\?v=20260730-music-history"/);
 });

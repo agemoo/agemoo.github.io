@@ -51,6 +51,24 @@ html[data-page="campus"] .detail-hero h1,html[data-page="hotel"] .detail-hero h1
 .detail-media img{display:block;width:100%;height:auto;}
 .detail-media figcaption{margin-top:var(--space-xs);font-size:var(--text-xs);color:var(--color-muted);}
 .detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,40px);align-items:start;}
+.music-copy{max-width:none;}
+.music-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.7fr);gap:clamp(24px,4vw,56px);align-items:start;}
+.music-intro-copy{max-width:52ch;margin-top:0;font-size:var(--text-md);color:var(--color-ink-soft);}
+.music-lead{max-width:360px;justify-self:end;}
+.music-history,.music-study{margin-top:clamp(48px,7vw,88px);border-top:1px solid var(--color-rule);}
+.music-history-label{margin:0;padding-block:var(--space-sm);font-size:var(--text-xs);font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent-bright);}
+.music-entry{display:grid;grid-template-columns:minmax(132px,.34fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding-block:clamp(28px,4vw,48px);border-top:1px solid var(--color-rule);}
+.music-entry-meta{display:flex;flex-direction:column;gap:var(--space-2xs);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted);}
+.music-entry-body{min-width:0;}
+.music-entry-body h3{margin:0 0 var(--space-xs);font-family:var(--font-display);font-size:clamp(var(--text-md),2vw,var(--text-lg));font-weight:600;line-height:1.25;color:var(--color-ink);}
+.music-entry-description{max-width:56ch;margin:0;color:var(--color-ink-soft);}
+.music-entry-media{max-width:360px;margin-top:var(--space-md);}
+.music-entry-media--landscape{max-width:560px;}
+.music-watch{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--space-xs);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-bright);}
+.music-watch:hover{color:var(--color-ink);}
+.music-study-row{display:grid;grid-template-columns:minmax(132px,.34fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding-block:var(--space-sm);border-top:1px solid var(--color-rule);}
+.music-study-row time{font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted);}
+.music-study-row p{margin:0;color:var(--color-ink-soft);}
 .media-button{display:block;min-width:0;color:inherit;}
 .media-button img{transition:opacity var(--dur-short) var(--ease-out);}
 .media-button:hover img{opacity:.86;}
@@ -71,7 +89,7 @@ html[lang="zh-CN"] .detail-section p{line-height:1.85;}
 
 @media (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){.progress{display:block;}}
 @media(max-width:60rem){.compact-nav{display:block;}.detail-hero,.detail-section{grid-template-columns:minmax(0,1fr);}.detail-nav .links,.detail-nav .back-link{display:none;}}
-@media(max-width:40rem){.detail-grid{grid-template-columns:minmax(0,1fr)}a,button,summary{min-height:44px;}.detail-nav .brand{max-width:calc(100vw - 156px);overflow:hidden;text-overflow:ellipsis;}.detail-nav .nav-actions{margin-left:auto;}.detail-hero,.detail-section{padding-block:var(--space-2xl);}.detail-hero{padding-top:clamp(112px,28vw,144px);}}
+@media(max-width:40rem){.detail-grid{grid-template-columns:minmax(0,1fr)}.music-intro,.music-entry,.music-study-row{grid-template-columns:minmax(0,1fr)}.music-lead{max-width:none;justify-self:stretch;}.music-entry,.music-study-row{gap:var(--space-xs);}.music-entry-meta{flex-direction:row;flex-wrap:wrap;gap:var(--space-2xs) var(--space-sm);}.music-entry-media,.music-entry-media--landscape{max-width:none;}a,button,summary{min-height:44px;}.detail-nav .brand{max-width:calc(100vw - 156px);overflow:hidden;text-overflow:ellipsis;}.detail-nav .nav-actions{margin-left:auto;}.detail-hero,.detail-section{padding-block:var(--space-2xl);}.detail-hero{padding-top:clamp(112px,28vw,144px);}}
 @media(max-width:40rem){.footer{flex-direction:column;align-items:flex-start;gap:var(--space-2xs);}}
 @media(max-width:40rem),(pointer:coarse){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;}.progress{display:none!important;}}

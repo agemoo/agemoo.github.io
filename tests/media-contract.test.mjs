@@ -11,7 +11,11 @@ const approved = [
   'assets/project/Andi/andi_fest_2.png',
   'assets/project/Andi/andi_fest.jpg',
   'assets/jazz_winter.jpg',
-  'assets/music/performance.jpg',
+  'assets/music/suu_jazz_fest/performance.jpg',
+  'assets/music/grand_ball/grand_ball.jpg',
+  'assets/music/nomination/with_friends.jpg',
+  'assets/music/jazz_concert/jazz_concert.jpg',
+  'assets/music/welcome-gala/freshmen_welcome_gala.jpg',
   'assets/photography/building.webp',
   'assets/photography/chongqing.webp',
   'assets/photography/santa_monica_beach.webp',
@@ -24,7 +28,7 @@ test('every newly selected public image exists', async () => {
 });
 
 test('homepage uses approved lead images and excludes privacy-risk images', () => {
-  for (const path of [approved[0], approved[1], approved[2], approved[4]]) {
+  for (const path of [approved[0], approved[1], approved[2], approved[4], approved[5]]) {
     assert.match(home, new RegExp(path.replaceAll('/', '\\/')));
   }
   assert.match(home, /assets\/photography\/walter_disney\.webp/);

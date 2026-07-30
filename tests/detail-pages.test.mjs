@@ -19,7 +19,7 @@ test('every second-layer route has the shared bilingual shell', async () => {
     assert.match(html, new RegExp(`<html[^>]+data-page="${key}"`));
     assert.match(html, /href="(?:\.\.\/)?detail\.css"/);
     assert.match(html, /src="(?:\.\.\/)?detail\.js"/);
-    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-project-polish"/);
+    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-music-history"/);
     assert.match(html, /data-lang="en"/);
     assert.match(html, /data-lang="zh"/);
     assert.match(html, /href="(?:\.\.\/)?index\.html"/);
@@ -67,7 +67,11 @@ test('enhanced Campus, Hotel, and Outside images keep focusable real-file links'
     ['projects/campus-campaign.html', '../assets/project/CampusGala/freshmen_welcome_gala.jpg'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.png'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.jpg'],
-    ['outside-work.html', 'assets/music/performance.jpg'],
+    ['outside-work.html', 'assets/music/suu_jazz_fest/performance.jpg'],
+    ['outside-work.html', 'assets/music/grand_ball/grand_ball.jpg'],
+    ['outside-work.html', 'assets/music/nomination/with_friends.jpg'],
+    ['outside-work.html', 'assets/music/jazz_concert/jazz_concert.jpg'],
+    ['outside-work.html', 'assets/music/welcome-gala/freshmen_welcome_gala.jpg'],
     ['outside-work.html', 'assets/photography/building.webp'],
     ['outside-work.html', 'assets/photography/chongqing.webp'],
     ['outside-work.html', 'assets/photography/santa_monica_beach.webp'],
@@ -127,11 +131,15 @@ test('outside work keeps Music, Photography, and Travel in the approved order', 
   assert.match(html, /<meta name="description" content="Music, photography, and travel that shape how Mukun Sun pays attention to people and atmosphere\.">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/outside-work\.html">/);
   assert.match(html, /<section class="detail-section" id="outside-music"[\s\S]*?<section class="detail-section" id="outside-photography"[\s\S]*?<section class="detail-section" id="outside-travel"/);
-  assert.match(html, /I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band\. Music has also led me into concert planning and event coordination\./);
+  assert.match(html, /I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band\./);
   assert.match(html, /Photography is another way I study light, objects, and atmosphere\./);
   assert.match(html, /Travel and museums are another way I pay attention to place, design, and atmosphere\. This section will grow through original photographs and short notes rather than travel-guide summaries\./);
   const approved = [
-    ['assets/music/performance.jpg', 896, 1193],
+    ['assets/music/suu_jazz_fest/performance.jpg', 896, 1193],
+    ['assets/music/grand_ball/grand_ball.jpg', 1279, 1706],
+    ['assets/music/nomination/with_friends.jpg', 1279, 1706],
+    ['assets/music/jazz_concert/jazz_concert.jpg', 1706, 1279],
+    ['assets/music/welcome-gala/freshmen_welcome_gala.jpg', 1440, 960],
     ['assets/photography/building.webp', 1448, 1086],
     ['assets/photography/chongqing.webp', 1086, 1448],
     ['assets/photography/santa_monica_beach.webp', 1350, 1800],
@@ -141,8 +149,27 @@ test('outside work keeps Music, Photography, and Travel in the approved order', 
   for (const [file, width, height] of approved) {
     assert.match(html, new RegExp(`<img src="${file.replaceAll('/', '\\/')}" width="${width}" height="${height}"`));
   }
-  assert.doesNotMatch(html, /src="[^"]*(?:professor|classroom|group|grand_ball_with_friends|with_friends)/i);
+  assert.doesNotMatch(html, /assets\/music\/performance\.jpg|grand_ball_with_friends\.jpg/i);
   assert.doesNotMatch(html, /已生成图像|outside-places|>Places</);
+});
+
+test('music history presents verified performances, production work, and study in reverse chronology', async () => {
+  const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
+  const orderedIds = [
+    'music-artist-finalist', 'music-student-center', 'music-grand-ball', 'music-tbird',
+    'music-jazz-fest', 'music-campus-concert', 'music-welcome-gala', 'music-ni-jazz-bar',
+    'music-fashion-show',
+  ];
+  for (const id of orderedIds) assert.match(html, new RegExp(`id="${id}"`));
+  for (let index = 1; index < orderedIds.length; index += 1) {
+    assert.ok(html.indexOf(orderedIds[index - 1]) < html.indexOf(orderedIds[index]));
+  }
+  assert.match(html, /Finalist · SUU International Student Artist/);
+  assert.match(html, /Independent Jazz Concert/);
+  assert.match(html, /Just the Two of Us/);
+  assert.match(html, /Studied jazz bass with American bassist Daren Burns in Beijing\./);
+  assert.match(html, /Studied with SUU professor Sun Xun\./);
+  assert.match(html, /href="https:\/\/www\.youtube\.com\/live\/OFijT_vkp8c\?si=OqEdKbXtynljWJtd"/);
 });
 
 test('detail routes expose no-JS content and mount live reveal hooks', async () => {
