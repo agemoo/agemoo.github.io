@@ -67,9 +67,11 @@ test('enhanced Campus, Hotel, and Outside images keep focusable real-file links'
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.png'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.jpg'],
     ['outside-work.html', 'assets/music/performance.jpg'],
-    ['outside-work.html', 'assets/bass1.jpg'],
-    ['outside-work.html', 'assets/bass2.jpg'],
-    ['outside-work.html', 'assets/bass3.jpg'],
+    ['outside-work.html', 'assets/photography/building.webp'],
+    ['outside-work.html', 'assets/photography/chongqing.webp'],
+    ['outside-work.html', 'assets/photography/santa_monica_beach.webp'],
+    ['outside-work.html', 'assets/photography/tongren.webp'],
+    ['outside-work.html', 'assets/photography/walter_disney.webp'],
   ];
 
   for (const [path, source] of expectations) {
@@ -117,25 +119,28 @@ test('selected visual work preserves the approved archive with real image links'
   assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg/);
 });
 
-test('outside work keeps three restrained chapters in the approved order', async () => {
+test('outside work keeps Music, Photography, and Travel in the approved order', async () => {
   const html = await readFile(new URL('../outside-work.html', import.meta.url), 'utf8');
   assert.match(html, /<title>Outside Work \| Mukun Sun<\/title>/);
-  assert.match(html, /<meta name="description" content="Music, photography, and places that shape how Mukun Sun pays attention to people and atmosphere\.">/);
+  assert.match(html, /<meta name="description" content="Music, photography, and travel that shape how Mukun Sun pays attention to people and atmosphere\.">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/outside-work\.html">/);
-  assert.match(html, /<section class="detail-section" id="outside-music"[\s\S]*?<section class="detail-section" id="outside-photography"[\s\S]*?<section class="detail-section" id="outside-places"/);
+  assert.match(html, /<section class="detail-section" id="outside-music"[\s\S]*?<section class="detail-section" id="outside-photography"[\s\S]*?<section class="detail-section" id="outside-travel"/);
   assert.match(html, /I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band\. Music has also led me into concert planning and event coordination\./);
   assert.match(html, /Photography is another way I study light, objects, and atmosphere\./);
   assert.match(html, /Travel and museums are another way I pay attention to place, design, and atmosphere\. This section will grow through original photographs and short notes rather than travel-guide summaries\./);
   const approved = [
     ['assets/music/performance.jpg', 896, 1193],
-    ['assets/bass1.jpg', 1100, 1467],
-    ['assets/bass2.jpg', 1100, 1466],
-    ['assets/bass3.jpg', 1100, 1467],
+    ['assets/photography/building.webp', 1448, 1086],
+    ['assets/photography/chongqing.webp', 1086, 1448],
+    ['assets/photography/santa_monica_beach.webp', 1800, 1350],
+    ['assets/photography/tongren.webp', 1086, 1448],
+    ['assets/photography/walter_disney.webp', 1086, 1448],
   ];
   for (const [file, width, height] of approved) {
     assert.match(html, new RegExp(`<img src="${file.replaceAll('/', '\\/')}" width="${width}" height="${height}"`));
   }
   assert.doesNotMatch(html, /src="[^"]*(?:professor|classroom|group|grand_ball_with_friends|with_friends)/i);
+  assert.doesNotMatch(html, /已生成图像|outside-places|>Places</);
 });
 
 test('detail routes expose no-JS content and mount live reveal hooks', async () => {

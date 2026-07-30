@@ -62,7 +62,7 @@ test('each translation selector is rooted in its intended route', async () => {
       : selector.startsWith('#campus-') ? 'campus'
         : selector.startsWith('#hotel-') ? 'hotel'
           : selector.startsWith('#visual-') ? 'visual'
-            : /^#outside-(?:nav|hero|music|photography|places|dialog|footer)\b/.test(selector) ? 'outside'
+            : /^#outside-(?:nav|hero|music|photography|travel|dialog|footer)\b/.test(selector) ? 'outside'
               : 'home';
     assert.equal(routes[route].has(selector), true, `${route}: ${selector}`);
   }
@@ -77,7 +77,7 @@ test('second-layer dictionaries use the approved bilingual claims', () => {
     ['#visual-hero .detail-deck', 'A selected archive of event, product, print, and photographic work.', '一组活动、产品、印刷与摄影作品精选。'],
     ['#outside-music p', 'I play upright bass in the SUU Jazz Big Band and electric bass in the T-Bird Marching Band. Music has also led me into concert planning and event coordination.', '我在 SUU 爵士大乐队演奏低音提琴，并在 T-Bird Marching Band 演奏电贝斯。音乐也让我参与音乐会策划与活动协调。'],
     ['#outside-photography p', 'Photography is another way I study light, objects, and atmosphere.', '摄影是我观察光线、物体与氛围的另一种方式。'],
-    ['#outside-places p', 'Travel and museums are another way I pay attention to place, design, and atmosphere. This section will grow through original photographs and short notes rather than travel-guide summaries.', '旅行与博物馆让我继续观察地方、设计与氛围。这里会逐步加入原创照片与短记，而不是旅行攻略式的汇总。'],
+    ['#outside-travel p', 'Travel and museums are another way I pay attention to place, design, and atmosphere. This section will grow through original photographs and short notes rather than travel-guide summaries.', '旅行与博物馆让我继续观察地点、设计与氛围。这里会逐步加入原创照片与短记，而不是旅行攻略式的汇总。'],
   ];
   for (const [selector, english, chinese] of matrix) {
     assert.equal(LANGUAGES.en.copy[selector], english, selector);
@@ -124,8 +124,8 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       '#outside-hero h1', '#outside-hero .detail-eyebrow', '#outside-hero .detail-deck',
       '#outside-music h2', '#outside-music p', '#outside-music figcaption',
       '#outside-photography h2', '#outside-photography p',
-      ...Array.from({ length: 3 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) figcaption`),
-      '#outside-places h2', '#outside-places p', '#outside-footer span', '#outside-footer a',
+      ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) figcaption`),
+      '#outside-travel h2', '#outside-travel p', '#outside-footer span', '#outside-footer a',
     ],
   };
   for (const [route, selectors] of Object.entries(copyRoots)) {
@@ -143,7 +143,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     ...Array.from({ length: 11 }, (_, index) => `#visual-archive .detail-media:nth-child(${index + 1}) img`),
     '#visual-dialog', '#visual-dialog .dialog-close',
     '#outside-nav .lang-switch', '#outside-nav .compact-nav summary', '#outside-nav .compact-links', '#outside-music img',
-    ...Array.from({ length: 3 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) img`),
+    ...Array.from({ length: 5 }, (_, index) => `#outside-photography .detail-media:nth-child(${index + 1}) img`),
     '#outside-dialog', '#outside-dialog .dialog-close',
   ];
   for (const selector of attributeSelectors) {
@@ -322,18 +322,18 @@ test('applyLanguage keeps available Open Graph and Twitter metadata in language 
   assert.equal(metas.get('meta[name="twitter:description"]').content, LANGUAGES.zh.metadata.home.description);
 });
 
-test('page exposes a bilingual control and the approved outside-work gateway media', async () => {
+test('page exposes a bilingual control and direct outside-work gateway media', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /class="lang-switch"/);
   assert.match(html, /data-lang="en"/);
   assert.match(html, /data-lang="zh"/);
   assert.match(html, /href="outside-work\.html"/);
   assert.match(html, /src="assets\/music\/performance\.jpg"/);
-  assert.match(html, /src="assets\/bass1\.jpg"/);
-  assert.doesNotMatch(html, /src="build\/assets\/bass1\.jpg"/);
+  assert.match(html, /src="assets\/photography\/walter_disney\.webp"/);
+  assert.doesNotMatch(html, /已生成图像|src="assets\/bass1\.jpg"/);
   const photographyImage = '#outside-work .outside-card:nth-child(2) img';
-  assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Night photograph of a white bass guitar against a tree');
-  assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '白色贝斯倚靠树干的夜色摄影');
+  assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Curved metal architecture at Walt Disney Concert Hall');
+  assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '华特·迪士尼音乐厅的金属曲面建筑');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
   assert.match(html, /src="i18n\.js\?v=20260729-personal-site"/);
 });

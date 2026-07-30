@@ -40,10 +40,15 @@ test('homepage exposes three second-layer work routes', () => {
   assert.doesNotMatch(home, /<details class="project-row/);
 });
 
-test('Outside Work is one asymmetric homepage gateway', () => {
+test('Outside Work remains one asymmetric composition with three direct section links', () => {
   assert.match(home, /<section[^>]+id="outside-work"/);
-  assert.match(home, /href="outside-work\.html"/);
-  for (const label of ['Music', 'Photography', 'Places']) assert.match(home, new RegExp(label));
+  for (const href of [
+    'outside-work.html#outside-music',
+    'outside-work.html#outside-photography',
+    'outside-work.html#outside-travel',
+  ]) assert.match(home, new RegExp(`href="${href}"`));
+  for (const label of ['Music', 'Photography', 'Travel']) assert.match(home, new RegExp(label));
+  assert.doesNotMatch(home, /<a class="outside-gateway"[^>]*>[\s\S]*?<div class="outside-grid">/);
   assert.doesNotMatch(home, /href="(?:music|photography|places)\.html"/);
 });
 

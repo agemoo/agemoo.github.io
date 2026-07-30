@@ -11,6 +11,11 @@ const approved = [
   'assets/project/Andi/andi_fest_2.png',
   'assets/project/Andi/andi_fest.jpg',
   'assets/music/performance.jpg',
+  'assets/photography/building.webp',
+  'assets/photography/chongqing.webp',
+  'assets/photography/santa_monica_beach.webp',
+  'assets/photography/tongren.webp',
+  'assets/photography/walter_disney.webp',
 ];
 
 test('every newly selected public image exists', async () => {
@@ -21,6 +26,8 @@ test('homepage uses approved lead images and excludes privacy-risk images', () =
   for (const path of [approved[0], approved[1], approved[2], approved[4]]) {
     assert.match(home, new RegExp(path.replaceAll('/', '\\/')));
   }
+  assert.match(home, /assets\/photography\/walter_disney\.webp/);
+  assert.doesNotMatch(home, /已生成图像/);
   for (const banned of ['professor_classroom.jpg', 'grand_ball_with_friends.jpg', 'with_professor.jpg']) {
     assert.doesNotMatch(home, new RegExp(banned));
   }

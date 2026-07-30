@@ -252,14 +252,14 @@ html.js.motion-desktop .marquee .track{animation:scroll 34s linear infinite;}
 /* ---------- OUTSIDE WORK ---------- */
 .outside-gateway{display:block;}
 .outside-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,1fr);align-items:stretch;grid-template-rows:minmax(0,1fr) minmax(0,.72fr);gap:clamp(20px,2.4vw,32px);}
-.outside-card{display:grid;align-content:start;gap:16px;min-width:0;padding:clamp(20px,3vw,32px);border:1px solid var(--line-2);background:var(--bg-1);}
+.outside-card{display:grid;align-content:start;gap:16px;min-width:0;padding:clamp(20px,3vw,32px);border:1px solid var(--line-2);background:var(--bg-1);transition:border-color .35s var(--ease),background .35s var(--ease);}
 .outside-card--music{grid-row:1/3;}
 .outside-card strong{font-family:var(--serif);font-size:clamp(22px,3vw,34px);line-height:1.25;color:var(--ink);font-weight:600;}
 .outside-card p{font-size:14px;line-height:1.75;color:var(--ink-2);max-width:48ch;}
 .outside-media{display:block;overflow:hidden;border:1px solid var(--line);background:var(--bg);}
 .outside-media img{width:100%;height:auto;filter:brightness(.92) saturate(.92);transition:filter .45s var(--ease);}
 .outside-action{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(24px,4vw,40px);font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);white-space:nowrap;}
-@media (hover:hover) and (pointer:fine){.outside-gateway:hover .outside-media img{filter:brightness(1) saturate(1);}.outside-gateway:hover .outside-action{color:var(--amber);}}
+@media (hover:hover) and (pointer:fine){.outside-card:hover{border-color:var(--line-3);background:var(--bg-2);}.outside-card:hover .outside-media img{filter:brightness(1) saturate(1);}.outside-action:hover{color:var(--amber);}}
 
 @media(max-width:60rem){.about-top,.experience-row,.experience-row--teaching>div:last-child,.project-row,.outside-grid{grid-template-columns:minmax(0,1fr);}}
 @media(max-width:60rem){.portrait{justify-self:start;max-width:320px;}.outside-grid{grid-template-rows:auto;}.outside-card--music{grid-row:auto;}.project-action{justify-self:start;}}
@@ -496,28 +496,28 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
     <div class="shead">
       <div>
         <h2 class="stitle" data-reveal>Outside Work</h2>
-        <p class="lede section-intro" data-reveal>Music, photography, and places shape how I pay attention to people and atmosphere.</p>
+        <p class="lede section-intro" data-reveal>Music, photography, and travel shape how I pay attention to people and atmosphere.</p>
       </div>
     </div>
-    <a class="outside-gateway" href="outside-work.html" data-reveal>
+    <div class="outside-gateway" data-reveal>
       <div class="outside-grid">
-        <div class="outside-card outside-card--music">
+        <a class="outside-card outside-card--music" href="outside-work.html#outside-music">
           <span class="outside-media"><img src="assets/music/performance.jpg" width="896" height="1193" alt="Mukun Sun performing upright bass on stage" loading="lazy" decoding="async"></span>
           <strong>Music</strong>
           <p>Upright and electric bass performance, ensemble work, and the planning behind live events.</p>
-        </div>
-        <div class="outside-card outside-card--photography">
-          <span class="outside-media"><img src="assets/bass1.jpg" width="1100" height="1467" alt="Night photograph of a white bass guitar against a tree" loading="lazy" decoding="async"></span>
+        </a>
+        <a class="outside-card outside-card--photography" href="outside-work.html#outside-photography">
+          <span class="outside-media"><img src="assets/photography/walter_disney.webp" width="1086" height="1448" alt="Curved metal architecture at Walt Disney Concert Hall" loading="lazy" decoding="async"></span>
           <strong>Photography</strong>
           <p>Small studies in performance, objects, light, and atmosphere.</p>
-        </div>
-        <div class="outside-card outside-card--places">
-          <strong>Places</strong>
+        </a>
+        <a class="outside-card outside-card--travel" href="outside-work.html#outside-travel">
+          <strong>Travel</strong>
           <p>Notes from cities and landscapes that sharpen how I notice culture, rhythm, and everyday detail.</p>
-        </div>
+        </a>
       </div>
-      <span class="outside-action">Explore outside work <span aria-hidden="true">→</span></span>
-    </a>
+      <a class="outside-action" href="outside-work.html">Explore outside work <span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
