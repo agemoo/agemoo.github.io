@@ -69,11 +69,16 @@ test('enhanced Campus, Hotel, and Music images keep focusable real-file links', 
     ['projects/campus-campaign.html', '../assets/project/CampusGala/freshmen_welcome_gala.jpg'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.png'],
     ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.jpg'],
+    ['music.html', 'assets/music/suu_jazz_fest/playing.webp'],
     ['music.html', 'assets/music/suu_jazz_fest/performance.jpg'],
-    ['music.html', 'assets/music/grand_ball/grand_ball.jpg'],
+    ['music.html', 'assets/music/jazz_in_the_room/jazz_in_the_room.jpg'],
+    ['music.html', 'assets/music/grand_ball/headshot.webp'],
     ['music.html', 'assets/music/nomination/with_friends.jpg'],
     ['music.html', 'assets/music/jazz_concert/jazz_concert.jpg'],
     ['music.html', 'assets/music/welcome-gala/freshmen_welcome_gala.jpg'],
+    ['music.html', 'assets/music/environment/environment.webp'],
+    ['music.html', 'assets/music/environment/me_playing_bass.webp'],
+    ['music.html', 'assets/music/mentors/Daren Burns.jpg'],
   ];
 
   for (const [path, source] of expectations) {
@@ -130,17 +135,25 @@ test('music route keeps the approved content and media', async () => {
   assert.match(html, /<header class="detail-hero" id="music-hero"[^>]*>[\s\S]*?<section[^>]+id="music-intro"[\s\S]*?<section[^>]+id="music-timeline"[\s\S]*?<section[^>]+id="music-study"/);
   assert.match(html, /I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band\./);
   const approved = [
+    ['assets/music/suu_jazz_fest/playing.webp', 1726, 964],
     ['assets/music/suu_jazz_fest/performance.jpg', 896, 1193],
-    ['assets/music/grand_ball/grand_ball.jpg', 1279, 1706],
+    ['assets/music/jazz_in_the_room/jazz_in_the_room.jpg', 1446, 903],
+    ['assets/music/grand_ball/headshot.webp', 1086, 1448],
     ['assets/music/nomination/with_friends.jpg', 1279, 1706],
     ['assets/music/jazz_concert/jazz_concert.jpg', 1706, 1279],
     ['assets/music/welcome-gala/freshmen_welcome_gala.jpg', 1440, 960],
+    ['assets/music/environment/environment.webp', 1448, 1086],
+    ['assets/music/environment/me_playing_bass.webp', 1537, 1023],
+    ['assets/music/mentors/Daren Burns.jpg', 1279, 1706],
   ];
   for (const [file, width, height] of approved) {
     assert.match(html, new RegExp(`<img src="${file.replaceAll('/', '\\/')}" width="${width}" height="${height}"`));
   }
-  assert.doesNotMatch(html, /assets\/music\/performance\.jpg|grand_ball_with_friends\.jpg/i);
+  assert.doesNotMatch(html, /assets\/music\/performance\.jpg|grand_ball_with_friends\.jpg|grand_ball\/grand_ball\.jpg/i);
   assert.doesNotMatch(html, /已生成图像|outside-photography|outside-travel|>Places</);
+  assert.match(html, /id="music-fashion-show"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-fashion-show"/);
+  assert.match(html, /class="music-event-gallery"[\s\S]*?environment\.webp[\s\S]*?me_playing_bass\.webp/);
+  assert.match(html, /id="music-study-burns"[\s\S]*?Daren Burns\.jpg/);
 });
 
 test('music history presents verified performances, production work, and study in reverse chronology', async () => {
