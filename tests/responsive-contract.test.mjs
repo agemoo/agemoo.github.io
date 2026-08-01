@@ -47,16 +47,16 @@ test('outside-work detail routes load one shared versioned module and cache-bust
 test('detail routes collapse at 60rem and 40rem while coarse pointers change only navigation', async () => {
   const [, , , , , , css] = await readContracts();
   assert.match(css, /@media\(max-width:60rem\)\{[^}]*\.detail-hero,\.detail-section,\.music-page-intro\{grid-template-columns:minmax\(0,1fr\);\}/);
-  assert.match(css, /@media\(max-width:60rem\)\{[\s\S]*?\.music-event--media\{grid-template-columns:minmax\(132px,\.32fr\) minmax\(0,1fr\);\}/);
+  assert.match(css, /@media\(max-width:60rem\)\{[\s\S]*?\.music-event--media,\.music-study-row--media\{grid-template-columns:minmax\(132px,\.32fr\) minmax\(0,1fr\);\}/);
   assert.match(css, /@media\(max-width:40rem\)\{[\s\S]*?\.music-event,\.music-event--media\{grid-template-columns:minmax\(0,1fr\)\}/);
-  assert.match(css, /@media\(max-width:40rem\)\{[\s\S]*?\.photography-sequence,\.travel-note\{grid-template-columns:minmax\(0,1fr\)\}/);
+  assert.match(css, /@media\(max-width:40rem\)\{[\s\S]*?\.photography-sequence,\.travel-region,\.travel-region-copy p\{grid-template-columns:minmax\(0,1fr\)\}/);
   assert.match(css, /@media\(max-width:60rem\),\(pointer:coarse\)\{\.compact-nav\{display:block;\}\.detail-nav \.links,\.detail-nav \.back-link\{display:none;\}\}/);
   assert.doesNotMatch(css, /@media\(max-width:60rem\),\(pointer:coarse\)\{[^}]*\.(?:detail-hero|detail-section|music-page-intro|music-event|photography-sequence|travel-note)/);
 });
 
 test('homepage collapses every asymmetric editorial track at 60rem', async () => {
   const [home] = await readContracts();
-  assert.match(home, /@media\(max-width:60rem\)\{\.about-top,\.experience-row,\.experience-row--teaching>div:last-child,\.project-row,\.outside-grid\{grid-template-columns:minmax\(0,1fr\);\}\}/);
+  assert.match(home, /@media\(max-width:60rem\)\{\.about-top,\.experience-row,\.experience-detail,\.project-row,\.outside-grid\{grid-template-columns:minmax\(0,1fr\);\}\}/);
   assert.doesNotMatch(home, /\.project-row summary\{/);
 });
 

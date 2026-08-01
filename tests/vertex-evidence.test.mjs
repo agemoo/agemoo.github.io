@@ -42,6 +42,6 @@ test('homepage keeps summary evidence while the detail route owns the full evide
 test('Vertex appears as experience rather than a repeated project', async () => {
   const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(home, /id="experience"/);
-  assert.equal((home.match(/Vertex Marketing/g) ?? []).length, 1);
+  assert.equal((home.match(/<p class="experience-company">Vertex Marketing<\/p>/g) ?? []).length, 1);
   assert.match(home, /href="projects\/vertex-reddit\.html"/);
 });
