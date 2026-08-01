@@ -217,7 +217,8 @@ html.js.motion-desktop .hero.loaded .reveal-up{transition-delay:calc(var(--d,0)*
 .experience-proofline strong{font-family:var(--mono);font-size:15px;line-height:1;color:var(--amber);font-weight:600;font-variant-numeric:tabular-nums;}
 .experience-link{display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-family:var(--sans);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--amber);padding-bottom:4px;transition:color .3s;white-space:nowrap;}
 @media (hover:hover) and (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){.experience-link:hover{color:var(--amber);}}
-.experience-row--teaching>div:last-child{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(240px,.95fr);gap:clamp(24px,4vw,56px);align-items:center;}
+.experience-detail{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(240px,.95fr);gap:clamp(24px,4vw,56px);align-items:center;}
+.experience-copy{min-width:0;}
 .experience-media{margin:0;overflow:hidden;border:1px solid var(--line-2);background:var(--bg);}
 .experience-media img{width:100%;height:auto;filter:brightness(.94) saturate(.94);}
 
@@ -260,7 +261,7 @@ html.js.motion-desktop .marquee .track{animation:scroll 34s linear infinite;}
 .outside-media img{width:100%;height:auto;filter:brightness(.92) saturate(.92);transition:filter .45s var(--ease);}
 @media (hover:hover) and (pointer:fine){.outside-card:hover{border-color:var(--line-3);background:var(--bg-2);}.outside-card:hover .outside-media img{filter:brightness(1) saturate(1);}}
 
-@media(max-width:60rem){.about-top,.experience-row,.experience-row--teaching>div:last-child,.project-row,.outside-grid{grid-template-columns:minmax(0,1fr);}}
+@media(max-width:60rem){.about-top,.experience-row,.experience-detail,.project-row,.outside-grid{grid-template-columns:minmax(0,1fr);}}
 @media(max-width:60rem){.portrait{justify-self:start;max-width:320px;}.outside-grid{grid-template-rows:auto;}.outside-card--music{grid-row:auto;}.project-action{justify-self:start;}}
 
 /* ---------- CLOSING ---------- */
@@ -394,10 +395,15 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
           <h2 class="experience-role">Reddit Community Operations Intern</h2>
           <p class="experience-dates">2026 · Current · Shenzhen, China</p>
         </header>
-        <div>
-          <p class="experience-responsibility">I participate in Reddit community operations across consumer technology, smart-home, lifestyle, finance, and family-oriented communities, adapting content and interaction to subreddit rules, audience context, and visible performance.</p>
-          <p class="experience-proofline"><strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share</p>
-          <a class="experience-link" href="projects/vertex-reddit.html">View internship evidence <span aria-hidden="true">→</span></a>
+        <div class="experience-detail">
+          <div class="experience-copy">
+            <p class="experience-responsibility">I participate in Reddit community operations across consumer technology, smart-home, lifestyle, finance, and family-oriented communities, adapting content and interaction to subreddit rules, audience context, and visible performance.</p>
+            <p class="experience-proofline"><strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share</p>
+            <a class="experience-link" href="projects/vertex-reddit.html">Learn more about this <span aria-hidden="true">→</span></a>
+          </div>
+          <figure class="experience-media" data-reveal="img">
+            <img src="assets/internship/VertexMkt/1.jpg" width="1279" height="1706" alt="A bright shared workspace at Vertex Marketing in Shenzhen" loading="lazy" decoding="async">
+          </figure>
         </div>
       </article>
       <article class="experience-row experience-row--teaching" data-reveal="">
@@ -406,10 +412,12 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
           <h2 class="experience-role">English Writing Teaching Assistant</h2>
           <p class="experience-dates">May 2026 · Wuhan, China</p>
         </header>
-        <div>
-          <p class="experience-responsibility">Supported an SUU instructor in English writing courses serving 200+ students in Wuhan. Provided bilingual classroom support, managed attendance and assignment grading, delivered written feedback, and organized final-grade data and course completion reporting in Excel.</p>
+        <div class="experience-detail">
+          <div class="experience-copy">
+            <p class="experience-responsibility">Supported an SUU instructor in English writing courses serving 200+ students in Wuhan. Provided bilingual classroom support, managed attendance and assignment grading, delivered written feedback, and organized final-grade data and course completion reporting in Excel.</p>
+          </div>
           <figure class="experience-media" data-reveal="img">
-            <img src="assets/internship/SUU_TA/me_classroom.jpg" width="1435" height="1279" alt="Mukun Sun supporting an English writing class in Wuhan" loading="lazy" decoding="async">
+            <img src="assets/internship/SUU_TA/classroom.jpg" width="1921" height="1279" alt="Mukun Sun speaking to an English writing class in Wuhan" loading="lazy" decoding="async">
           </figure>
         </div>
       </article>

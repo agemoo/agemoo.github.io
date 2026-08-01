@@ -46,7 +46,8 @@ const en = {
     '#nav .lang-switch': { 'aria-label': 'Language' },
     '#nav .compact-nav summary': { 'aria-label': 'Open section navigation' },
     '#nav .compact-links': { 'aria-label': 'Section navigation' },
-    '#experience .experience-media img': { alt: 'Mukun Sun supporting an English writing class in Wuhan' },
+    '#experience .experience-row--vertex .experience-media img': { alt: 'A bright shared workspace at Vertex Marketing in Shenzhen' },
+    '#experience .experience-row--teaching .experience-media img': { alt: 'Mukun Sun speaking to an English writing class in Wuhan' },
     '#projects .project-row:nth-child(1) img': { alt: 'A large campus gala audience facing a lit stage' },
     '#projects .project-row:nth-child(2) img': { alt: 'Jazz musicians performing at a hotel beside an upright bass' },
     '#projects .project-row:nth-child(3) img': { alt: 'Winter Jazz Concert key visual poster designed for a hotel jazz event' },
@@ -299,7 +300,7 @@ const en = {
     '#experience .experience-row--teaching .experience-dates': 'May 2026 · Wuhan, China',
     '#experience .experience-row--teaching .experience-responsibility': 'Supported an SUU instructor in English writing courses serving 200+ students in Wuhan. Provided bilingual classroom support, managed attendance and assignment grading, delivered written feedback, and organized final-grade data and course completion reporting in Excel.',
     '#experience .experience-proofline': '<strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share',
-    '#experience .experience-link': 'View internship evidence <span aria-hidden="true">→</span>',
+    '#experience .experience-link': 'Learn more about this <span aria-hidden="true">→</span>',
     '#vertex-hero': `<p class="eyebrow">Vertex Marketing · Internship Evidence</p>
       <h1>Reddit community operations across audiences and topics.</h1>
       <p class="hero-deck">A record of the accounts, content, and communities I participated in operating during my Reddit Community Operations internship.</p>
@@ -410,7 +411,8 @@ const zh = {
     '#nav .lang-switch': { 'aria-label': '语言' },
     '#nav .compact-nav summary': { 'aria-label': '打开章节导航' },
     '#nav .compact-links': { 'aria-label': '章节导航' },
-    '#experience .experience-media img': { alt: '孙慕坤在武汉协助英语写作课堂' },
+    '#experience .experience-row--vertex .experience-media img': { alt: 'Vertex Marketing 深圳办公空间的一角' },
+    '#experience .experience-row--teaching .experience-media img': { alt: '孙慕坤在武汉面向英语写作课堂讲课' },
     '#projects .project-row:nth-child(1) img': { alt: '大型校园晚会观众面向灯光舞台' },
     '#projects .project-row:nth-child(2) img': { alt: '爵士乐手在酒店演出，旁边摆放着低音提琴' },
     '#projects .project-row:nth-child(3) img': { alt: '为酒店爵士活动设计的冬日爵士音乐会主视觉海报' },
@@ -663,7 +665,7 @@ const zh = {
     '#experience .experience-row--teaching .experience-dates': '2026 年 5 月 · Wuhan, China',
     '#experience .experience-row--teaching .experience-responsibility': '在武汉协助 SUU 教师为 200 多名学生开展英语写作课程，提供中英双语课堂支持；负责考勤、作业评分与书面反馈，并使用 Excel 整理期末成绩和课程完成情况。',
     '#experience .experience-proofline': '<strong>5</strong> 个账号 · <strong>793K</strong> 浏览量 · 美国受众占比最高 <strong>91.7%</strong>',
-    '#experience .experience-link': '查看实习证据 <span aria-hidden="true">→</span>',
+    '#experience .experience-link': '进一步了解 <span aria-hidden="true">→</span>',
     '#vertex-hero': `<p class="eyebrow">Vertex Marketing · 实习证据</p>
       <h1>面向不同受众与主题的 Reddit 社群运营。</h1>
       <p class="hero-deck">记录我在 Reddit 社群运营实习期间参与运营的账号、内容与社区。</p>

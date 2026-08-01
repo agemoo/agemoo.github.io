@@ -229,6 +229,8 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
   assert.equal(LANGUAGES.zh.attributes['#nav .lang-switch']['aria-label'], '语言');
   assert.equal(LANGUAGES.en.copy['#experience .experience-proofline'], '<strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share');
   assert.equal(LANGUAGES.zh.copy['#experience .experience-proofline'], '<strong>5</strong> 个账号 · <strong>793K</strong> 浏览量 · 美国受众占比最高 <strong>91.7%</strong>');
+  assert.equal(LANGUAGES.en.copy['#experience .experience-link'], 'Learn more about this <span aria-hidden="true">→</span>');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-link'], '进一步了解 <span aria-hidden="true">→</span>');
   assert.equal(LANGUAGES.en.copy['#nav .compact-nav summary'], 'Sections');
   assert.equal(LANGUAGES.zh.copy['#nav .compact-nav summary'], '章节');
 });

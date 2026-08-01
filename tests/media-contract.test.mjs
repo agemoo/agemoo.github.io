@@ -6,7 +6,8 @@ const root = new URL('../', import.meta.url);
 const home = await readFile(new URL('index.html', root), 'utf8');
 
 const approved = [
-  'assets/internship/SUU_TA/me_classroom.jpg',
+  'assets/internship/VertexMkt/1.jpg',
+  'assets/internship/SUU_TA/classroom.jpg',
   'assets/project/CampusGala/freshmen_welcome_gala.jpg',
   'assets/project/Andi/andi_fest_2.png',
   'assets/project/Andi/andi_fest.jpg',
@@ -29,7 +30,7 @@ test('every newly selected public image exists', async () => {
 });
 
 test('homepage uses approved lead images and excludes privacy-risk images', () => {
-  for (const path of [approved[0], approved[1], approved[2], approved[4], approved[5]]) {
+  for (const path of [approved[0], approved[1], approved[2], approved[3], approved[5], approved[6]]) {
     assert.match(home, new RegExp(path.replaceAll('/', '\\/')));
   }
   assert.match(home, /assets\/photography\/walter_disney\.webp/);

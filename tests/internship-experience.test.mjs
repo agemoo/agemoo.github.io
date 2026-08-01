@@ -61,11 +61,24 @@ test('internship list uses one outer rule and one separator per following row', 
   assert.match(home, /\.experience-row\+\.experience-row\{[^}]*border-top:1px solid var\(--line-2\);/);
 });
 
-test('teaching experience pairs its copy with the approved natural-ratio classroom image', async () => {
+test('each internship pairs its copy with one approved natural-ratio context image', async () => {
   const home = await readHomepage();
-  const section = home.match(/<article class="experience-row experience-row--teaching"[\s\S]*?<\/article>/)?.[0] ?? '';
-  assert.match(section, /<figure class="experience-media" data-reveal="img">/);
-  assert.match(section, /src="assets\/internship\/SUU_TA\/me_classroom\.jpg" width="1435" height="1279" alt="Mukun Sun supporting an English writing class in Wuhan"/);
-  assert.match(home, /\.experience-row--teaching>div:last-child\{display:grid;grid-template-columns:minmax\(0,1\.05fr\) minmax\(240px,\.95fr\);/);
+  const vertex = home.match(/<article class="experience-row experience-row--vertex"[\s\S]*?<\/article>/)?.[0] ?? '';
+  const teaching = home.match(/<article class="experience-row experience-row--teaching"[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.match(vertex, /<div class="experience-detail">[\s\S]*?<figure class="experience-media" data-reveal="img">/);
+  assert.match(teaching, /<div class="experience-detail">[\s\S]*?<figure class="experience-media" data-reveal="img">/);
+  assert.match(vertex, /src="assets\/internship\/VertexMkt\/1\.jpg" width="1279" height="1706" alt="A bright shared workspace at Vertex Marketing in Shenzhen"/);
+  assert.match(teaching, /src="assets\/internship\/SUU_TA\/classroom\.jpg" width="1921" height="1279" alt="Mukun Sun speaking to an English writing class in Wuhan"/);
+  assert.match(home, /\.experience-detail\{display:grid;grid-template-columns:minmax\(0,1\.05fr\) minmax\(240px,\.95fr\);/);
   assert.match(home, /\.experience-media img\{[^}]*height:auto/);
+});
+
+test('homepage internship action invites exploration instead of claiming evidence', async () => {
+  const home = await readHomepage();
+  assert.match(home, />Learn more about this <span aria-hidden="true">→<\/span><\/a>/);
+  assert.doesNotMatch(home, /View internship evidence|查看实习证据/);
+  assert.equal(LANGUAGES.en.copy['#experience .experience-link'], 'Learn more about this <span aria-hidden="true">→</span>');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-link'], '进一步了解 <span aria-hidden="true">→</span>');
+  assert.equal(LANGUAGES.en.attributes['#experience .experience-row--vertex .experience-media img'].alt, 'A bright shared workspace at Vertex Marketing in Shenzhen');
+  assert.equal(LANGUAGES.zh.attributes['#experience .experience-row--teaching .experience-media img'].alt, '孙慕坤在武汉面向英语写作课堂讲课');
 });
