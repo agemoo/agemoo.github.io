@@ -64,6 +64,8 @@ test('Photography and Travel are independent bilingual routes', async () => {
   assert.match(photography, /id="photography-gallery"/);
   assert.match(travel, /data-page="travel"/);
   assert.match(travel, /id="travel-notes"/);
+  assert.match(travel, /class="travel-ledger"/);
+  assert.doesNotMatch(travel, /assets\/photography\/|<figure|data-enlarge/);
   assert.doesNotMatch(`${photography}\n${travel}`, /coming soon|待更新|敬请期待/i);
   assert.doesNotMatch(
     `${travel}\n${LANGUAGES.en.metadata.travel.description}\n${LANGUAGES.zh.metadata.travel.description}`,
@@ -71,18 +73,17 @@ test('Photography and Travel are independent bilingual routes', async () => {
   );
 });
 
-test('Photography and Travel images each have one primary route', async () => {
+test('Photography owns every supplied photograph while Travel stays text-only', async () => {
   const [photography, travel] = await Promise.all([
     readFile(new URL('../photography.html', import.meta.url), 'utf8'),
     readFile(new URL('../travel.html', import.meta.url), 'utf8'),
   ]);
   const files = [
     'building.webp', 'chongqing.webp', 'santa_monica_beach.webp',
-    'tongren.webp', 'walter_disney.webp',
+    'tongren.webp', 'walter_disney.webp', 'boats.webp',
   ];
   for (const file of files) {
-    const count = (photography.match(new RegExp(file, 'g')) ?? []).length
-      + (travel.match(new RegExp(file, 'g')) ?? []).length;
-    assert.equal(count, 2, `${file}: one href and one img on one route`);
+    assert.equal((photography.match(new RegExp(file, 'g')) ?? []).length, 2, `${file}: one href and one image`);
+    assert.equal((travel.match(new RegExp(file, 'g')) ?? []).length, 0, `${file}: absent from Travel`);
   }
 });

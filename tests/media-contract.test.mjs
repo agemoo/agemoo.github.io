@@ -21,6 +21,7 @@ const approved = [
   'assets/photography/santa_monica_beach.webp',
   'assets/photography/tongren.webp',
   'assets/photography/walter_disney.webp',
+  'assets/photography/boats.webp',
 ];
 
 test('every newly selected public image exists', async () => {
@@ -61,14 +62,14 @@ test('new media includes intrinsic dimensions and full images retain natural rat
   assert.match(home, /\.experience-media img[^}]*height:auto/);
 });
 
-test('Photography and Travel use only approved photographs with intrinsic dimensions', async () => {
+test('Photography alone owns the approved photographs with intrinsic dimensions', async () => {
   const [photography, travel] = await Promise.all([
     readFile(new URL('photography.html', root), 'utf8'),
     readFile(new URL('travel.html', root), 'utf8'),
   ]);
-  const combined = `${photography}\n${travel}`;
-  assert.equal((combined.match(/assets\/photography\/(?:building|chongqing|santa_monica_beach|tongren|walter_disney)\.webp/g) ?? []).length, 10);
-  assert.doesNotMatch(combined, /<img(?![^>]*width=)(?=[^>]*assets\/photography\/)/);
-  assert.doesNotMatch(combined, /<img(?![^>]*height=)(?=[^>]*assets\/photography\/)/);
-  assert.doesNotMatch(combined, /assets\/photography\/(?!building|chongqing|santa_monica_beach|tongren|walter_disney)[^"']+/);
+  assert.equal((photography.match(/assets\/photography\/(?:building|chongqing|santa_monica_beach|tongren|walter_disney|boats)\.webp/g) ?? []).length, 12);
+  assert.doesNotMatch(photography, /<img(?![^>]*width=)(?=[^>]*assets\/photography\/)/);
+  assert.doesNotMatch(photography, /<img(?![^>]*height=)(?=[^>]*assets\/photography\/)/);
+  assert.doesNotMatch(photography, /assets\/photography\/(?!building|chongqing|santa_monica_beach|tongren|walter_disney|boats)[^"']+/);
+  assert.doesNotMatch(travel, /assets\/photography\/|<figure|data-enlarge/);
 });
