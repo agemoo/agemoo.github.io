@@ -42,14 +42,14 @@ button:disabled,[aria-disabled="true"]{opacity:.55;cursor:not-allowed;pointer-ev
 .detail-hero[data-outside-hero]{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(520px,68vh,760px);align-content:end;margin-inline:calc(-1 * clamp(20px,5vw,80px));padding-inline:clamp(20px,5vw,80px);border-bottom:0;}
 .outside-hero-media{position:absolute;inset:0;z-index:-2;overflow:hidden;background:var(--color-paper-raised);}
 .outside-hero-media::before{content:"";position:absolute;inset:0;z-index:1;background:var(--outside-hero-nav-scrim);}
-.outside-hero-media::after{content:"";position:absolute;inset:0;background:var(--outside-hero-scrim);}
-.outside-hero-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--hero-position,center);filter:brightness(var(--effect-outside-brightness)) saturate(var(--effect-outside-saturation));}
+.outside-hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim,var(--outside-hero-scrim));}
+.outside-hero-media img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--hero-position,center);filter:brightness(var(--hero-brightness,var(--effect-outside-brightness))) saturate(var(--hero-saturation,var(--effect-outside-saturation)));}
 .detail-hero[data-outside-hero] h1{color:var(--outside-hero-ink);}
 .detail-hero[data-outside-hero] .detail-deck{color:var(--outside-hero-soft);}
 .detail-hero[data-outside-hero] .detail-eyebrow{color:var(--outside-hero-ink);}
-html[data-page="music"] .detail-hero[data-outside-hero]{--hero-position:center 46%;}
+html[data-page="music"] .detail-hero[data-outside-hero]{--hero-position:center 46%;--hero-brightness:var(--effect-music-hero-brightness);--hero-saturation:var(--effect-music-hero-saturation);--hero-scrim:var(--music-hero-scrim);}
 html[data-page="photography"] .detail-hero[data-outside-hero]{--hero-position:center 59%;}
-html[data-page="travel"] .detail-hero[data-outside-hero]{--hero-position:center 52%;}
+html[data-page="travel"] .detail-hero[data-outside-hero]{--hero-position:center 52%;--hero-brightness:var(--effect-travel-hero-brightness);--hero-saturation:var(--effect-travel-hero-saturation);--hero-scrim:var(--travel-hero-scrim);}
 .detail-hero h1,.detail-section h2{margin:0;font-family:var(--font-display);font-weight:600;line-height:1.05;color:var(--color-ink);text-wrap:balance;}
 .detail-hero h1{font-size:clamp(3rem,8vw,7rem);letter-spacing:-.035em;}
 html[data-page="photography"] .detail-hero h1{font-size:clamp(3.1rem,7vw,6.6rem);white-space:nowrap;overflow-wrap:normal;}

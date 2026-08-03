@@ -416,6 +416,9 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   const photographyImage = '#outside-work .outside-card:nth-child(2) img';
   assert.equal(LANGUAGES.en.attributes[photographyImage].alt, 'Curved metal architecture at Walt Disney Concert Hall');
   assert.equal(LANGUAGES.zh.attributes[photographyImage].alt, '华特·迪士尼音乐厅的金属曲面建筑');
+  const travelImage = '#outside-work .outside-card:nth-child(3) img';
+  assert.equal(LANGUAGES.en.attributes[travelImage].alt, 'Bryce Canyon amphitheater in warm afternoon light');
+  assert.equal(LANGUAGES.zh.attributes[travelImage].alt, '午后暖光下的布莱斯峡谷露天剧场');
   assert.doesNotMatch(html, /<details class="visual-archive"/);
   assert.match(html, /src="i18n\.js\?v=20260730-outside-routes"/);
 });

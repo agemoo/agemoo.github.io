@@ -44,6 +44,7 @@ test('homepage uses approved lead images and excludes privacy-risk images', () =
     assert.match(home, new RegExp(path.replaceAll('/', '\\/')));
   }
   assert.match(home, /assets\/photography\/walter_disney\.webp/);
+  assert.match(home, /outside-card--travel[\s\S]*?<img src="assets\/travel\/bryce_canyon\.webp" width="1706" height="1279"/);
   assert.match(home, /class="project-row project-row--visual"[\s\S]*?src="assets\/jazz_winter\.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event"/);
   assert.doesNotMatch(home, /class="project-row project-row--visual"[\s\S]*?src="build\/assets\/hotone_main\.jpg"/);
   assert.doesNotMatch(home, /已生成图像/);

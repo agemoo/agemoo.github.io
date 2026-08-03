@@ -250,8 +250,11 @@ test('outside-work heroes use route-owned images with stable editorial overlays'
   const travel = await readFile(new URL('../travel.html', import.meta.url), 'utf8');
   assert.doesNotMatch(travel, /assets\/photography\//);
   assert.match(css, /\.detail-hero\[data-outside-hero\]\{[^}]*position:relative;[^}]*overflow:hidden;/);
-  assert.match(css, /\.outside-hero-media::after\{[^}]*background:var\(--outside-hero-scrim\);/);
+  assert.match(css, /\.outside-hero-media::after\{[^}]*background:var\(--hero-scrim,var\(--outside-hero-scrim\)\);/);
   assert.match(css, /\.outside-hero-media::before\{[^}]*background:var\(--outside-hero-nav-scrim\);/);
+  assert.match(css, /\.outside-hero-media img\{[^}]*filter:brightness\(var\(--hero-brightness,var\(--effect-outside-brightness\)\)\) saturate\(var\(--hero-saturation,var\(--effect-outside-saturation\)\)\);/);
+  assert.match(css, /html\[data-page="music"\] \.detail-hero\[data-outside-hero\]\{[^}]*--hero-brightness:var\(--effect-music-hero-brightness\);[^}]*--hero-scrim:var\(--music-hero-scrim\);/);
+  assert.match(css, /html\[data-page="travel"\] \.detail-hero\[data-outside-hero\]\{[^}]*--hero-brightness:var\(--effect-travel-hero-brightness\);[^}]*--hero-scrim:var\(--travel-hero-scrim\);/);
   assert.match(css, /html\[data-page="photography"\] \.detail-hero h1\{[^}]*white-space:nowrap;/);
   assert.match(css, /html\[data-page="photography"\] \.detail-hero\[data-outside-hero\] h1\{[^}]*grid-column:1\/-1;/);
   assert.match(css, /html\[data-page="photography"\] \.detail-hero\[data-outside-hero\] \.detail-hero-copy\{[^}]*grid-column:2;/);

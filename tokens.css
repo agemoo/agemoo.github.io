@@ -49,6 +49,12 @@
   --outside-hero-soft: oklch(0.86 0.012 74);
   --outside-hero-scrim: linear-gradient(90deg, oklch(0.11 0.008 58 / 0.88) 0%, oklch(0.11 0.008 58 / 0.68) 48%, oklch(0.11 0.008 58 / 0.48) 100%);
   --outside-hero-nav-scrim: linear-gradient(180deg, oklch(0.09 0.006 58 / 0.72) 0%, transparent 24%);
+  --effect-music-hero-brightness: 0.98;
+  --effect-music-hero-saturation: 1.02;
+  --music-hero-scrim: linear-gradient(90deg, oklch(0.1 0.007 58 / 0.76) 0%, oklch(0.1 0.007 58 / 0.54) 52%, oklch(0.1 0.007 58 / 0.34) 100%);
+  --effect-travel-hero-brightness: 1.06;
+  --effect-travel-hero-saturation: 1.04;
+  --travel-hero-scrim: linear-gradient(90deg, oklch(0.1 0.007 58 / 0.62) 0%, oklch(0.1 0.007 58 / 0.3) 58%, oklch(0.1 0.007 58 / 0.08) 100%);
   --effect-grain-opacity: 0.05;
   --effect-grain-blend: overlay;
   --effect-spotlight-blend: screen;
@@ -127,6 +133,12 @@ html[data-theme="light"] {
   --outside-hero-soft: oklch(0.9 0.012 74);
   --outside-hero-scrim: linear-gradient(90deg, oklch(0.14 0.01 58 / 0.78) 0%, oklch(0.19 0.012 58 / 0.6) 50%, oklch(0.27 0.016 58 / 0.36) 100%);
   --outside-hero-nav-scrim: linear-gradient(180deg, oklch(0.1 0.007 58 / 0.66) 0%, transparent 24%);
+  --effect-music-hero-brightness: 1.02;
+  --effect-music-hero-saturation: 1.02;
+  --music-hero-scrim: linear-gradient(90deg, oklch(0.12 0.008 58 / 0.7) 0%, oklch(0.12 0.008 58 / 0.48) 52%, oklch(0.12 0.008 58 / 0.28) 100%);
+  --effect-travel-hero-brightness: 1.08;
+  --effect-travel-hero-saturation: 1.03;
+  --travel-hero-scrim: linear-gradient(90deg, oklch(0.12 0.008 58 / 0.56) 0%, oklch(0.12 0.008 58 / 0.26) 58%, oklch(0.12 0.008 58 / 0.06) 100%);
   --effect-grain-opacity: 0.025;
   --effect-grain-blend: multiply;
   --effect-spotlight-blend: multiply;
