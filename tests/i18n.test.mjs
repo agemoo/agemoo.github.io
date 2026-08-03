@@ -238,6 +238,29 @@ test('detail navigation labels are route-aware in both languages', () => {
   assert.equal(nav.label, '视觉作品导航');
 });
 
+test('applyLanguage updates every node matched by a shared copy selector', () => {
+  const links = [{ innerHTML: '' }, { innerHTML: '' }];
+  const doc = {
+    documentElement: { lang: '', dataset: { page: 'home' } },
+    title: '',
+    querySelector(selector) {
+      if (selector === 'meta[name="description"]') return { content: '' };
+      return null;
+    },
+    querySelectorAll(selector) {
+      if (selector === '#experience .experience-link') return links;
+      return [];
+    },
+  };
+
+  applyLanguage('zh', doc, null);
+
+  assert.deepEqual(links.map((link) => link.innerHTML), [
+    LANGUAGES.zh.copy['#experience .experience-link'],
+    LANGUAGES.zh.copy['#experience .experience-link'],
+  ]);
+});
+
 test('selector validation rejects broken ancestry and nth-child combinations', async () => {
   const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const document = createStaticSelectorDocument(home);

@@ -874,6 +874,11 @@ export function applyLanguage(value, doc = globalThis.document, storage = global
   const nav = doc.querySelector('.nav, .detail-nav');
   if (nav) nav.setAttribute('aria-label', config.navLabels[pageKey] ?? config.navLabels.home);
   for (const [selector, html] of Object.entries(config.copy)) {
+    const elements = doc.querySelectorAll?.(selector) ?? [];
+    if (elements.length) {
+      elements.forEach((element) => { element.innerHTML = html; });
+      continue;
+    }
     const element = doc.querySelector(selector);
     if (element) element.innerHTML = html;
   }
