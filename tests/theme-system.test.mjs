@@ -1,0 +1,120 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import vm from 'node:vm';
+
+const sourceUrl = new URL('../theme.js', import.meta.url);
+const rootUrl = new URL('../', import.meta.url);
+const publicRoutes = [
+  'index.html',
+  'music.html',
+  'photography.html',
+  'travel.html',
+  'projects/campus-campaign.html',
+  'projects/hotel-jazz.html',
+  'projects/vertex-reddit.html',
+  'projects/visual-work.html',
+];
+
+async function loadTheme({ storedTheme = null, systemPrefersLight = false, language = 'en' } = {}) {
+  const source = await readFile(sourceUrl, 'utf8');
+  const writes = [];
+  const listeners = new Map();
+  const mediaListeners = [];
+  const button = {
+    attributes: new Map(),
+    textContent: '',
+    setAttribute(name, value) { this.attributes.set(name, String(value)); },
+    addEventListener(type, listener) { listeners.set(type, listener); },
+  };
+  const root = { dataset: {}, style: {}, lang: language };
+  const themeColor = { content: '' };
+  const storage = {
+    getItem(key) { return key === 'portfolio-theme' ? storedTheme : null; },
+    setItem(key, value) { writes.push([key, value]); storedTheme = value; },
+    removeItem() {},
+  };
+  const media = {
+    matches: systemPrefersLight,
+    addEventListener(type, listener) { if (type === 'change') mediaListeners.push(listener); },
+  };
+  const document = {
+    documentElement: root,
+    readyState: 'complete',
+    querySelector(selector) { return selector === 'meta[name="theme-color"]' ? themeColor : null; },
+    querySelectorAll(selector) { return selector === '[data-theme-toggle]' ? [button] : []; },
+    addEventListener() {},
+  };
+  const window = { document, localStorage: storage, matchMedia: () => media };
+  vm.runInNewContext(source, { window, document }, { filename: 'theme.js' });
+  return { api: window.PortfolioTheme, root, themeColor, storage, writes, button, listeners, mediaListeners };
+}
+
+test('theme resolution prefers a valid saved choice, then system preference, then dark', async () => {
+  const { api } = await loadTheme();
+  assert.equal(api.storageKey, 'portfolio-theme');
+  assert.equal(api.resolveTheme('light', false), 'light');
+  assert.equal(api.resolveTheme('dark', true), 'dark');
+  assert.equal(api.resolveTheme('sepia', true), 'light');
+  assert.equal(api.resolveTheme(null, false), 'dark');
+});
+
+test('initial theme applies before controls mount without persisting an inferred choice', async () => {
+  const { root, themeColor, writes } = await loadTheme({ systemPrefersLight: true });
+  assert.equal(root.dataset.theme, 'light');
+  assert.equal(root.style.colorScheme, 'light');
+  assert.equal(themeColor.content, '#f4efe7');
+  assert.deepEqual(writes, []);
+});
+
+test('theme control is accessible, localized, and persists an explicit change', async () => {
+  const state = await loadTheme({ storedTheme: 'dark', language: 'zh-CN' });
+  assert.equal(state.button.attributes.get('aria-pressed'), 'false');
+  assert.equal(state.button.attributes.get('aria-label'), '切换至浅色模式');
+  assert.equal(state.button.textContent, '☀');
+
+  state.listeners.get('click')();
+
+  assert.equal(state.root.dataset.theme, 'light');
+  assert.equal(state.button.attributes.get('aria-pressed'), 'true');
+  assert.equal(state.button.attributes.get('aria-label'), '切换至深色模式');
+  assert.equal(state.button.textContent, '☾');
+  assert.deepEqual(state.writes, [['portfolio-theme', 'light']]);
+});
+
+test('semantic tokens define both palettes and theme-dependent effects', async () => {
+  const tokens = await readFile(new URL('tokens.css', rootUrl), 'utf8');
+  for (const token of [
+    '--color-paper', '--color-ink', '--color-rule', '--color-shadow',
+    '--effect-nav-surface', '--effect-dialog-backdrop', '--effect-media-brightness',
+    '--effect-media-saturation', '--effect-grain-opacity', '--effect-spotlight-blend',
+  ]) assert.match(tokens, new RegExp(`${token.replaceAll('-', '\\-')}:`), token);
+  assert.match(tokens, /:root\s*\{[^}]*color-scheme:\s*dark;/s);
+  assert.match(tokens, /html\[data-theme="light"\]\s*\{[^}]*color-scheme:\s*light;/s);
+});
+
+test('every primary public route initializes theme before styles and exposes one control', async () => {
+  for (const path of publicRoutes) {
+    const html = await readFile(new URL(path, rootUrl), 'utf8');
+    const source = path.startsWith('projects/') ? '../theme.js' : 'theme.js';
+    const scriptIndex = html.indexOf(`<script src="${source}"></script>`);
+    const styleIndex = html.indexOf('<link rel="stylesheet"');
+    assert.ok(scriptIndex > -1, `${path}: theme script`);
+    assert.ok(styleIndex > scriptIndex, `${path}: theme initializes before stylesheet`);
+    assert.match(html, /<meta name="theme-color" content="#171411">/, `${path}: browser theme color`);
+    assert.equal((html.match(/data-theme-toggle/g) ?? []).length, 1, `${path}: one theme control`);
+    assert.match(html, /<button[^>]+data-theme-toggle[^>]*><\/button>/, `${path}: theme control button`);
+    assert.doesNotMatch(html, /html\[data-theme="light"\]/, `${path}: palette remains centralized`);
+  }
+});
+
+test('small-screen navigation prioritizes section, language, and theme controls over the repeated brand', async () => {
+  const [home, detail, vertex] = await Promise.all([
+    readFile(new URL('index.html', rootUrl), 'utf8'),
+    readFile(new URL('detail.css', rootUrl), 'utf8'),
+    readFile(new URL('projects/vertex-reddit.html', rootUrl), 'utf8'),
+  ]);
+  assert.match(home, /@media \(max-width:30rem\)\{\.nav \.brand\{display:none;\}/);
+  assert.match(detail, /@media\(max-width:30rem\)\{\.detail-nav \.brand\{display:none;\}/);
+  assert.match(vertex, /@media \(max-width:30rem\)\{\.nav \.brand\{display:none;\}/);
+});

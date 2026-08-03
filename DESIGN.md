@@ -16,7 +16,9 @@ The approved homepage order is **about → experience → projects → education
 
 ## Theme and tokens
 
-The visual theme remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. Shared color, type, spacing, motion, and width values come from `tokens.css`; render CSS does not introduce raw color values.
+The authored visual baseline remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. A complementary light system uses warm paper, dark ink, quieter grain, and the same restrained ember register. User choice takes priority over operating-system preference, then falls back to dark; the shared synchronous theme boot applies that choice before the first render and persists only explicit selections.
+
+Shared color, effect, type, spacing, motion, and width values come from `tokens.css`; render CSS does not introduce route-local palettes or raw color values. Layout, content, language, and motion contracts stay identical between themes, while navigation translucency, media treatment, overlays, dialog backdrops, and ambient effects consume theme-aware semantic tokens.
 
 The accent is reserved for focus, evidence numbers, and a small number of interaction cues. Contrast remains functional at small sizes. Fragment Mono is limited to the navigation wordmark register and the compact evidence-number register.
 

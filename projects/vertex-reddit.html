@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171411">
   <title>Vertex Reddit Internship Evidence | Mukun Sun</title>
   <meta name="description" content="A scoped, bilingual evidence record for Mukun Sun's Reddit community operations internship at Vertex Marketing.">
   <link rel="canonical" href="https://agemoo.github.io/projects/vertex-reddit.html">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <script src="../theme.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&amp;display=swap" rel="stylesheet">
@@ -25,7 +27,7 @@
     .progress{display:none;position:fixed;top:0;left:0;height:2px;width:100%;z-index:120;background:linear-gradient(90deg,var(--color-accent-deep),var(--color-accent-bright));transform:scaleX(0);transform-origin:left;will-change:transform;}
     @media (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){.progress{display:block;}}
     .nav{position:fixed;top:0;left:0;right:0;z-index:110;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px var(--gutter-page);border-bottom:1px solid transparent;transition:background var(--dur-medium) var(--ease-out),border-color var(--dur-medium) var(--ease-out);}
-    .nav.solid{background:color-mix(in oklab,var(--color-paper) 88%,transparent);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);border-color:var(--color-rule);}
+    .nav.solid{background:var(--effect-nav-surface);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);border-color:var(--color-rule);}
     .nav .brand{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:.12em;color:var(--color-ink);white-space:nowrap;}
     .nav .brand .en{font-family:var(--font-body);font-size:9px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--color-muted);}
     html[lang="zh"] .nav .brand .en{font-family:var(--font-mono);}
@@ -38,6 +40,8 @@
     .lang-switch button{appearance:none;border:0;background:transparent;color:inherit;font:inherit;line-height:1;padding:8px 12px;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap;}
     .lang-switch button:hover{color:var(--color-ink);}
     .lang-switch button.active{background:var(--color-accent-bright);color:var(--color-accent-ink);}
+    .theme-toggle{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--color-rule);border-radius:50%;background:transparent;color:var(--color-ink);font-family:var(--font-body);font-size:17px;line-height:1;cursor:pointer;transition:background var(--dur-short) var(--ease-out),color var(--dur-short) var(--ease-out),border-color var(--dur-short) var(--ease-out);}
+    .theme-toggle:hover{border-color:var(--color-accent);background:var(--color-surface);color:var(--color-accent-bright);}
     .compact-nav{display:none;position:relative;font-family:var(--font-body);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted);}
     .compact-nav summary{display:flex;align-items:center;cursor:pointer;list-style:none;padding-inline:12px;white-space:nowrap;}
     .compact-nav summary::-webkit-details-marker{display:none;}
@@ -76,7 +80,9 @@
       main>section>*{min-width:0;}
       .lang-switch{display:inline-flex;flex:none;}
       .lang-switch button{min-width:44px;min-height:44px;}
+      .nav .brand{max-width:calc(100vw - 212px);overflow:hidden;text-overflow:ellipsis;}
     }
+    @media (max-width:30rem){.nav .brand{display:none;}.nav-actions{width:100%;justify-content:flex-end;}}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.progress{display:none!important;}}
   </style>
 </head>
@@ -95,6 +101,7 @@
         <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="zh" aria-pressed="false">中文</button>
       </div>
+      <button class="theme-toggle" type="button" data-theme-toggle></button>
     </div>
   </nav>
 

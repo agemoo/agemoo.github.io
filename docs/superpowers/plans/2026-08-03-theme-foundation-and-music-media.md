@@ -4,7 +4,7 @@
 
 **Goal:** Add persistent dark/light theming across the public portfolio and connect the newly supplied Music photographs to their correct timeline and study entries.
 
-**Architecture:** `tokens.css` owns both semantic palettes and theme-dependent effects. A small shared `theme.js` resolves saved preference → system preference → dark fallback before render, then mounts accessible toggle buttons on each public route. Music continues using the shared detail shell and natural-ratio media; large source images receive WebP delivery copies.
+**Architecture:** `tokens.css` owns both semantic palettes and theme-dependent effects. A small synchronous shared `theme.js` resolves saved preference → system preference → dark fallback before render, exposes a testable `window.PortfolioTheme` API, then mounts accessible toggle buttons on each public route. Music continues using the shared detail shell and natural-ratio media; large source images receive WebP delivery copies.
 
 **Tech Stack:** Static HTML, CSS custom properties, vanilla ES modules, Node.js built-in test runner, WebP asset conversion.
 
@@ -25,7 +25,7 @@
 - Create: `theme.js`
 
 **Interfaces:**
-- Produces: `THEME_STORAGE_KEY`, `resolveTheme({ storedTheme, systemPrefersLight })`, `applyTheme(theme, root, storage)`, and `mountThemeControls(document, root, storage)`.
+- Produces: `window.PortfolioTheme` with `storageKey`, `resolveTheme(storedTheme, systemPrefersLight)`, `applyTheme(theme, options)`, and `mountControls(document)`.
 
 - [ ] **Step 1: Write the failing behavior test**
 
@@ -39,7 +39,7 @@ Expected: FAIL because `theme.js` does not exist.
 
 - [ ] **Step 3: Implement the minimal shared theme module**
 
-Use the fixed storage key `portfolio-theme`; set `html.dataset.theme` to `dark` or `light`; update every `[data-theme-toggle]` with `aria-pressed`, localized `aria-label`, and a visible sun/moon mark. Listen to system preference changes only while the user has no saved choice.
+Use the fixed storage key `portfolio-theme`; set `html.dataset.theme` to `dark` or `light`; expose the API from a synchronous browser-safe IIFE; update every `[data-theme-toggle]` with `aria-pressed`, localized `aria-label`, and a visible sun/moon mark. Listen to system preference changes only while the user has no saved choice.
 
 - [ ] **Step 4: Run the behavior test**
 

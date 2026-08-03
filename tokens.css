@@ -7,6 +7,7 @@
  * typography: pass (37–38a; Fragment Mono 2 registers)
  */
 :root {
+  color-scheme: dark;
   --color-paper: oklch(0.152 0.006 60);
   --color-paper-raised: oklch(0.185 0.008 58);
   --color-surface: oklch(0.205 0.009 56);
@@ -27,6 +28,24 @@
   --color-bloom-low: oklch(0.34 0.07 50 / 0.35);
   --color-bloom-closing: oklch(0.5 0.13 44 / 0.34);
   --color-bloom-closing-low: oklch(0.34 0.06 50 / 0.4);
+  --effect-nav-surface: color-mix(in oklab, var(--color-paper) 88%, transparent);
+  --effect-dialog-backdrop: color-mix(in oklab, var(--color-paper) 82%, transparent);
+  --effect-media-brightness: 0.94;
+  --effect-media-saturation: 0.94;
+  --effect-media-hover-brightness: 1;
+  --effect-media-hover-saturation: 1;
+  --effect-portrait-brightness: 0.97;
+  --effect-portrait-saturation: 1.03;
+  --effect-experience-brightness: 0.94;
+  --effect-experience-saturation: 0.94;
+  --effect-project-brightness: 0.9;
+  --effect-project-saturation: 0.94;
+  --effect-outside-brightness: 0.92;
+  --effect-outside-saturation: 0.92;
+  --effect-grain-opacity: 0.05;
+  --effect-grain-blend: overlay;
+  --effect-spotlight-blend: screen;
+  --effect-frame-blend: overlay;
   --font-display: 'GSerifSC', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
   --font-body: 'GSansSC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-mono: 'Fragment Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
@@ -56,4 +75,46 @@
   --radius-pill: 999px;
   --width-content: 1240px;
   --gutter-page: clamp(20px, 5vw, 80px);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --color-paper: oklch(0.955 0.014 76);
+  --color-paper-raised: oklch(0.982 0.009 78);
+  --color-surface: oklch(0.91 0.018 72);
+  --color-ink: oklch(0.22 0.012 58);
+  --color-ink-soft: oklch(0.37 0.014 58);
+  --color-muted: oklch(0.48 0.014 58);
+  --color-faint: oklch(0.56 0.012 58);
+  --color-accent: oklch(0.58 0.15 47);
+  --color-accent-deep: oklch(0.49 0.135 43);
+  --color-accent-bright: oklch(0.56 0.135 57);
+  --color-accent-ink: oklch(0.982 0.009 78);
+  --color-focus: oklch(0.49 0.15 47);
+  --color-rule: oklch(0.22 0.012 58 / 0.16);
+  --color-shadow: oklch(0.28 0.018 58 / 0.34);
+  --color-mask-solid: oklch(0.82 0.014 70);
+  --color-spotlight: oklch(0.62 0.11 62 / 0.11);
+  --color-bloom-hot: oklch(0.74 0.09 58 / 0.2);
+  --color-bloom-low: oklch(0.83 0.045 66 / 0.28);
+  --color-bloom-closing: oklch(0.7 0.1 52 / 0.22);
+  --color-bloom-closing-low: oklch(0.83 0.04 64 / 0.3);
+  --effect-nav-surface: color-mix(in oklab, var(--color-paper) 91%, transparent);
+  --effect-dialog-backdrop: color-mix(in oklab, var(--color-paper) 76%, transparent);
+  --effect-media-brightness: 1;
+  --effect-media-saturation: 0.97;
+  --effect-media-hover-brightness: 1.02;
+  --effect-media-hover-saturation: 1;
+  --effect-portrait-brightness: 1;
+  --effect-portrait-saturation: 0.98;
+  --effect-experience-brightness: 1;
+  --effect-experience-saturation: 0.97;
+  --effect-project-brightness: 1;
+  --effect-project-saturation: 0.97;
+  --effect-outside-brightness: 1;
+  --effect-outside-saturation: 0.97;
+  --effect-grain-opacity: 0.025;
+  --effect-grain-blend: multiply;
+  --effect-spotlight-blend: multiply;
+  --effect-frame-blend: multiply;
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171411">
   <title>Music | Mukun Sun</title>
   <meta name="description" content="Performances, music projects, and study in upright and electric bass by Mukun Sun.">
   <link rel="canonical" href="https://agemoo.github.io/music.html">
@@ -13,6 +14,7 @@
     if(window.matchMedia&&window.matchMedia('(min-width: 40.001rem) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) root.classList.add('motion-detail');
   })(document.documentElement);
   </script>
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="detail.css?v=20260730-outside-routes">
 </head>
 <body>
@@ -39,6 +41,7 @@
         <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" data-lang="zh" aria-pressed="false">中文</button>
       </div>
+      <button class="theme-toggle" type="button" data-theme-toggle></button>
     </div>
   </nav>
 
@@ -89,9 +92,10 @@
         <figure class="detail-media music-event-media" data-reveal="media"><a class="media-button" href="assets/music/grand_ball/headshot.webp" data-enlarge><img src="assets/music/grand_ball/headshot.webp" width="1086" height="1448" alt="Mukun Sun with the Grand Ball jazz ensemble in Hildale" loading="lazy" decoding="async"></a><figcaption>Grand Ball · Hildale, Utah</figcaption></figure>
       </article>
 
-      <article class="music-event" id="music-tbird">
+      <article class="music-event music-event--media" id="music-tbird">
         <div class="music-event-meta"><time datetime="2026-02">Feb–Mar 2026</time><span>Cedar City, Utah</span></div>
         <div class="music-event-copy"><h2>T-Bird Marching Band</h2><p>Joined as a substitute electric bassist and performed with the pep band during basketball games at the SUU arena.</p></div>
+        <figure class="detail-media music-event-media" data-reveal="media"><a class="media-button" href="assets/music/tbird_marching_band/TMB.webp" data-enlarge><img src="assets/music/tbird_marching_band/TMB.webp" width="1086" height="1448" alt="Mukun Sun in a T-Bird jersey at a basketball game in the SUU arena" loading="lazy" decoding="async"></a><figcaption>T-Bird Marching Band · SUU arena</figcaption></figure>
       </article>
 
       <article class="music-event music-event--media" id="music-jazz-fest">
@@ -103,7 +107,7 @@
       <article class="music-event music-event--media" id="music-campus-concert">
         <div class="music-event-meta"><time datetime="2024-11-16">Nov 16, 2024</time><span>Wuhan, China</span></div>
         <div class="music-event-copy"><h2>Independent Jazz Concert</h2><p>Produced a jazz concert at a campus café from start to finish: secured the venue, arranged music, organized rehearsals, designed and promoted the event, and led on-site execution.</p></div>
-        <figure class="detail-media music-event-media" data-reveal="media"><a class="media-button" href="assets/music/jazz_concert/jazz_concert.jpg" data-enlarge><img src="assets/music/jazz_concert/jazz_concert.jpg" width="1706" height="1279" alt="Musicians gathered at the independently organized campus jazz concert" loading="lazy" decoding="async"></a><figcaption>Campus café jazz concert</figcaption></figure>
+        <figure class="detail-media music-event-media" data-reveal="media"><a class="media-button" href="assets/music/jazz_concert/jazz_concert.webp" data-enlarge><img src="assets/music/jazz_concert/jazz_concert.webp" width="1448" height="1086" alt="Musicians gathered at the independently organized campus jazz concert" loading="lazy" decoding="async"></a><figcaption>Campus café jazz concert</figcaption></figure>
       </article>
 
       <article class="music-event music-event--media" id="music-welcome-gala">
@@ -112,9 +116,10 @@
         <figure class="detail-media music-event-media" data-reveal="media"><a class="media-button" href="assets/music/welcome-gala/freshmen_welcome_gala.jpg" data-enlarge><img src="assets/music/welcome-gala/freshmen_welcome_gala.jpg" width="1440" height="960" alt="Band members at the Wuhan Polytechnic University freshmen welcome gala" loading="lazy" decoding="async"></a><figcaption>Freshmen Welcome Gala · Wuhan Polytechnic University</figcaption></figure>
       </article>
 
-      <article class="music-event" id="music-ni-jazz-bar">
+      <article class="music-event music-event--media" id="music-ni-jazz-bar">
         <div class="music-event-meta"><time datetime="2024-03-25">Mar 25, 2024</time><span>Wuhan, China</span></div>
         <div class="music-event-copy"><h2>NI Jazz Bar Jam Session</h2><p>Joined the jam session as a bassist.</p></div>
+        <figure class="detail-media music-event-media" data-reveal="media"><a class="media-button" href="assets/music/jam_session/jam.webp" data-enlarge><img src="assets/music/jam_session/jam.webp" width="1672" height="941" alt="Mukun Sun playing electric bass at a jam session at NI Jazz Bar" loading="lazy" decoding="async"></a><figcaption>NI Jazz Bar · Wuhan</figcaption></figure>
       </article>
 
       <article class="music-event music-event--media" id="music-fashion-show">
@@ -130,11 +135,15 @@
     <section class="detail-section" id="music-study" aria-labelledby="music-study-title" data-reveal>
       <h2 id="music-study-title">Study</h2>
       <div class="detail-section-copy">
-        <div class="music-study-row" id="music-study-sun"><time datetime="2025-09">Sep 2025</time><p>Studied with SUU professor Sun Xun.</p></div>
+        <div class="music-study-row music-study-row--media" id="music-study-sun">
+          <time datetime="2025-09">Sep 2025</time>
+          <p>Studied with SUU professor Sun Xun.</p>
+          <figure class="detail-media music-study-media" data-reveal="media"><a class="media-button" href="assets/music/mentors/xun_sun.webp" data-enlarge><img src="assets/music/mentors/xun_sun.webp" width="1920" height="1280" alt="Mukun Sun with SUU professor Sun Xun" loading="lazy" decoding="async"></a><figcaption>Southern Utah University · September 2025</figcaption></figure>
+        </div>
         <div class="music-study-row music-study-row--media" id="music-study-burns">
           <time datetime="2023-07">Jul 2023</time>
           <p>Studied jazz bass with American bassist Daren Burns in Beijing.</p>
-          <figure class="detail-media music-study-media" data-reveal="media"><a class="media-button" href="assets/music/mentors/Daren Burns.jpg" data-enlarge><img src="assets/music/mentors/Daren Burns.jpg" width="1279" height="1706" alt="Mukun Sun with jazz bassist Daren Burns in Beijing" loading="lazy" decoding="async"></a><figcaption>Beijing · July 2023</figcaption></figure>
+          <figure class="detail-media music-study-media" data-reveal="media"><a class="media-button" href="assets/music/mentors/daren_burns.webp" data-enlarge><img src="assets/music/mentors/daren_burns.webp" width="1086" height="1448" alt="Mukun Sun with jazz bassist Daren Burns in Beijing" loading="lazy" decoding="async"></a><figcaption>Beijing · July 2023</figcaption></figure>
         </div>
       </div>
     </section>

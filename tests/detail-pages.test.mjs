@@ -74,11 +74,14 @@ test('enhanced Campus, Hotel, and Music images keep focusable real-file links', 
     ['music.html', 'assets/music/jazz_in_the_room/jazz_in_the_room.jpg'],
     ['music.html', 'assets/music/grand_ball/headshot.webp'],
     ['music.html', 'assets/music/nomination/with_friends.jpg'],
-    ['music.html', 'assets/music/jazz_concert/jazz_concert.jpg'],
+    ['music.html', 'assets/music/jam_session/jam.webp'],
+    ['music.html', 'assets/music/jazz_concert/jazz_concert.webp'],
+    ['music.html', 'assets/music/tbird_marching_band/TMB.webp'],
     ['music.html', 'assets/music/welcome-gala/freshmen_welcome_gala.jpg'],
     ['music.html', 'assets/music/environment/environment.webp'],
     ['music.html', 'assets/music/environment/me_playing_bass.webp'],
-    ['music.html', 'assets/music/mentors/Daren Burns.jpg'],
+    ['music.html', 'assets/music/mentors/daren_burns.webp'],
+    ['music.html', 'assets/music/mentors/xun_sun.webp'],
   ];
 
   for (const [path, source] of expectations) {
@@ -140,11 +143,14 @@ test('music route keeps the approved content and media', async () => {
     ['assets/music/jazz_in_the_room/jazz_in_the_room.jpg', 1446, 903],
     ['assets/music/grand_ball/headshot.webp', 1086, 1448],
     ['assets/music/nomination/with_friends.jpg', 1279, 1706],
-    ['assets/music/jazz_concert/jazz_concert.jpg', 1706, 1279],
+    ['assets/music/jam_session/jam.webp', 1672, 941],
+    ['assets/music/jazz_concert/jazz_concert.webp', 1448, 1086],
+    ['assets/music/tbird_marching_band/TMB.webp', 1086, 1448],
     ['assets/music/welcome-gala/freshmen_welcome_gala.jpg', 1440, 960],
     ['assets/music/environment/environment.webp', 1448, 1086],
     ['assets/music/environment/me_playing_bass.webp', 1537, 1023],
-    ['assets/music/mentors/Daren Burns.jpg', 1279, 1706],
+    ['assets/music/mentors/daren_burns.webp', 1086, 1448],
+    ['assets/music/mentors/xun_sun.webp', 1920, 1280],
   ];
   for (const [file, width, height] of approved) {
     assert.match(html, new RegExp(`<img src="${file.replaceAll('/', '\\/')}" width="${width}" height="${height}"`));
@@ -153,7 +159,12 @@ test('music route keeps the approved content and media', async () => {
   assert.doesNotMatch(html, /已生成图像|outside-photography|outside-travel|>Places</);
   assert.match(html, /id="music-fashion-show"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-fashion-show"/);
   assert.match(html, /class="music-event-gallery"[\s\S]*?environment\.webp[\s\S]*?me_playing_bass\.webp/);
-  assert.match(html, /id="music-study-burns"[\s\S]*?Daren Burns\.jpg/);
+  assert.match(html, /id="music-tbird"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-tbird"/);
+  assert.match(html, /id="music-tbird"[\s\S]*?tbird_marching_band\/TMB\.webp/);
+  assert.match(html, /id="music-ni-jazz-bar"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-ni-jazz-bar"/);
+  assert.match(html, /id="music-ni-jazz-bar"[\s\S]*?jam_session\/jam\.webp/);
+  assert.match(html, /id="music-study-burns"[\s\S]*?daren_burns\.webp/);
+  assert.match(html, /id="music-study-sun"[\s\S]*?xun_sun\.webp/);
 });
 
 test('music history presents verified performances, production work, and study in reverse chronology', async () => {
