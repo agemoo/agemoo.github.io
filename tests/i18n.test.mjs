@@ -238,6 +238,12 @@ test('detail navigation labels are route-aware in both languages', () => {
   assert.equal(nav.label, '视觉作品导航');
 });
 
+test('photography captions preserve bilingual location context', () => {
+  const selector = '#photography-gallery .detail-media:nth-child(6) figcaption';
+  assert.equal(LANGUAGES.en.copy[selector], 'San Francisco · Boats on blue water');
+  assert.equal(LANGUAGES.zh.copy[selector], '旧金山 · 蓝色水面上的船只');
+});
+
 test('applyLanguage updates every node matched by a shared copy selector', () => {
   const links = [{ innerHTML: '' }, { innerHTML: '' }];
   const doc = {

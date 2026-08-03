@@ -211,7 +211,7 @@ test('photography owns the supplied images and travel is a factual text ledger',
     ['walter_disney.webp', 1086, 1448, 'Walt Disney Concert Hall · Curves'],
     ['santa_monica_beach.webp', 1350, 1800, 'Santa Monica · Sunset'],
     ['tongren.webp', 1086, 1448, 'Tongren · Water and paths'],
-    ['boats.webp', 1448, 1086, 'Boats on blue water'],
+    ['boats.webp', 1448, 1086, 'San Francisco · Boats on blue water'],
     ['the_strip.webp', 1086, 1448, 'Las Vegas · The Strip'],
   ];
   for (const [file, width, height, caption] of photographyMedia) {
@@ -234,6 +234,14 @@ test('photography presents consistent orientation frames while full sources rema
   assert.match(css, /\.photography-frame--portrait \.media-button\{[^}]*aspect-ratio:3\/4;[^}]*overflow:hidden;/);
   assert.match(css, /\.photography-frame--landscape \.media-button\{[^}]*aspect-ratio:4\/3;[^}]*overflow:hidden;/);
   assert.match(css, /\.photography-frame \.media-button img\{[^}]*height:100%;[^}]*object-fit:cover;/);
+});
+
+test('photography gallery uses a full-width heading band above the image sequence', async () => {
+  const photography = await readFile(new URL('../photography.html', import.meta.url), 'utf8');
+  assert.match(photography, /id="photography-gallery"[\s\S]*?class="photography-gallery-head"[\s\S]*?id="photography-gallery-title"[\s\S]*?class="photography-intro"[\s\S]*?class="photography-gallery-body"[\s\S]*?class="photography-sequence"/);
+  assert.match(css, /#photography-gallery\{[^}]*display:block;/);
+  assert.match(css, /\.photography-gallery-head\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(0,[^)]+\);[^}]*border-top:1px solid var\(--color-rule\);[^}]*border-bottom:1px solid var\(--color-rule\);/);
+  assert.match(css, /\.photography-frame--landscape\{[^}]*grid-column:1\/-1;[^}]*max-width:none;/);
 });
 
 test('outside-work heroes use route-owned images with stable editorial overlays', async () => {
