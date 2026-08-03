@@ -32,7 +32,7 @@ All full-image previews are **natural-ratio media** with intrinsic width and hei
 
 The three Outside Work routes use image-integrated editorial heroes. Music owns a performance photograph, Photography owns `the_strip`, and Travel owns the dedicated Bryce Canyon image. Theme-aware layered scrims protect the type without flattening the image; mobile views use intentional focal positions. Photography thumbnails use consistent 4:3 landscape and 3:4 portrait frames, while the enlarge dialog always presents the full natural-ratio source. The `Photography` hero title remains on one line at supported widths.
 
-Navigation uses one restrained frosted material across the homepage and detail routes: a 76% soft page-color surface, 18px localized blur, modest backdrop saturation, and a fine lower rule. The scrolled state switches to the denser theme surface without adding a shadow or another visual layer.
+Navigation uses one restrained frosted material across the homepage and detail routes: a 64% soft page-color surface, 18px localized blur, modest backdrop saturation, and a fine lower rule. The scrolled state switches to the denser theme surface without adding a shadow or another visual layer.
 
 Outside Work exposure follows the photograph rather than a uniform preset. Photography remains dark and atmospheric. Music uses a moderately brighter performance treatment. Travel preserves the Bryce Canyon highlights with higher brightness and saturation plus a directional text-protection scrim. The same Bryce Canyon asset supplies the temporary Travel homepage cover.
 
