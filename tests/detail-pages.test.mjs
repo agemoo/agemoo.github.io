@@ -241,6 +241,7 @@ test('photography gallery uses a full-width heading band above the image sequenc
   assert.match(photography, /id="photography-gallery"[\s\S]*?class="photography-gallery-head"[\s\S]*?id="photography-gallery-title"[\s\S]*?class="photography-intro"[\s\S]*?class="photography-gallery-body"[\s\S]*?class="photography-sequence"/);
   assert.match(css, /#photography-gallery\{[^}]*display:block;/);
   assert.match(css, /\.photography-gallery-head\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(0,[^)]+\);[^}]*border-top:1px solid var\(--color-rule\);[^}]*border-bottom:1px solid var\(--color-rule\);/);
+  assert.match(css, /\.photography-gallery-head h2\{[^}]*white-space:nowrap;[^}]*overflow-wrap:normal;/);
   assert.match(css, /\.photography-frame--landscape\{[^}]*grid-column:1\/-1;[^}]*max-width:none;/);
 });
 

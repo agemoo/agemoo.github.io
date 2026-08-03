@@ -32,6 +32,12 @@ All full-image previews are **natural-ratio media** with intrinsic width and hei
 
 The three Outside Work routes use image-integrated editorial heroes. Music owns a performance photograph, Photography owns `the_strip`, and Travel owns the dedicated Bryce Canyon image. Theme-aware layered scrims protect the type without flattening the image; mobile views use intentional focal positions. Photography thumbnails use consistent 4:3 landscape and 3:4 portrait frames, while the enlarge dialog always presents the full natural-ratio source. The `Photography` hero title remains on one line at supported widths.
 
+Navigation uses one restrained frosted material across the homepage and detail routes: a 76% soft page-color surface, 18px localized blur, modest backdrop saturation, and a fine lower rule. The scrolled state switches to the denser theme surface without adding a shadow or another visual layer.
+
+Outside Work exposure follows the photograph rather than a uniform preset. Photography remains dark and atmospheric. Music uses a moderately brighter performance treatment. Travel preserves the Bryce Canyon highlights with higher brightness and saturation plus a directional text-protection scrim. The same Bryce Canyon asset supplies the temporary Travel homepage cover.
+
+The Photography gallery is a route-specific full-width composition. Its title and short introduction share one horizontal ruled band; the image sequence begins below at the full content width. Landscapes span the row, portraits use two equal columns, and all media collapses to one column on small screens.
+
 ## Motion
 
 The original **dark-gallery motion** is preserved: hero entrance choreography, observer-driven section reveals, linear marquee movement, portrait parallax, pointer spotlight, film grain, and transform-based progress. Project links use a restrained underline reveal; media remains legible without hover.
@@ -48,6 +54,8 @@ The document starts with `no-js`, so content is visible without JavaScript. When
 - **Compact navigation:** four first-layer destinations—About, Work, Outside Work, and Contact—with separate language controls.
 - **Contact:** “Get in touch.”, one neutral availability sentence, and direct email/LinkedIn actions.
 
-Avoid decorative side rails, gradient text, default glass panels, equal-size icon-card grids, repeated navigation labels inside every section, fabricated imagery, and text overflow.
+- **Bilingual repeated copy:** one translation selector may own multiple matching nodes; language application updates every match, so repeated actions such as both internship links remain synchronized.
+
+Avoid decorative side rails, gradient text, generic glass cards, equal-size icon-card grids, repeated navigation labels inside every section, fabricated imagery, and text overflow.
 
 English prose uses half-width punctuation and straight quotation marks. Chinese prose uses full-width punctuation with `“……”` and `‘……’` where quotation marks are required.
