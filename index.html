@@ -98,9 +98,10 @@ html.js.motion-desktop .spot.on{opacity:1;}
 @media (pointer:fine) and (min-width:40.001rem) and (prefers-reduced-motion:no-preference){.progress{display:block;}}
 .nav{position:fixed;top:0;left:0;right:0;z-index:110;display:flex;align-items:center;justify-content:space-between;
   padding:16px var(--gut);transition:background .5s var(--ease),border-color .5s;
-  border-bottom:1px solid transparent;}
-.nav.solid{background:var(--effect-nav-surface);backdrop-filter:blur(14px) saturate(1.1);
-  -webkit-backdrop-filter:blur(14px) saturate(1.1);border-color:var(--line);}
+  border-bottom:1px solid var(--color-rule);background:var(--effect-nav-surface-soft);
+  backdrop-filter:blur(var(--effect-nav-blur)) saturate(var(--effect-nav-saturation));
+  -webkit-backdrop-filter:blur(var(--effect-nav-blur)) saturate(var(--effect-nav-saturation));}
+.nav.solid{background:var(--effect-nav-surface);border-color:var(--line);}
 .nav .brand{font-family:var(--serif);font-size:16px;letter-spacing:.16em;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:8px;white-space:nowrap;}
 .nav .brand .en{font-family:var(--sans);font-size:9.5px;letter-spacing:.34em;color:var(--muted);text-transform:uppercase;font-weight:400;}
 html[lang="zh"] .nav .brand .en{font-family:var(--mono);}

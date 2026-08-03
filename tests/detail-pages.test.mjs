@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const css = await readFile(new URL('../detail.css', import.meta.url), 'utf8');
 const js = await readFile(new URL('../detail.js', import.meta.url), 'utf8');
+const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 
 const routes = [
   ['projects/campus-campaign.html', 'campus'],
@@ -13,6 +14,13 @@ const routes = [
   ['photography.html', 'photography'],
   ['travel.html', 'travel'],
 ];
+
+test('home and detail navigation share the restrained glass material', () => {
+  assert.match(home, /\.nav\{[^}]*background:var\(--effect-nav-surface-soft\);[^}]*backdrop-filter:blur\(var\(--effect-nav-blur\)\) saturate\(var\(--effect-nav-saturation\)\);/);
+  assert.match(css, /\.detail-nav\{[^}]*background:var\(--effect-nav-surface-soft\);[^}]*backdrop-filter:blur\(var\(--effect-nav-blur\)\) saturate\(var\(--effect-nav-saturation\)\);/);
+  assert.match(home, /\.nav\.solid\{background:var\(--effect-nav-surface\);/);
+  assert.match(css, /\.detail-nav\.solid\{background:var\(--effect-nav-surface\);/);
+});
 
 test('every second-layer route has the shared bilingual shell', async () => {
   for (const [path, key] of routes) {

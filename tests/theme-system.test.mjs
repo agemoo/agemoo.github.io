@@ -94,7 +94,8 @@ test('semantic tokens define both palettes and theme-dependent effects', async (
   const tokens = await readFile(new URL('tokens.css', rootUrl), 'utf8');
   for (const token of [
     '--color-paper', '--color-ink', '--color-rule', '--color-shadow',
-    '--effect-nav-surface', '--effect-dialog-backdrop', '--effect-media-brightness',
+    '--effect-nav-surface', '--effect-nav-surface-soft', '--effect-nav-blur', '--effect-nav-saturation',
+    '--effect-dialog-backdrop', '--effect-media-brightness',
     '--effect-media-saturation', '--effect-grain-opacity', '--effect-spotlight-blend',
   ]) assert.match(tokens, new RegExp(`${token.replaceAll('-', '\\-')}:`), token);
   assert.match(tokens, /:root\s*\{[^}]*color-scheme:\s*dark;/s);
