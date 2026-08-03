@@ -12,11 +12,21 @@ import {
 } from '../i18n.js';
 import { createStaticSelectorDocument } from './helpers/static-selector.mjs';
 
+const i18nSource = await readFile(new URL('../i18n.js', import.meta.url), 'utf8');
+
 test('English is fresh default and an explicit valid choice persists', () => {
   assert.equal(DEFAULT_LANGUAGE, 'en');
   assert.equal(getInitialLanguage({ getItem: () => null }), 'en');
   assert.equal(getInitialLanguage({ getItem: () => 'zh' }), 'zh');
   assert.equal(getInitialLanguage({ getItem: () => 'fr' }), 'en');
+});
+
+test('English uses straight quotes while Chinese uses full-width punctuation', () => {
+  const englishSource = i18nSource.split('const zh =')[0];
+  assert.doesNotMatch(englishSource, /[‘’“”]/);
+  assert.equal(LANGUAGES.en.copy['#music-fashion-show p'], 'Rearranged "Just the Two of Us" for the warm-up performance, organized rehearsals, and designed the promotional poster.');
+  assert.match(LANGUAGES.zh.copy['#hotel-context p'], /“酒店与艺术”/);
+  assert.match(LANGUAGES.zh.copy['#music-fashion-show p'], /《Just the Two of Us》/);
 });
 
 test('both languages cover the same selector set and corrected facts', () => {
@@ -37,9 +47,10 @@ test('both languages cover the same selector set and corrected facts', () => {
 });
 
 test('each translation selector is rooted in its intended route', async () => {
-  const [home, vertex, campus, hotel, visual, music, photography, travel] = await Promise.all([
+  const [home, vertex, teaching, campus, hotel, visual, music, photography, travel] = await Promise.all([
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/vertex-reddit.html', import.meta.url), 'utf8'),
+    readFile(new URL('../projects/suu-teaching-assistant.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8'),
@@ -54,6 +65,7 @@ test('each translation selector is rooted in its intended route', async () => {
   const routes = {
     home: createStaticSelectorDocument(home),
     vertex: createStaticSelectorDocument(vertex),
+    teaching: createStaticSelectorDocument(teaching),
     campus: createStaticSelectorDocument(campus),
     hotel: createStaticSelectorDocument(hotel),
     visual: createStaticSelectorDocument(visual),
@@ -63,6 +75,7 @@ test('each translation selector is rooted in its intended route', async () => {
   };
   for (const selector of selectors) {
     const route = selector.startsWith('#vertex-') ? 'vertex'
+      : selector.startsWith('#teaching-') ? 'teaching'
       : selector.startsWith('#campus-') ? 'campus'
         : selector.startsWith('#hotel-') ? 'hotel'
           : selector.startsWith('#visual-') ? 'visual'
@@ -103,6 +116,14 @@ test('Chinese professional labels use 社群 while subreddit contexts retain 社
 
 test('second-layer route copy and attributes are selector-scoped and complete', () => {
   const copyRoots = {
+    teaching: [
+      '#teaching-nav .brand', '#teaching-nav .links', '#teaching-nav .compact-nav summary', '#teaching-nav .compact-links', '#teaching-nav .back-link',
+      '#teaching-hero h1', '#teaching-hero .detail-eyebrow', '#teaching-hero .detail-deck', '#teaching-hero .detail-meta',
+      '#teaching-context h2', '#teaching-context p', '#teaching-classroom h2', '#teaching-classroom p',
+      '#teaching-operations h2', '#teaching-operations p', '#teaching-media h2',
+      '#teaching-media .detail-media:nth-child(1) figcaption', '#teaching-media .detail-media:nth-child(2) figcaption',
+      '#teaching-footer span', '#teaching-footer a',
+    ],
     campus: [
       '#campus-nav .brand', '#campus-nav .links', '#campus-nav .compact-nav summary', '#campus-nav .compact-links', '#campus-nav .back-link',
       '#campus-hero h1', '#campus-hero .detail-eyebrow', '#campus-hero .detail-deck', '#campus-hero .detail-meta',
@@ -128,7 +149,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       '#music-hero h1', '#music-hero .detail-eyebrow', '#music-hero .detail-deck',
       '#music-intro h2', '#music-intro .music-intro-copy', '#music-intro .music-lead figcaption', '#music-timeline-title',
       '#music-artist-finalist .music-event-meta', '#music-artist-finalist h2', '#music-artist-finalist .music-event-copy p', '#music-artist-finalist figcaption',
-      '#music-student-center .music-event-meta', '#music-student-center h2', '#music-student-center p',
+      '#music-student-center .music-event-meta', '#music-student-center h2', '#music-student-center p', '#music-student-center .music-watch',
       '#music-grand-ball .music-event-meta', '#music-grand-ball h2', '#music-grand-ball .music-event-copy p', '#music-grand-ball figcaption',
       '#music-tbird .music-event-meta', '#music-tbird h2', '#music-tbird p',
       '#music-jazz-fest .music-event-meta', '#music-jazz-fest h2', '#music-jazz-fest p', '#music-jazz-fest .music-watch',
@@ -143,7 +164,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       '#photography-nav .brand', '#photography-nav .links', '#photography-nav .compact-nav summary', '#photography-nav .compact-links', '#photography-nav .back-link',
       '#photography-hero h1', '#photography-hero .detail-eyebrow', '#photography-hero .detail-deck',
       '#photography-gallery h2', '#photography-gallery .photography-intro',
-      ...Array.from({ length: 6 }, (_, index) => `#photography-gallery .detail-media:nth-child(${index + 1}) figcaption`),
+      ...Array.from({ length: 7 }, (_, index) => `#photography-gallery .detail-media:nth-child(${index + 1}) figcaption`),
       '#photography-footer span', '#photography-footer a',
     ],
     travel: [
@@ -163,6 +184,8 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
   }
 
   const attributeSelectors = [
+    '#teaching-nav .lang-switch', '#teaching-nav .compact-nav summary', '#teaching-nav .compact-links',
+    '#teaching-media .detail-media:nth-child(1) img', '#teaching-media .detail-media:nth-child(2) img', '#teaching-dialog', '#teaching-dialog .dialog-close',
     '#campus-nav .lang-switch', '#campus-nav .compact-nav summary', '#campus-nav .compact-links', '#campus-media img', '#campus-dialog', '#campus-dialog .dialog-close',
     '#hotel-nav .lang-switch', '#hotel-nav .compact-nav summary', '#hotel-nav .compact-links', '#hotel-media .detail-media:nth-child(1) img', '#hotel-media .detail-media:nth-child(2) img', '#hotel-dialog', '#hotel-dialog .dialog-close',
     '#visual-nav .lang-switch', '#visual-nav .compact-nav summary', '#visual-nav .compact-links',
@@ -173,7 +196,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
     '#music-intro .music-lead img', '#music-artist-finalist img', '#music-grand-ball img', '#music-campus-concert img', '#music-welcome-gala img',
     '#music-dialog', '#music-dialog .dialog-close',
     '#photography-nav .lang-switch', '#photography-nav .compact-nav summary', '#photography-nav .compact-links',
-    ...Array.from({ length: 6 }, (_, index) => `#photography-gallery .detail-media:nth-child(${index + 1}) img`),
+    ...Array.from({ length: 7 }, (_, index) => `#photography-gallery .detail-media:nth-child(${index + 1}) img`),
     '#photography-dialog', '#photography-dialog .dialog-close',
     '#travel-nav .lang-switch', '#travel-nav .compact-nav summary', '#travel-nav .compact-links',
     '#travel-dialog', '#travel-dialog .dialog-close',
@@ -190,8 +213,8 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
 
 test('detail navigation labels are route-aware in both languages', () => {
   const expected = {
-    en: { campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', music: 'Music navigation', photography: 'Photography navigation', travel: 'Travel navigation' },
-    zh: { campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', music: '音乐导航', photography: '摄影导航', travel: '旅行导航' },
+    en: { teaching: 'Internship navigation', campus: 'Project navigation', hotel: 'Project navigation', visual: 'Visual work navigation', music: 'Music navigation', photography: 'Photography navigation', travel: 'Travel navigation' },
+    zh: { teaching: '实习导航', campus: '项目导航', hotel: '项目导航', visual: '视觉作品导航', music: '音乐导航', photography: '摄影导航', travel: '旅行导航' },
   };
   for (const [language, labels] of Object.entries(expected)) {
     for (const [page, label] of Object.entries(labels)) {
@@ -236,7 +259,7 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
 });
 
 test('language module declares all public page keys and the shared cache key', () => {
-  assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel']);
+  assert.deepEqual(PAGE_KEYS, ['home', 'vertex', 'teaching', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel']);
   assert.equal(I18N_CACHE_KEY, '20260730-outside-routes');
 });
 

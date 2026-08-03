@@ -31,6 +31,8 @@ const approved = [
   'assets/photography/tongren.webp',
   'assets/photography/walter_disney.webp',
   'assets/photography/boats.webp',
+  'assets/photography/the_strip.webp',
+  'assets/travel/bryce_canyon.webp',
 ];
 
 test('every newly selected public image exists', async () => {
@@ -77,8 +79,9 @@ test('Photography alone owns the approved photographs with intrinsic dimensions'
     readFile(new URL('travel.html', root), 'utf8'),
   ]);
   assert.equal((photography.match(/assets\/photography\/(?:building|chongqing|santa_monica_beach|tongren|walter_disney|boats)\.webp/g) ?? []).length, 12);
+  assert.equal((photography.match(/assets\/photography\/the_strip\.webp/g) ?? []).length, 3);
   assert.doesNotMatch(photography, /<img(?![^>]*width=)(?=[^>]*assets\/photography\/)/);
   assert.doesNotMatch(photography, /<img(?![^>]*height=)(?=[^>]*assets\/photography\/)/);
-  assert.doesNotMatch(photography, /assets\/photography\/(?!building|chongqing|santa_monica_beach|tongren|walter_disney|boats)[^"']+/);
+  assert.doesNotMatch(photography, /assets\/photography\/(?!building|chongqing|santa_monica_beach|tongren|walter_disney|boats|the_strip)[^"']+/);
   assert.doesNotMatch(travel, /assets\/photography\/|<figure|data-enlarge/);
 });

@@ -4,7 +4,6 @@
   const storageKey = 'portfolio-theme';
   const lightThemeColor = '#f4efe7';
   const darkThemeColor = '#171411';
-  const systemQuery = window.matchMedia?.('(prefers-color-scheme: light)') ?? null;
 
   function isTheme(value) {
     return value === 'dark' || value === 'light';
@@ -19,9 +18,9 @@
     }
   }
 
-  function resolveTheme(storedTheme, systemPrefersLight) {
+  function resolveTheme(storedTheme) {
     if (isTheme(storedTheme)) return storedTheme;
-    return systemPrefersLight ? 'light' : 'dark';
+    return 'dark';
   }
 
   function isChinese() {
@@ -72,7 +71,7 @@
     updateControls();
   }
 
-  const initialTheme = resolveTheme(readStoredTheme(), Boolean(systemQuery?.matches));
+  const initialTheme = resolveTheme(readStoredTheme());
   applyTheme(initialTheme);
 
   const api = { storageKey, resolveTheme, applyTheme, mountControls };
@@ -83,10 +82,6 @@
   } else {
     mountControls();
   }
-
-  systemQuery?.addEventListener?.('change', (event) => {
-    if (!readStoredTheme()) applyTheme(event.matches ? 'light' : 'dark');
-  });
 
   if ('MutationObserver' in window) {
     new window.MutationObserver(updateControls).observe(document.documentElement, {

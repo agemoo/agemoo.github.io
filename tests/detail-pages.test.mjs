@@ -79,7 +79,6 @@ test('enhanced Campus, Hotel, and Music images keep focusable real-file links', 
     ['music.html', 'assets/music/tbird_marching_band/TMB.webp'],
     ['music.html', 'assets/music/welcome-gala/freshmen_welcome_gala.jpg'],
     ['music.html', 'assets/music/environment/environment.webp'],
-    ['music.html', 'assets/music/environment/me_playing_bass.webp'],
     ['music.html', 'assets/music/mentors/daren_burns.webp'],
     ['music.html', 'assets/music/mentors/xun_sun.webp'],
   ];
@@ -128,6 +127,7 @@ test('selected visual work preserves the approved archive with real image links'
 
 test('project detail titles preserve whole words at a coordinated display scale', () => {
   assert.match(css, /html\[data-page="campus"\][^,]*,html\[data-page="hotel"\][^,]*,html\[data-page="visual"\][^{]*\{[^}]*font-size:clamp\(3rem,5vw,5rem\);[^}]*overflow-wrap:anywhere;[^}]*word-break:normal;[^}]*hyphens:none;/);
+  assert.match(css, /html\[data-page="teaching"\] \.detail-hero h1\{[^}]*font-size:clamp\(3rem,5vw,5rem\);[^}]*word-break:normal;[^}]*hyphens:none;/);
 });
 
 test('music route keeps the approved content and media', async () => {
@@ -148,7 +148,6 @@ test('music route keeps the approved content and media', async () => {
     ['assets/music/tbird_marching_band/TMB.webp', 1086, 1448],
     ['assets/music/welcome-gala/freshmen_welcome_gala.jpg', 1440, 960],
     ['assets/music/environment/environment.webp', 1448, 1086],
-    ['assets/music/environment/me_playing_bass.webp', 1537, 1023],
     ['assets/music/mentors/daren_burns.webp', 1086, 1448],
     ['assets/music/mentors/xun_sun.webp', 1920, 1280],
   ];
@@ -158,7 +157,7 @@ test('music route keeps the approved content and media', async () => {
   assert.doesNotMatch(html, /assets\/music\/performance\.jpg|grand_ball_with_friends\.jpg|grand_ball\/grand_ball\.jpg/i);
   assert.doesNotMatch(html, /已生成图像|outside-photography|outside-travel|>Places</);
   assert.match(html, /id="music-fashion-show"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-fashion-show"/);
-  assert.match(html, /class="music-event-gallery"[\s\S]*?environment\.webp[\s\S]*?me_playing_bass\.webp/);
+  assert.match(html, /id="music-fashion-show"[\s\S]*?class="detail-media music-event-media"[\s\S]*?environment\.webp/);
   assert.match(html, /id="music-tbird"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-tbird"/);
   assert.match(html, /id="music-tbird"[\s\S]*?tbird_marching_band\/TMB\.webp/);
   assert.match(html, /id="music-ni-jazz-bar"[^>]*class="music-event music-event--media"|class="music-event music-event--media"[^>]*id="music-ni-jazz-bar"/);
@@ -182,8 +181,15 @@ test('music history presents verified performances, production work, and study i
   assert.match(html, /Independent Jazz Concert/);
   assert.match(html, /Just the Two of Us/);
   assert.match(html, /Studied jazz bass with American bassist Daren Burns in Beijing\./);
-  assert.match(html, /Studied with SUU professor Sun Xun\./);
+  assert.match(html, /Studied with SUU professor Xun Sun\./);
   assert.match(html, /href="https:\/\/www\.youtube\.com\/live\/OFijT_vkp8c\?si=OqEdKbXtynljWJtd"/);
+  assert.match(html, /id="music-student-center"[\s\S]*?href="https:\/\/www\.youtube\.com\/live\/y3Lp73YiS2k\?si=wjjuUlMY8UmV4IxE" target="_blank" rel="noopener noreferrer"/);
+  const fashion = html.match(/<article class="music-event music-event--media" id="music-fashion-show">[\s\S]*?<\/article>/)?.[0] ?? '';
+  assert.equal((fashion.match(/<figure /g) ?? []).length, 1);
+  assert.match(fashion, /environment\/environment\.webp/);
+  assert.doesNotMatch(fashion, /me_playing_bass\.webp/);
+  assert.doesNotMatch(html, /Sun Xun/);
+  assert.match(html, /SUU professor Xun Sun/);
 });
 
 test('photography owns the supplied images and travel is a factual text ledger', async () => {
@@ -198,6 +204,7 @@ test('photography owns the supplied images and travel is a factual text ledger',
     ['santa_monica_beach.webp', 1350, 1800, 'Santa Monica · Sunset'],
     ['tongren.webp', 1086, 1448, 'Tongren · Water and paths'],
     ['boats.webp', 1448, 1086, 'Boats on blue water'],
+    ['the_strip.webp', 1086, 1448, 'Las Vegas · The Strip'],
   ];
   for (const [file, width, height, caption] of photographyMedia) {
     assert.match(photography, new RegExp(`<a class="media-button" href="assets/photography/${file}" data-enlarge>\\s*<img src="assets/photography/${file}" width="${width}" height="${height}"`));
@@ -211,11 +218,42 @@ test('photography owns the supplied images and travel is a factual text ledger',
   assert.doesNotMatch(travel, /assets\/photography\/|<figure|data-enlarge|<time|itinerary|recommend/i);
 });
 
+test('photography presents consistent orientation frames while full sources remain enlargeable', async () => {
+  const photography = await readFile(new URL('../photography.html', import.meta.url), 'utf8');
+  assert.equal((photography.match(/photography-frame--landscape/g) ?? []).length, 2);
+  assert.equal((photography.match(/photography-frame--portrait/g) ?? []).length, 5);
+  assert.match(photography, /photography-frame--portrait[\s\S]*?href="assets\/photography\/the_strip\.webp" data-enlarge[\s\S]*?<img src="assets\/photography\/the_strip\.webp" width="1086" height="1448"/);
+  assert.match(css, /\.photography-frame--portrait \.media-button\{[^}]*aspect-ratio:3\/4;[^}]*overflow:hidden;/);
+  assert.match(css, /\.photography-frame--landscape \.media-button\{[^}]*aspect-ratio:4\/3;[^}]*overflow:hidden;/);
+  assert.match(css, /\.photography-frame \.media-button img\{[^}]*height:100%;[^}]*object-fit:cover;/);
+});
+
+test('outside-work heroes use route-owned images with stable editorial overlays', async () => {
+  const pages = [
+    ['music.html', 'music', 'assets/music/suu_jazz_fest/playing.webp'],
+    ['photography.html', 'photography', 'assets/photography/the_strip.webp'],
+    ['travel.html', 'travel', 'assets/travel/bryce_canyon.webp'],
+  ];
+  for (const [path, key, image] of pages) {
+    const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+    assert.match(html, new RegExp(`<header class="detail-hero" id="${key}-hero" data-outside-hero data-reveal>`));
+    assert.match(html, new RegExp(`<div class="outside-hero-media" aria-hidden="true">\\s*<img src="${image.replaceAll('/', '\\/')}"`));
+  }
+  const travel = await readFile(new URL('../travel.html', import.meta.url), 'utf8');
+  assert.doesNotMatch(travel, /assets\/photography\//);
+  assert.match(css, /\.detail-hero\[data-outside-hero\]\{[^}]*position:relative;[^}]*overflow:hidden;/);
+  assert.match(css, /\.outside-hero-media::after\{[^}]*background:var\(--outside-hero-scrim\);/);
+  assert.match(css, /\.outside-hero-media::before\{[^}]*background:var\(--outside-hero-nav-scrim\);/);
+  assert.match(css, /html\[data-page="photography"\] \.detail-hero h1\{[^}]*white-space:nowrap;/);
+  assert.match(css, /html\[data-page="photography"\] \.detail-hero\[data-outside-hero\] h1\{[^}]*grid-column:1\/-1;/);
+  assert.match(css, /html\[data-page="photography"\] \.detail-hero\[data-outside-hero\] \.detail-hero-copy\{[^}]*grid-column:2;/);
+});
+
 test('detail routes expose no-JS content and mount live reveal hooks', async () => {
   for (const [path, key] of routes) {
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
     assert.match(html, new RegExp(`<html lang="en" class="no-js" data-language="en" data-page="${key}">`));
-    assert.match(html, new RegExp(`<header class="detail-hero" id="${key}-hero" data-reveal>`));
+    assert.match(html, new RegExp(`<header class="detail-hero" id="${key}-hero"(?: data-outside-hero)? data-reveal>`));
     const sections = html.match(/<section class="[^"]*\bdetail-section\b[^"]*"[^>]*>/g) ?? [];
     const media = html.match(/<figure class="[^"]*\bdetail-media\b[^"]*"[^>]*>/g) ?? [];
     assert.ok(sections.length > 0, `${path}: sections`);

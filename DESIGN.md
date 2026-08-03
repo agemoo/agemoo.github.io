@@ -16,7 +16,7 @@ The approved homepage order is **about → experience → projects → education
 
 ## Theme and tokens
 
-The authored visual baseline remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. A complementary light system uses warm paper, dark ink, quieter grain, and the same restrained ember register. User choice takes priority over operating-system preference, then falls back to dark; the shared synchronous theme boot applies that choice before the first render and persists only explicit selections.
+The authored visual baseline remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. A complementary light system uses warm paper, dark ink, quieter grain, and the same restrained ember register. A valid saved user choice takes priority, then the site falls back to dark regardless of operating-system preference; the shared synchronous theme boot applies that choice before the first render and persists only explicit selections. English remains the first-visit language fallback.
 
 Shared color, effect, type, spacing, motion, and width values come from `tokens.css`; render CSS does not introduce route-local palettes or raw color values. Layout, content, language, and motion contracts stay identical between themes, while navigation translucency, media treatment, overlays, dialog backdrops, and ambient effects consume theme-aware semantic tokens.
 
@@ -30,6 +30,8 @@ At `60rem` and below, all asymmetric homepage tracks collapse to one column. Com
 
 All full-image previews are **natural-ratio media** with intrinsic width and height attributes and `height:auto`; project and outside-work images are not forced into equal-card crops. The portrait keeps its authored framing and subtle parallax treatment.
 
+The three Outside Work routes use image-integrated editorial heroes. Music owns a performance photograph, Photography owns `the_strip`, and Travel owns the dedicated Bryce Canyon image. Theme-aware layered scrims protect the type without flattening the image; mobile views use intentional focal positions. Photography thumbnails use consistent 4:3 landscape and 3:4 portrait frames, while the enlarge dialog always presents the full natural-ratio source. The `Photography` hero title remains on one line at supported widths.
+
 ## Motion
 
 The original **dark-gallery motion** is preserved: hero entrance choreography, observer-driven section reveals, linear marquee movement, portrait parallax, pointer spotlight, film grain, and transform-based progress. Project links use a restrained underline reveal; media remains legible without hover.
@@ -39,6 +41,7 @@ The document starts with `no-js`, so content is visible without JavaScript. When
 ## Component contracts
 
 - **Experience summary:** two rows, one outer rule, one separator, a single representative-evidence line, explicit Vertex attribution, and natural-ratio teaching media.
+- **Teaching Assistant detail:** a concise bilingual internship route with role and context, classroom support, course operations, and two supplied classroom images. It uses verified facts only and avoids an evidence-report voice.
 - **Project index:** three linked editorial rows with copy, an approved preview, and a route action.
 - **Education ledger:** two verified entries shown in full on the homepage.
 - **Outside Work gateway:** three unequal entries in one link, with Music dominant, Photography supportive, and Places text-led.
@@ -46,3 +49,5 @@ The document starts with `no-js`, so content is visible without JavaScript. When
 - **Contact:** “Get in touch.”, one neutral availability sentence, and direct email/LinkedIn actions.
 
 Avoid decorative side rails, gradient text, default glass panels, equal-size icon-card grids, repeated navigation labels inside every section, fabricated imagery, and text overflow.
+
+English prose uses half-width punctuation and straight quotation marks. Chinese prose uses full-width punctuation with `“……”` and `‘……’` where quotation marks are required.

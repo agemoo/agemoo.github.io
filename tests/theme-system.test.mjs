@@ -13,6 +13,7 @@ const publicRoutes = [
   'projects/campus-campaign.html',
   'projects/hotel-jazz.html',
   'projects/vertex-reddit.html',
+  'projects/suu-teaching-assistant.html',
   'projects/visual-work.html',
 ];
 
@@ -50,21 +51,28 @@ async function loadTheme({ storedTheme = null, systemPrefersLight = false, langu
   return { api: window.PortfolioTheme, root, themeColor, storage, writes, button, listeners, mediaListeners };
 }
 
-test('theme resolution prefers a valid saved choice, then system preference, then dark', async () => {
+test('theme resolution prefers a valid saved choice and otherwise opens dark', async () => {
   const { api } = await loadTheme();
   assert.equal(api.storageKey, 'portfolio-theme');
   assert.equal(api.resolveTheme('light', false), 'light');
   assert.equal(api.resolveTheme('dark', true), 'dark');
-  assert.equal(api.resolveTheme('sepia', true), 'light');
+  assert.equal(api.resolveTheme('sepia', true), 'dark');
+  assert.equal(api.resolveTheme(null, true), 'dark');
   assert.equal(api.resolveTheme(null, false), 'dark');
 });
 
 test('initial theme applies before controls mount without persisting an inferred choice', async () => {
   const { root, themeColor, writes } = await loadTheme({ systemPrefersLight: true });
-  assert.equal(root.dataset.theme, 'light');
-  assert.equal(root.style.colorScheme, 'light');
-  assert.equal(themeColor.content, '#f4efe7');
+  assert.equal(root.dataset.theme, 'dark');
+  assert.equal(root.style.colorScheme, 'dark');
+  assert.equal(themeColor.content, '#171411');
   assert.deepEqual(writes, []);
+});
+
+test('operating-system changes do not override the authored dark default', async () => {
+  const { mediaListeners, root } = await loadTheme({ systemPrefersLight: false });
+  assert.deepEqual(mediaListeners, []);
+  assert.equal(root.dataset.theme, 'dark');
 });
 
 test('theme control is accessible, localized, and persists an explicit change', async () => {

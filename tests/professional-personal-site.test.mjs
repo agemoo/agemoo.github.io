@@ -30,6 +30,13 @@ test('hero and About use the approved concise identity copy', () => {
   assert.doesNotMatch(about, /社区运营/);
 });
 
+test('homepage name uses a restrained display scale', () => {
+  const rule = home.match(/\.hero h1\{[^}]*font-size:clamp\((\d+)px,([\d.]+)vw,(\d+)px\);/);
+  assert.ok(rule, 'homepage hero title scale');
+  assert.ok(Number(rule[2]) < 12, 'viewport scale stays below poster-like sizing');
+  assert.ok(Number(rule[3]) <= 136, 'desktop title remains understated');
+});
+
 test('homepage exposes three second-layer work routes', () => {
   for (const href of [
     'projects/campus-campaign.html',
