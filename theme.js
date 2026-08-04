@@ -75,7 +75,7 @@
     updateControls();
   }
 
-  const initialTheme = resolveTheme(readStoredTheme());
+  const initialTheme = resolveTheme(publicThemesEnabled ? readStoredTheme() : null);
   applyTheme(initialTheme);
 
   const api = { storageKey, resolveTheme, applyTheme, mountControls };
@@ -87,7 +87,7 @@
     mountControls();
   }
 
-  if ('MutationObserver' in window) {
+  if (publicThemesEnabled && 'MutationObserver' in window) {
     new window.MutationObserver(updateControls).observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['lang'],

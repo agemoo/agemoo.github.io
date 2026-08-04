@@ -17,14 +17,14 @@ test('homepage exposes complete sharing metadata', async () => {
   assert.ok(html.includes(`<meta property="og:description" content="${description}">`));
   assert.match(html, /property="og:type" content="website"/);
   assert.match(html, /property="og:url" content="https:\/\/agemoo\.github\.io\/"/);
-  assert.match(html, /property="og:image" content="https:\/\/agemoo\.github\.io\/build\/assets\/banner_museum\.jpg"/);
+  assert.match(html, /property="og:image" content="https:\/\/agemoo\.github\.io\/assets\/visual_work\/banner_museum\.jpg"/);
   assert.match(html, /property="og:image:width" content="1084"/);
   assert.match(html, /property="og:image:height" content="437"/);
   assert.match(html, /property="og:image:alt" content="International Museum Day banner designed for Wuhan Museum"/);
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
   assert.match(html, /name="twitter:title"/);
   assert.ok(html.includes(`<meta name="twitter:description" content="${description}">`));
-  assert.match(html, /name="twitter:image" content="https:\/\/agemoo\.github\.io\/build\/assets\/banner_museum\.jpg"/);
+  assert.match(html, /name="twitter:image" content="https:\/\/agemoo\.github\.io\/assets\/visual_work\/banner_museum\.jpg"/);
   assert.match(html, /name="twitter:image:alt" content="International Museum Day banner designed for Wuhan Museum"/);
   assert.doesNotMatch(html, /(?:og:image|twitter:image)" content="[^"]*portrait\.jpg"/);
 });

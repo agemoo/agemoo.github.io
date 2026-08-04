@@ -11,14 +11,14 @@
 <meta property="og:description" content="A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://agemoo.github.io/">
-<meta property="og:image" content="https://agemoo.github.io/build/assets/banner_museum.jpg">
+<meta property="og:image" content="https://agemoo.github.io/assets/visual_work/banner_museum.jpg">
 <meta property="og:image:width" content="1084">
 <meta property="og:image:height" content="437">
 <meta property="og:image:alt" content="International Museum Day banner designed for Wuhan Museum">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mukun Sun | Communication, Community, and Music">
 <meta name="twitter:description" content="A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.">
-<meta name="twitter:image" content="https://agemoo.github.io/build/assets/banner_museum.jpg">
+<meta name="twitter:image" content="https://agemoo.github.io/assets/visual_work/banner_museum.jpg">
 <meta name="twitter:image:alt" content="International Museum Day banner designed for Wuhan Museum">
 <script>
 (function(root){
@@ -376,7 +376,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
       </div>
       <figure class="portrait" data-reveal="img" data-parallax="0.03">
         <div class="pframe">
-          <img src="build/assets/portrait.jpg" alt="Portrait of Mukun Sun" loading="lazy" decoding="async">
+          <img src="assets/portrait/portrait.jpg" alt="Portrait of Mukun Sun" loading="lazy" decoding="async">
           <span class="pglow" aria-hidden="true"></span>
         </div>
         <figcaption class="pcap"></figcaption>
@@ -465,7 +465,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
 
       <a class="project-row project-row--visual" href="projects/visual-work.html" data-reveal>
         <span class="project-copy"><strong>Selected Visual Work</strong><span>A selected archive of posters, print design, event visuals, and photography.</span></span>
-        <span class="project-preview"><img src="assets/jazz_winter.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event" loading="lazy" decoding="async"></span>
+        <span class="project-preview"><img src="assets/visual_work/jazz_winter.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event" loading="lazy" decoding="async"></span>
         <span class="project-action">View project <span aria-hidden="true">→</span></span>
       </a>
     </div>
@@ -569,6 +569,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   var revealEls=[].slice.call(document.querySelectorAll('[data-reveal]'));
   var revealObserver=null;
   var nav=document.getElementById('nav'),prog=document.getElementById('progress');
+  var scrollFrame=0;
   var spot=document.querySelector('.spot');
   var spotlightFrame=0,spotlightListening=false;
   var tx=innerWidth/2,ty=innerHeight*0.3,cx=tx,cy=ty,spotlightActive=false;
@@ -616,11 +617,15 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   }
 
   function onScroll(){
-    var y=window.pageYOffset||document.documentElement.scrollTop;
-    nav.classList.toggle('solid',y>window.innerHeight*0.7);
-    var h=document.documentElement.scrollHeight-window.innerHeight;
-    var progress=h>0?Math.min(1,Math.max(0,y/h)):0;
-    prog.style.transform='scaleX('+(motionDesktop?progress:0)+')';
+    if(scrollFrame)return;
+    scrollFrame=requestAnimationFrame(function(){
+      scrollFrame=0;
+      var y=window.pageYOffset||document.documentElement.scrollTop;
+      nav.classList.toggle('solid',y>window.innerHeight*0.7);
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      var progress=h>0?Math.min(1,Math.max(0,y/h)):0;
+      prog.style.transform='scaleX('+(motionDesktop?progress:0)+')';
+    });
   }
 
   function runSpotlight(){

@@ -11,7 +11,7 @@ const approved = [
   'assets/project/CampusGala/freshmen_welcome_gala.jpg',
   'assets/project/Andi/andi_fest_2.png',
   'assets/project/Andi/andi_fest.jpg',
-  'assets/jazz_winter.jpg',
+  'assets/visual_work/jazz_winter.jpg',
   'assets/music/suu_jazz_fest/performance.jpg',
   'assets/music/suu_jazz_fest/playing.webp',
   'assets/music/jazz_in_the_room/jazz_in_the_room.jpg',
@@ -45,7 +45,7 @@ test('homepage uses approved lead images and excludes privacy-risk images', () =
   }
   assert.match(home, /assets\/photography\/walter_disney\.webp/);
   assert.match(home, /outside-card--travel[\s\S]*?<img src="assets\/travel\/bryce_canyon\.webp" width="1706" height="1279"/);
-  assert.match(home, /class="project-row project-row--visual"[\s\S]*?src="assets\/jazz_winter\.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event"/);
+  assert.match(home, /class="project-row project-row--visual"[\s\S]*?src="assets\/visual_work\/jazz_winter\.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event"/);
   assert.doesNotMatch(home, /class="project-row project-row--visual"[\s\S]*?src="build\/assets\/hotone_main\.jpg"/);
   assert.doesNotMatch(home, /已生成图像/);
   for (const banned of ['professor_classroom.jpg', 'grand_ball_with_friends.jpg', 'with_professor.jpg']) {

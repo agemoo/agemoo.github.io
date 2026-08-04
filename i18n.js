@@ -897,12 +897,7 @@ export function applyLanguage(value, doc = globalThis.document, storage = global
   if (nav) nav.setAttribute('aria-label', config.navLabels[pageKey] ?? config.navLabels.home);
   for (const [selector, html] of Object.entries(config.copy)) {
     const elements = doc.querySelectorAll?.(selector) ?? [];
-    if (elements.length) {
-      elements.forEach((element) => { element.innerHTML = html; });
-      continue;
-    }
-    const element = doc.querySelector(selector);
-    if (element) element.innerHTML = html;
+    elements.forEach((element) => { element.innerHTML = html; });
   }
   for (const [file, alt] of Object.entries(config.alts)) {
     const image = doc.querySelector(`img[src$="${file}"]`);
