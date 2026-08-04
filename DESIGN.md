@@ -16,7 +16,7 @@ The approved homepage order is **about → experience → projects → education
 
 ## Theme and tokens
 
-The authored visual baseline remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. A complementary light system uses warm paper, dark ink, quieter grain, and the same restrained ember register. A valid saved user choice takes priority, then the site falls back to dark regardless of operating-system preference; the shared synchronous theme boot applies that choice before the first render and persists only explicit selections. English remains the first-visit language fallback.
+The authored visual baseline remains **Gallery in the Dark**: warm black surfaces, bone-white text, restrained ember accents, film grain, fine rules, and a subtle pointer spotlight. The complementary light system remains preserved in the local source but is temporarily unavailable on the public site. Public routes force dark mode, ignore stored light preferences without erasing them, and expose no theme switch. English remains the first-visit language fallback.
 
 Shared color, effect, type, spacing, motion, and width values come from `tokens.css`; render CSS does not introduce route-local palettes or raw color values. Layout, content, language, and motion contracts stay identical between themes, while navigation translucency, media treatment, overlays, dialog backdrops, and ambient effects consume theme-aware semantic tokens.
 
@@ -32,7 +32,7 @@ All full-image previews are **natural-ratio media** with intrinsic width and hei
 
 The three Outside Work routes use image-integrated editorial heroes. Music owns a performance photograph, Photography owns `the_strip`, and Travel owns the dedicated Bryce Canyon image. Theme-aware layered scrims protect the type without flattening the image; mobile views use intentional focal positions. Photography thumbnails use consistent 4:3 landscape and 3:4 portrait frames, while the enlarge dialog always presents the full natural-ratio source. The `Photography` hero title remains on one line at supported widths.
 
-Navigation uses one restrained frosted material across the homepage and detail routes: a 64% soft page-color surface, 18px localized blur, modest backdrop saturation, and a fine lower rule. The scrolled state switches to the denser theme surface without adding a shadow or another visual layer.
+Navigation uses one restrained frosted material across the homepage and detail routes: a 48% soft page-color surface, 18px localized blur, modest backdrop saturation, and a fine lower rule. Image-led heroes use a lighter 36% top protection scrim so the photograph remains visible through the glass. The scrolled state switches to the denser theme surface without adding a shadow or another visual layer.
 
 Outside Work exposure follows the photograph rather than a uniform preset. Photography remains dark and atmospheric. Music uses a moderately brighter performance treatment. Travel preserves the Bryce Canyon highlights with higher brightness and saturation plus a directional text-protection scrim. The same Bryce Canyon asset supplies the temporary Travel homepage cover.
 

@@ -28,7 +28,7 @@
   --color-bloom-low: oklch(0.34 0.07 50 / 0.35);
   --color-bloom-closing: oklch(0.5 0.13 44 / 0.34);
   --color-bloom-closing-low: oklch(0.34 0.06 50 / 0.4);
-  --effect-nav-surface-soft: color-mix(in oklab, var(--color-paper) 64%, transparent);
+  --effect-nav-surface-soft: color-mix(in oklab, var(--color-paper) 48%, transparent);
   --effect-nav-surface: color-mix(in oklab, var(--color-paper) 88%, transparent);
   --effect-nav-blur: 18px;
   --effect-nav-saturation: 1.12;
@@ -48,7 +48,7 @@
   --outside-hero-ink: oklch(0.96 0.012 78);
   --outside-hero-soft: oklch(0.86 0.012 74);
   --outside-hero-scrim: linear-gradient(90deg, oklch(0.11 0.008 58 / 0.88) 0%, oklch(0.11 0.008 58 / 0.68) 48%, oklch(0.11 0.008 58 / 0.48) 100%);
-  --outside-hero-nav-scrim: linear-gradient(180deg, oklch(0.09 0.006 58 / 0.72) 0%, transparent 24%);
+  --outside-hero-nav-scrim: linear-gradient(180deg, oklch(0.09 0.006 58 / 0.36) 0%, transparent 24%);
   --effect-music-hero-brightness: 0.98;
   --effect-music-hero-saturation: 1.02;
   --music-hero-scrim: linear-gradient(90deg, oklch(0.1 0.007 58 / 0.76) 0%, oklch(0.1 0.007 58 / 0.54) 52%, oklch(0.1 0.007 58 / 0.34) 100%);
@@ -112,7 +112,7 @@ html[data-theme="light"] {
   --color-bloom-low: oklch(0.83 0.045 66 / 0.28);
   --color-bloom-closing: oklch(0.7 0.1 52 / 0.22);
   --color-bloom-closing-low: oklch(0.83 0.04 64 / 0.3);
-  --effect-nav-surface-soft: color-mix(in oklab, var(--color-paper) 64%, transparent);
+  --effect-nav-surface-soft: color-mix(in oklab, var(--color-paper) 48%, transparent);
   --effect-nav-surface: color-mix(in oklab, var(--color-paper) 91%, transparent);
   --effect-nav-blur: 18px;
   --effect-nav-saturation: 1.12;
@@ -132,7 +132,7 @@ html[data-theme="light"] {
   --outside-hero-ink: oklch(0.98 0.009 78);
   --outside-hero-soft: oklch(0.9 0.012 74);
   --outside-hero-scrim: linear-gradient(90deg, oklch(0.14 0.01 58 / 0.78) 0%, oklch(0.19 0.012 58 / 0.6) 50%, oklch(0.27 0.016 58 / 0.36) 100%);
-  --outside-hero-nav-scrim: linear-gradient(180deg, oklch(0.1 0.007 58 / 0.66) 0%, transparent 24%);
+  --outside-hero-nav-scrim: linear-gradient(180deg, oklch(0.1 0.007 58 / 0.32) 0%, transparent 24%);
   --effect-music-hero-brightness: 1.02;
   --effect-music-hero-saturation: 1.02;
   --music-hero-scrim: linear-gradient(90deg, oklch(0.12 0.008 58 / 0.7) 0%, oklch(0.12 0.008 58 / 0.48) 52%, oklch(0.12 0.008 58 / 0.28) 100%);

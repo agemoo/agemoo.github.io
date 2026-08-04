@@ -4,6 +4,7 @@
   const storageKey = 'portfolio-theme';
   const lightThemeColor = '#f4efe7';
   const darkThemeColor = '#171411';
+  const publicThemesEnabled = false;
 
   function isTheme(value) {
     return value === 'dark' || value === 'light';
@@ -19,6 +20,7 @@
   }
 
   function resolveTheme(storedTheme) {
+    if (!publicThemesEnabled) return 'dark';
     if (isTheme(storedTheme)) return storedTheme;
     return 'dark';
   }
@@ -40,18 +42,19 @@
   }
 
   function updateControls() {
+    if (!publicThemesEnabled) return;
     const theme = document.documentElement.dataset.theme || 'dark';
     document.querySelectorAll('[data-theme-toggle]').forEach((button) => updateControl(button, theme));
   }
 
   function applyTheme(theme, options) {
-    const nextTheme = isTheme(theme) ? theme : 'dark';
+    const nextTheme = publicThemesEnabled && isTheme(theme) ? theme : 'dark';
     const root = document.documentElement;
     root.dataset.theme = nextTheme;
     root.style.colorScheme = nextTheme;
     const themeColor = document.querySelector('meta[name="theme-color"]');
     if (themeColor) themeColor.content = nextTheme === 'light' ? lightThemeColor : darkThemeColor;
-    if (options?.persist) {
+    if (publicThemesEnabled && options?.persist) {
       try { window.localStorage?.setItem(storageKey, nextTheme); } catch { /* storage may be unavailable */ }
     }
     updateControls();
@@ -59,6 +62,7 @@
   }
 
   function mountControls() {
+    if (!publicThemesEnabled) return;
     document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
       if (!button.__portfolioThemeMounted) {
         button.__portfolioThemeMounted = true;
