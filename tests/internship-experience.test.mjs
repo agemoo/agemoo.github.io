@@ -92,11 +92,11 @@ test('Teaching Assistant internship opens a concise bilingual detail route', asy
   assert.match(teaching, /href="projects\/suu-teaching-assistant\.html">Learn more about this/);
   assert.match(detail, /<html lang="en" class="no-js" data-language="en" data-page="teaching">/);
   assert.match(detail, /<title>Teaching Assistant \| Mukun Sun<\/title>/);
-  assert.match(detail, /id="teaching-context"[\s\S]*?id="teaching-classroom"[\s\S]*?id="teaching-operations"[\s\S]*?id="teaching-media"/);
-  for (const fact of ['May 2026', 'Wuhan, China', '200+ students', 'bilingual classroom support', 'assignment grading', 'Excel']) {
+  assert.match(detail, /id="teaching-context"[\s\S]*?id="teaching-classroom"[\s\S]*?id="teaching-operations"[\s\S]*?id="teaching-bridge"[\s\S]*?id="teaching-media"/);
+  for (const fact of ['May 2026', 'Wuhan, China', '200+ students', 'bilingual support', 'graded assignments', 'Excel', 'Yellow Crane Tower']) {
     assert.match(detail, new RegExp(fact.replace('+', '\\+'), 'i'));
   }
   assert.match(detail, /professor_classroom\.jpg" width="1279" height="1706"/);
   assert.match(detail, /with_professor\.jpg" width="1706" height="1279"/);
-  assert.doesNotMatch(detail, /Sharon Lyman|\$450|airfare|Wuhan Polytechnic University/i);
+  assert.doesNotMatch(detail, /Sharon Lyman|\$450|airfare/i);
 });

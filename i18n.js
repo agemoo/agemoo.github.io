@@ -13,8 +13,8 @@ const en = {
       imageAlt: 'International Museum Day banner designed for Wuhan Museum',
     },
     vertex: {
-      title: 'Vertex Reddit Internship Evidence | Mukun Sun',
-      description: "A bilingual record of Mukun Sun's Reddit community operations internship at Vertex Marketing.",
+      title: 'Reddit Community Operations | Mukun Sun',
+      description: "Mukun Sun's Reddit community operations internship at Vertex Marketing, working across content, accounts, and communities.",
     },
     teaching: {
       title: 'Teaching Assistant | Mukun Sun',
@@ -153,20 +153,22 @@ const en = {
   },
   copy: {
     '#teaching-nav .brand': 'Mukun Sun · Teaching Assistant',
-    '#teaching-nav .links': '<a href="#teaching-context">Context</a><a href="#teaching-classroom">Classroom</a><a href="#teaching-operations">Operations</a><a href="#teaching-media">Media</a>',
+    '#teaching-nav .links': '<a href="#teaching-context">Context</a><a href="#teaching-classroom">Classroom</a><a href="#teaching-operations">Operations</a><a href="#teaching-bridge">Bridge</a><a href="#teaching-media">Media</a>',
     '#teaching-nav .compact-nav summary': 'Sections',
-    '#teaching-nav .compact-links': '<a href="#teaching-context">Context</a><a href="#teaching-classroom">Classroom</a><a href="#teaching-operations">Operations</a><a href="#teaching-media">Media</a><a href="../index.html#experience">Portfolio index</a>',
+    '#teaching-nav .compact-links': '<a href="#teaching-context">Context</a><a href="#teaching-classroom">Classroom</a><a href="#teaching-operations">Operations</a><a href="#teaching-bridge">Bridge</a><a href="#teaching-media">Media</a><a href="../index.html#experience">Portfolio index</a>',
     '#teaching-nav .back-link': '← Portfolio index',
     '#teaching-hero h1': 'Teaching Assistant',
     '#teaching-hero .detail-eyebrow': 'Southern Utah University · Internship',
     '#teaching-hero .detail-deck': 'Classroom and course support for English writing courses serving 200+ students in Wuhan.',
     '#teaching-hero .detail-meta': 'May 2026 · Wuhan, China',
     '#teaching-context h2': 'Role & Context',
-    '#teaching-context p': 'I supported a Southern Utah University instructor during an intensive period of English writing courses in Wuhan.',
+    '#teaching-context p': "I was a teaching assistant for Southern Utah University's English writing program in Wuhan, run in partnership with Wuhan Polytechnic University. An SUU professor led intensive writing courses for 200+ students in five classes across two majors, advertising and construction management. I supported the classroom and ran the course operations.",
     '#teaching-classroom h2': 'Classroom Support',
-    '#teaching-classroom p': 'I provided bilingual classroom support and written feedback, helping students understand course expectations and complete their writing work.',
+    '#teaching-classroom p': 'I provided bilingual support and interpreted between the professor and the students. I helped students understand the professor, and I helped the professor understand how teaching and communication work in a Chinese classroom. Since students\' English ranged widely, I adjusted my explanations and feedback to each level.',
     '#teaching-operations h2': 'Course Operations',
-    '#teaching-operations p': 'I managed attendance and assignment grading, then organized final-grade data and course completion reporting in Excel.',
+    '#teaching-operations p': "I managed attendance, graded assignments against the professor's rubric (spelling, structure, grammar, logic), gave written feedback, and built the final-grade spreadsheets and course-completion reports in Excel myself.",
+    '#teaching-bridge h2': 'Cultural Bridge',
+    '#teaching-bridge p': 'The professor was visiting China for the first time. I helped close the distance that unfamiliarity can create: I taught her to use Alipay for the subway, took her to try local food, visited the Yellow Crane Tower together, and planned a trip to Mount Lu. What I took away: communication depends less on perfect understanding than on an open, attentive, responsive attitude.',
     '#teaching-media h2': 'In the Classroom',
     '#teaching-media .detail-media:nth-child(1) figcaption': 'English writing course · Wuhan',
     '#teaching-media .detail-media:nth-child(2) figcaption': 'After the teaching period · May 2026',
@@ -182,10 +184,10 @@ const en = {
     '#about .stitle': 'About Me',
     '#about .about-copy p:nth-child(1)': 'I study Strategic Communication at Southern Utah University, with a minor in Business Analytics. My work spans social media, community operations, visual communication, and event promotion. I like learning how an audience actually behaves before deciding what to make.',
     '#about .about-copy p:nth-child(2)': 'Outside work, I play upright and electric bass in SUU ensembles. Music has also taken me into concert planning, photography, and the small details that make an event feel memorable.',
-    '#vertex-nav .brand': 'Mukun Sun<span class="en">Vertex Evidence</span>',
-    '#vertex-nav .links': '<a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a>',
+    '#vertex-nav .brand': 'Mukun Sun<span class="en">Vertex</span>',
+    '#vertex-nav .links': '<a href="#vertex-scope">What I did</a><a href="#vertex-approach">How</a><a href="#vertex-tooling">Tools</a><a href="#vertex-evidence">Numbers</a><a href="#vertex-community">Community</a>',
     '#vertex-nav .compact-nav summary': 'Sections',
-    '#vertex-nav .compact-links': '<a href="#vertex-scope">Scope</a><a href="#vertex-evidence">Evidence</a><a href="#vertex-community">Community</a><a href="../index.html#experience">Portfolio index</a>',
+    '#vertex-nav .compact-links': '<a href="#vertex-scope">What I did</a><a href="#vertex-approach">How</a><a href="#vertex-tooling">Tools</a><a href="#vertex-evidence">Numbers</a><a href="#vertex-community">Community</a><a href="../index.html#experience">Portfolio index</a>',
     '#vertex-nav .back-link': '← Portfolio index',
     '#campus-nav .brand': 'Mukun Sun · Campus Campaign',
     '#campus-nav .links': '<a href="#campus-context">Context</a><a href="#campus-contribution">Contribution</a><a href="#campus-media">Media</a>',
@@ -348,17 +350,25 @@ const en = {
     '#experience .experience-row--teaching .experience-role': 'English Writing Teaching Assistant',
     '#experience .experience-row--teaching .experience-dates': 'May 2026 · Wuhan, China',
     '#experience .experience-row--teaching .experience-responsibility': 'Supported an SUU instructor in English writing courses serving 200+ students in Wuhan. Provided bilingual classroom support, managed attendance and assignment grading, delivered written feedback, and organized final-grade data and course completion reporting in Excel.',
-    '#experience .experience-proofline': '<strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share',
+    '#experience .experience-proofline': '<strong>793K</strong> views · <strong>3,548</strong> upvotes · up to <strong>91.7%</strong> U.S. audience share',
     '#experience .experience-link': 'Learn more about this <span aria-hidden="true">→</span>',
-    '#vertex-hero': `<p class="eyebrow">Vertex Marketing · Internship Evidence</p>
+    '#vertex-hero': `<p class="eyebrow">Vertex Marketing · Reddit Community Operations</p>
       <h1>Reddit community operations across audiences and topics.</h1>
-      <p class="hero-deck">A record of the accounts, content, and communities I participated in operating during my Reddit Community Operations internship.</p>
+      <p class="hero-deck">What my Reddit community operations internship looked like: the accounts, content, and communities I worked across at Vertex Marketing.</p>
       <p class="hero-meta">Reddit Community Operations Intern · 2026 · Current</p>`,
-    '#vertex-scope': `<h2 id="vertex-scope-title">Scope</h2>
+    '#vertex-scope': `<h2 id="vertex-scope-title">What I did</h2>
       <div class="section-copy">
-        <p>This review covers five Reddit accounts and 16 posts from my internship work. I participated in operating and analyzing content across consumer technology, smart-home, lifestyle, finance, family, and other communities.</p>
+        <p>I worked on Reddit community operations for vertical and broad-audience communities. I researched what each subreddit talked about, wrote and published posts and comments that fit its rules and tone, and adjusted content as the audience responded. The work covered consumer technology, smart home, finance, lifestyle, family, and other topics.</p>
       </div>`,
-    '#vertex-evidence': `<h2 id="vertex-evidence-title">Evidence table</h2>
+    '#vertex-approach': `<h2 id="vertex-approach-title">How I worked</h2>
+      <div class="section-copy">
+        <p>I treated each community as its own audience. Before writing anything, I read the subreddit's rules and the posts that were already doing well, so my content added to the conversation instead of cluttering it. I also took part in publishing posts and kept a steady rhythm across the accounts the team ran. When the platform's rules or algorithm changed, I adjusted the content and the timing.</p>
+      </div>`,
+    '#vertex-tooling': `<h2 id="vertex-tooling-title">Building tools</h2>
+      <div class="section-copy">
+        <p>The repetitive parts of the job pushed me to build. I made a Reddit content-drafting tool that made my English posts and comments faster to write and better to read. I also put together a daily work-summary dashboard and a way to turn real content-performance data into something measurable. Later I proposed an AI-assisted workflow optimization that leadership approved and is now piloting.</p>
+      </div>`,
+    '#vertex-evidence': `<h2 id="vertex-evidence-title">Numbers</h2>
       <div class="section-copy">
         <table class="evidence-table"><tbody>
           <tr><th scope="row">Accounts</th><td><strong>5</strong> accounts</td></tr>
@@ -371,7 +381,7 @@ const en = {
           <tr><th scope="row">Community coverage</th><td>At least <strong>15</strong> communities</td></tr>
         </tbody></table>
       </div>`,
-    '#vertex-community': `<h2 id="vertex-community-title">Community context</h2>
+    '#vertex-community': `<h2 id="vertex-community-title">Community</h2>
       <div class="section-copy">
         <p>The work spans broad-interest and vertical communities. I adapted research, content, and interaction to each Subreddit's rules and audience language, and participated in early setup and moderation work for an official brand community.</p>
         <ul class="community-list" aria-label="Community themes"><li>Consumer technology</li><li>Smart home</li><li>Gaming</li><li>Programming</li><li>Finance</li><li>Food &amp; drink</li><li>Parenting</li><li>Mental health</li><li>Relationships</li><li>Careers</li></ul>
@@ -412,8 +422,8 @@ const en = {
     '#contact .contact-action:nth-child(2) .contact-label': 'LinkedIn',
     '#contact .sign': '— Mukun Sun / 孙慕坤',
     '#site-footer span:first-child': '© 2026 Mukun Sun',
-    '#vertex-footer span:first-child': 'Mukun Sun · Vertex internship evidence',
-    '#vertex-footer span:last-child': 'Internship record · 2026',
+    '#vertex-footer span:first-child': 'Mukun Sun · Vertex Marketing',
+    '#vertex-footer span:last-child': 'Internship · 2026',
   },
 };
 
@@ -427,8 +437,8 @@ const zh = {
       imageAlt: '为武汉博物馆设计的国际博物馆日活动横幅',
     },
     vertex: {
-      title: 'Vertex Reddit 实习证据 | 孙慕坤',
-      description: '孙慕坤在 Vertex Marketing 参与 Reddit 社群运营实习的双语记录。',
+      title: 'Reddit 社群运营 | 孙慕坤',
+      description: '孙慕坤在 Vertex Marketing 的 Reddit 社群运营实习，覆盖内容创作、账号运营与社区互动。',
     },
     teaching: {
       title: '英语写作助教｜孙慕坤',
@@ -567,20 +577,22 @@ const zh = {
   },
   copy: {
     '#teaching-nav .brand': '孙慕坤 · 英语写作助教',
-    '#teaching-nav .links': '<a href="#teaching-context">背景</a><a href="#teaching-classroom">课堂</a><a href="#teaching-operations">课程运营</a><a href="#teaching-media">现场</a>',
+    '#teaching-nav .links': '<a href="#teaching-context">背景</a><a href="#teaching-classroom">课堂</a><a href="#teaching-operations">课程运营</a><a href="#teaching-bridge">文化桥梁</a><a href="#teaching-media">现场</a>',
     '#teaching-nav .compact-nav summary': '章节',
-    '#teaching-nav .compact-links': '<a href="#teaching-context">背景</a><a href="#teaching-classroom">课堂</a><a href="#teaching-operations">课程运营</a><a href="#teaching-media">现场</a><a href="../index.html#experience">返回作品集</a>',
+    '#teaching-nav .compact-links': '<a href="#teaching-context">背景</a><a href="#teaching-classroom">课堂</a><a href="#teaching-operations">课程运营</a><a href="#teaching-bridge">文化桥梁</a><a href="#teaching-media">现场</a><a href="../index.html#experience">返回作品集</a>',
     '#teaching-nav .back-link': '← 返回作品集',
     '#teaching-hero h1': '英语写作助教',
     '#teaching-hero .detail-eyebrow': '南犹他大学 · 实习',
     '#teaching-hero .detail-deck': '在武汉为服务 200 多名学生的英语写作课程提供课堂与课程支持。',
     '#teaching-hero .detail-meta': '2026 年 5 月 · 中国武汉',
     '#teaching-context h2': '角色与背景',
-    '#teaching-context p': '我在武汉的一段英语写作集中授课期间协助南犹他大学教师开展教学。',
+    '#teaching-context p': '我担任南犹他大学（SUU）与武汉轻工大学合作开展的英语写作课程助教。SUU 教授为广告学与工程管理两个专业、共 5 个班的 200 多名学生集中授课，我负责课堂支持与课程运营。',
     '#teaching-classroom h2': '课堂支持',
-    '#teaching-classroom p': '我提供双语课堂支持与书面反馈，帮助学生理解课程要求并完成写作任务。',
+    '#teaching-classroom p': '我提供中英双语支持，并在教授与学生之间担任口译：帮学生理解教授，也帮教授理解中国课堂的沟通方式。由于学生英语水平跨度很大，我会针对不同水平调整讲解与反馈。',
     '#teaching-operations h2': '课程运营',
-    '#teaching-operations p': '我负责考勤与作业评分，并使用 Excel 整理期末成绩数据和课程完成情况报告。',
+    '#teaching-operations p': '我负责考勤管理，按教授设计的评分标准批改作业（拼写、结构、语法、逻辑）并给出书面反馈，独立使用 Excel 完成期末成绩表与课程完成情况报告的制作。',
+    '#teaching-bridge h2': '文化桥梁',
+    '#teaching-bridge p': '教授是第一次来中国。我帮她缩小“不熟悉”带来的距离感——教她用支付宝坐地铁、带她尝中国食物、参观黄鹤楼、规划庐山游。我的体会是：交流顺畅的关键不在于 100% 听懂，而在于友好开放的态度与认真聆听、积极回应的姿态。',
     '#teaching-media h2': '课堂现场',
     '#teaching-media .detail-media:nth-child(1) figcaption': '英语写作课程 · 武汉',
     '#teaching-media .detail-media:nth-child(2) figcaption': '教学阶段结束后 · 2026 年 5 月',
@@ -596,10 +608,10 @@ const zh = {
     '#about .stitle': '关于我',
     '#about .about-copy p:nth-child(1)': '我在南犹他大学学习战略传播，辅修商业分析。我的实践涉及社交媒体、社群运营、视觉传播和活动推广。我习惯先理解受众实际如何参与，再决定要做什么内容。',
     '#about .about-copy p:nth-child(2)': '工作之外，我在 SUU 的乐团中演奏低音提琴和电贝斯。音乐也让我参与音乐会策划、摄影，以及那些真正影响一场活动体验的细节。',
-    '#vertex-nav .brand': '孙慕坤<span class="en">Vertex 实习证据</span>',
-    '#vertex-nav .links': '<a href="#vertex-scope">范围</a><a href="#vertex-evidence">证据</a><a href="#vertex-community">社区</a>',
+    '#vertex-nav .brand': '孙慕坤<span class="en">Vertex</span>',
+    '#vertex-nav .links': '<a href="#vertex-scope">做了什么</a><a href="#vertex-approach">方法</a><a href="#vertex-tooling">工具</a><a href="#vertex-evidence">数字</a><a href="#vertex-community">社区</a>',
     '#vertex-nav .compact-nav summary': '章节',
-    '#vertex-nav .compact-links': '<a href="#vertex-scope">范围</a><a href="#vertex-evidence">证据</a><a href="#vertex-community">社区</a><a href="../index.html#experience">返回作品集</a>',
+    '#vertex-nav .compact-links': '<a href="#vertex-scope">做了什么</a><a href="#vertex-approach">方法</a><a href="#vertex-tooling">工具</a><a href="#vertex-evidence">数字</a><a href="#vertex-community">社区</a><a href="../index.html#experience">返回作品集</a>',
     '#vertex-nav .back-link': '← 返回作品集',
     '#campus-nav .brand': '孙慕坤 · 校园整合传播',
     '#campus-nav .links': '<a href="#campus-context">背景</a><a href="#campus-contribution">负责内容</a><a href="#campus-media">现场</a>',
@@ -762,17 +774,25 @@ const zh = {
     '#experience .experience-row--teaching .experience-role': '英语写作课程助教',
     '#experience .experience-row--teaching .experience-dates': '2026 年 5 月 · Wuhan, China',
     '#experience .experience-row--teaching .experience-responsibility': '在武汉协助 SUU 教师为 200 多名学生开展英语写作课程，提供中英双语课堂支持；负责考勤、作业评分与书面反馈，并使用 Excel 整理期末成绩和课程完成情况。',
-    '#experience .experience-proofline': '<strong>5</strong> 个账号 · <strong>793K</strong> 浏览量 · 美国受众占比最高 <strong>91.7%</strong>',
+    '#experience .experience-proofline': '<strong>793K</strong> 浏览量 · <strong>3,548</strong> 点赞 · 美国受众占比最高 <strong>91.7%</strong>',
     '#experience .experience-link': '进一步了解 <span aria-hidden="true">→</span>',
-    '#vertex-hero': `<p class="eyebrow">Vertex Marketing · 实习证据</p>
+    '#vertex-hero': `<p class="eyebrow">Vertex Marketing · Reddit 社群运营</p>
       <h1>面向不同受众与主题的 Reddit 社群运营。</h1>
-      <p class="hero-deck">记录我在 Reddit 社群运营实习期间参与运营的账号、内容与社区。</p>
+      <p class="hero-deck">我在 Vertex Marketing 的 Reddit 社群运营实习——那些我每天打交道的账号、内容与社区。</p>
       <p class="hero-meta">Reddit 社群运营实习生 · 2026 · 至今</p>`,
-    '#vertex-scope': `<h2 id="vertex-scope-title">盘点范围</h2>
+    '#vertex-scope': `<h2 id="vertex-scope-title">做了什么</h2>
       <div class="section-copy">
-        <p>本次盘点覆盖实习工作中的 5 个 Reddit 账号与 16 条内容。我参与运营和分析消费科技、智能家居、生活方式、金融、家庭等不同社区中的内容。</p>
+        <p>我负责 Reddit 社区运营，覆盖垂直社区与泛圈层两类。我研究每个社区在聊什么，创作并发布符合社区规则与语气的帖子和评论，并根据受众反馈持续调整内容；覆盖消费科技、智能家居、金融、生活方式、家庭等主题。</p>
       </div>`,
-    '#vertex-evidence': `<h2 id="vertex-evidence-title">证据表</h2>
+    '#vertex-approach': `<h2 id="vertex-approach-title">怎么做的</h2>
+      <div class="section-copy">
+        <p>我把每个社区当成一个独立的受众来对待。创作前，我会先研究 subreddit 的规则，以及社区里已经获得认可的话题与讨论，让我的帖子和评论是加分项而不是噪音。我也参与贴文发布，并为团队账号组合维持稳定的内容节奏。平台规则与算法变化时，我会相应调整内容与发布节奏。</p>
+      </div>`,
+    '#vertex-tooling': `<h2 id="vertex-tooling-title">自建工具</h2>
+      <div class="section-copy">
+        <p>重复的工作推动我自己动手做工具。我自建了一个 Reddit 内容草稿工具，加快英文帖子和评论的产出并提升质量；搭建了每日工作总结看板，并把真实的内容表现数据沉淀为可量化素材。后来我向老板提出 AI 优化工作流方案，获认可后现已进入试点配置。</p>
+      </div>`,
+    '#vertex-evidence': `<h2 id="vertex-evidence-title">数字</h2>
       <div class="section-copy">
         <table class="evidence-table"><tbody>
           <tr><th scope="row">账号</th><td><strong>5</strong> 个账号</td></tr>
@@ -826,8 +846,8 @@ const zh = {
     '#contact .contact-action:nth-child(2) .contact-label': 'LinkedIn',
     '#contact .sign': '— 孙慕坤 / Mukun Sun',
     '#site-footer span:first-child': '© 2026 孙慕坤',
-    '#vertex-footer span:first-child': '孙慕坤 · Vertex 实习证据',
-    '#vertex-footer span:last-child': '实习记录 · 2026',
+    '#vertex-footer span:first-child': '孙慕坤 · Vertex Marketing',
+    '#vertex-footer span:last-child': '实习 · 2026',
   },
 };
 

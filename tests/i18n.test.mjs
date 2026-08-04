@@ -120,7 +120,7 @@ test('second-layer route copy and attributes are selector-scoped and complete', 
       '#teaching-nav .brand', '#teaching-nav .links', '#teaching-nav .compact-nav summary', '#teaching-nav .compact-links', '#teaching-nav .back-link',
       '#teaching-hero h1', '#teaching-hero .detail-eyebrow', '#teaching-hero .detail-deck', '#teaching-hero .detail-meta',
       '#teaching-context h2', '#teaching-context p', '#teaching-classroom h2', '#teaching-classroom p',
-      '#teaching-operations h2', '#teaching-operations p', '#teaching-media h2',
+      '#teaching-operations h2', '#teaching-operations p', '#teaching-bridge h2', '#teaching-bridge p', '#teaching-media h2',
       '#teaching-media .detail-media:nth-child(1) figcaption', '#teaching-media .detail-media:nth-child(2) figcaption',
       '#teaching-footer span', '#teaching-footer a',
     ],
@@ -279,8 +279,8 @@ test('footer, language, proof, and compact-navigation labels are bilingual', () 
   assert.equal(Object.hasOwn(LANGUAGES.zh.copy, '#site-footer span:last-child'), false);
   assert.equal(LANGUAGES.en.attributes['#nav .lang-switch']['aria-label'], 'Language');
   assert.equal(LANGUAGES.zh.attributes['#nav .lang-switch']['aria-label'], '语言');
-  assert.equal(LANGUAGES.en.copy['#experience .experience-proofline'], '<strong>5</strong> accounts · <strong>793K</strong> views · up to <strong>91.7%</strong> U.S. audience share');
-  assert.equal(LANGUAGES.zh.copy['#experience .experience-proofline'], '<strong>5</strong> 个账号 · <strong>793K</strong> 浏览量 · 美国受众占比最高 <strong>91.7%</strong>');
+  assert.equal(LANGUAGES.en.copy['#experience .experience-proofline'], '<strong>793K</strong> views · <strong>3,548</strong> upvotes · up to <strong>91.7%</strong> U.S. audience share');
+  assert.equal(LANGUAGES.zh.copy['#experience .experience-proofline'], '<strong>793K</strong> 浏览量 · <strong>3,548</strong> 点赞 · 美国受众占比最高 <strong>91.7%</strong>');
   assert.equal(LANGUAGES.en.copy['#experience .experience-link'], 'Learn more about this <span aria-hidden="true">→</span>');
   assert.equal(LANGUAGES.zh.copy['#experience .experience-link'], '进一步了解 <span aria-hidden="true">→</span>');
   assert.equal(LANGUAGES.en.copy['#nav .compact-nav summary'], 'Sections');
