@@ -135,3 +135,15 @@ test('both routes react to live motion capability changes and gate progress writ
   assert.match(home, /if\(spotlightListening\)return;/);
   assert.match(home, /if\(parallaxListening\|\|!parallaxItems\.length\)return;/);
 });
+
+test('homepage spotlight animation settles instead of running forever', async () => {
+  const [home] = await readContracts();
+  const loop = home.match(/function runSpotlight\(\)\{([\s\S]*?)\r?\n  \}\r?\n\r?\n  function onSpotlightMove/)?.[1] ?? '';
+
+  assert.match(loop, /var dx=tx-cx,dy=ty-cy;/);
+  assert.match(loop, /if\(Math\.abs\(dx\)<=0\.5&&Math\.abs\(dy\)<=0\.5\)\{[\s\S]*?return;/);
+  assert.ok(
+    loop.indexOf('return;') < loop.indexOf('requestAnimationFrame(runSpotlight)'),
+    'the convergence exit must run before another animation frame is requested',
+  );
+});

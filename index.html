@@ -626,7 +626,14 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
   function runSpotlight(){
     spotlightFrame=0;
     if(!motionDesktop||!spot)return;
-    cx+=(tx-cx)*0.12;cy+=(ty-cy)*0.12;
+    var dx=tx-cx,dy=ty-cy;
+    if(Math.abs(dx)<=0.5&&Math.abs(dy)<=0.5){
+      cx=tx;cy=ty;
+      spot.style.setProperty('--mx',cx+'px');
+      spot.style.setProperty('--my',cy+'px');
+      return;
+    }
+    cx+=dx*0.12;cy+=dy*0.12;
     spot.style.setProperty('--mx',cx+'px');
     spot.style.setProperty('--my',cy+'px');
     spotlightFrame=requestAnimationFrame(runSpotlight);
