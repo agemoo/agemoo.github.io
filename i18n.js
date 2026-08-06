@@ -4,11 +4,11 @@ export const I18N_CACHE_KEY = '20260730-outside-routes';
 export const PAGE_KEYS = ['home', 'vertex', 'teaching', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel'];
 
 const en = {
-  title: 'Mukun Sun | Communication, Community, and Music',
+  title: 'Mukun Sun | Website',
   description: 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.',
   metadata: {
     home: {
-      title: 'Mukun Sun | Communication, Community, and Music',
+      title: 'Mukun Sun | Website',
       description: 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.',
       imageAlt: 'International Museum Day banner designed for Wuhan Museum',
     },

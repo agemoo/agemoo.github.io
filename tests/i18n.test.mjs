@@ -359,7 +359,7 @@ test('applyLanguage uses page-specific metadata in both languages', () => {
       assert.equal(doc.meta.content, LANGUAGES[language].metadata[page].description, `${language}:${page}`);
     }
   }
-  assert.equal(LANGUAGES.en.metadata.home.title, 'Mukun Sun | Communication, Community, and Music');
+  assert.equal(LANGUAGES.en.metadata.home.title, 'Mukun Sun | Website');
   assert.equal(LANGUAGES.en.metadata.home.description, 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.');
   assert.equal(LANGUAGES.zh.metadata.home.title, '孙慕坤｜传播、社群与音乐');
   assert.equal(LANGUAGES.zh.metadata.home.description, '孙慕坤的个人网站：社交媒体与社群运营、传播项目、视觉作品、教育经历，以及音乐与摄影。');
