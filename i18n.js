@@ -1,6 +1,6 @@
 export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'portfolio-language';
-export const I18N_CACHE_KEY = '20260730-outside-routes';
+export const I18N_CACHE_KEY = '20260806-title-update';
 export const PAGE_KEYS = ['home', 'vertex', 'teaching', 'campus', 'hotel', 'visual', 'music', 'photography', 'travel'];
 
 const en = {

@@ -25,8 +25,8 @@ test('both routes enforce clipping, mobile controls, wrapping, exact cache impor
     assert.match(html, /<html\s+lang="en"[^>]*data-language="en"/);
     assert.equal((html.match(/i18n\.js\?v=/g) ?? []).length, 1);
   }
-  assert.match(home, /<script type="module" src="i18n\.js\?v=20260730-outside-routes"><\/script>/);
-  assert.match(detail, /<script type="module" src="\.\.\/i18n\.js\?v=20260730-outside-routes"><\/script>/);
+  assert.match(home, /<script type="module" src="i18n\.js\?v=20260806-title-update"><\/script>/);
+  assert.match(detail, /<script type="module" src="\.\.\/i18n\.js\?v=20260806-title-update"><\/script>/);
   assert.match(i18n, /export const DEFAULT_LANGUAGE = 'en';/);
   assert.match(i18n, /export function getInitialLanguage\(storage = globalThis\.localStorage\)/);
   assert.match(i18n, /storage\?\.getItem\(STORAGE_KEY\)/);
@@ -37,9 +37,9 @@ test('outside-work detail routes load one shared versioned module and cache-bust
   for (const [name, html] of [['music', music], ['photography', photography], ['travel', travel]]) {
     assert.match(html, /<html lang="en"[^>]*data-language="en"/);
     assert.equal((html.match(/i18n\.js/g) ?? []).length, 1, `${name}: one i18n script URL`);
-    assert.match(html, /src="i18n\.js\?v=20260730-outside-routes"/);
-    assert.match(html, /href="detail\.css\?v=20260730-outside-routes"/);
-    assert.match(html, /src="detail\.js\?v=20260730-outside-routes"/);
+    assert.match(html, /src="i18n\.js\?v=20260806-title-update"/);
+    assert.match(html, /href="detail\.css\?v=20260806-title-update"/);
+    assert.match(html, /src="detail\.js\?v=20260806-title-update"/);
   }
   assert.doesNotMatch(detailJs, /(?:import|from)\s*['"]\.\/i18n\.js['"]/);
 });

@@ -26,9 +26,9 @@ test('every second-layer route has the shared bilingual shell', async () => {
   for (const [path, key] of routes) {
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
     assert.match(html, new RegExp(`<html[^>]+data-page="${key}"`));
-    assert.match(html, /href="(?:\.\.\/)?detail\.css\?v=20260730-outside-routes"/);
-    assert.match(html, /src="(?:\.\.\/)?detail\.js\?v=20260730-outside-routes"/);
-    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260730-outside-routes"/);
+    assert.match(html, /href="(?:\.\.\/)?detail\.css\?v=20260806-title-update"/);
+    assert.match(html, /src="(?:\.\.\/)?detail\.js\?v=20260806-title-update"/);
+    assert.match(html, /src="(?:\.\.\/)?i18n\.js\?v=20260806-title-update"/);
     assert.equal((html.match(/i18n\.js\?v=/g) ?? []).length, 1, `${path}: one i18n module instance`);
     assert.match(html, /data-lang="en"/);
     assert.match(html, /data-lang="zh"/);
