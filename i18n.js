@@ -10,7 +10,7 @@ const en = {
     home: {
       title: 'Mukun Sun | Website',
       description: 'A professional and personal portfolio of communication, community work, visual projects, education, music, and photography by Mukun Sun.',
-      imageAlt: 'International Museum Day banner designed for Wuhan Museum',
+      imageAlt: 'Mukun Sun | Communication, Community & Music',
     },
     vertex: {
       title: 'Reddit Community Operations | Mukun Sun',
@@ -434,7 +434,7 @@ const zh = {
     home: {
       title: '孙慕坤｜传播、社群与音乐',
       description: '孙慕坤的个人网站：社交媒体与社群运营、传播项目、视觉作品、教育经历，以及音乐与摄影。',
-      imageAlt: '为武汉博物馆设计的国际博物馆日活动横幅',
+      imageAlt: 'Mukun Sun | 传播、社群与音乐',
     },
     vertex: {
       title: 'Reddit 社群运营 | 孙慕坤',
