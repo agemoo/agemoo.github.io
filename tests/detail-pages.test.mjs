@@ -44,7 +44,7 @@ test('project pages use the approved facts, metadata, and section order', async 
 
   assert.match(campus, /<title>Campus Integrated Campaign \| Mukun Sun<\/title>/);
   assert.match(campus, /<meta name="description" content="Promotion coordination for campus welcome and New Year events across online and offline channels\.">/);
-  assert.match(campus, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/projects\/campus-campaign\.html">/);
+  assert.match(campus, /<link rel="canonical" href="https:\/\/mukunsun\.github\.io\/projects\/campus-campaign\.html">/);
   assert.match(campus, /<header class="detail-hero" id="campus-hero"[^>]*>[\s\S]*?<section class="detail-section" id="campus-context"[\s\S]*?<section class="detail-section" id="campus-contribution"[\s\S]*?<section class="detail-section" id="campus-media"/);
   assert.match(campus, /Campus Integrated Campaign/);
   assert.match(campus, /Promotion Team Lead · 2024–2025/);
@@ -54,7 +54,7 @@ test('project pages use the approved facts, metadata, and section order', async 
 
   assert.match(hotel, /<title>Hotel × Jazz \| Mukun Sun<\/title>/);
   assert.match(hotel, /<meta name="description" content="Event concept, partner coordination, WeChat promotion, and visual identity for a hotel and jazz collaboration\.">/);
-  assert.match(hotel, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/projects\/hotel-jazz\.html">/);
+  assert.match(hotel, /<link rel="canonical" href="https:\/\/mukunsun\.github\.io\/projects\/hotel-jazz\.html">/);
   assert.match(hotel, /<header class="detail-hero" id="hotel-hero"[^>]*>[\s\S]*?<section class="detail-section" id="hotel-context"[\s\S]*?<section class="detail-section" id="hotel-contribution"[\s\S]*?<section class="detail-section" id="hotel-media"/);
   assert.match(hotel, /<h1>Hotel × Jazz<\/h1>/);
   assert.match(hotel, /Campaign &amp; Visual Communication · 2024/);
@@ -142,7 +142,7 @@ test('music route keeps the approved content and media', async () => {
   const html = await readFile(new URL('../music.html', import.meta.url), 'utf8');
   assert.match(html, /<title>Music \| Mukun Sun<\/title>/);
   assert.match(html, /<meta name="description" content="Performances, music projects, and study in upright and electric bass by Mukun Sun\.">/);
-  assert.match(html, /<link rel="canonical" href="https:\/\/agemoo\.github\.io\/music\.html">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/mukunsun\.github\.io\/music\.html">/);
   assert.match(html, /<header class="detail-hero" id="music-hero"[^>]*>[\s\S]*?<section[^>]+id="music-intro"[\s\S]*?<section[^>]+id="music-timeline"[\s\S]*?<section[^>]+id="music-study"/);
   assert.match(html, /I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band\./);
   const approved = [
