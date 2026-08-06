@@ -129,8 +129,12 @@ html[data-page="teaching"] .detail-hero h1{font-size:clamp(3rem,5vw,5rem);overfl
 html.js.motion-detail [data-reveal]{opacity:0;transform:translate3d(0,var(--space-md),0);transition:opacity var(--dur-medium) var(--ease-out),transform var(--dur-medium) var(--ease-out);}
 html.js.motion-detail [data-reveal="media"]{transform:scale(1.015);}
 html.js.motion-detail [data-reveal].is-visible{opacity:1;transform:translate3d(0,0,0);}
-.image-dialog{max-width:min(92vw,1200px);max-height:92vh;padding:0;border:1px solid var(--color-rule);background:var(--color-paper-raised);color:var(--color-ink);}
-.image-dialog::backdrop{background:var(--effect-dialog-backdrop);}
+.image-dialog{max-width:min(92vw,1200px);max-height:92vh;padding:0;border:1px solid var(--color-rule);background:var(--color-paper-raised);color:var(--color-ink);opacity:0;transform:translateY(14px) scale(.985);transition:opacity var(--dur-medium) var(--ease-out),transform var(--dur-medium) var(--ease-out);}
+.image-dialog.is-open{opacity:1;transform:none;}
+.image-dialog.is-closing{opacity:0;transform:translateY(10px) scale(.99);}
+.image-dialog::backdrop{background:var(--effect-dialog-backdrop);opacity:0;transition:opacity var(--dur-medium) var(--ease-out);}
+.image-dialog.is-open::backdrop{opacity:1;}
+.image-dialog[open]{display:block;}
 .image-dialog img{display:block;width:auto;max-width:100%;height:auto;max-height:84vh;margin:auto;}
 .dialog-close{position:absolute;top:var(--space-2xs);right:var(--space-2xs);display:grid;place-items:center;min-width:44px;min-height:44px;border:1px solid var(--color-rule);border-radius:var(--radius-pill);background:var(--color-paper-raised);color:var(--color-ink);cursor:pointer;}
 .footer{width:min(100% - 2 * clamp(20px,5vw,80px),1240px);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:var(--space-sm);padding-block:var(--space-lg);border-top:1px solid var(--color-rule);font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-muted);}
@@ -146,4 +150,4 @@ html[lang="zh-CN"] .detail-section p{line-height:1.85;}
 @media(max-width:30rem){.detail-nav .brand{display:none;}.detail-nav .nav-actions{width:100%;justify-content:flex-end;}}
 @media(max-width:40rem){.footer{flex-direction:column;align-items:flex-start;gap:var(--space-2xs);}}
 @media(max-width:40rem),(pointer:coarse){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;}.progress{display:none!important;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}[data-reveal]{opacity:1!important;transform:none!important;transition:none!important;}.progress{display:none!important;}.image-dialog,.image-dialog::backdrop{opacity:1!important;transform:none!important;transition:none!important;}}

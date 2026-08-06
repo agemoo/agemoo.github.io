@@ -4,6 +4,37 @@ export function mountImageDialog(dialog) {
   const close = dialog.querySelector('[data-dialog-close]');
   if (!image || !close) return;
   let previousFocus = null;
+  let closing = false;
+
+  const reduceMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
+
+  const openDialog = () => {
+    if (!dialog.open) {
+      dialog.classList.remove('is-closing');
+      dialog.showModal();
+      dialog.classList.add('is-open');
+    }
+    close.focus();
+  };
+
+  const closeDialog = () => {
+    if (closing || !dialog.open) return;
+    closing = true;
+    const finish = () => {
+      closing = false;
+      dialog.classList.remove('is-open', 'is-closing');
+      dialog.close();
+    };
+    if (reduceMotion()) { finish(); return; }
+    dialog.classList.add('is-closing');
+    const onTransitionEnd = (event) => {
+      if (event.target !== dialog || event.propertyName !== 'opacity') return;
+      dialog.removeEventListener('transitionend', onTransitionEnd);
+      finish();
+    };
+    dialog.addEventListener('transitionend', onTransitionEnd);
+    window.setTimeout(finish, 500);
+  };
 
   document.querySelectorAll('[data-enlarge]').forEach((trigger) => {
     trigger.addEventListener('click', (event) => {
@@ -12,15 +43,23 @@ export function mountImageDialog(dialog) {
       const source = trigger.querySelector('img') || trigger;
       image.src = trigger.dataset.fullSrc || trigger.href || source.currentSrc || source.src;
       image.alt = source.alt || '';
-      dialog.showModal();
-      close.focus();
+      openDialog();
     });
   });
 
-  close.addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-  dialog.addEventListener('keydown', (event) => { if (event.key === 'Escape') dialog.close(); });
-  dialog.addEventListener('close', () => previousFocus?.focus());
+  close.addEventListener('click', () => closeDialog());
+  dialog.addEventListener('click', (event) => { if (event.target === dialog) closeDialog(); });
+  dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeDialog();
+    }
+  });
+  dialog.addEventListener('close', () => {
+    closing = false;
+    dialog.classList.remove('is-open', 'is-closing');
+    previousFocus?.focus();
+  });
 }
 
 function mountPageMotion() {
