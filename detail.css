@@ -50,6 +50,10 @@ button:disabled,[aria-disabled="true"]{opacity:.55;cursor:not-allowed;pointer-ev
 html[data-page="music"] .detail-hero[data-outside-hero]{--hero-position:center 46%;--hero-brightness:var(--effect-music-hero-brightness);--hero-saturation:var(--effect-music-hero-saturation);--hero-scrim:var(--music-hero-scrim);}
 html[data-page="photography"] .detail-hero[data-outside-hero]{--hero-position:center 59%;}
 html[data-page="travel"] .detail-hero[data-outside-hero]{--hero-position:center 52%;--hero-brightness:var(--effect-travel-hero-brightness);--hero-saturation:var(--effect-travel-hero-saturation);--hero-scrim:var(--travel-hero-scrim);}
+html[data-page="campus"] .detail-hero[data-outside-hero]{--hero-position:center 40%;--hero-brightness:var(--effect-outside-brightness);--hero-saturation:var(--effect-outside-saturation);}
+html[data-page="hotel"] .detail-hero[data-outside-hero]{--hero-position:center 45%;--hero-brightness:var(--effect-outside-brightness);--hero-saturation:var(--effect-outside-saturation);}
+html[data-page="visual"] .detail-hero[data-outside-hero]{--hero-position:center 30%;--hero-brightness:var(--effect-outside-brightness);--hero-saturation:var(--effect-outside-saturation);}
+html[data-page="teaching"] .detail-hero[data-outside-hero]{--hero-position:center 40%;--hero-brightness:var(--effect-outside-brightness);--hero-saturation:var(--effect-outside-saturation);}
 .detail-hero h1,.detail-section h2{margin:0;font-family:var(--font-display);font-weight:600;line-height:1.05;color:var(--color-ink);text-wrap:balance;}
 .detail-hero h1{font-size:clamp(3rem,8vw,7rem);letter-spacing:-.035em;}
 html[data-page="photography"] .detail-hero h1{font-size:clamp(3.1rem,7vw,6.6rem);white-space:nowrap;overflow-wrap:normal;}
