@@ -249,7 +249,7 @@ test('outside-work heroes use route-owned images with stable editorial overlays'
   const pages = [
     ['music.html', 'music', 'assets/music/suu_jazz_fest/playing.webp'],
     ['photography.html', 'photography', 'assets/photography/the_strip.webp'],
-    ['travel.html', 'travel', 'assets/travel/bryce_canyon.jpg'],
+    ['travel.html', 'travel', 'assets/travel/bryce_canyon.png'],
   ];
   for (const [path, key, image] of pages) {
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');
