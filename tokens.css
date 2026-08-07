@@ -28,10 +28,10 @@
   --color-bloom-low: oklch(0.34 0.07 50 / 0.35);
   --color-bloom-closing: oklch(0.5 0.13 44 / 0.34);
   --color-bloom-closing-low: oklch(0.34 0.06 50 / 0.4);
-  --effect-nav-surface-soft: color-mix(in oklab, var(--color-paper) 48%, transparent);
-  --effect-nav-surface: color-mix(in oklab, var(--color-paper) 88%, transparent);
-  --effect-nav-blur: 18px;
-  --effect-nav-saturation: 1.12;
+  --effect-nav-surface-soft: color-mix(in oklab, var(--color-paper) 55%, transparent);
+  --effect-nav-surface: color-mix(in oklab, var(--color-paper) 92%, transparent);
+  --effect-nav-blur: 26px;
+  --effect-nav-saturation: 1.25;
   --effect-dialog-backdrop: color-mix(in oklab, var(--color-paper) 82%, transparent);
   --effect-media-brightness: 0.94;
   --effect-media-saturation: 0.94;

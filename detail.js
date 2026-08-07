@@ -43,6 +43,7 @@ export function mountImageDialog(dialog) {
       const source = trigger.querySelector('img') || trigger;
       image.src = trigger.dataset.fullSrc || trigger.href || source.currentSrc || source.src;
       image.alt = source.alt || '';
+      image.style.transform = '';
       openDialog();
     });
   });
@@ -59,6 +60,21 @@ export function mountImageDialog(dialog) {
     closing = false;
     dialog.classList.remove('is-open', 'is-closing');
     previousFocus?.focus();
+  });
+
+  // Wheel zoom: hold Ctrl or just wheel over the image to zoom 100% scale.
+  image.addEventListener('wheel', (event) => {
+    if (!dialog.open) return;
+    event.preventDefault();
+    const step = event.deltaY < 0 ? 0.2 : -0.2;
+    const scale = Math.min(4, Math.max(0.5, (parseFloat(image.dataset.scale) || 1) + step));
+    image.dataset.scale = String(scale);
+    image.style.transform = `scale(${scale})`;
+    image.style.transformOrigin = 'center center';
+  }, { passive: false });
+  image.addEventListener('dblclick', () => {
+    image.dataset.scale = '1';
+    image.style.transform = '';
   });
 }
 

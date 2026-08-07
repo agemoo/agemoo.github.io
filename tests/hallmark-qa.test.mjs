@@ -37,7 +37,7 @@ test('shared detail shell keeps its dark-gallery contract self-contained', () =>
   assert.match(detailShell, /Hallmark 路 shared detail shell/);
   assert.match(detailShell, /@import url\(['"]tokens\.css['"]\)/);
   assert.doesNotMatch(detailShell, /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(|oklch\(/i);
-  assert.match(detailShell, /\.image-dialog\{[^}]*max-width:min\(92vw,1200px\)/);
+  assert.match(detailShell, /\.image-dialog\{[^}]*max-width:min\(94vw,1400px\)/);
   assert.match(detailShell, /@media\(max-width:40rem\)\{\.detail-grid\{grid-template-columns:minmax\(0,1fr\)/);
   assert.doesNotMatch(detailBehavior, /(?:import|from)\s*['"]\.\/i18n\.js['"]/);
   assert.match(detailBehavior, /IntersectionObserver/);
