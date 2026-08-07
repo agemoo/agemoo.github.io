@@ -67,8 +67,8 @@ test('each internship pairs its copy with one approved natural-ratio context ima
   const teaching = home.match(/<article class="experience-row experience-row--teaching"[\s\S]*?<\/article>/)?.[0] ?? '';
   assert.match(vertex, /<div class="experience-detail">[\s\S]*?<figure class="experience-media" data-reveal="img">/);
   assert.match(teaching, /<div class="experience-detail">[\s\S]*?<figure class="experience-media" data-reveal="img">/);
-  assert.match(vertex, /src="assets\/internship\/VertexMkt\/1\.jpg" width="1279" height="1706" alt="A bright shared workspace at Vertex Marketing in Shenzhen"/);
-  assert.match(teaching, /src="assets\/internship\/SUU_TA\/classroom\.jpg" width="1921" height="1279" alt="Mukun Sun speaking to an English writing class in Wuhan"/);
+  assert.match(vertex, /src="assets\/internship\/VertexMkt\/1\.webp" width="1279" height="1706" alt="A bright shared workspace at Vertex Marketing in Shenzhen"/);
+  assert.match(teaching, /src="assets\/internship\/SUU_TA\/classroom\.webp" width="1921" height="1279" alt="Mukun Sun speaking to an English writing class in Wuhan"/);
   assert.match(home, /\.experience-detail\{display:grid;grid-template-columns:minmax\(0,1\.05fr\) minmax\(240px,\.95fr\);/);
   assert.match(home, /\.experience-media img\{[^}]*height:auto/);
 });
@@ -96,7 +96,7 @@ test('Teaching Assistant internship opens a concise bilingual detail route', asy
   for (const fact of ['May 2026', 'Wuhan, China', '200+ students', 'bilingual support', 'graded assignments', 'Excel', 'Yellow Crane Tower']) {
     assert.match(detail, new RegExp(fact.replace('+', '\\+'), 'i'));
   }
-  assert.match(detail, /professor_classroom\.jpg" width="1279" height="1706"/);
-  assert.match(detail, /with_professor\.jpg" width="1706" height="1279"/);
+  assert.match(detail, /professor_classroom\.webp" width="1279" height="1706"/);
+  assert.match(detail, /with_professor\.webp" width="1706" height="1279"/);
   assert.doesNotMatch(detail, /Sharon Lyman|\$450|airfare/i);
 });

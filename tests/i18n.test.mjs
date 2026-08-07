@@ -413,7 +413,7 @@ test('page exposes a bilingual control and direct outside-work gateway media', a
   assert.match(html, /href="music\.html"/);
   assert.match(html, /href="photography\.html"/);
   assert.match(html, /href="travel\.html"/);
-  assert.match(html, /src="assets\/music\/suu_jazz_fest\/performance\.jpg"/);
+  assert.match(html, /src="assets\/music\/suu_jazz_fest\/performance\.webp"/);
   assert.match(html, /src="assets\/photography\/walter_disney\.webp"/);
   assert.doesNotMatch(html, /已生成图像|src="assets\/bass1\.jpg"/);
   const photographyImage = '#outside-work .outside-card:nth-child(2) img';

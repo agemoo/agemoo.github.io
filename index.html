@@ -132,7 +132,7 @@ html[lang="zh"] .nav .brand .en{font-family:var(--mono);}
 
 /* ---------- layout primitives ---------- */
 .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut);}
-section{position:relative;}
+section{position:relative;content-visibility:auto;contain-intrinsic-size:auto 900px;}
 .band{padding-block:clamp(88px,12vw,168px);}
 .divider{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto;}
 
@@ -376,7 +376,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
       </div>
       <figure class="portrait" data-reveal="img" data-parallax="0.03">
         <div class="pframe">
-          <img src="assets/portrait/portrait.jpg" alt="Portrait of Mukun Sun" loading="lazy" decoding="async">
+          <img src="assets/portrait/portrait.webp" alt="Portrait of Mukun Sun" loading="lazy" decoding="async">
           <span class="pglow" aria-hidden="true"></span>
         </div>
         <figcaption class="pcap"></figcaption>
@@ -408,7 +408,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
             <a class="experience-link" href="projects/vertex-reddit.html">Learn more about this <span aria-hidden="true">→</span></a>
           </div>
           <figure class="experience-media" data-reveal="img">
-            <img src="assets/internship/VertexMkt/1.jpg" width="1279" height="1706" alt="A bright shared workspace at Vertex Marketing in Shenzhen" loading="lazy" decoding="async">
+            <img src="assets/internship/VertexMkt/1.webp" width="1279" height="1706" alt="A bright shared workspace at Vertex Marketing in Shenzhen" loading="lazy" decoding="async">
           </figure>
         </div>
       </article>
@@ -424,7 +424,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
             <a class="experience-link" href="projects/suu-teaching-assistant.html">Learn more about this <span aria-hidden="true">→</span></a>
           </div>
           <figure class="experience-media" data-reveal="img">
-            <img src="assets/internship/SUU_TA/classroom.jpg" width="1921" height="1279" alt="Mukun Sun speaking to an English writing class in Wuhan" loading="lazy" decoding="async">
+            <img src="assets/internship/SUU_TA/classroom.webp" width="1921" height="1279" alt="Mukun Sun speaking to an English writing class in Wuhan" loading="lazy" decoding="async">
           </figure>
         </div>
       </article>
@@ -453,19 +453,19 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
     <div class="project-list">
       <a class="project-row project-row--campus" href="projects/campus-campaign.html" data-reveal>
         <span class="project-copy"><strong>Campus Integrated Campaign</strong><span>Promotion coordination for campus welcome and New Year events across online and offline channels.</span></span>
-        <span class="project-preview"><img src="assets/project/CampusGala/freshmen_welcome_gala.jpg" width="1600" height="1067" alt="A large campus gala audience facing a lit stage" loading="lazy" decoding="async"></span>
+        <span class="project-preview"><img src="assets/project/CampusGala/freshmen_welcome_gala.webp" width="1600" height="1067" alt="A large campus gala audience facing a lit stage" loading="lazy" decoding="async"></span>
         <span class="project-action">View project <span aria-hidden="true">→</span></span>
       </a>
 
       <a class="project-row project-row--hotel" href="projects/hotel-jazz.html" data-reveal>
         <span class="project-copy"><strong>Hotel × Jazz Brand Event</strong><span>Event concept, partner coordination, WeChat promotion, and visual identity for a hotel × jazz collaboration.</span></span>
-        <span class="project-preview"><img src="assets/project/Andi/andi_fest_2.png" width="1039" height="462" alt="Jazz musicians performing at a hotel beside an upright bass" loading="lazy" decoding="async"></span>
+        <span class="project-preview"><img src="assets/project/Andi/andi_fest_2.webp" width="1039" height="462" alt="Jazz musicians performing at a hotel beside an upright bass" loading="lazy" decoding="async"></span>
         <span class="project-action">View project <span aria-hidden="true">→</span></span>
       </a>
 
       <a class="project-row project-row--visual" href="projects/visual-work.html" data-reveal>
         <span class="project-copy"><strong>Selected Visual Work</strong><span>A selected archive of posters, print design, event visuals, and photography.</span></span>
-        <span class="project-preview"><img src="assets/visual_work/jazz_winter.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event" loading="lazy" decoding="async"></span>
+        <span class="project-preview"><img src="assets/visual_work/jazz_winter.webp" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event" loading="lazy" decoding="async"></span>
         <span class="project-action">View project <span aria-hidden="true">→</span></span>
       </a>
     </div>
@@ -520,7 +520,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
     <div class="outside-gateway" data-reveal>
       <div class="outside-grid">
         <a class="outside-card outside-card--music" href="music.html">
-          <span class="outside-media"><img src="assets/music/suu_jazz_fest/performance.jpg" width="896" height="1193" alt="Mukun Sun performing upright bass at SUU Jazz Fest" loading="lazy" decoding="async"></span>
+          <span class="outside-media"><img src="assets/music/suu_jazz_fest/performance.webp" width="896" height="1193" alt="Mukun Sun performing upright bass at SUU Jazz Fest" loading="lazy" decoding="async"></span>
           <strong>Music</strong>
           <p>Upright and electric bass performance, ensemble work, and the planning behind live events.</p>
         </a>
@@ -530,7 +530,7 @@ html.js.motion-desktop [data-reveal="line"]::after,html.js.motion-desktop .lineg
           <p>Small studies in performance, objects, light, and atmosphere.</p>
         </a>
         <a class="outside-card outside-card--travel" href="travel.html">
-          <span class="outside-media"><img src="assets/travel/bryce_canyon.png" width="1448" height="1086" alt="Bryce Canyon amphitheater in warm afternoon light" loading="lazy" decoding="async"></span>
+          <span class="outside-media"><img src="assets/travel/bryce_canyon.webp" width="1448" height="1086" alt="Bryce Canyon amphitheater in warm afternoon light" loading="lazy" decoding="async"></span>
           <strong>Travel</strong>
           <p>Notes from cities and landscapes that sharpen how I notice culture, rhythm, and everyday detail.</p>
         </a>

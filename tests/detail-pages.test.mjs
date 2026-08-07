@@ -67,21 +67,21 @@ test('project media uses only approved files at natural dimensions', async () =>
     readFile(new URL('../projects/campus-campaign.html', import.meta.url), 'utf8'),
     readFile(new URL('../projects/hotel-jazz.html', import.meta.url), 'utf8'),
   ]);
-  assert.match(campus, /<img src="\.\.\/assets\/project\/CampusGala\/freshmen_welcome_gala\.jpg" width="1600" height="1067"[^>]*>/);
-  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.png" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments" loading="lazy" decoding="async">/);
-  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.jpg" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" loading="lazy" decoding="async">/);
+  assert.match(campus, /<img src="\.\.\/assets\/project\/CampusGala\/freshmen_welcome_gala\.webp" width="1600" height="1067"[^>]*>/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest_2\.webp" width="1039" height="462" alt="Wide Hotel × Jazz event composition showing the performance and instruments" loading="lazy" decoding="async">/);
+  assert.match(hotel, /<img src="\.\.\/assets\/project\/Andi\/andi_fest\.webp" width="1280" height="960" alt="Audience and performance area at the Hotel × Jazz event" loading="lazy" decoding="async">/);
 });
 
 test('enhanced Campus, Hotel, and Music images keep focusable real-file links', async () => {
   const expectations = [
-    ['projects/campus-campaign.html', '../assets/project/CampusGala/freshmen_welcome_gala.jpg'],
-    ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.png'],
-    ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.jpg'],
+    ['projects/campus-campaign.html', '../assets/project/CampusGala/freshmen_welcome_gala.webp'],
+    ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest_2.webp'],
+    ['projects/hotel-jazz.html', '../assets/project/Andi/andi_fest.webp'],
     ['music.html', 'assets/music/suu_jazz_fest/playing.webp'],
-    ['music.html', 'assets/music/suu_jazz_fest/performance.jpg'],
+    ['music.html', 'assets/music/suu_jazz_fest/performance.webp'],
     ['music.html', 'assets/music/jazz_in_the_room/jazz_in_the_room.jpg'],
     ['music.html', 'assets/music/grand_ball/headshot.webp'],
-    ['music.html', 'assets/music/nomination/with_friends.jpg'],
+    ['music.html', 'assets/music/nomination/with_friends.webp'],
     ['music.html', 'assets/music/jam_session/jam.webp'],
     ['music.html', 'assets/music/jazz_concert/jazz_concert.webp'],
     ['music.html', 'assets/music/tbird_marching_band/TMB.webp'],
@@ -105,13 +105,13 @@ test('enhanced Campus, Hotel, and Music images keep focusable real-file links', 
 test('selected visual work preserves the approved gallery with real image links', async () => {
   const html = await readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8');
   const gallery = [
-    ['visual_work/hotone_main.jpg', 1486, 2106, 'HOTONE · Tenth-Anniversary Poster'],
-    ['visual_work/hotone_guitar.jpg', 1141, 1626, 'HOTONE · Release Your Musical Passion'],
-    ['visual_work/hotone_pedal.jpg', 1322, 1880, 'HOTONE · Ampero II Stomp Detail'],
-    ['visual_work/jazz_coast_a.png', 1086, 1448, 'JAZZ NIGHT · Coastline'],
-    ['visual_work/jazz_coast_b.png', 1086, 1448, 'JAZZ NIGHT · Variation'],
-    ['visual_work/jazz_winter.jpg', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
-    ['visual_work/banner_museum.png', 1983, 793, 'International Museum Day · Wuhan Museum'],
+    ['visual_work/hotone_main.webp', 1486, 2106, 'HOTONE · Tenth-Anniversary Poster'],
+    ['visual_work/hotone_guitar.webp', 1141, 1626, 'HOTONE · Release Your Musical Passion'],
+    ['visual_work/hotone_pedal.webp', 1322, 1880, 'HOTONE · Ampero II Stomp Detail'],
+    ['visual_work/jazz_coast_a.webp', 1086, 1448, 'JAZZ NIGHT · Coastline'],
+    ['visual_work/jazz_coast_b.webp', 1086, 1448, 'JAZZ NIGHT · Variation'],
+    ['visual_work/jazz_winter.webp', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
+    ['visual_work/banner_museum.webp', 1983, 793, 'International Museum Day · Wuhan Museum'],
   ];
 
   assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-gallery"/);
@@ -122,14 +122,14 @@ test('selected visual work preserves the approved gallery with real image links'
     assert.match(html, new RegExp(`<img src="\\.\\.\\/assets\\/${file}" width="${width}" height="${height}"`));
     assert.ok(html.includes(`<figcaption>${caption}</figcaption>`), caption);
   }
-  assert.ok(html.indexOf('hotone_main.jpg') < html.indexOf('hotone_guitar.jpg'));
-  assert.ok(html.indexOf('hotone_guitar.jpg') < html.indexOf('hotone_pedal.jpg'));
-  assert.ok(html.indexOf('hotone_pedal.jpg') < html.indexOf('jazz_coast_a.png'));
-  assert.ok(html.indexOf('jazz_coast_a.png') < html.indexOf('jazz_coast_b.png'));
-  assert.ok(html.indexOf('jazz_coast_b.png') < html.indexOf('jazz_winter.jpg'));
-  assert.ok(html.indexOf('jazz_winter.jpg') < html.indexOf('banner_museum.png'));
-  assert.match(html, /visual-feature[\s\S]*?hotone_main\.jpg/);
-  assert.match(html, /visual-feature[\s\S]*?banner_museum\.png/);
+  assert.ok(html.indexOf('hotone_main.webp') < html.indexOf('hotone_guitar.webp'));
+  assert.ok(html.indexOf('hotone_guitar.webp') < html.indexOf('hotone_pedal.webp'));
+  assert.ok(html.indexOf('hotone_pedal.webp') < html.indexOf('jazz_coast_a.webp'));
+  assert.ok(html.indexOf('jazz_coast_a.webp') < html.indexOf('jazz_coast_b.webp'));
+  assert.ok(html.indexOf('jazz_coast_b.webp') < html.indexOf('jazz_winter.webp'));
+  assert.ok(html.indexOf('jazz_winter.webp') < html.indexOf('banner_museum.webp'));
+  assert.match(html, /visual-feature[\s\S]*?hotone_main\.webp/);
+  assert.match(html, /visual-feature[\s\S]*?banner_museum\.webp/);
   assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg|bass[123]\.jpg/);
 });
 
@@ -147,10 +147,10 @@ test('music route keeps the approved content and media', async () => {
   assert.match(html, /I play upright and electric bass, but much of my music work also happens before the stage: arranging, organizing rehearsals, coordinating venues, and building an event around a band\./);
   const approved = [
     ['assets/music/suu_jazz_fest/playing.webp', 1726, 964],
-    ['assets/music/suu_jazz_fest/performance.jpg', 896, 1193],
+    ['assets/music/suu_jazz_fest/performance.webp', 896, 1193],
     ['assets/music/jazz_in_the_room/jazz_in_the_room.jpg', 1446, 903],
     ['assets/music/grand_ball/headshot.webp', 1086, 1448],
-    ['assets/music/nomination/with_friends.jpg', 1279, 1706],
+    ['assets/music/nomination/with_friends.webp', 1279, 1706],
     ['assets/music/jam_session/jam.webp', 1672, 941],
     ['assets/music/jazz_concert/jazz_concert.webp', 1448, 1086],
     ['assets/music/tbird_marching_band/TMB.webp', 1086, 1448],
@@ -249,7 +249,7 @@ test('outside-work heroes use route-owned images with stable editorial overlays'
   const pages = [
     ['music.html', 'music', 'assets/music/suu_jazz_fest/playing.webp'],
     ['photography.html', 'photography', 'assets/photography/the_strip.webp'],
-    ['travel.html', 'travel', 'assets/travel/bryce_canyon.png'],
+    ['travel.html', 'travel', 'assets/travel/bryce_canyon.webp'],
   ];
   for (const [path, key, image] of pages) {
     const html = await readFile(new URL(`../${path}`, import.meta.url), 'utf8');

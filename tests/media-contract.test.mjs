@@ -6,17 +6,17 @@ const root = new URL('../', import.meta.url);
 const home = await readFile(new URL('index.html', root), 'utf8');
 
 const approved = [
-  'assets/internship/VertexMkt/1.jpg',
-  'assets/internship/SUU_TA/classroom.jpg',
-  'assets/project/CampusGala/freshmen_welcome_gala.jpg',
-  'assets/project/Andi/andi_fest_2.png',
-  'assets/project/Andi/andi_fest.jpg',
-  'assets/visual_work/jazz_winter.jpg',
-  'assets/music/suu_jazz_fest/performance.jpg',
+  'assets/internship/VertexMkt/1.webp',
+  'assets/internship/SUU_TA/classroom.webp',
+  'assets/project/CampusGala/freshmen_welcome_gala.webp',
+  'assets/project/Andi/andi_fest_2.webp',
+  'assets/project/Andi/andi_fest.webp',
+  'assets/visual_work/jazz_winter.webp',
+  'assets/music/suu_jazz_fest/performance.webp',
   'assets/music/suu_jazz_fest/playing.webp',
   'assets/music/jazz_in_the_room/jazz_in_the_room.jpg',
   'assets/music/grand_ball/headshot.webp',
-  'assets/music/nomination/with_friends.jpg',
+  'assets/music/nomination/with_friends.webp',
   'assets/music/jam_session/jam.webp',
   'assets/music/jazz_concert/jazz_concert.webp',
   'assets/music/tbird_marching_band/TMB.webp',
@@ -32,7 +32,7 @@ const approved = [
   'assets/photography/walter_disney.webp',
   'assets/photography/boats.webp',
   'assets/photography/the_strip.webp',
-  'assets/travel/bryce_canyon.png',
+  'assets/travel/bryce_canyon.webp',
 ];
 
 test('every newly selected public image exists', async () => {
@@ -44,11 +44,11 @@ test('homepage uses approved lead images and excludes privacy-risk images', () =
     assert.match(home, new RegExp(path.replaceAll('/', '\\/')));
   }
   assert.match(home, /assets\/photography\/walter_disney\.webp/);
-  assert.match(home, /outside-card--travel[\s\S]*?<img src="assets\/travel\/bryce_canyon\.png" width="1448" height="1086"/);
-  assert.match(home, /class="project-row project-row--visual"[\s\S]*?src="assets\/visual_work\/jazz_winter\.jpg" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event"/);
+  assert.match(home, /outside-card--travel[\s\S]*?<img src="assets\/travel\/bryce_canyon\.webp" width="1448" height="1086"/);
+  assert.match(home, /class="project-row project-row--visual"[\s\S]*?src="assets\/visual_work\/jazz_winter\.webp" width="989" height="1400" alt="Winter Jazz Concert key visual poster designed for a hotel jazz event"/);
   assert.doesNotMatch(home, /class="project-row project-row--visual"[\s\S]*?src="build\/assets\/hotone_main\.jpg"/);
   assert.doesNotMatch(home, /已生成图像/);
-  for (const banned of ['professor_classroom.jpg', 'grand_ball_with_friends.jpg', 'with_professor.jpg']) {
+  for (const banned of ['professor_classroom.webp', 'grand_ball_with_friends.webp', 'with_professor.webp']) {
     assert.doesNotMatch(home, new RegExp(banned));
   }
 });
