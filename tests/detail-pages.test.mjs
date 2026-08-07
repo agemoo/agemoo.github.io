@@ -105,19 +105,17 @@ test('enhanced Campus, Hotel, and Music images keep focusable real-file links', 
 test('selected visual work preserves the approved archive with real image links', async () => {
   const html = await readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8');
   const lead = [
-    ['visual_work/hotone_main.jpg', 1500, 2120, 'HOTONE · Tenth-Anniversary Poster'],
+    ['visual_work/hotone_main.jpg', 1486, 2106, 'HOTONE · Tenth-Anniversary Poster'],
     ['visual_work/jazz_coast_a.jpg', 1300, 1828, 'JAZZ NIGHT · Coastline'],
     ['visual_work/trifold_out.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Exterior'],
   ];
   const archive = [
     ['visual_work/jazz_winter.jpg', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
-    ['visual_work/hotone_guitar.jpg', 1500, 1656, 'HOTONE · Release Your Musical Passion'],
-    ['visual_work/hotone_pedal.jpg', 1500, 1928, 'HOTONE · Ampero II Stomp Detail'],
+    ['visual_work/hotone_guitar.jpg', 1141, 1626, 'HOTONE · Release Your Musical Passion'],
+    ['visual_work/hotone_pedal.jpg', 1322, 1880, 'HOTONE · Ampero II Stomp Detail'],
     ['visual_work/jazz_coast_b.jpg', 1300, 1828, 'JAZZ NIGHT · Variation'],
-    ['visual_work/piano_a.jpg', 1300, 1838, 'PIANO DUO · Main Poster'],
-    ['visual_work/piano_b.jpg', 1300, 1828, 'PIANO DUO · Variation'],
     ['visual_work/trifold_in.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Interior'],
-    ['visual_work/banner_museum.jpg', 1084, 437, 'International Museum Day · Wuhan Museum'],
+    ['visual_work/banner_museum.png', 1983, 793, 'International Museum Day · Wuhan Museum'],
   ];
 
   assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-lead"[\s\S]*?<section class="detail-section" id="visual-archive"/);

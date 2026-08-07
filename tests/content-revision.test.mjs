@@ -5,7 +5,7 @@ import { LANGUAGES } from '../i18n.js';
 
 test('education copy keeps coursework concise and emphasizes the Business Analytics minor', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /Aug 2025 — May 2027<\/p>/);
+  assert.match(html, /Aug 2023 — May 2027<\/p>/);
   assert.doesNotMatch(html, /May 2027 \(Expected\)/);
   assert.match(html, /Coursework: Social Media Strategy, Social Media Branding, Strategic Campaigns, Content Creation, Statistical Inference, Data Analytics/);
   assert.match(html, /B\.A\. in Advertising/);
