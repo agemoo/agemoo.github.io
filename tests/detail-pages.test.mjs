@@ -102,32 +102,37 @@ test('enhanced Campus, Hotel, and Music images keep focusable real-file links', 
   }
 });
 
-test('selected visual work preserves the approved archive with real image links', async () => {
+test('selected visual work preserves the approved gallery with real image links', async () => {
   const html = await readFile(new URL('../projects/visual-work.html', import.meta.url), 'utf8');
-  const lead = [
+  const gallery = [
     ['visual_work/hotone_main.jpg', 1486, 2106, 'HOTONE · Tenth-Anniversary Poster'],
-    ['visual_work/jazz_coast_a.jpg', 1300, 1828, 'JAZZ NIGHT · Coastline'],
-    ['visual_work/trifold_out.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Exterior'],
-  ];
-  const archive = [
-    ['visual_work/jazz_winter.jpg', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
     ['visual_work/hotone_guitar.jpg', 1141, 1626, 'HOTONE · Release Your Musical Passion'],
     ['visual_work/hotone_pedal.jpg', 1322, 1880, 'HOTONE · Ampero II Stomp Detail'],
-    ['visual_work/jazz_coast_b.jpg', 1300, 1828, 'JAZZ NIGHT · Variation'],
+    ['visual_work/jazz_coast_a.png', 1086, 1448, 'JAZZ NIGHT · Coastline'],
+    ['visual_work/jazz_coast_b.png', 1086, 1448, 'JAZZ NIGHT · Variation'],
+    ['visual_work/trifold_out.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Exterior'],
     ['visual_work/trifold_in.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Interior'],
+    ['visual_work/jazz_winter.jpg', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
     ['visual_work/banner_museum.png', 1983, 793, 'International Museum Day · Wuhan Museum'],
   ];
 
-  assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-lead"[\s\S]*?<section class="detail-section" id="visual-archive"/);
-  assert.match(html, /A selected archive of event, product, print, and photographic work\./);
-  for (const [file, width, height, caption] of [...lead, ...archive]) {
+  assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-gallery"/);
+  assert.match(html, /Event, product, print, and photographic work\./);
+  assert.doesNotMatch(html, /visual-lead|visual-archive/);
+  for (const [file, width, height, caption] of gallery) {
     assert.match(html, new RegExp(`<a class="media-button" href="\\.\\.\\/assets\\/${file}" data-enlarge>`));
     assert.match(html, new RegExp(`<img src="\\.\\.\\/assets\\/${file}" width="${width}" height="${height}"`));
     assert.ok(html.includes(`<figcaption>${caption}</figcaption>`), caption);
   }
-  assert.ok(html.indexOf('hotone_main.jpg') < html.indexOf('jazz_coast_a.jpg'));
-  assert.ok(html.indexOf('jazz_coast_a.jpg') < html.indexOf('trifold_out.jpg'));
-  assert.ok(html.indexOf('trifold_out.jpg') < html.indexOf('jazz_winter.jpg'));
+  assert.ok(html.indexOf('hotone_main.jpg') < html.indexOf('hotone_guitar.jpg'));
+  assert.ok(html.indexOf('hotone_guitar.jpg') < html.indexOf('hotone_pedal.jpg'));
+  assert.ok(html.indexOf('hotone_pedal.jpg') < html.indexOf('jazz_coast_a.png'));
+  assert.ok(html.indexOf('jazz_coast_a.png') < html.indexOf('jazz_coast_b.png'));
+  assert.ok(html.indexOf('jazz_coast_b.png') < html.indexOf('trifold_out.jpg'));
+  assert.ok(html.indexOf('trifold_out.jpg') < html.indexOf('trifold_in.jpg'));
+  assert.ok(html.indexOf('trifold_in.jpg') < html.indexOf('jazz_winter.jpg'));
+  assert.ok(html.indexOf('jazz_winter.jpg') < html.indexOf('banner_museum.png'));
+  assert.match(html, /visual-feature[\s\S]*?hotone_main\.jpg/);
   assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg|bass[123]\.jpg/);
 });
 
