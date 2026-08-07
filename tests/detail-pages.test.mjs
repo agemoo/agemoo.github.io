@@ -110,15 +110,13 @@ test('selected visual work preserves the approved gallery with real image links'
     ['visual_work/hotone_pedal.jpg', 1322, 1880, 'HOTONE · Ampero II Stomp Detail'],
     ['visual_work/jazz_coast_a.png', 1086, 1448, 'JAZZ NIGHT · Coastline'],
     ['visual_work/jazz_coast_b.png', 1086, 1448, 'JAZZ NIGHT · Variation'],
-    ['visual_work/trifold_out.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Exterior'],
-    ['visual_work/trifold_in.jpg', 1800, 1369, 'Laoshan Folk Arts · Trifold Interior'],
     ['visual_work/jazz_winter.jpg', 989, 1400, 'Winter Jazz Concert · Hotel Event Visual'],
     ['visual_work/banner_museum.png', 1983, 793, 'International Museum Day · Wuhan Museum'],
   ];
 
   assert.match(html, /<header class="detail-hero" id="visual-hero"[^>]*>[\s\S]*?<section class="detail-section" id="visual-gallery"/);
   assert.match(html, /Event, product, print, and photographic work\./);
-  assert.doesNotMatch(html, /visual-lead|visual-archive/);
+  assert.doesNotMatch(html, /visual-lead|visual-archive|trifold/);
   for (const [file, width, height, caption] of gallery) {
     assert.match(html, new RegExp(`<a class="media-button" href="\\.\\.\\/assets\\/${file}" data-enlarge>`));
     assert.match(html, new RegExp(`<img src="\\.\\.\\/assets\\/${file}" width="${width}" height="${height}"`));
@@ -128,11 +126,10 @@ test('selected visual work preserves the approved gallery with real image links'
   assert.ok(html.indexOf('hotone_guitar.jpg') < html.indexOf('hotone_pedal.jpg'));
   assert.ok(html.indexOf('hotone_pedal.jpg') < html.indexOf('jazz_coast_a.png'));
   assert.ok(html.indexOf('jazz_coast_a.png') < html.indexOf('jazz_coast_b.png'));
-  assert.ok(html.indexOf('jazz_coast_b.png') < html.indexOf('trifold_out.jpg'));
-  assert.ok(html.indexOf('trifold_out.jpg') < html.indexOf('trifold_in.jpg'));
-  assert.ok(html.indexOf('trifold_in.jpg') < html.indexOf('jazz_winter.jpg'));
+  assert.ok(html.indexOf('jazz_coast_b.png') < html.indexOf('jazz_winter.jpg'));
   assert.ok(html.indexOf('jazz_winter.jpg') < html.indexOf('banner_museum.png'));
   assert.match(html, /visual-feature[\s\S]*?hotone_main\.jpg/);
+  assert.match(html, /visual-feature[\s\S]*?banner_museum\.png/);
   assert.doesNotMatch(html, /build\/assets|grand_ball_with_friends\.jpg|bass[123]\.jpg/);
 });
 
